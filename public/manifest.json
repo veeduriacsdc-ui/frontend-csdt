@@ -1,0 +1,80 @@
+{
+  "name": "CONSEJO SOCIAL DE VEEDURÍA Y DESARROLLO TERRITORIAL",
+  "short_name": "CSDT",
+  "description": "Plataforma de veeduría ciudadana y desarrollo territorial",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["government", "productivity", "utilities"],
+  "lang": "es-CO",
+  "dir": "ltr",
+  "scope": "/",
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "PQRSFD",
+      "short_name": "PQRSFD",
+      "description": "Presentar peticiones, quejas, reclamos, sugerencias, felicitaciones y denuncias",
+      "url": "/pqrsfd",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Donaciones",
+      "short_name": "Donaciones",
+      "description": "Realizar donaciones transparentes",
+      "url": "/donaciones",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Consejo IA",
+      "short_name": "IA",
+      "description": "Asistencia con inteligencia artificial",
+      "url": "/consejo-ia",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
