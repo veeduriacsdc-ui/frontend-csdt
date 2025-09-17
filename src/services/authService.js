@@ -40,7 +40,7 @@ const authService = {
   // Registrar usuario
   async registrarUsuario(datosUsuario) {
     try {
-      const response = await api.post('/auth/register', datosUsuario);
+      const response = await api.post('/auth/register-cliente', datosUsuario);
       const { user, message } = response.data;
 
       utilidades.logInfo('Usuario registrado exitosamente', { usuario: user.email });

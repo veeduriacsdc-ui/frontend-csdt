@@ -31,8 +31,8 @@ const API_CONFIGS = {
 
 // Función para obtener la configuración de API activa
 const getActiveAPIConfig = () => {
-  const activeConfig = localStorage.getItem('activeAPIConfig') || 'xampp';
-  return API_CONFIGS[activeConfig] || API_CONFIGS.xampp;
+  const activeConfig = localStorage.getItem('activeAPIConfig') || 'local';
+  return API_CONFIGS[activeConfig] || API_CONFIGS.local;
 };
 
 // Configuración base de la API (dinámica)
