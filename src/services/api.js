@@ -8,7 +8,7 @@ const API_CONFIGS = {
     description: 'Servidor local Laravel'
   },
   xampp: {
-    url: 'http://localhost/csdt-backend/public/api',
+    url: 'http://localhost/backend-csdt/public/api',
     name: 'Base de Datos XAMPP',
     description: 'Servidor XAMPP con Apache'
   },
