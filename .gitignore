@@ -8,13 +8,13 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Dependencies
-node_modules
+node_modules/
 .pnp
 .pnp.js
 
 # Production
-dist
-build
+dist/
+build/
 
 # Environment variables
 .env
@@ -45,7 +45,7 @@ ehthumbs.db
 Desktop.ini
 
 # Vite
-.vite
+# .vite
 
 # Temporary folders
 tmp/
@@ -90,8 +90,8 @@ jspm_packages/
 .next
 
 # Nuxt.js build / generate output
-.nuxt
-dist
+# .nuxt
+# dist
 
 # Storybook build outputs
 .out
