@@ -32,8 +32,8 @@ export const PermisosVistaProvider = ({ children }) => {
   const tienePermiso = (pagina, tipoAcceso = 'ver') => {
     if (!user) return false;
 
-    // Administrador General tiene acceso total
-    if (user.rol === 'administrador_general') {
+    // Administrador tiene acceso total
+    if (user.rol === 'adm') {
       // Verificar permisos específicos si existen
       if (user.permisos && user.permisos.control_total) return true;
       if (user.permisos && user.permisos[pagina.toLowerCase().replace(/\s+/g, '_')]) return true;
@@ -41,7 +41,7 @@ export const PermisosVistaProvider = ({ children }) => {
     }
 
     // Administrador tiene acceso a páginas de administrador
-    if (user.rol === 'administrador') {
+    if (user.rol === 'adm') {
       const paginasAdmin = [
         'Dashboard Admin', 'Panel de Actividades', 'Gestión de Actividades',
         'Hoja de Recursos', 'Análisis de Precios Unitarios', 'Presupuesto de Actividades',
@@ -53,7 +53,7 @@ export const PermisosVistaProvider = ({ children }) => {
     }
 
     // Operador tiene acceso a páginas de operador
-    if (user.rol === 'operador') {
+    if (user.rol === 'ope') {
       const paginasOperador = [
         'Dashboard Operador', 'Tareas Asignadas', 'Centro de Gestión Legal', 'Panel de Tareas'
       ];
@@ -61,7 +61,7 @@ export const PermisosVistaProvider = ({ children }) => {
     }
 
     // Cliente tiene acceso a páginas de cliente
-    if (user.rol === 'cliente') {
+    if (user.rol === 'cli') {
       const paginasCliente = [
         'Dashboard Cliente', 'Panel de Seguimiento de Casos', 'Tareas a Realizar'
       ];

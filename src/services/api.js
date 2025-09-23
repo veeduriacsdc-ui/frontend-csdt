@@ -3,29 +3,22 @@ import axios from 'axios';
 // Configuración de múltiples APIs para conexión con bases de datos
 const API_CONFIGS = {
   local: {
-    url: 'http://127.0.0.1:8000/api',
-    name: 'Base de Datos Local',
-    description: 'Servidor local Laravel'
+    url: 'http://localhost:8000/api',
+    name: 'CSDT Backend Local',
+    description: 'Servidor Laravel local del CSDT',
+    timeout: 10000
   },
   xampp: {
-    url: 'http://localhost/backend-csdt/public/api',
-    name: 'Base de Datos XAMPP',
-    description: 'Servidor XAMPP con Apache'
+    url: 'http://127.0.0.1:8000/api',
+    name: 'CSDT Backend XAMPP',
+    description: 'Servidor XAMPP con Laravel CSDT',
+    timeout: 10000
   },
-  ip1: {
-    url: 'http://192.168.1.100:8000/api',
-    name: 'Base de Datos IP 1',
-    description: 'Servidor remoto IP 192.168.1.100'
-  },
-  ip2: {
-    url: 'http://192.168.1.101:8000/api',
-    name: 'Base de Datos IP 2', 
-    description: 'Servidor remoto IP 192.168.1.101'
-  },
-  externa: {
-    url: 'https://api-csdt.externo.com/api',
-    name: 'Base de Datos Externa',
-    description: 'Servidor externo de producción'
+  produccion: {
+    url: 'https://api.csdt.com.co/api',
+    name: 'CSDT Backend Producción',
+    description: 'Servidor de producción CSDT',
+    timeout: 20000
   }
 };
 
@@ -36,7 +29,8 @@ const getActiveAPIConfig = () => {
 };
 
 // Configuración base de la API (dinámica)
-const API_BASE_URL = import.meta.env.VITE_API_URL || getActiveAPIConfig().url;
+const activeConfig = getActiveAPIConfig();
+const API_BASE_URL = import.meta.env.VITE_API_URL || activeConfig.url;
 
 // Crear instancia de axios
 const api = axios.create({
@@ -44,14 +38,16 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
   },
-  timeout: 10000, // 10 segundos de timeout
+  timeout: activeConfig.timeout,
+  withCredentials: true,
 });
 
 // Interceptor para agregar token de autenticación
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('csdt_token') || localStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -68,14 +64,55 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response?.status === 401) {
+    const { response } = error;
+    
+    if (response?.status === 401) {
       // Token expirado o inválido
+      localStorage.removeItem('csdt_token');
       localStorage.removeItem('token');
+      localStorage.removeItem('csdt_user');
       localStorage.removeItem('user');
       window.location.href = '/';
+    } else if (response?.status === 403) {
+      // Acceso denegado
+      console.error('Acceso denegado: No tienes permisos para realizar esta acción');
+    } else if (response?.status === 404) {
+      // Recurso no encontrado
+      console.error('Recurso no encontrado: La URL solicitada no existe');
+    } else if (response?.status >= 500) {
+      // Error del servidor
+      console.error('Error del servidor: Problema interno del servidor');
+    } else if (error.code === 'ECONNABORTED') {
+      // Timeout
+      console.error('Timeout: La solicitud tardó demasiado tiempo');
+    } else if (error.code === 'NETWORK_ERROR') {
+      // Error de red
+      console.error('Error de red: No se pudo conectar al servidor');
     }
+    
     return Promise.reject(error);
   }
 );
+
+// Funciones de utilidad para manejo de APIs
+export const switchAPIConfig = (configName) => {
+  if (API_CONFIGS[configName]) {
+    localStorage.setItem('activeAPIConfig', configName);
+    window.location.reload(); // Recargar para aplicar nueva configuración
+  } else {
+    console.error(`Configuración de API '${configName}' no encontrada`);
+  }
+};
+
+export const getAvailableAPIConfigs = () => {
+  return Object.keys(API_CONFIGS).map(key => ({
+    key,
+    ...API_CONFIGS[key]
+  }));
+};
+
+export const getCurrentAPIConfig = () => {
+  return activeConfig;
+};
 
 export default api;

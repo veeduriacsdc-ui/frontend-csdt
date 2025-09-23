@@ -1,4 +1,4 @@
-import api from './api';
+import csdtApiService from './csdtApiService';
 
 const registroService = {
   // Registrar nuevo usuario (mejorado)
@@ -15,7 +15,7 @@ const registroService = {
       }
 
       // Usar la ruta de autenticación unificada
-      const response = await api.post('/auth/register-cliente', {
+      const response = await csdtApiService.auth.registerCliente({
         nombre: datosRegistro.nombre?.trim(),
         email: datosRegistro.email?.trim().toLowerCase(),
         usuario: datosRegistro.usuario?.trim(),
@@ -85,7 +85,7 @@ const registroService = {
   // Validar campos únicos antes del registro
   async validarCampos(campos) {
     try {
-      const response = await api.post('/auth/validar-campos', campos);
+      const response = await csdtApiService.auth.validarCampos(campos);
       return response.data;
     } catch (error) {
       throw error.response?.data || error;
@@ -95,7 +95,7 @@ const registroService = {
   // Verificar email
   async verificarEmail(token) {
     try {
-      const response = await api.post('/registro/verificar-email', { token });
+      const response = await csdtApiService.registro.verificarEmail(token);
       return response.data;
     } catch (error) {
       throw error.response?.data || error;
@@ -105,7 +105,7 @@ const registroService = {
   // Obtener registros pendientes (solo administradores)
   async obtenerPendientes() {
     try {
-      const response = await api.get('/admin-registros/pendientes');
+      const response = await csdtApiService.adminRegistros.obtenerPendientes();
       return response.data;
     } catch (error) {
       throw error.response?.data || error;
@@ -115,7 +115,7 @@ const registroService = {
   // Aprobar registro (solo administradores)
   async aprobar(id, observaciones = null) {
     try {
-      const response = await api.post(`/admin-registros/${id}/aprobar`, { observaciones });
+      const response = await csdtApiService.adminRegistros.aprobar(id, observaciones);
       return response.data;
     } catch (error) {
       throw error.response?.data || error;
@@ -125,7 +125,7 @@ const registroService = {
   // Rechazar registro (solo administradores)
   async rechazar(id, observaciones) {
     try {
-      const response = await api.post(`/admin-registros/${id}/rechazar`, { observaciones });
+      const response = await csdtApiService.adminRegistros.rechazar(id, observaciones);
       return response.data;
     } catch (error) {
       throw error.response?.data || error;

@@ -11,37 +11,40 @@ class IAsProfesionalesService {
     especialistas: ['legal', 'administrativo', 'penal', 'civil']
   };
 
-  // Generar análisis legal profesional
+  // Generar análisis legal profesional de nivel doctorado
   static generarAnalisisLegalProfesional(hechos, tipoCaso, categoriaJuridica) {
     const fechaActual = new Date().toLocaleDateString('es-CO');
     
     return {
       nombre: 'Dr. María Elena Rodríguez - IA Legal Especializada',
-      titulo: 'Especialista en Derecho Constitucional y Administrativo',
-      experiencia: '25 años de experiencia en derecho público y constitucional',
+      titulo: 'Doctora en Derecho Constitucional y Administrativo - PhD Universidad Nacional',
+      experiencia: '25 años de experiencia en derecho público y constitucional, PhD en Derecho Constitucional, Postdoctorado en Derecho Administrativo Comparado',
       
-      narrativaHechosProfesional: `Como abogada especialista con más de dos décadas de experiencia en derecho constitucional y administrativo, procedo a analizar los hechos específicos presentados el ${fechaActual}:
+      narrativaHechosProfesional: `Como doctora en derecho constitucional con más de dos décadas de experiencia especializada y formación doctoral en instituciones constitucionales, procedo a realizar un análisis jurídico de nivel doctoral sobre los hechos específicos presentados el ${fechaActual}:
 
 DESCRIPCIÓN NARRATIVA DE HECHOS:
 "${hechos}"
 
-ANÁLISIS JURÍDICO PROFESIONAL:
-Los hechos descritos presentan elementos constitutivos que requieren una evaluación exhaustiva desde múltiples perspectivas del ordenamiento jurídico colombiano. Como especialista en derecho público, identifico los siguientes aspectos críticos:
+ANÁLISIS JURÍDICO DOCTORAL:
+Los hechos descritos presentan elementos constitutivos que requieren una evaluación exhaustiva desde múltiples perspectivas del ordenamiento jurídico colombiano, aplicando metodologías de investigación doctoral en derecho constitucional. Como especialista con formación doctoral, identifico los siguientes aspectos críticos:
 
-1. ANÁLISIS CONSTITUCIONAL:
-   - Evaluación de posibles vulneraciones a derechos fundamentales
-   - Análisis de principios constitucionales aplicables
-   - Revisión de competencias y procedimientos
+1. ANÁLISIS CONSTITUCIONAL DOCTORAL:
+   - Evaluación exhaustiva de vulneraciones a derechos fundamentales aplicando la teoría constitucional contemporánea
+   - Análisis de principios constitucionales aplicables desde la perspectiva de la dogmática constitucional
+   - Revisión de competencias y procedimientos basada en la jurisprudencia constitucional comparada
+   - Aplicación de la teoría de la interpretación constitucional y el control de constitucionalidad
 
-2. ANÁLISIS ADMINISTRATIVO:
-   - Verificación de legalidad de actos administrativos
-   - Evaluación de procedimientos y competencias
-   - Análisis de responsabilidad del Estado
+2. ANÁLISIS ADMINISTRATIVO ESPECIALIZADO:
+   - Verificación de legalidad de actos administrativos aplicando la teoría del acto administrativo
+   - Evaluación de procedimientos y competencias desde la perspectiva del derecho administrativo comparado
+   - Análisis de responsabilidad del Estado aplicando la teoría de la responsabilidad patrimonial
+   - Evaluación de la eficacia y eficiencia de la función administrativa
 
-3. EVALUACIÓN DE RIESGOS JURÍDICOS:
-   - Identificación de vulneraciones a derechos
-   - Análisis de irregularidades procedimentales
-   - Evaluación de consecuencias jurídicas`,
+3. EVALUACIÓN DE RIESGOS JURÍDICOS DOCTORAL:
+   - Identificación de vulneraciones a derechos aplicando metodologías de análisis jurídico cuantitativo
+   - Análisis de irregularidades procedimentales desde la perspectiva de la teoría del procedimiento administrativo
+   - Evaluación de consecuencias jurídicas aplicando la teoría de la responsabilidad jurídica
+   - Análisis de impacto en la seguridad jurídica y la confianza legítima`,
 
       fundamentosJuridicos: {
         constitucionales: [

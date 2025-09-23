@@ -310,8 +310,9 @@ const ConsejoIA = () => {
       };
       
       // Encabezado
-      addText('ANÁLISIS COMPLETO DEL CONSEJO IA', 16, true, [30, 64, 175]);
-      addText('Sistema de Inteligencia Artificial para Análisis Jurídico', 12, true, [30, 64, 175]);
+      addText('ANÁLISIS COMPLETO DEL CONSEJO IA - NIVEL DOCTORADO', 16, true, [30, 64, 175]);
+      addText('Sistema de Inteligencia Artificial para Análisis Jurídico Especializado', 12, true, [30, 64, 175]);
+      addText('Análisis de Nivel Doctoral con Metodologías de Investigación Jurídica Avanzadas', 11, true, [30, 64, 175]);
       addText(`Fecha de Generación: ${new Date().toLocaleString('es-CO')}`, 10, false, [100, 100, 100]);
       
       yPosition += 10;
@@ -331,6 +332,31 @@ const ConsejoIA = () => {
       
       yPosition += 10;
       addSeparator();
+
+      // Análisis Doctoral Especializado
+      if (analisisContextual?.analisisDoctoral) {
+        addText('ANÁLISIS DOCTORAL ESPECIALIZADO:', 14, true, [139, 0, 0]);
+        addText(`Nivel Académico: ${analisisContextual.analisisDoctoral.nivelAcademico}`, 11);
+        addText(`Metodología: ${analisisContextual.analisisDoctoral.metodologia}`, 11);
+        addText(`Enfoque Teórico: ${analisisContextual.analisisDoctoral.enfoqueTeorico}`, 11);
+        
+        addText('Análisis Crítico Doctoral:', 12, true, [0, 0, 139]);
+        addText(analisisContextual.analisisDoctoral.analisisCritico, 10);
+        
+        addText('Fundamentación Teórica:', 12, true, [0, 0, 139]);
+        addText(analisisContextual.analisisDoctoral.fundamentacionTeorica, 10);
+        
+        addText('Conclusiones Doctorales:', 12, true, [0, 0, 139]);
+        addText(analisisContextual.analisisDoctoral.conclusionesDoctorales, 10);
+        
+        addText('Recomendaciones de Investigación:', 12, true, [0, 0, 139]);
+        analisisContextual.analisisDoctoral.recomendacionesInvestigacion?.forEach(rec => {
+          addText(`• ${rec}`, 10);
+        });
+        
+        yPosition += 10;
+        addSeparator();
+      }
 
       // Detalles por IA Profesional
       if (respuestaIA?.detallesIAs && Array.isArray(respuestaIA.detallesIAs)) {
@@ -531,7 +557,7 @@ const ConsejoIA = () => {
       addText('Generado por el Sistema CSDT - Consejo IA', 8, false, [100, 100, 100]);
       addText('Fecha: ' + new Date().toLocaleString('es-CO'), 8, false, [100, 100, 100]);
 
-      doc.save('Analisis_Consejo_IA.pdf');
+      doc.save('Analisis_Consejo_IA_Doctorado.pdf');
     } catch (error) {
       alert('Error al generar el PDF. Intente nuevamente.');
     }
@@ -656,8 +682,8 @@ const ConsejoIA = () => {
           </div>
 
 
-        {/* Análisis Contextual Mejorado */}
-        {analisisContextual && (
+        {/* Análisis Contextual Mejorado de Nivel Doctorado */}
+        {analisisContextual && analisisCompleto && (
           <div style={{ 
             background: 'white', 
             borderRadius: '15px', 
@@ -847,8 +873,184 @@ const ConsejoIA = () => {
                  </div>
                )}
 
+        {/* Análisis Doctoral Especializado */}
+        {analisisContextual?.analisisDoctoral && analisisCompleto && (
+          <div style={{
+            background: 'white', 
+            borderRadius: '15px', 
+            padding: '40px', 
+            marginBottom: '40px',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
+          }}>
+            <h2 style={{ 
+              fontSize: '1.8rem', 
+              fontWeight: 'bold', 
+              color: '#1e40af',
+              marginBottom: '30px',
+              textAlign: 'center'
+            }}>
+              Análisis Especializado
+            </h2>
+            
+            <div style={{
+              background: '#f8fafc',
+              border: '2px solid #e2e8f0',
+              borderRadius: '10px',
+              padding: '25px',
+              marginBottom: '20px',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
+            }}>
+              <div style={{
+                borderBottom: '2px solid #e2e8f0',
+                paddingBottom: '15px',
+                marginBottom: '20px'
+              }}>
+                <h4 style={{ 
+                  fontSize: '1.2rem', 
+                  fontWeight: 'bold', 
+                  color: '#1e40af',
+                  marginBottom: '5px'
+                }}>
+                  Sistema de IA Doctoral
+                </h4>
+                <p style={{ 
+                  fontSize: '1rem', 
+                  fontWeight: '600', 
+                  color: '#059669',
+                  marginBottom: '5px'
+                }}>
+                  {analisisContextual.analisisDoctoral.nivelAcademico}
+                </p>
+                <p style={{ 
+                  fontSize: '0.9rem', 
+                  color: '#6b7280',
+                  fontStyle: 'italic'
+                }}>
+                  {analisisContextual.analisisDoctoral.metodologia}
+                </p>
+              </div>
+
+              <div style={{ marginBottom: '20px' }}>
+                <h5 style={{ 
+                  fontSize: '1rem', 
+                  fontWeight: 'bold', 
+                  color: '#374151',
+                  marginBottom: '10px'
+                }}>
+                  Enfoque Teórico
+                </h5>
+                <p style={{ 
+                  color: '#4b5563', 
+                  lineHeight: '1.6',
+                  marginBottom: '15px',
+                  fontSize: '0.9rem'
+                }}>
+                  {analisisContextual.analisisDoctoral.enfoqueTeorico}
+                </p>
+              </div>
+
+              <div style={{ marginBottom: '20px' }}>
+                <h5 style={{ 
+                  fontSize: '1rem', 
+                  fontWeight: 'bold', 
+                  color: '#374151',
+                  marginBottom: '10px'
+                }}>
+                  Análisis Crítico Doctoral
+                </h5>
+                <div style={{ 
+                  background: '#f3f4f6', 
+                  borderRadius: '8px', 
+                  padding: '15px',
+                  marginBottom: '15px'
+                }}>
+                  <pre style={{ 
+                    fontSize: '0.8rem', 
+                    lineHeight: '1.5', 
+                    color: '#4b5563',
+                    whiteSpace: 'pre-wrap',
+                    fontFamily: 'inherit'
+                  }}>
+                    {analisisContextual.analisisDoctoral.analisisCritico}
+                  </pre>
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '20px' }}>
+                <h5 style={{ 
+                  fontSize: '1rem', 
+                  fontWeight: 'bold', 
+                  color: '#374151',
+                  marginBottom: '10px'
+                }}>
+                  Fundamentación Teórica
+                </h5>
+                <div style={{ 
+                  background: '#f3f4f6', 
+                  borderRadius: '8px', 
+                  padding: '15px',
+                  marginBottom: '15px'
+                }}>
+                  <pre style={{ 
+                    fontSize: '0.8rem', 
+                    lineHeight: '1.5', 
+                    color: '#4b5563',
+                    whiteSpace: 'pre-wrap',
+                    fontFamily: 'inherit'
+                  }}>
+                    {analisisContextual.analisisDoctoral.fundamentacionTeorica}
+                  </pre>
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '20px' }}>
+                <h5 style={{ 
+                  fontSize: '1rem', 
+                  fontWeight: 'bold', 
+                  color: '#374151',
+                  marginBottom: '10px'
+                }}>
+                  Conclusiones Doctorales
+                </h5>
+                <div style={{ 
+                  background: '#fef3c7', 
+                  borderRadius: '8px', 
+                  padding: '15px',
+                  border: '1px solid #f59e0b'
+                }}>
+                  <pre style={{ 
+                    fontSize: '0.8rem', 
+                    lineHeight: '1.5', 
+                    color: '#92400e',
+                    whiteSpace: 'pre-wrap',
+                    fontFamily: 'inherit'
+                  }}>
+                    {analisisContextual.analisisDoctoral.conclusionesDoctorales}
+                  </pre>
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '0' }}>
+                <h5 style={{ 
+                  fontSize: '1rem', 
+                  fontWeight: 'bold', 
+                  color: '#374151',
+                  marginBottom: '10px'
+                }}>
+                  Recomendaciones de Investigación
+                </h5>
+                <ul style={{ paddingLeft: '20px', fontSize: '0.9rem', color: '#4b5563' }}>
+                  {analisisContextual.analisisDoctoral.recomendacionesInvestigacion?.map((recomendacion, index) => (
+                    <li key={index} style={{ marginBottom: '5px' }}>{recomendacion}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Análisis de ChatGPT Mejorado */}
-        {analisisChatGPTMejorado && (
+        {analisisChatGPTMejorado && analisisCompleto && (
                  <div style={{
             background: 'white', 
             borderRadius: '15px', 
@@ -1099,7 +1301,7 @@ const ConsejoIA = () => {
         )}
 
         {/* Análisis Narrativo Profesional */}
-        {analisisNarrativo && (
+        {analisisNarrativo && analisisCompleto && (
           <div style={{
             background: 'white', 
             borderRadius: '15px',
@@ -1114,7 +1316,7 @@ const ConsejoIA = () => {
               marginBottom: '30px',
               textAlign: 'center'
             }}>
-              Análisis Narrativo Profesional y Fundamentos Integrales
+              Análisis Narrativo Doctoral y Fundamentos Integrales
             </h2>
 
             {/* Narrativa Mejorada */}
@@ -1437,7 +1639,7 @@ const ConsejoIA = () => {
         )}
 
         {/* Análisis Profesional Global */}
-        {analisisProfesionalGlobal && (
+        {analisisProfesionalGlobal && analisisCompleto && (
           <div style={{ 
             background: 'white', 
             borderRadius: '15px', 
@@ -1452,7 +1654,7 @@ const ConsejoIA = () => {
               marginBottom: '30px',
               textAlign: 'center'
             }}>
-              Análisis Profesional Global Multidisciplinario
+              Análisis Doctoral Global Multidisciplinario
             </h2>
             
             <div style={{
@@ -1617,7 +1819,7 @@ const ConsejoIA = () => {
         )}
 
         {/* Recomendaciones Integrales y Rutas Específicas */}
-        {analisisNarrativo && (
+        {analisisNarrativo && analisisCompleto && (
           <div style={{ 
             background: 'white', 
             borderRadius: '15px', 
@@ -1632,7 +1834,7 @@ const ConsejoIA = () => {
               marginBottom: '30px',
               textAlign: 'center'
             }}>
-              Recomendaciones Jurídicas, Administrativas e Institucionales Integrales
+              Recomendaciones Jurídicas, Administrativas e Institucionales Integrales - Nivel Doctoral
             </h2>
 
             {/* Recomendaciones por Área */}
@@ -1743,7 +1945,7 @@ const ConsejoIA = () => {
                 borderBottom: '2px solid #e2e8f0',
                 paddingBottom: '10px'
               }}>
-                Rutas Específicas por Especialidad Jurídica
+                Rutas Específicas por Especialidad Jurídica - Nivel Doctoral
               </h3>
 
               <div style={{ display: 'grid', gap: '15px' }}>
@@ -1816,7 +2018,7 @@ const ConsejoIA = () => {
                 borderBottom: '2px solid #f59e0b',
                 paddingBottom: '10px'
               }}>
-                Archivos y Evidencia Requerida
+                Archivos y Evidencia Requerida - Nivel Doctoral
               </h3>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
@@ -1855,7 +2057,7 @@ const ConsejoIA = () => {
                 border: '1px solid #f59e0b'
               }}>
                 <h4 style={{ fontSize: '1rem', fontWeight: 'bold', color: '#92400e', marginBottom: '8px' }}>
-                  📋 Sistema de Archivos del Consejo IA
+                  📋 Sistema de Archivos del Consejo IA - Nivel Doctoral
                 </h4>
                 <p style={{ fontSize: '0.9rem', color: '#92400e', marginBottom: '10px' }}>
                   Los archivos generados se guardarán automáticamente y estarán disponibles para consulta en las páginas siguientes del sistema.
@@ -1891,10 +2093,10 @@ const ConsejoIA = () => {
                 color: '#92400e',
                 marginBottom: '10px'
               }}>
-                ANÁLISIS DE DEMOSTRACIÓN
+                ANÁLISIS DE DEMOSTRACIÓN - NIVEL DOCTORADO
               </h3>
               <p style={{ color: '#92400e', fontSize: '1rem' }}>
-                Este es un análisis de demostración del sistema. Para realizar un análisis personalizado, 
+                Este es un análisis de demostración del sistema de nivel doctoral. Para realizar un análisis personalizado, 
                 utilice el formulario anterior.
               </p>
             </div>
@@ -1906,7 +2108,7 @@ const ConsejoIA = () => {
               marginBottom: '30px',
               textAlign: 'center'
             }}>
-              Resultados del Análisis
+              Resultados del Análisis Doctoral
             </h2>
 
             <div style={{ marginBottom: '30px' }}>
@@ -1916,7 +2118,7 @@ const ConsejoIA = () => {
                 color: '#1e40af',
                 marginBottom: '15px'
               }}>
-                Análisis Consolidado
+                Análisis Consolidado Doctoral
               </h3>
               <div style={{
                 background: '#f0f9ff',
@@ -1941,7 +2143,7 @@ const ConsejoIA = () => {
                   color: '#1e40af',
                   marginBottom: '15px'
                 }}>
-                  Análisis por Especialistas Profesionales
+                  Análisis por Especialistas Doctorales
                 </h3>
                 
                 {respuestaIA.detallesIAs.map((ia, index) => (
@@ -2217,7 +2419,7 @@ const ConsejoIA = () => {
                   boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
                 }}
               >
-                Generar Reporte Completo PDF
+                Generar Reporte Doctoral PDF
               </button>
             </div>
           </div>

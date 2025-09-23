@@ -112,69 +112,70 @@ const MenuPrincipal = () => {
 
     const navegacion = [];
 
-      // NIVEL 1: CLIENTE - Acceso básico (carpeta: cliente)
-      if (user.rol === 'cliente') {
-        navegacion.push(
-          { name: 'Dashboard Cliente', href: '/cliente/dashboard', icon: '📊', level: 1 },
-          { name: 'Panel de Seguimiento de Casos', href: '/cliente/seguimiento-casos', icon: '📋', level: 1 },
-          { name: 'Tareas a Realizar', href: '/cliente/tareas-a-realizar', icon: '✅', level: 1 }
-        );
-      }
+    // NIVEL 1: CLIENTE - Acceso básico
+    if (user.rol === 'cli') {
+      navegacion.push(
+        { name: 'Mi Dashboard', href: '/cliente/dashboard', icon: '📊', level: 1 },
+        { name: 'Mis Veedurías', href: '/cliente/veedurias', icon: '📋', level: 1 },
+        { name: 'Mis Donaciones', href: '/cliente/donaciones', icon: '💰', level: 1 },
+        { name: 'Mis Tareas', href: '/cliente/tareas', icon: '✅', level: 1 }
+      );
+    }
 
-    // NIVEL 2: OPERADOR - Acceso de cliente + operador (carpeta: operador)
-    if (user.rol === 'operador') {
+    // NIVEL 2: OPERADOR - Acceso de cliente + operador
+    if (user.rol === 'ope') {
       // Hereda funciones de cliente
       navegacion.push(
-        { name: 'Dashboard Cliente', href: '/cliente/dashboard', icon: '📊', level: 1 },
-        { name: 'Panel de Seguimiento de Casos', href: '/cliente/seguimiento-casos', icon: '📋', level: 1 },
-        { name: 'Tareas a Realizar', href: '/cliente/tareas-a-realizar', icon: '✅', level: 1 }
+        { name: 'Mi Dashboard', href: '/cliente/dashboard', icon: '📊', level: 1 },
+        { name: 'Mis Veedurías', href: '/cliente/veedurias', icon: '📋', level: 1 },
+        { name: 'Mis Donaciones', href: '/cliente/donaciones', icon: '💰', level: 1 },
+        { name: 'Mis Tareas', href: '/cliente/tareas', icon: '✅', level: 1 }
       );
 
       // Funciones específicas de operador
       navegacion.push(
         { name: '--- FUNCIONES DE OPERADOR ---', esSeparador: true, level: 2 },
         { name: 'Dashboard Operador', href: '/operador/dashboard', icon: '⚙️', level: 2 },
-        { name: 'Tareas Asignadas', href: '/operador/tareas-asignadas', icon: '📝', level: 2 },
-        { name: 'Centro de Gestión Legal', href: '/operador/centro-gestion-legal', icon: '⚖️', level: 2 },
-        { name: 'Panel de Tareas', href: '/operador/panel-tareas', icon: '📋', level: 2 }
+        { name: 'Gestionar Veedurías', href: '/operador/veedurias', icon: '📝', level: 2 },
+        { name: 'Gestionar Tareas', href: '/operador/tareas', icon: '📋', level: 2 },
+        { name: 'Gestionar Donaciones', href: '/operador/donaciones', icon: '💰', level: 2 },
+        { name: 'Gestionar Archivos', href: '/operador/archivos', icon: '📁', level: 2 }
       );
     }
 
-    // NIVEL 3: ADMINISTRADOR - Acceso completo (cliente + operador + admin) (carpeta: administrador)
-    if (user.rol === 'administrador' || user.rol === 'administrador_general') {
+    // NIVEL 3: ADMINISTRADOR - Acceso completo
+    if (user.rol === 'adm') {
       // Hereda funciones de cliente
       navegacion.push(
-        { name: 'Dashboard Cliente', href: '/cliente/dashboard', icon: '📊', level: 1 },
-        { name: 'Panel de Seguimiento de Casos', href: '/cliente/seguimiento-casos', icon: '📋', level: 1 },
-        { name: 'Tareas a Realizar', href: '/cliente/tareas-a-realizar', icon: '✅', level: 1 }
+        { name: 'Mi Dashboard', href: '/cliente/dashboard', icon: '📊', level: 1 },
+        { name: 'Mis Veedurías', href: '/cliente/veedurias', icon: '📋', level: 1 },
+        { name: 'Mis Donaciones', href: '/cliente/donaciones', icon: '💰', level: 1 },
+        { name: 'Mis Tareas', href: '/cliente/tareas', icon: '✅', level: 1 }
       );
 
       // Hereda funciones de operador
       navegacion.push(
         { name: '--- FUNCIONES DE OPERADOR ---', esSeparador: true, level: 2 },
         { name: 'Dashboard Operador', href: '/operador/dashboard', icon: '⚙️', level: 2 },
-        { name: 'Tareas Asignadas', href: '/operador/tareas-asignadas', icon: '📝', level: 2 },
-        { name: 'Centro de Gestión Legal', href: '/operador/centro-gestion-legal', icon: '⚖️', level: 2 },
-        { name: 'Panel de Tareas', href: '/operador/panel-tareas', icon: '📋', level: 2 }
+        { name: 'Gestionar Veedurías', href: '/operador/veedurias', icon: '📝', level: 2 },
+        { name: 'Gestionar Tareas', href: '/operador/tareas', icon: '📋', level: 2 },
+        { name: 'Gestionar Donaciones', href: '/operador/donaciones', icon: '💰', level: 2 },
+        { name: 'Gestionar Archivos', href: '/operador/archivos', icon: '📁', level: 2 }
       );
 
-      // Funciones específicas de administrador (basado en archivos reales de carpeta: administrador)
+      // Funciones específicas de administrador
       navegacion.push(
         { name: '--- FUNCIONES DE ADMINISTRADOR ---', esSeparador: true, level: 3 },
         { name: 'Dashboard Admin', href: '/admin/dashboard', icon: '👑', level: 3 },
-        { name: 'Panel de Actividades', href: '/admin/panel-actividades', icon: '🏢', level: 3 },
-        { name: 'Gestión de Actividades', href: '/admin/gestion-actividades', icon: '📊', level: 3 },
-        { name: 'Hoja de Recursos', href: '/admin/hoja-recursos', icon: '📋', level: 3 },
-        { name: 'Análisis de Precios Unitarios', href: '/admin/analisis-precios', icon: '💰', level: 3 },
-        { name: 'Presupuesto de Actividades', href: '/admin/presupuesto-actividad', icon: '📈', level: 3 },
-        { name: 'Convocatorias de Tareas', href: '/admin/convocatorias-tareas', icon: '📢', level: 3 },
-        { name: 'Gestión de Recursos Humanos', href: '/admin/gestion-recursos-humanos', icon: '👥', level: 3 },
-        { name: 'Gestión de Donaciones', href: '/admin/donaciones', icon: '💰', level: 3 },
-        { name: 'Gestión de Registros', href: '/admin/registros', icon: '📝', level: 3 },
-        { name: 'Control de Permisos de Vista', href: '/admin/control-permisos-vista', icon: '🔐', level: 3 },
-        { name: 'Validar Funcionarios y Entidades', href: '/admin/validar-funcionarios-entidades', icon: '👨‍💼', level: 3 },
-        { name: 'Gestionar Roles y Niveles', href: '/admin/gestionar-roles-usuarios', icon: '👥', level: 3 },
-        { name: 'Mantenimiento del Sistema', href: '/admin/mantenimiento-sistema', icon: '🔧', level: 3 }
+        { name: 'Gestionar Usuarios', href: '/admin/usuarios', icon: '👥', level: 3 },
+        { name: 'Gestionar Veedurías', href: '/admin/veedurias', icon: '📋', level: 3 },
+        { name: 'Gestionar Donaciones', href: '/admin/donaciones', icon: '💰', level: 3 },
+        { name: 'Gestionar Tareas', href: '/admin/tareas', icon: '✅', level: 3 },
+        { name: 'Gestionar Archivos', href: '/admin/archivos', icon: '📁', level: 3 },
+        { name: 'Gestionar Roles', href: '/admin/roles', icon: '🔐', level: 3 },
+        { name: 'Configuraciones', href: '/admin/configuraciones', icon: '⚙️', level: 3 },
+        { name: 'Logs del Sistema', href: '/admin/logs', icon: '📊', level: 3 },
+        { name: 'Estadísticas', href: '/admin/estadisticas', icon: '📈', level: 3 }
       );
     }
 
@@ -547,10 +548,9 @@ const MenuPrincipal = () => {
                         margin: '0 auto 10px',
                         color: 'white'
                       }}>
-                        {user.rol === 'cliente' && '👤'}
-                        {user.rol === 'operador' && '⚙️'}
-                        {user.rol === 'administrador' && '👑'}
-                        {user.rol === 'administrador_general' && '👑'}
+                        {user.rol === 'cli' && '👤'}
+                        {user.rol === 'ope' && '⚙️'}
+                        {user.rol === 'adm' && '👑'}
                       </div>
                       <h3 style={{
                         margin: '0 0 3px 0',
@@ -558,7 +558,7 @@ const MenuPrincipal = () => {
                         fontSize: 'clamp(14px, 3vw, 16px)',
                         fontWeight: 'bold'
                       }}>
-                    {user.nombre}
+                    {user.nom} {user.ape}
                       </h3>
                       <p style={{
                         margin: '0 0 3px 0',
@@ -566,17 +566,18 @@ const MenuPrincipal = () => {
                         fontSize: 'clamp(11px, 2.5vw, 13px)',
                         textTransform: 'capitalize'
                       }}>
-                    {user.rol}
+                    {user.rol === 'cli' && 'Cliente'}
+                    {user.rol === 'ope' && 'Operador'}
+                    {user.rol === 'adm' && 'Administrador'}
                   </p>
                       <p style={{
                         margin: 0,
                         color: '#9ca3af',
                         fontSize: 'clamp(9px, 2vw, 11px)'
                       }}>
-                        {user.rol === 'cliente' && 'Nivel 1: Acceso básico'}
-                        {user.rol === 'operador' && 'Nivel 2: Cliente + Operador'}
-                        {user.rol === 'administrador' && 'Nivel 3: Acceso completo'}
-                        {user.rol === 'administrador_general' && 'Nivel 4: Acceso total'}
+                        {user.rol === 'cli' && 'Nivel 1: Acceso básico'}
+                        {user.rol === 'ope' && 'Nivel 2: Cliente + Operador'}
+                        {user.rol === 'adm' && 'Nivel 3: Acceso completo'}
                   </p>
                 </div>
               )}
@@ -760,10 +761,9 @@ const MenuPrincipal = () => {
                     alignItems: 'center',
                         gap: '5px'
                       }}>
-                        {user.rol === 'cliente' && '👤 Área Cliente (N1)'}
-                        {user.rol === 'operador' && '⚙️ Área Operador (N2)'}
-                        {user.rol === 'administrador' && '👑 Área Admin (N3)'}
-                        {user.rol === 'administrador_general' && '👑 Área Admin General (N4)'}
+                        {user.rol === 'cli' && '👤 Área Cliente (N1)'}
+                        {user.rol === 'ope' && '⚙️ Área Operador (N2)'}
+                        {user.rol === 'adm' && '👑 Área Admin (N3)'}
                       </h4>
                       <div style={{ 
                         display: 'grid', 
@@ -948,7 +948,7 @@ const MenuPrincipal = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {/* Botón Cliente */}
               <button
-                onClick={() => handleSeleccionarRol('cliente')}
+                onClick={() => handleSeleccionarRol('cli')}
                   style={{
                   padding: '20px',
                   border: '2px solid #3498db',
@@ -983,7 +983,7 @@ const MenuPrincipal = () => {
 
               {/* Botón Operador */}
               <button
-                onClick={() => handleSeleccionarRol('operador')}
+                onClick={() => handleSeleccionarRol('ope')}
                   style={{
                   padding: '20px',
                   border: '2px solid #e67e22',
@@ -1018,7 +1018,7 @@ const MenuPrincipal = () => {
 
               {/* Botón Administrador */}
                 <button
-                onClick={() => handleSeleccionarRol('administrador')}
+                onClick={() => handleSeleccionarRol('adm')}
                   style={{
                   padding: '20px',
                   border: '2px solid #8e44ad',
@@ -1046,41 +1046,6 @@ const MenuPrincipal = () => {
                     <div style={{ fontSize: '18px', marginBottom: '5px' }}>Administrador</div>
                     <div style={{ fontSize: '14px', opacity: 0.9 }}>
                       Control total del sistema y gestión de usuarios
-                    </div>
-                  </div>
-                </div>
-                </button>
-
-              {/* Botón Administrador General */}
-                <button
-                onClick={() => handleSeleccionarRol('administrador_general')}
-                  style={{
-                  padding: '20px',
-                  border: '2px solid #dc2626',
-                  borderRadius: '15px',
-                  background: 'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)',
-                  color: 'white',
-                    cursor: 'pointer',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 15px rgba(220, 38, 38, 0.3)'
-                }}
-                onMouseOver={(e) => {
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 6px 20px rgba(220, 38, 38, 0.4)';
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 4px 15px rgba(220, 38, 38, 0.3)';
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                  <span style={{ fontSize: '24px' }}>👑</span>
-                  <div style={{ textAlign: 'left' }}>
-                    <div style={{ fontSize: '18px', marginBottom: '5px' }}>Administrador General</div>
-                    <div style={{ fontSize: '14px', opacity: 0.9 }}>
-                      Acceso total y control absoluto del sistema
                     </div>
                   </div>
                 </div>

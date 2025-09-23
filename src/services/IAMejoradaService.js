@@ -670,11 +670,12 @@ class IAMejoradaService {
     ];
   }
 
-  // Procesar análisis completo
+  // Procesar análisis completo de nivel doctorado
   static procesarAnalisisCompleto(texto, tipoCaso = 'constitucional', ambito = 'derecho_publico') {
     const clasificacion = this.clasificarTipoCaso(texto);
     const urgencia = this.analizarUrgencia(texto);
-    const textoMejorado = this.mejorarTextoJuridico(texto, 'profesional');
+    const textoMejorado = this.mejorarTextoJuridico(texto, 'doctorado');
+    const analisisDoctoral = this.generarAnalisisDoctoral(texto, clasificacion.categoria);
 
     return {
       textoOriginal: texto,
@@ -682,17 +683,253 @@ class IAMejoradaService {
       clasificacion: clasificacion,
       urgencia: urgencia,
       ambito: ambito,
+      analisisDoctoral: analisisDoctoral,
       recomendaciones: {
-        especialistasRecomendados: this.obtenerEspecialistasRecomendados(clasificacion.categoria),
+        especialistasRecomendados: this.obtenerEspecialistasDoctorales(clasificacion.categoria),
         documentosNecesarios: this.obtenerDocumentosNecesarios(clasificacion.categoria),
-        plazosSugeridos: this.obtenerPlazosSugeridos(clasificacion.categoria)
+        plazosSugeridos: this.obtenerPlazosSugeridos(clasificacion.categoria),
+        metodologiaInvestigacion: this.obtenerMetodologiaInvestigacion(clasificacion.categoria)
       },
       procesamiento: {
         fecha: new Date().toISOString(),
         version: this.configuracion.version,
-        tipoProcesamiento: 'análisis_completo'
+        tipoProcesamiento: 'análisis_doctoral_completo',
+        nivelAcademico: 'doctorado'
       }
     };
+  }
+
+  // Generar análisis doctoral especializado
+  static generarAnalisisDoctoral(texto, categoria) {
+    const fechaActual = new Date().toLocaleDateString('es-CO');
+    
+    return {
+      nivelAcademico: 'Doctorado en Derecho',
+      metodologia: 'Análisis jurídico de nivel doctoral aplicando metodologías de investigación jurídica',
+      enfoqueTeorico: this.obtenerEnfoqueTeorico(categoria),
+      analisisCritico: this.generarAnalisisCritico(texto, categoria),
+      fundamentacionTeorica: this.generarFundamentacionTeorica(categoria),
+      conclusionesDoctorales: this.generarConclusionesDoctorales(texto, categoria),
+      recomendacionesInvestigacion: this.generarRecomendacionesInvestigacion(categoria),
+      fechaAnalisis: fechaActual
+    };
+  }
+
+  // Obtener enfoque teórico por categoría
+  static obtenerEnfoqueTeorico(categoria) {
+    const enfoques = {
+      constitucional: 'Teoría constitucional contemporánea, dogmática constitucional, y jurisprudencia constitucional comparada',
+      administrativo: 'Teoría del acto administrativo, derecho administrativo comparado, y teoría de la función administrativa',
+      penal: 'Teoría del delito, derecho penal comparado, y criminología crítica',
+      civil: 'Teoría de la responsabilidad civil, derecho civil comparado, y teoría de los contratos'
+    };
+    return enfoques[categoria] || 'Teoría jurídica general y metodología de investigación jurídica';
+  }
+
+  // Generar análisis crítico doctoral
+  static generarAnalisisCritico(texto, categoria) {
+    return `ANÁLISIS CRÍTICO DOCTORAL:
+
+1. METODOLOGÍA DE INVESTIGACIÓN JURÍDICA:
+   - Aplicación de métodos cualitativos y cuantitativos en el análisis jurídico
+   - Utilización de técnicas de análisis de contenido jurídico
+   - Aplicación de metodologías de investigación comparada
+
+2. ANÁLISIS DOGMÁTICO ESPECIALIZADO:
+   - Evaluación de la estructura normativa aplicable
+   - Análisis de la eficacia normativa y su aplicación práctica
+   - Evaluación de la coherencia del sistema jurídico
+
+3. PERSPECTIVA CRÍTICA JURÍDICA:
+   - Análisis de las implicaciones sociales y políticas del caso
+   - Evaluación del impacto en la justicia social
+   - Consideración de aspectos de género, diversidad y derechos humanos
+
+4. ANÁLISIS COMPARADO:
+   - Comparación con sistemas jurídicos de otros países
+   - Análisis de tendencias jurisprudenciales internacionales
+   - Evaluación de estándares internacionales aplicables`;
+  }
+
+  // Generar fundamentación teórica
+  static generarFundamentacionTeorica(categoria) {
+    const fundamentaciones = {
+      constitucional: `
+FUNDAMENTACIÓN TEÓRICA CONSTITUCIONAL:
+
+1. TEORÍA CONSTITUCIONAL CONTEMPORÁNEA:
+   - Teoría de la constitución y el constitucionalismo
+   - Teoría de los derechos fundamentales
+   - Teoría de la interpretación constitucional
+
+2. DOGMÁTICA CONSTITUCIONAL:
+   - Estructura y función de los derechos fundamentales
+   - Límites y restricciones de los derechos
+   - Principios de proporcionalidad y razonabilidad
+
+3. JURISPRUDENCIA CONSTITUCIONAL COMPARADA:
+   - Análisis de la jurisprudencia de la Corte Interamericana de Derechos Humanos
+   - Comparación con sistemas constitucionales de otros países
+   - Análisis de tendencias jurisprudenciales internacionales`,
+
+      administrativo: `
+FUNDAMENTACIÓN TEÓRICA ADMINISTRATIVA:
+
+1. TEORÍA DEL ACTO ADMINISTRATIVO:
+   - Concepto y elementos del acto administrativo
+   - Clasificación y tipología de actos administrativos
+   - Teoría de la validez e invalidez de los actos
+
+2. DERECHO ADMINISTRATIVO COMPARADO:
+   - Análisis comparado de sistemas administrativos
+   - Tendencias en la modernización administrativa
+   - Análisis de la eficiencia administrativa
+
+3. TEORÍA DE LA FUNCIÓN ADMINISTRATIVA:
+   - Principios de la función administrativa
+   - Teoría de la discrecionalidad administrativa
+   - Control de la función administrativa`,
+
+      penal: `
+FUNDAMENTACIÓN TEÓRICA PENAL:
+
+1. TEORÍA DEL DELITO:
+   - Estructura del delito y elementos constitutivos
+   - Teoría de la tipicidad y antijuridicidad
+   - Teoría de la culpabilidad y responsabilidad
+
+2. DERECHO PENAL COMPARADO:
+   - Análisis comparado de sistemas penales
+   - Tendencias en la política criminal
+   - Análisis de la eficacia del sistema penal
+
+3. CRIMINOLOGÍA CRÍTICA:
+   - Análisis de las causas del delito
+   - Teoría de la prevención del delito
+   - Análisis de la reinserción social`,
+
+      civil: `
+FUNDAMENTACIÓN TEÓRICA CIVIL:
+
+1. TEORÍA DE LA RESPONSABILIDAD CIVIL:
+   - Concepto y fundamentos de la responsabilidad civil
+   - Elementos de la responsabilidad civil
+   - Teoría del daño y la reparación
+
+2. DERECHO CIVIL COMPARADO:
+   - Análisis comparado de sistemas civiles
+   - Tendencias en la modernización del derecho civil
+   - Análisis de la eficacia del sistema civil
+
+3. TEORÍA DE LOS CONTRATOS:
+   - Principios de la autonomía de la voluntad
+   - Teoría de la formación y ejecución de contratos
+   - Teoría de la responsabilidad contractual`
+    };
+
+    return fundamentaciones[categoria] || 'Fundamentación teórica general en derecho';
+  }
+
+  // Generar conclusiones doctorales
+  static generarConclusionesDoctorales(texto, categoria) {
+    return `CONCLUSIONES DOCTORALES:
+
+1. ANÁLISIS JURÍDICO ESPECIALIZADO:
+   - Los hechos presentados requieren un análisis jurídico especializado de nivel doctoral
+   - Se identifican elementos constitutivos que ameritan una evaluación exhaustiva
+   - Se recomienda la aplicación de metodologías de investigación jurídica avanzadas
+
+2. RECOMENDACIONES ACADÉMICAS:
+   - Realizar investigación jurídica adicional sobre aspectos específicos del caso
+   - Consultar jurisprudencia comparada y doctrina especializada
+   - Aplicar metodologías de análisis jurídico cuantitativo y cualitativo
+
+3. IMPLICACIONES TEÓRICAS:
+   - El caso presenta implicaciones teóricas relevantes para el desarrollo del derecho
+   - Se identifican oportunidades para contribuir al desarrollo doctrinal
+   - Se recomienda la publicación de análisis especializados sobre el tema
+
+4. RECOMENDACIONES PRÁCTICAS:
+   - Implementar estrategias jurídicas basadas en la investigación doctoral
+   - Aplicar metodologías de análisis jurídico avanzadas
+   - Considerar aspectos de justicia social y derechos humanos en el análisis`;
+  }
+
+  // Generar recomendaciones de investigación
+  static generarRecomendacionesInvestigacion(categoria) {
+    const recomendaciones = {
+      constitucional: [
+        'Investigar jurisprudencia constitucional comparada',
+        'Analizar tendencias en la interpretación constitucional',
+        'Estudiar la evolución de los derechos fundamentales',
+        'Investigar el impacto de las decisiones constitucionales'
+      ],
+      administrativo: [
+        'Investigar la eficiencia de los procedimientos administrativos',
+        'Analizar la modernización de la función administrativa',
+        'Estudiar la responsabilidad del Estado en casos similares',
+        'Investigar la aplicación de principios administrativos'
+      ],
+      penal: [
+        'Investigar la eficacia del sistema penal',
+        'Analizar tendencias en la política criminal',
+        'Estudiar la prevención del delito',
+        'Investigar la reinserción social'
+      ],
+      civil: [
+        'Investigar la eficacia del sistema civil',
+        'Analizar la modernización del derecho civil',
+        'Estudiar la responsabilidad civil en casos similares',
+        'Investigar la evolución de los contratos'
+      ]
+    };
+
+    return recomendaciones[categoria] || [
+      'Investigar aspectos específicos del caso',
+      'Analizar jurisprudencia comparada',
+      'Estudiar doctrina especializada',
+      'Investigar metodologías de análisis jurídico'
+    ];
+  }
+
+  // Obtener especialistas doctorales
+  static obtenerEspecialistasDoctorales(categoria) {
+    const especialistas = {
+      constitucional: [
+        'Dr. en Derecho Constitucional - PhD Universidad Nacional',
+        'Dr. en Ciencias Políticas - PhD Universidad de los Andes',
+        'Dr. en Derecho Público - PhD Universidad Externado'
+      ],
+      administrativo: [
+        'Dr. en Derecho Administrativo - PhD Universidad Nacional',
+        'Dr. en Ciencias Políticas - PhD Universidad de los Andes',
+        'Dr. en Derecho Público - PhD Universidad Externado'
+      ],
+      penal: [
+        'Dr. en Derecho Penal - PhD Universidad Nacional',
+        'Dr. en Criminología - PhD Universidad de los Andes',
+        'Dr. en Derecho Procesal Penal - PhD Universidad Externado'
+      ],
+      civil: [
+        'Dr. en Derecho Civil - PhD Universidad Nacional',
+        'Dr. en Derecho Privado - PhD Universidad de los Andes',
+        'Dr. en Derecho Comercial - PhD Universidad Externado'
+      ]
+    };
+
+    return especialistas[categoria] || ['Dr. en Derecho - PhD Universidad Nacional'];
+  }
+
+  // Obtener metodología de investigación
+  static obtenerMetodologiaInvestigacion(categoria) {
+    const metodologias = {
+      constitucional: 'Metodología de investigación jurídica constitucional, análisis de jurisprudencia, y investigación comparada',
+      administrativo: 'Metodología de investigación jurídica administrativa, análisis de eficiencia, y investigación comparada',
+      penal: 'Metodología de investigación jurídica penal, análisis criminológico, y investigación comparada',
+      civil: 'Metodología de investigación jurídica civil, análisis de eficacia, y investigación comparada'
+    };
+
+    return metodologias[categoria] || 'Metodología de investigación jurídica general';
   }
 
   // Obtener especialistas recomendados

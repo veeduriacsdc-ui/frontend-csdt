@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { PermisosVistaProvider } from './contexts/PermisosVistaContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 import GlobalStyles from './styles/GlobalStyles';
 
 // Importar páginas principales
@@ -9,6 +10,11 @@ import Inicio from './paginas/publicas/Inicio';
 import Proyectos from './paginas/publicas/Proyectos';
 import Donaciones from './paginas/publicas/Donaciones';
 import Institucional from './paginas/publicas/Institucional';
+import Dashboard from './paginas/Dashboard';
+
+// Importar páginas de autenticación
+import Login from './paginas/auth/Login';
+import Register from './paginas/auth/Register';
 
 // Importar páginas de ACCIONES CONSTITUCIONALES Y JURÍDICAS
 import AccionTutela from './paginas/publicas/acciones-constitucionales/AccionTutela';
@@ -46,43 +52,48 @@ import Documentos from './paginas/compartidas/Documentos';
 import Contacto from './paginas/compartidas/Contacto';
 import Ayuda from './paginas/compartidas/Ayuda';
 import Terminos from './paginas/compartidas/Terminos';
-import DashboardCliente from './paginas/cliente/Dashboard';
+import DashboardCliente from './paginas/cliente/DashboardCliente';
 import PanelSeguimientoCasos from './paginas/cliente/PanelSeguimientoCasos';
 import TareasARealizar from './paginas/cliente/TareasARealizar';
-import DashboardOperador from './paginas/operador/Dashboard';
+import MisVeedurias from './paginas/cliente/MisVeedurias';
+import DashboardOperador from './paginas/operador/DashboardOperador';
 import TareasAsignadas from './paginas/operador/TareasAsignadas';
 import CentroGestionLegal from './paginas/operador/CentroGestionLegal';
 import PanelTareas from './paginas/operador/PanelTareas';
+import GestionarVeeduriasOperador from './paginas/operador/GestionarVeeduriasOperador';
+import GestionarTareasOperador from './paginas/operador/GestionarTareasOperador';
 import DashboardAdministrador from './paginas/administrador/Dashboard';
+import GestionarUsuarios from './paginas/administrador/GestionarUsuarios';
+import GestionarVeedurias from './paginas/administrador/GestionarVeedurias';
+import GestionarDonaciones from './paginas/administrador/GestionarDonaciones';
+import GestionarTareas from './paginas/administrador/GestionarTareas';
+import Estadisticas from './paginas/administrador/Estadisticas';
 import MenuPrincipal from './components/compartidas/MenuPrincipal';
 import Footer from './components/Footer';
-import AdminDonaciones from './paginas/administrador/AdminDonaciones';
-import AdminRegistros from './paginas/administrador/AdminRegistros';
-import PanelActividades from './paginas/administrador/PanelActividades';
-import GestionActividades from './paginas/administrador/GestionActividades';
-import HojaRecursos from './paginas/administrador/HojaRecursos';
-import AnalisisPreciosUnitarios from './paginas/administrador/AnalisisPreciosUnitarios';
-import PresupuestoActividad from './paginas/administrador/PresupuestoActividad';
-import ConvocatoriasTareas from './paginas/administrador/ConvocatoriasTareas';
-import GestionRecursosHumanos from './paginas/administrador/GestionRecursosHumanos';
-import ControlPermisosVista from './paginas/administrador/ControlPermisosVista';
-import MantenimientoSistema from './paginas/administrador/MantenimientoSistema';
-import ValidarFuncionariosEntidades from './paginas/administrador/ValidarFuncionariosEntidades';
-import GestionarRolesUsuarios from './paginas/administrador/GestionarRolesUsuarios';
+import PageWrapper from './components/compartidas/PageWrapper';
 import ConvocatoriasPublicas from './paginas/compartidas/ConvocatoriasPublicas';
 
 function App() {
   return (
     <AuthProvider>
       <PermisosVistaProvider>
-        <BrowserRouter>
-          <GlobalStyles />
-          <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-            <MenuPrincipal />
-            <main style={{ flex: 1 }}>
-            <Routes>
+        <NotificationProvider>
+          <BrowserRouter>
+            <GlobalStyles />
+            <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+              <MenuPrincipal />
+              <main style={{ flex: 1, marginTop: '80px', position: 'relative', zIndex: 1 }}>
+              <PageWrapper>
+              <Routes>
               {/* Ruta principal */}
               <Route path="/" element={<Inicio />} />
+              
+              {/* Rutas de autenticación */}
+              <Route path="/auth/login" element={<Login />} />
+              <Route path="/auth/register" element={<Register />} />
+              
+              {/* Dashboard principal */}
+              <Route path="/dashboard" element={<Dashboard />} />
               
               {/* Rutas públicas */}
               <Route path="/institucional" element={<Institucional />} />
@@ -117,35 +128,32 @@ function App() {
               
               {/* Rutas de Cliente */}
               <Route path="/cliente/dashboard" element={<DashboardCliente />} />
+              <Route path="/cliente/veedurias" element={<MisVeedurias />} />
               <Route path="/cliente/seguimiento-casos" element={<PanelSeguimientoCasos />} />
               <Route path="/cliente/tareas-a-realizar" element={<TareasARealizar />} />
               
               {/* Rutas de Operador */}
               <Route path="/operador/dashboard" element={<DashboardOperador />} />
+              <Route path="/operador/veedurias" element={<GestionarVeeduriasOperador />} />
+              <Route path="/operador/tareas" element={<GestionarTareasOperador />} />
               <Route path="/operador/tareas-asignadas" element={<TareasAsignadas />} />
               <Route path="/operador/centro-gestion-legal" element={<CentroGestionLegal />} />
               <Route path="/operador/panel-tareas" element={<PanelTareas />} />
               
               {/* Rutas de Administrador */}
               <Route path="/admin/dashboard" element={<DashboardAdministrador />} />
-              <Route path="/admin/donaciones" element={<AdminDonaciones />} />
-              <Route path="/admin/registros" element={<AdminRegistros />} />
-              <Route path="/admin/control-permisos-vista" element={<ControlPermisosVista />} />
-              <Route path="/admin/validar-funcionarios-entidades" element={<ValidarFuncionariosEntidades />} />
-              <Route path="/admin/gestionar-roles-usuarios" element={<GestionarRolesUsuarios />} />
-              <Route path="/admin/mantenimiento-sistema" element={<MantenimientoSistema />} />
-              <Route path="/admin/panel-actividades" element={<PanelActividades />} />
-              <Route path="/admin/gestion-actividades" element={<GestionActividades />} />
-              <Route path="/admin/hoja-recursos" element={<HojaRecursos />} />
-              <Route path="/admin/analisis-precios" element={<AnalisisPreciosUnitarios />} />
-              <Route path="/admin/presupuesto-actividad" element={<PresupuestoActividad />} />
-              <Route path="/admin/convocatorias-tareas" element={<ConvocatoriasTareas />} />
-              <Route path="/admin/gestion-recursos-humanos" element={<GestionRecursosHumanos />} />
-            </Routes>
-            </main>
-            <Footer />
-          </div>
-        </BrowserRouter>
+              <Route path="/admin/usuarios" element={<GestionarUsuarios />} />
+              <Route path="/admin/veedurias" element={<GestionarVeedurias />} />
+              <Route path="/admin/donaciones" element={<GestionarDonaciones />} />
+              <Route path="/admin/tareas" element={<GestionarTareas />} />
+              <Route path="/admin/estadisticas" element={<Estadisticas />} />
+              </Routes>
+              </PageWrapper>
+              </main>
+              <Footer />
+            </div>
+          </BrowserRouter>
+        </NotificationProvider>
       </PermisosVistaProvider>
     </AuthProvider>
   );

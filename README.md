@@ -1,371 +1,613 @@
-# 🏛️ CSDT - Consejo Social de Veeduría y Desarrollo Territorial
+# Sistema CSDT - Consejo Social de Veeduría y Desarrollo Territorial
 
 ## 📋 Descripción
-Plataforma tecnológica integral para el control social, transparencia y trazabilidad en la gestión territorial, minería y actos administrativos en Colombia.
+
+Sistema integral para la gestión de veedurías ciudadanas, donaciones y desarrollo territorial. Desarrollado con React.js (Frontend) y Laravel (Backend).
+
+## 🌐 Información del Servidor
+
+- **Servidor:** DigitalOcean Droplet
+- **IP Pública:** 104.248.212.204
+- **IP Privada:** 10.120.0.2
+- **Región:** SFO2 (San Francisco)
+- **Email:** veeduriacsdc@gmail.com
+- **Repositorio Frontend:** https://github.com/veeduriacsdc-ui/frontend-csdt.git
+- **Repositorio Backend:** https://github.com/veeduriacsdc-ui/backend-csdt.git
 
 ## 🚀 Características Principales
 
-### **🎮 Sistema Gamificado**
-- **Colores Metálicos**: Oro, plata, bronce, diamante, neón
-- **Gradientes Animados**: Rainbow, ocean, sunset, forest, fire, ice, cosmic, aurora
-- **Efectos Visuales**: Neón, cristal, partículas, sombras coloreadas
-- **Animaciones Suaves**: Transiciones elásticas y efectos hover
+### Sistema de Roles Jerárquico
+- **Cliente (cli)** - Nivel 1: Acceso básico
+- **Operador (ope)** - Nivel 2: Cliente + Operador  
+- **Administrador (adm)** - Nivel 3: Acceso completo
 
-### **🔧 Tecnologías Utilizadas**
-- **React 19** - Framework principal
-- **Vite 7** - Herramienta de construcción
-- **Tailwind CSS 4** - Framework de estilos
-- **Framer Motion** - Animaciones avanzadas
-- **Heroicons** - Iconografía moderna
+### Funcionalidades por Rol
+
+#### 👤 Cliente
+- Dashboard personal con estadísticas
+- Gestión de veedurías propias
+- Seguimiento de casos
+- Tareas asignadas
+- Realización de donaciones
+
+#### ⚙️ Operador
+- Dashboard operativo
+- Gestión de veedurías asignadas
+- Gestión de tareas
+- Procesamiento de donaciones
+- Gestión de archivos
+
+#### 👑 Administrador
+- Dashboard administrativo
+- Gestión completa de usuarios
+- Gestión de veedurías
+- Gestión de donaciones
+- Gestión de tareas
+- Reportes y estadísticas
+- Configuración del sistema
+
+## 🛠️ Tecnologías Utilizadas
+
+### Frontend
+- **React 18** - Biblioteca de UI
+- **Vite** - Herramienta de construcción
 - **React Router DOM** - Enrutamiento
-- **JWT Decode** - Autenticación
+- **Tailwind CSS** - Framework de estilos
+- **Radix UI** - Componentes de UI
+- **Axios** - Cliente HTTP
+- **Lucide React** - Iconos
 
-### **📱 Responsive Design**
-- **Mobile**: 320px - 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: 1024px - 1920px
-- **Ultra-wide**: 1920px+
-
-## 🛠️ Instalación y Configuración
-
-### **Prerrequisitos**
-- Node.js 18+ 
-- npm 9+
-
-### **Instalación**
-```bash
-# Clonar el repositorio
-git clone https://github.com/csdt/frontend-csdt-final.git
-
-# Navegar al directorio
-cd frontend-csdt-final
-
-# Instalar dependencias
-npm install
-
-# Iniciar servidor de desarrollo
-npm run dev
-```
-
-### **Scripts Disponibles**
-```bash
-npm run dev      # Servidor de desarrollo
-npm run build    # Construcción para producción
-npm run preview  # Vista previa de producción
-npm run lint     # Linter de código
-npm run clean    # Limpiar archivos temporales
-```
-
-## 🎨 Sistema de Estilos
-
-### **Archivos CSS**
-- `src/index.css` - Estilos globales y configuración de Tailwind CSS
-
-### **Componentes UI**
-- `MenuPrincipal` - Menú de navegación principal
-- `Footer` - Pie de página del sistema
-- `AuthContext` - Contexto de autenticación
-- `Loading` - Componente de carga
-- `Alert` - Sistema de alertas
-- `Modal` - Sistema de modales
-- `Button` - Botones personalizados
-- `Card` - Tarjetas de contenido
+### Backend
+- **Laravel 12** - Framework PHP
+- **MySQL** - Base de datos
+- **Laravel Sanctum** - Autenticación API
+- **Eloquent ORM** - ORM de Laravel
 
 ## 📁 Estructura del Proyecto
 
 ```
 frontend-csdt-final/
-├── public/
-│   └── vite.svg
 ├── src/
-│   ├── components/
-│   │   ├── compartidas/
-│   │   │   └── MenuPrincipal.jsx
-│   │   └── Footer.jsx
-│   ├── contexts/
-│   │   └── AuthContext.jsx
-│   ├── paginas/
-│   │   ├── publicas/
-│   │   │   ├── acciones-constitucionales/
-│   │   │   │   ├── AccionTutela.jsx
-│   │   │   │   ├── AccionCumplimiento.jsx
-│   │   │   │   ├── AccionPopular.jsx
-│   │   │   │   ├── AccionGrupo.jsx
-│   │   │   │   ├── DemandaJuridica.jsx
-│   │   │   │   ├── AccionNulidad.jsx
-│   │   │   │   └── AccionReparacionDirecta.jsx
-│   │   │   ├── participacion-ciudadana/
-│   │   │   │   ├── ConsultaPopular.jsx
-│   │   │   │   ├── Referendo.jsx
-│   │   │   │   ├── Plebiscito.jsx
-│   │   │   │   └── Manifiesto.jsx
-│   │   │   ├── control-social/
-│   │   │   │   └── PQRSFD.jsx
-│   │   │   ├── territoriales/
-│   │   │   │   └── ConsejoVeeduriaTerritorial.jsx
-│   │   │   ├── innovadores/
-│   │   │   │   ├── GeoDashboard.jsx
-│   │   │   │   ├── AuditoriaForense.jsx
-│   │   │   │   └── Monitor.jsx
-│   │   │   ├── etnicos/
-│   │   │   │   └── PlanesEtnodesarrollo.jsx
-│   │   │   ├── compartidas/
-│   │   │   │   ├── Noticias.jsx
-│   │   │   │   ├── Documentos.jsx
-│   │   │   │   ├── Contacto.jsx
-│   │   │   │   ├── Ayuda.jsx
-│   │   │   │   └── Terminos.jsx
-│   │   │   ├── Inicio.jsx
-│   │   │   ├── Proyectos.jsx
-│   │   │   ├── Donaciones.jsx
-│   │   │   ├── Institucional.jsx
-│   │   │   └── ConsejoIA.jsx
-│   │   ├── cliente/
-│   │   │   └── Dashboard.jsx
-│   │   ├── operador/
-│   │   │   └── Dashboard.jsx
-│   │   └── administrador/
-│   │       ├── Dashboard.jsx
-│   │       ├── AdminDonaciones.jsx
-│   │       ├── AdminRegistros.jsx
-│   │       └── PanelActividades.jsx
-│   ├── test/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── integration/
-│   │   ├── services/
-│   │   ├── setup.js
-│   │   └── utils.js
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-├── vite.config.js
-├── eslint.config.js
-└── README.md
+│   ├── components/          # Componentes reutilizables
+│   │   ├── ui/             # Componentes de UI base
+│   │   ├── LazyLoader.jsx  # Cargador lazy
+│   │   ├── Modal.jsx       # Modal reutilizable
+│   │   ├── Pagination.jsx  # Componente de paginación
+│   │   └── ...
+│   ├── contexts/           # Contextos de React
+│   │   ├── AuthContext.jsx
+│   │   ├── PermisosVistaContext.jsx
+│   │   └── NotificationContext.jsx
+│   ├── hooks/              # Hooks personalizados
+│   │   ├── useAsyncState.js
+│   │   ├── useForm.js
+│   │   ├── useNotifications.js
+│   │   ├── usePagination.js
+│   │   ├── useSearchAndFilter.js
+│   │   ├── useModal.js
+│   │   └── useConfirmation.js
+│   ├── services/           # Servicios de API
+│   │   ├── api.js
+│   │   ├── authService.js
+│   │   ├── usuarioService.js
+│   │   ├── veeduriaService.js
+│   │   ├── donacionService.js
+│   │   ├── tareaService.js
+│   │   ├── archivoService.js
+│   │   ├── rolService.js
+│   │   ├── configuracionService.js
+│   │   └── logService.js
+│   ├── paginas/            # Páginas de la aplicación
+│   │   ├── publicas/       # Páginas públicas
+│   │   ├── auth/           # Páginas de autenticación
+│   │   ├── cliente/        # Páginas de cliente
+│   │   ├── operador/       # Páginas de operador
+│   │   ├── administrador/  # Páginas de administrador
+│   │   └── compartidas/    # Páginas compartidas
+│   ├── layouts/            # Layouts de la aplicación
+│   ├── styles/             # Estilos globales
+│   └── App.jsx             # Componente principal
+├── public/                 # Archivos estáticos
+├── package.json            # Dependencias del proyecto
+└── README.md              # Documentación
 ```
 
-## 🎯 Funcionalidades
+## 🚀 Instalación y Configuración
 
-### **Páginas Principales**
-1. **Inicio** - Página principal del sistema
-2. **Proyectos** - Lista de proyectos con filtros
-3. **Donaciones** - Formulario de donaciones
-4. **Institucional** - Información institucional
-5. **ConsejoIA** - Sistema de IA forense
+### Prerrequisitos
+- Node.js 18+
+- npm o yarn
+- Git
+- Acceso SSH al servidor DigitalOcean
 
-### **Acciones Constitucionales y Jurídicas**
-1. **Acción de Tutela** - Formulario con análisis de IA
-2. **Acción de Cumplimiento** - Formulario con análisis de IA
-3. **Acción Popular** - Formulario con análisis de IA
-4. **Acción de Grupo** - Formulario con análisis de IA
-5. **Demanda Jurídica** - Formulario con análisis de IA
-6. **Acción de Nulidad** - Formulario con análisis de IA
-7. **Acción de Reparación Directa** - Formulario con análisis de IA
+### Instalación Local (Desarrollo)
 
-### **Mecanismos de Participación Ciudadana**
-1. **Consulta Popular** - Formulario con análisis de IA
-2. **Referendo** - Formulario con análisis de IA
-3. **Plebiscito** - Formulario con análisis de IA
-4. **Manifiesto** - Formulario con análisis de IA
+```bash
+# Clonar el repositorio
+git clone https://github.com/veeduriacsdc-ui/frontend-csdt.git
+cd frontend-csdt
 
-### **Instrumentos de Control Social**
-1. **PQRSFD** - Sistema de PQRSFD ciudadano con análisis de IA
+# Instalar dependencias
+npm install
 
-### **Mecanismos Territoriales Especializados**
-1. **Consejo de Veeduría Territorial** - Sistema especializado
+# Configurar variables de entorno
+cp .env.example .env
 
-### **Mecanismos Innovadores y de Veeduría Territorial**
-1. **Geo Dashboard** - Dashboard geográfico
-2. **Auditoría Forense** - Sistema de auditoría
-3. **Monitor** - Sistema de monitoreo
+# Editar .env con la configuración del backend
+VITE_API_URL=http://104.248.212.204:8000/api
 
-### **Mecanismos Étnicos y Diferenciales**
-1. **Planes de Etnodesarrollo** - Sistema especializado
+# Ejecutar en modo desarrollo
+npm run dev
 
-### **Páginas Compartidas**
-1. **Noticias** - Sistema de noticias
-2. **Documentos** - Gestión de documentos
-3. **Contacto** - Formulario de contacto
-4. **Ayuda** - Sistema de ayuda
-5. **Términos** - Términos y condiciones
+# Construir para producción
+npm run build
+```
 
-### **Dashboards por Rol**
-1. **Dashboard Cliente** - Panel para clientes
-2. **Dashboard Operador** - Panel para operadores
-3. **Dashboard Administrador** - Panel para administradores
+### Instalación en Servidor DigitalOcean
 
-### **Sistema de Autenticación**
-- **JWT** - Tokens seguros
-- **Roles** - Cliente, Operador, Administrador
-- **Permisos** - Control de acceso granular
-- **Context** - Estado global de autenticación
+#### Paso 1: Conectar al Servidor
+```bash
+# Conectar por SSH al servidor
+ssh root@104.248.212.204
+# Contraseña: Control-1234
+```
 
-### **Efectos Visuales**
-- **Partículas Interactivas** - Fondo animado
-- **Efectos de Neón** - Resplandor y animaciones
-- **Cristal Esmerilado** - Efectos de vidrio
-- **Gradientes Animados** - Colores dinámicos
-- **Sombras Coloreadas** - Efectos de profundidad
+#### Paso 2: Instalar Dependencias del Sistema
+```bash
+# Actualizar sistema
+apt update && apt upgrade -y
 
-## 🔧 Configuración
+# Instalar Node.js 18
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+apt-get install -y nodejs
 
-### **Variables de Entorno**
+# Instalar Nginx
+apt install nginx -y
+
+# Instalar PM2 para gestión de procesos
+npm install -g pm2
+
+# Instalar Git
+apt install git -y
+```
+
+#### Paso 3: Clonar y Configurar Frontend
+```bash
+# Crear directorio para la aplicación
+mkdir -p /var/www/csdt
+cd /var/www/csdt
+
+# Clonar repositorio
+git clone https://github.com/veeduriacsdc-ui/frontend-csdt.git frontend
+cd frontend
+
+# Instalar dependencias
+npm install
+
+# Configurar variables de entorno
+cp .env.example .env
+nano .env
+```
+
+#### Configuración del archivo .env en producción:
 ```env
-VITE_API_URL=http://localhost:3000/api
-VITE_APP_NAME=CSDT
-VITE_APP_VERSION=1.0.0
+VITE_API_URL=http://104.248.212.204:8000/api
+VITE_APP_NAME="CSDT Sistema"
+VITE_APP_VERSION="1.0.0"
+VITE_APP_ENV=production
 ```
 
-### **Configuración de Vite**
-```javascript
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 5173,
-    open: true,
-    host: true
-  },
-  build: {
-    outDir: 'dist',
-    sourcemap: true
-  }
-})
-```
-
-### **Configuración de Tailwind**
-```javascript
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {
-      fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
-        'space-grotesk': ['Space Grotesk', 'sans-serif'],
-        'orbitron': ['Orbitron', 'monospace'],
-      },
-      colors: {
-        primary: { /* ... */ },
-        secondary: { /* ... */ },
-        gold: { /* ... */ },
-        silver: { /* ... */ },
-        diamond: { /* ... */ },
-      }
-    }
-  }
-}
-```
-
-## 🚀 Despliegue
-
-### **Despliegue en Producción**
+#### Paso 4: Construir y Desplegar
 ```bash
 # Construir para producción
 npm run build
 
-# Vista previa
-npm run preview
+# Crear configuración de PM2
+cat > ecosystem.config.js << EOF
+module.exports = {
+  apps: [{
+    name: 'csdt-frontend',
+    script: 'npm',
+    args: 'run preview',
+    cwd: '/var/www/csdt/frontend',
+    instances: 1,
+    autorestart: true,
+    watch: false,
+    max_memory_restart: '1G',
+    env: {
+      NODE_ENV: 'production',
+      PORT: 3000
+    }
+  }]
+}
+EOF
 
-# Desplegar en servidor
-# Subir carpeta 'dist' al servidor web
+# Iniciar con PM2
+pm2 start ecosystem.config.js
+pm2 save
+pm2 startup
 ```
 
-### **Variables de Producción**
-```env
-VITE_API_URL=https://api.csdt.gov.co
-VITE_APP_NAME=CSDT
-VITE_APP_VERSION=1.0.0
-```
-
-## 🧪 Testing
-
-### **Ejecutar Tests**
+#### Paso 5: Configurar Nginx
 ```bash
-npm run test
-npm run test:coverage
-npm run test:watch
+# Crear configuración de Nginx
+cat > /etc/nginx/sites-available/csdt-frontend << EOF
+server {
+    listen 80;
+    server_name 104.248.212.204;
+    root /var/www/csdt/frontend/dist;
+    index index.html;
+
+    location / {
+        try_files \$uri \$uri/ /index.html;
+    }
+
+    location /api {
+        proxy_pass http://104.248.212.204:8000;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+    }
+
+    # Configuración para archivos estáticos
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+}
+EOF
+
+# Habilitar sitio
+ln -s /etc/nginx/sites-available/csdt-frontend /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
+
+# Verificar configuración
+nginx -t
+
+# Reiniciar Nginx
+systemctl restart nginx
+systemctl enable nginx
 ```
 
-### **Linting**
+#### Paso 6: Configurar SSL (Opcional)
 ```bash
-npm run lint
-npm run lint:fix
+# Instalar Certbot
+apt install certbot python3-certbot-nginx -y
+
+# Obtener certificado SSL
+certbot --nginx -d 104.248.212.204
+
+# Verificar renovación automática
+certbot renew --dry-run
 ```
 
-## 📊 Performance
+### Instalación Backend
 
-### **Métricas**
-- **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
-- **First Input Delay**: < 100ms
+```bash
+# Navegar al directorio del backend
+cd ../backend-csdt
 
-### **Optimizaciones**
-- **Code Splitting** - Carga lazy de componentes
-- **Tree Shaking** - Eliminación de código no usado
-- **Minificación** - Compresión de archivos
-- **Gzip** - Compresión de servidor
+# Instalar dependencias
+composer install
 
-## 🔒 Seguridad
+# Configurar variables de entorno
+cp .env.example .env
 
-### **Medidas Implementadas**
-- **JWT** - Autenticación segura
-- **HTTPS** - Encriptación en tránsito
-- **CSP** - Política de seguridad de contenido
-- **XSS Protection** - Protección contra ataques XSS
-- **CSRF Protection** - Protección contra CSRF
+# Editar .env con la configuración del backend
+# Ver sección de Backend para configuración completa
+
+# Ejecutar migraciones
+php artisan migrate
+
+# Ejecutar servidor
+php artisan serve
+```
+
+**Nota:** Para la instalación completa del backend, consultar el README del backend en: `backend-csdt/README.md`
+
+## 🔧 Configuración de la Base de Datos
+
+### Tablas Principales
+- `usuarios` - Usuarios del sistema
+- `veedurias` - Veedurías ciudadanas
+- `donaciones` - Donaciones recibidas
+- `tareas` - Tareas del sistema
+- `archivos` - Gestión de archivos
+- `roles` - Roles de usuario
+- `configuraciones` - Configuraciones del sistema
+- `logs` - Logs del sistema
+
+### Relaciones
+- Usuarios → Veedurías (1:N)
+- Usuarios → Donaciones (1:N)
+- Usuarios → Tareas (1:N)
+- Roles → Usuarios (N:N)
+
+## 📚 API Endpoints
+
+### Autenticación
+- `POST /login` - Iniciar sesión
+- `POST /registro` - Registro de usuarios
+- `POST /logout` - Cerrar sesión
+- `GET /usuario` - Información del usuario
+
+### CRUD Principal
+- `GET /usuarios` - Listar usuarios
+- `POST /usuarios` - Crear usuario
+- `GET /usuarios/{id}` - Obtener usuario
+- `PUT /usuarios/{id}` - Actualizar usuario
+- `DELETE /usuarios/{id}` - Eliminar usuario
+
+### Endpoints Específicos
+- `PUT /usuarios/{id}/estado` - Cambiar estado
+- `POST /usuarios/{id}/rol` - Asignar rol
+- `GET /veedurias` - Listar veedurías
+- `POST /veedurias` - Crear veeduría
+- `PUT /veedurias/{id}/estado` - Cambiar estado
+- `POST /veedurias/{id}/asignar-operador` - Asignar operador
+
+## 🎨 Componentes y Hooks
+
+### Hooks Personalizados
+- `useAsyncState` - Manejo de estados asíncronos
+- `useForm` - Manejo de formularios con validación
+- `useNotifications` - Sistema de notificaciones
+- `usePagination` - Paginación de datos
+- `useSearchAndFilter` - Búsqueda y filtrado
+- `useModal` - Manejo de modales
+- `useConfirmation` - Confirmaciones
+
+### Componentes Reutilizables
+- `LazyLoader` - Carga lazy de componentes
+- `Modal` - Modal reutilizable
+- `Pagination` - Componente de paginación
+- `SearchAndFilter` - Búsqueda y filtros
+- `ConfirmationModal` - Modal de confirmación
+- `NotificationContainer` - Contenedor de notificaciones
+
+## 🔐 Sistema de Autenticación
+
+### Roles y Permisos
+- **Cliente**: Acceso a sus propios datos
+- **Operador**: Acceso a datos asignados + funciones de cliente
+- **Administrador**: Acceso completo al sistema
+
+### Middleware
+- `auth:sanctum` - Verificación de token
+- `role:admin` - Solo administradores
+- `role:operator` - Operadores y administradores
+
+## 📊 Características Técnicas
+
+### Optimizaciones
+- Lazy loading de componentes
+- Paginación de datos
+- Búsqueda y filtrado en tiempo real
+- Caché de datos
+- Manejo de errores robusto
+
+### Validaciones
+- Validación de formularios en frontend
+- Validación de datos en backend
+- Sanitización de inputs
+- Manejo de errores de API
+
+### UI/UX
+- Diseño responsivo
+- Componentes accesibles
+- Notificaciones en tiempo real
+- Estados de carga
+- Confirmaciones de acciones
+
+## 🚀 Despliegue
+
+### Frontend (Producción)
+```bash
+npm run build
+# Subir archivos de /dist al servidor web
+```
+
+### Backend (Producción)
+```bash
+composer install --optimize-autoloader --no-dev
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan migrate --force
+```
 
 ## 🤝 Contribución
 
-### **Cómo Contribuir**
 1. Fork el proyecto
-2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+2. Crear una rama para la feature (`git checkout -b feature/AmazingFeature`)
+3. Commit los cambios (`git commit -m 'Add some AmazingFeature'`)
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abrir un Pull Request
 
-### **Estándares de Código**
-- **ESLint** - Linting automático
-- **Prettier** - Formateo de código
-- **Conventional Commits** - Mensajes de commit estandarizados
-- **TypeScript** - Tipado estático (opcional)
+## 📝 Licencia
 
-## 📝 Changelog
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
-### **v1.0.0** (2024-01-10)
-- ✨ Sistema gamificado completo
-- 🎨 Efectos visuales avanzados
-- 🔐 Sistema de autenticación JWT
-- 📱 Diseño responsive
-- 🚀 Optimizaciones de performance
+## 🚀 Comandos de Despliegue Automático
 
-## 📄 Licencia
+### Script de Despliegue Completo
+```bash
+#!/bin/bash
+# Script para desplegar automáticamente el frontend CSDT en DigitalOcean
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+# Colores para output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
 
-## 👥 Equipo
+echo -e "${GREEN}🚀 Iniciando despliegue del Frontend CSDT...${NC}"
 
-- **Desarrollador Principal** - Rafael Esteban Tapia
-- **Diseñador UI/UX** - Equipo CSDT
-- **Arquitecto Frontend** - Equipo CSDT
+# Actualizar sistema
+echo -e "${YELLOW}📦 Actualizando sistema...${NC}"
+apt update && apt upgrade -y
 
-## 📞 Contacto
+# Instalar Node.js 18
+echo -e "${YELLOW}📦 Instalando Node.js 18...${NC}"
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+apt-get install -y nodejs
 
-- **Email**: info@csdt.gov.co
-- **Website**: https://csdt.gov.co
-- **GitHub**: https://github.com/csdt/frontend-csdt-final
+# Instalar Nginx
+echo -e "${YELLOW}📦 Instalando Nginx...${NC}"
+apt install nginx -y
 
-## 🙏 Agradecimientos
+# Instalar PM2
+echo -e "${YELLOW}📦 Instalando PM2...${NC}"
+npm install -g pm2
 
-- **React Team** - Por el framework
-- **Vite Team** - Por la herramienta de construcción
-- **Tailwind CSS Team** - Por el framework de estilos
-- **Framer Motion Team** - Por las animaciones
-- **Heroicons Team** - Por los iconos
+# Instalar Git
+echo -e "${YELLOW}📦 Instalando Git...${NC}"
+apt install git -y
 
----
+# Crear directorio de la aplicación
+echo -e "${YELLOW}📁 Creando directorio de la aplicación...${NC}"
+mkdir -p /var/www/csdt
+cd /var/www/csdt
 
-**Desarrollado con ❤️ para el Consejo Social de Veeduría y Desarrollo Territorial** 🏛️✨
+# Clonar repositorio
+echo -e "${YELLOW}📥 Clonando repositorio...${NC}"
+git clone https://github.com/veeduriacsdc-ui/frontend-csdt.git frontend
+cd frontend
+
+# Instalar dependencias
+echo -e "${YELLOW}📦 Instalando dependencias...${NC}"
+npm install
+
+# Configurar variables de entorno
+echo -e "${YELLOW}⚙️ Configurando variables de entorno...${NC}"
+cat > .env << EOF
+VITE_API_URL=http://104.248.212.204:8000/api
+VITE_APP_NAME="CSDT Sistema"
+VITE_APP_VERSION="1.0.0"
+VITE_APP_ENV=production
+EOF
+
+# Construir para producción
+echo -e "${YELLOW}🔨 Construyendo para producción...${NC}"
+npm run build
+
+# Configurar PM2
+echo -e "${YELLOW}⚙️ Configurando PM2...${NC}"
+cat > ecosystem.config.js << EOF
+module.exports = {
+  apps: [{
+    name: 'csdt-frontend',
+    script: 'npm',
+    args: 'run preview',
+    cwd: '/var/www/csdt/frontend',
+    instances: 1,
+    autorestart: true,
+    watch: false,
+    max_memory_restart: '1G',
+    env: {
+      NODE_ENV: 'production',
+      PORT: 3000
+    }
+  }]
+}
+EOF
+
+# Iniciar con PM2
+pm2 start ecosystem.config.js
+pm2 save
+pm2 startup
+
+# Configurar Nginx
+echo -e "${YELLOW}⚙️ Configurando Nginx...${NC}"
+cat > /etc/nginx/sites-available/csdt-frontend << EOF
+server {
+    listen 80;
+    server_name 104.248.212.204;
+    root /var/www/csdt/frontend/dist;
+    index index.html;
+
+    location / {
+        try_files \$uri \$uri/ /index.html;
+    }
+
+    location /api {
+        proxy_pass http://104.248.212.204:8000;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+    }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+}
+EOF
+
+# Habilitar sitio
+ln -s /etc/nginx/sites-available/csdt-frontend /etc/nginx/sites-enabled/
+rm -f /etc/nginx/sites-enabled/default
+
+# Verificar configuración
+nginx -t
+
+# Reiniciar Nginx
+systemctl restart nginx
+systemctl enable nginx
+
+# Configurar Firewall
+echo -e "${YELLOW}🔒 Configurando Firewall...${NC}"
+ufw allow ssh
+ufw allow 80
+ufw allow 443
+ufw allow 3000
+ufw --force enable
+
+echo -e "${GREEN}✅ Despliegue del Frontend completado exitosamente!${NC}"
+echo -e "${GREEN}🌐 Frontend disponible en: http://104.248.212.204${NC}"
+echo -e "${GREEN}📧 Email: veeduriacsdc@gmail.com${NC}"
+echo -e "${GREEN}🔑 Contraseña: Control-1234${NC}"
+```
+
+### Comandos de Mantenimiento
+```bash
+# Verificar estado de los servicios
+systemctl status nginx
+pm2 status
+
+# Ver logs
+pm2 logs csdt-frontend
+tail -f /var/log/nginx/error.log
+
+# Reiniciar servicios
+systemctl restart nginx
+pm2 restart csdt-frontend
+
+# Actualizar código
+cd /var/www/csdt/frontend
+git pull origin main
+npm install
+npm run build
+pm2 restart csdt-frontend
+```
+
+## 📞 Soporte
+
+Para soporte técnico o preguntas, contactar a:
+- Email: veeduriacsdc@gmail.com
+- Servidor: 104.248.212.204
+- Contraseña: Control-1234
+
+## 🔄 Changelog
+
+### v1.0.0 (2024-01-30)
+- ✅ Sistema de roles jerárquico
+- ✅ CRUD completo para todas las entidades
+- ✅ Dashboard por rol
+- ✅ Sistema de notificaciones
+- ✅ Paginación y filtros
+- ✅ Validaciones robustas
+- ✅ Interfaz responsiva
+- ✅ Optimizaciones de rendimiento

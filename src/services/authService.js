@@ -1,20 +1,24 @@
-import api, { apiUtils } from './api';
-import configuracion, { utilidades } from './configuracion';
+import api from './api';
 
 const authService = {
   // Iniciar sesión
   async iniciarSesion(credenciales) {
     try {
-      const response = await api.post('/auth/login', credenciales);
-      const { token, refresh_token, user, expires_at } = response.data;
+      const response = await api.post('/login', credenciales);
+      const { data } = response.data;
+      const { token, user } = data;
 
       // Guardar datos de autenticación
-      utilidades.guardarAuth(token, refresh_token, user, expires_at);
+      localStorage.setItem('csdt_token', token);
+      localStorage.setItem('csdt_user', JSON.stringify(user));
+      // Mantener compatibilidad con versiones anteriores
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
 
-      utilidades.logInfo('Sesión iniciada exitosamente', { usuario: user.email });
+      console.log('Sesión iniciada exitosamente', { usuario: user.email });
       return { success: true, user, token };
     } catch (error) {
-      utilidades.logError(error, 'Error iniciando sesión');
+      console.error('Error iniciando sesión:', error);
       throw error;
     }
   },
@@ -22,31 +26,35 @@ const authService = {
   // Cerrar sesión
   async cerrarSesion() {
     try {
-      const token = localStorage.getItem(configuracion.auth.tokenKey);
+      const token = localStorage.getItem('csdt_token') || localStorage.getItem('token');
       if (token) {
-        await api.post('/auth/logout', {}, {
+        await api.post('/logout', {}, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
     } catch (error) {
-      utilidades.logError(error, 'Error cerrando sesión');
+      console.error('Error cerrando sesión:', error);
     } finally {
       // Limpiar datos locales independientemente del resultado del servidor
-      utilidades.limpiarAuth();
-      utilidades.logInfo('Sesión cerrada');
+      localStorage.removeItem('csdt_token');
+      localStorage.removeItem('csdt_user');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      console.log('Sesión cerrada');
     }
   },
 
   // Registrar usuario
   async registrarUsuario(datosUsuario) {
     try {
-      const response = await api.post('/auth/register-cliente', datosUsuario);
-      const { user, message } = response.data;
+      const response = await api.post('/registro', datosUsuario);
+      const { data } = response.data;
+      const { user, message } = data;
 
-      utilidades.logInfo('Usuario registrado exitosamente', { usuario: user.email });
+      console.log('Usuario registrado exitosamente', { usuario: user.email });
       return { success: true, user, message };
     } catch (error) {
-      utilidades.logError(error, 'Error registrando usuario');
+      console.error('Error registrando usuario:', error);
       throw error;
     }
   },
@@ -54,108 +62,71 @@ const authService = {
   // Verificar token
   async verificarToken() {
     try {
-      const token = localStorage.getItem(configuracion.auth.tokenKey);
-      if (!token || utilidades.verificarTokenExpirado()) {
+      const token = localStorage.getItem('csdt_token') || localStorage.getItem('token');
+      if (!token) {
         return { valid: false, user: null };
       }
 
-      const response = await api.get('/auth/me');
-      const { user } = response.data;
+      const response = await api.get('/usuario');
+      const { data } = response.data;
+      const { usuario } = data;
 
       // Actualizar datos del usuario
-      utilidades.guardarAuth(token, null, user, null);
+      localStorage.setItem('csdt_user', JSON.stringify(usuario));
+      localStorage.setItem('user', JSON.stringify(usuario));
 
-      return { valid: true, user };
+      return { valid: true, user: usuario };
     } catch (error) {
-      utilidades.logError(error, 'Error verificando token');
-      utilidades.limpiarAuth();
+      console.error('Error verificando token:', error);
+      localStorage.removeItem('csdt_token');
+      localStorage.removeItem('csdt_user');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
       return { valid: false, user: null };
-    }
-  },
-
-  // Refrescar token
-  async refrescarToken() {
-    try {
-      const refreshToken = localStorage.getItem(configuracion.auth.refreshTokenKey);
-      if (!refreshToken) {
-        throw new Error('No hay token de refresco disponible');
-      }
-
-      const response = await api.post('/auth/refresh', {
-        refresh_token: refreshToken
-      });
-
-      const { token, refresh_token, expires_at } = response.data;
-
-      // Actualizar token
-      utilidades.guardarAuth(token, refresh_token, null, expires_at);
-
-      utilidades.logInfo('Token refrescado exitosamente');
-      return { success: true, token };
-    } catch (error) {
-      utilidades.logError(error, 'Error refrescando token');
-      utilidades.limpiarAuth();
-      throw error;
     }
   },
 
   // Obtener usuario actual
   obtenerUsuarioActual() {
-    return utilidades.obtenerUsuarioActual();
+    const user = localStorage.getItem('csdt_user') || localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
   },
 
   // Verificar si está autenticado
   estaAutenticado() {
-    return utilidades.estaAutenticado();
+    const token = localStorage.getItem('csdt_token') || localStorage.getItem('token');
+    const user = localStorage.getItem('csdt_user') || localStorage.getItem('user');
+    return !!(token && user);
   },
 
   // Obtener token
   obtenerToken() {
-    return localStorage.getItem(configuracion.auth.tokenKey);
-  },
-
-  // Verificar permisos
-  async verificarPermisos(permiso) {
-    try {
-      const response = await api.get(`/auth/permissions/${permiso}`);
-      return response.data.hasPermission;
-    } catch (error) {
-      utilidades.logError(error, 'Error verificando permisos');
-      return false;
-    }
-  },
-
-  // Obtener roles del usuario
-  async obtenerRoles() {
-    try {
-      const response = await api.get('/auth/roles');
-      return response.data.roles;
-    } catch (error) {
-      utilidades.logError(error, 'Error obteniendo roles');
-      return [];
-    }
+    return localStorage.getItem('csdt_token') || localStorage.getItem('token');
   },
 
   // Cambiar contraseña
   async cambiarContrasena(datos) {
     try {
-      const response = await api.post('/auth/change-password', datos);
-      utilidades.logInfo('Contraseña cambiada exitosamente');
+      const response = await api.post('/auth/cambiar-contrasena', datos);
+      console.log('Contraseña cambiada exitosamente');
       return { success: true, message: response.data.message };
     } catch (error) {
-      utilidades.logError(error, 'Error cambiando contraseña');
+      console.error('Error cambiando contraseña:', error);
       throw error;
     }
   },
 
   // Solicitar restablecimiento de contraseña
-  async solicitarRestablecimiento(email) {
+  async solicitarRestablecimiento(email, tipoUsuario) {
     try {
-      const response = await api.post('/auth/forgot-password', { email });
-      utilidades.logInfo('Solicitud de restablecimiento enviada', { email });
+      const response = await api.post('/auth/recuperar-contrasena', { 
+        correo: email, 
+        tipo_usuario: tipoUsuario 
+      });
+      console.log('Solicitud de restablecimiento enviada', { email });
       return { success: true, message: response.data.message };
     } catch (error) {
-      utilidades.logError(error, 'Error solicitando restablecimiento');
+      console.error('Error solicitando restablecimiento:', error);
       throw error;
     }
   },
@@ -163,77 +134,22 @@ const authService = {
   // Restablecer contraseña
   async restablecerContrasena(datos) {
     try {
-      const response = await api.post('/auth/reset-password', datos);
-      utilidades.logInfo('Contraseña restablecida exitosamente');
+      const response = await api.post('/auth/resetear-contrasena', datos);
+      console.log('Contraseña restablecida exitosamente');
       return { success: true, message: response.data.message };
     } catch (error) {
-      utilidades.logError(error, 'Error restableciendo contraseña');
+      console.error('Error restableciendo contraseña:', error);
       throw error;
     }
   },
 
-  // Actualizar perfil
-  async actualizarPerfil(datos) {
+  // Validar campos únicos
+  async validarCampos(campos) {
     try {
-      const response = await api.put('/auth/profile', datos);
-      const { user } = response.data;
-
-      // Actualizar datos del usuario
-      utilidades.guardarAuth(null, null, user, null);
-
-      utilidades.logInfo('Perfil actualizado exitosamente');
-      return { success: true, user };
+      const response = await api.post('/auth/validar-campos', campos);
+      return response.data;
     } catch (error) {
-      utilidades.logError(error, 'Error actualizando perfil');
-      throw error;
-    }
-  },
-
-  // Subir avatar
-  async subirAvatar(archivo) {
-    try {
-      const formData = new FormData();
-      formData.append('avatar', archivo);
-
-      const response = await api.post('/auth/avatar', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-
-      const { user } = response.data;
-
-      // Actualizar datos del usuario
-      utilidades.guardarAuth(null, null, user, null);
-
-      utilidades.logInfo('Avatar actualizado exitosamente');
-      return { success: true, user };
-    } catch (error) {
-      utilidades.logError(error, 'Error subiendo avatar');
-      throw error;
-    }
-  },
-
-  // Obtener historial de sesiones
-  async obtenerHistorialSesiones() {
-    try {
-      const response = await api.get('/auth/sessions');
-      return response.data.sessions;
-    } catch (error) {
-      utilidades.logError(error, 'Error obteniendo historial de sesiones');
-      return [];
-    }
-  },
-
-  // Cerrar sesión en todos los dispositivos
-  async cerrarTodasLasSesiones() {
-    try {
-      await api.post('/auth/logout-all');
-      utilidades.limpiarAuth();
-      utilidades.logInfo('Todas las sesiones cerradas');
-      return { success: true };
-    } catch (error) {
-      utilidades.logError(error, 'Error cerrando todas las sesiones');
+      console.error('Error validando campos:', error);
       throw error;
     }
   }

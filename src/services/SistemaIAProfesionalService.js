@@ -12,12 +12,12 @@ class SistemaIAProfesionalService {
     enfoque: 'Respuestas de nivel profesional especializado'
   };
 
-  // Plantillas profesionales por especialidad
+  // Plantillas profesionales por especialidad de nivel doctorado
   static plantillasProfesionales = {
     derecho_constitucional: {
-      introduccion: "Como abogado constitucionalista colombiano con más de 25 años de experiencia en derecho constitucional y administrativo, especializado en acciones constitucionales y control de constitucionalidad, procedo a brindar un análisis jurídico especializado.",
-      experiencia: "Con 25 años de experiencia en derecho constitucional, he litigado múltiples casos de acciones constitucionales y participado en procesos de control de constitucionalidad.",
-      metodologia: "Mi análisis se fundamenta en la aplicación rigurosa de la jurisprudencia constitucional, la doctrina especializada, y la experiencia práctica en tribunales constitucionales y administrativos."
+      introduccion: "Como doctora en derecho constitucional colombiana con más de 25 años de experiencia especializada, PhD en Derecho Constitucional de la Universidad Nacional de Colombia, postdoctorado en Derecho Constitucional Comparado de la Universidad de Harvard, y especialización en acciones constitucionales y control de constitucionalidad, procedo a brindar un análisis jurídico de nivel doctoral especializado.",
+      experiencia: "Con 25 años de experiencia en derecho constitucional, PhD en Derecho Constitucional, postdoctorado en Derecho Constitucional Comparado, he litigado múltiples casos de acciones constitucionales, participado en procesos de control de constitucionalidad, y publicado más de 50 artículos en revistas indexadas sobre derecho constitucional.",
+      metodologia: "Mi análisis se fundamenta en la aplicación rigurosa de metodologías de investigación jurídica doctoral, la jurisprudencia constitucional comparada, la doctrina especializada internacional, y la experiencia práctica en tribunales constitucionales y administrativos, aplicando técnicas de análisis jurídico cuantitativo y cualitativo."
     },
     derecho_administrativo: {
       introduccion: "Como abogado administrativista colombiano con más de 22 años de experiencia en derecho administrativo y contratación estatal, especializado en actos administrativos y procedimientos administrativos, procedo a brindar un análisis técnico especializado.",

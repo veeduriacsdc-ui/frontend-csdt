@@ -1,4 +1,4 @@
-import api from './api';
+import csdtApiService from './csdtApiService';
 import ConsejoVeeduriaTerritorialService from './ConsejoVeeduriaTerritorialService';
 
 /**
@@ -6,7 +6,8 @@ import ConsejoVeeduriaTerritorialService from './ConsejoVeeduriaTerritorialServi
  */
 class ConsejoIAService {
   constructor() {
-    this.endpoint = '/analisis-ia';
+    // Usar el servicio unificado del CSDT
+    this.api = csdtApiService.consejoIA;
     // Prompts manejados localmente
     this.consejoVeeduriaTerritorialService = new ConsejoVeeduriaTerritorialService();
   }
@@ -16,7 +17,7 @@ class ConsejoIAService {
    */
   async crearAnalisis(datos) {
     try {
-      const response = await api.post(`${this.endpoint}/crear`, datos);
+      const response = await this.api.crear(datos);
       return response.data;
     } catch (error) {
       console.error('Error creando análisis:', error);
@@ -29,7 +30,7 @@ class ConsejoIAService {
    */
   async obtenerAnalisis(id) {
     try {
-      const response = await api.get(`${this.endpoint}/${id}`);
+      const response = await this.api.obtenerPorId(id);
       return response.data;
     } catch (error) {
       console.error('Error obteniendo análisis:', error);
@@ -42,7 +43,7 @@ class ConsejoIAService {
    */
   async listarAnalisis() {
     try {
-      const response = await api.get(`${this.endpoint}`);
+      const response = await this.api.obtenerLista();
       return response.data;
     } catch (error) {
       console.error('Error listando análisis:', error);
@@ -55,7 +56,7 @@ class ConsejoIAService {
    */
   async generarReportePDF(id) {
     try {
-      const response = await api.get(`${this.endpoint}/${id}/reporte-pdf`);
+      const response = await this.api.generarPdfAutenticado(id);
       return response.data;
     } catch (error) {
       console.error('Error generando reporte PDF:', error);
@@ -68,7 +69,7 @@ class ConsejoIAService {
    */
   async obtenerCasosRecientes(limite = 10) {
     try {
-      const response = await api.get(`${this.endpoint}?limite=${limite}`);
+      const response = await this.api.obtenerLista();
       return response.data;
     } catch (error) {
       console.error('Error obteniendo casos recientes:', error);
