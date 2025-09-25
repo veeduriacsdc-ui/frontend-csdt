@@ -412,7 +412,7 @@ const Terminos = () => {
          • Atención 24/7
 
       4. MEDIOS DE COMUNICACIÓN
-         • Email: prensa@csdt.gov.co
+         • Email: prensa@ejemplo.com
          • Teléfono: +57 (1) 234-5678 ext. 123
          • Horario: Lunes a Viernes 8:00 AM - 6:00 PM
 

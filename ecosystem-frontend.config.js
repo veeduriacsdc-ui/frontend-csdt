@@ -8,7 +8,7 @@ module.exports = {
         exec_mode: 'fork',
         env: {
             NODE_ENV: 'production',
-            VITE_API_URL: 'http://64.225.113.49:8000/api',
+            VITE_API_URL: 'http://localhost:8000/api',
             VITE_APP_NAME: 'CSDT',
             VITE_APP_VERSION: '1.0.0',
             VITE_APP_ENV: 'production'
