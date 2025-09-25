@@ -1,11 +1,11 @@
 // Configuración del backend
 const configuracion = {
   // URL base del backend Laravel
-  backendUrl: process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000',
+  backendUrl: process.env.REACT_APP_BACKEND_URL || 'https://csdt-backend-app.azurewebsites.net',
   
   // Configuración de API
   api: {
-    baseUrl: process.env.REACT_APP_API_URL || 'http://localhost:8000/api',
+    baseUrl: process.env.REACT_APP_API_URL || 'https://csdt-backend-app.azurewebsites.net/api',
     timeout: 30000, // 30 segundos
     retries: 3,
     retryDelay: 1000 // 1 segundo
