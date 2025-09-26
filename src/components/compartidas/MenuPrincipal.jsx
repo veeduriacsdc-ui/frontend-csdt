@@ -1355,9 +1355,16 @@ const MenuPrincipal = () => {
                   required
                 />
                 {!isRegistroMode && (
-                  <p style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
-                    Prueba: cliente@ejemplo.com, operador@ejemplo.com, admin@ejemplo.com, esteban.41m@gmail.com, superadmin@ejemplo.com
-                  </p>
+                  <div style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
+                    <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>USUARIOS DE PRUEBA CORRECTOS:</div>
+                    <div style={{ fontSize: '10px', lineHeight: '1.4' }}>
+                      <div>👤 Cliente: cliente@ejemplo.com</div>
+                      <div>👨‍💻 Operador: operador@ejemplo.com</div>
+                      <div>👨‍💼 Administrador: admin@ejemplo.com</div>
+                      <div>👨‍💼 Admin Principal: esteban.41m@gmail.com</div>
+                      <div>👑 Super Admin: superadmin@ejemplo.com</div>
+                    </div>
+                  </div>
                 )}
               </div>
 
@@ -1388,9 +1395,16 @@ const MenuPrincipal = () => {
                   required
                 />
                 {!isRegistroMode && (
-                  <p style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
-                    Prueba: cliente123, operador123, admin123, password123, superadmin123
-                  </p>
+                  <div style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
+                    <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>CONTRASEÑAS DE PRUEBA:</div>
+                    <div style={{ fontSize: '10px', lineHeight: '1.4' }}>
+                      <div>👤 Cliente: cliente123</div>
+                      <div>👨‍💻 Operador: operador123</div>
+                      <div>👨‍💼 Administrador: admin123</div>
+                      <div>👨‍💼 Admin Principal: password123</div>
+                      <div>👑 Super Admin: superadmin123</div>
+                    </div>
+                  </div>
                 )}
               </div>
 
