@@ -1354,16 +1354,6 @@ const MenuPrincipal = () => {
                   placeholder="Ingresa tu usuario"
                   required
                 />
-                {!isRegistroMode && (
-                  <p style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
-                    <strong>Pruebas:</strong><br/>
-                    Admin: esteban.41m@gmail.com / password123<br/>
-                    Cliente: cliente@ejemplo.com / cliente123<br/>
-                    Operador: operador@ejemplo.com / operador123<br/>
-                    Administrador: admin@ejemplo.com / admin123<br/>
-                    Super Admin: superadmin@ejemplo.com / superadmin123
-                  </p>
-                )}
               </div>
 
               <div>
