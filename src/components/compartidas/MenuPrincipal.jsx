@@ -1356,6 +1356,7 @@ const MenuPrincipal = () => {
                 />
                 {!isRegistroMode && (
                   <p style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
+                    <strong>Pruebas:</strong><br/>
                     Admin: esteban.41m@gmail.com / password123<br/>
                     Cliente: cliente@ejemplo.com / cliente123<br/>
                     Operador: operador@ejemplo.com / operador123<br/>
