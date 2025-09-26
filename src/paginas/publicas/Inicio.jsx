@@ -110,6 +110,711 @@ const Inicio = () => {
       </section>
 
 
+      {/* Sección del Ciclo de Justicia y Proceso Legal */}
+      <section style={{
+        padding: '80px 0',
+        backgroundColor: '#f8fafc'
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <h2 style={{
+              fontSize: '32px',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '20px'
+            }}>
+              ⚖️ Ciclo de Justicia y Proceso Legal
+            </h2>
+            <p style={{
+              fontSize: '18px',
+              color: '#6b7280',
+              maxWidth: '800px',
+              margin: '0 auto'
+            }}>
+              Entendiendo el proceso completo de justicia en Colombia y cómo el CSDT fortalece cada etapa
+            </p>
+          </div>
+
+          {/* Proceso de Justicia */}
+          <div style={{
+            background: 'white',
+            padding: '40px',
+            borderRadius: '20px',
+            boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
+            marginBottom: '40px'
+          }}>
+            <h3 style={{
+              fontSize: '24px',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '30px',
+              textAlign: 'center'
+            }}>
+              🔄 El Ciclo Completo de Justicia
+            </h3>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '30px'
+            }}>
+              {/* 1. Denuncia */}
+              <div style={{
+                background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #fecaca',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>📢</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#dc2626',
+                  marginBottom: '10px'
+                }}>
+                  1. Denuncia
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#7f1d1d',
+                  lineHeight: '1.6'
+                }}>
+                  Ciudadanos reportan irregularidades a través de PQRSFD, acciones constitucionales o mecanismos de participación
+                </p>
+              </div>
+
+              {/* 2. Investigación */}
+              <div style={{
+                background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #bae6fd',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>🔍</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#0369a1',
+                  marginBottom: '10px'
+                }}>
+                  2. Investigación
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#0c4a6e',
+                  lineHeight: '1.6'
+                }}>
+                  Análisis forense digital, IA predictiva y geoanálisis para detectar patrones de corrupción y fraudes
+                </p>
+              </div>
+
+              {/* 3. Evidencia */}
+              <div style={{
+                background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #bbf7d0',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>📋</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#16a34a',
+                  marginBottom: '10px'
+                }}>
+                  3. Evidencia
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#166534',
+                  lineHeight: '1.6'
+                }}>
+                  Recopilación y certificación de evidencias con blockchain, firma electrónica y sello de tiempo
+                </p>
+              </div>
+
+              {/* 4. Proceso Judicial */}
+              <div style={{
+                background: 'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #c4b5fd',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>⚖️</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#7c3aed',
+                  marginBottom: '10px'
+                }}>
+                  4. Proceso Judicial
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#5b21b6',
+                  lineHeight: '1.6'
+                }}>
+                  Presentación ante JEP, Fiscalía, Contraloría y organismos de control con evidencia certificada
+                </p>
+              </div>
+
+              {/* 5. Sentencia */}
+              <div style={{
+                background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #fcd34d',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>📜</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#d97706',
+                  marginBottom: '10px'
+                }}>
+                  5. Sentencia
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#92400e',
+                  lineHeight: '1.6'
+                }}>
+                  Resolución judicial basada en evidencia certificada y análisis forense digital
+                </p>
+              </div>
+
+              {/* 6. Reparación */}
+              <div style={{
+                background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #cbd5e1',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>🔄</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#475569',
+                  marginBottom: '10px'
+                }}>
+                  6. Reparación
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#334155',
+                  lineHeight: '1.6'
+                }}>
+                  Implementación de medidas de reparación y justicia transicional para víctimas
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Ramas del Poder Judicial */}
+          <div style={{
+            background: 'linear-gradient(135deg, #1e40af 0%, #7c3aed 100%)',
+            color: 'white',
+            padding: '40px',
+            borderRadius: '20px',
+            marginBottom: '40px'
+          }}>
+            <h3 style={{
+              fontSize: '24px',
+              fontWeight: 'bold',
+              marginBottom: '30px',
+              textAlign: 'center'
+            }}>
+              🏛️ Ramas del Poder Judicial en Colombia
+            </h3>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '25px'
+            }}>
+              {/* Rama Judicial */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  marginBottom: '15px',
+                  color: '#fbbf24'
+                }}>
+                  ⚖️ Rama Judicial
+                </h4>
+                <ul style={{
+                  fontSize: '14px',
+                  lineHeight: '1.6',
+                  paddingLeft: '20px',
+                  margin: 0
+                }}>
+                  <li style={{ marginBottom: '8px' }}>Corte Suprema de Justicia</li>
+                  <li style={{ marginBottom: '8px' }}>Corte Constitucional</li>
+                  <li style={{ marginBottom: '8px' }}>Consejo Superior de la Judicatura</li>
+                  <li style={{ marginBottom: '8px' }}>Tribunales Superiores</li>
+                  <li style={{ marginBottom: '8px' }}>Juzgados de Circuito</li>
+                  <li>Juzgados Municipales</li>
+                </ul>
+              </div>
+
+              {/* Rama Ejecutiva */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  marginBottom: '15px',
+                  color: '#fbbf24'
+                }}>
+                  🏛️ Rama Ejecutiva
+                </h4>
+                <ul style={{
+                  fontSize: '14px',
+                  lineHeight: '1.6',
+                  paddingLeft: '20px',
+                  margin: 0
+                }}>
+                  <li style={{ marginBottom: '8px' }}>Presidencia de la República</li>
+                  <li style={{ marginBottom: '8px' }}>Ministerios</li>
+                  <li style={{ marginBottom: '8px' }}>Departamentos Administrativos</li>
+                  <li style={{ marginBottom: '8px' }}>Superintendencias</li>
+                  <li style={{ marginBottom: '8px' }}>Institutos</li>
+                  <li>Entidades Territoriales</li>
+                </ul>
+              </div>
+
+              {/* Rama Legislativa */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  marginBottom: '15px',
+                  color: '#fbbf24'
+                }}>
+                  🏛️ Rama Legislativa
+                </h4>
+                <ul style={{
+                  fontSize: '14px',
+                  lineHeight: '1.6',
+                  paddingLeft: '20px',
+                  margin: 0
+                }}>
+                  <li style={{ marginBottom: '8px' }}>Congreso de la República</li>
+                  <li style={{ marginBottom: '8px' }}>Senado de la República</li>
+                  <li style={{ marginBottom: '8px' }}>Cámara de Representantes</li>
+                  <li style={{ marginBottom: '8px' }}>Asambleas Departamentales</li>
+                  <li style={{ marginBottom: '8px' }}>Concejos Municipales</li>
+                  <li>Juntas Administradoras Locales</li>
+                </ul>
+              </div>
+
+              {/* Organismos de Control */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  marginBottom: '15px',
+                  color: '#fbbf24'
+                }}>
+                  🔍 Organismos de Control
+                </h4>
+                <ul style={{
+                  fontSize: '14px',
+                  lineHeight: '1.6',
+                  paddingLeft: '20px',
+                  margin: 0
+                }}>
+                  <li style={{ marginBottom: '8px' }}>Contraloría General de la República</li>
+                  <li style={{ marginBottom: '8px' }}>Procuraduría General de la Nación</li>
+                  <li style={{ marginBottom: '8px' }}>Defensoría del Pueblo</li>
+                  <li style={{ marginBottom: '8px' }}>Fiscalía General de la Nación</li>
+                  <li style={{ marginBottom: '8px' }}>JEP (Justicia Especial para la Paz)</li>
+                  <li>Comisión de la Verdad</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Proceso de Veeduría Territorial */}
+          <div style={{
+            background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+            padding: '40px',
+            borderRadius: '20px',
+            marginBottom: '40px',
+            border: '2px solid #bbf7d0'
+          }}>
+            <h3 style={{
+              fontSize: '24px',
+              fontWeight: 'bold',
+              color: '#16a34a',
+              marginBottom: '30px',
+              textAlign: 'center'
+            }}>
+              🔍 Proceso de Veeduría Territorial
+            </h3>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '25px'
+            }}>
+              {/* Identificación */}
+              <div style={{
+                background: 'white',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #86efac',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>🎯</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#16a34a',
+                  marginBottom: '10px'
+                }}>
+                  1. Identificación
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#166534',
+                  lineHeight: '1.6'
+                }}>
+                  Detección de irregularidades en tierras, minería, contratación y actos administrativos mediante IA
+                </p>
+              </div>
+
+              {/* Documentación */}
+              <div style={{
+                background: 'white',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #86efac',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>📄</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#16a34a',
+                  marginBottom: '10px'
+                }}>
+                  2. Documentación
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#166534',
+                  lineHeight: '1.6'
+                }}>
+                  Recopilación y análisis forense de documentos, mapas, contratos y actos administrativos
+                </p>
+              </div>
+
+              {/* Análisis */}
+              <div style={{
+                background: 'white',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #86efac',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>🔬</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#16a34a',
+                  marginBottom: '10px'
+                }}>
+                  3. Análisis
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#166534',
+                  lineHeight: '1.6'
+                }}>
+                  Análisis forense digital, geoanálisis y machine learning para detectar patrones de corrupción
+                </p>
+              </div>
+
+              {/* Evidencia */}
+              <div style={{
+                background: 'white',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #86efac',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>📋</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#16a34a',
+                  marginBottom: '10px'
+                }}>
+                  4. Evidencia
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#166534',
+                  lineHeight: '1.6'
+                }}>
+                  Certificación de evidencias con blockchain, firma electrónica y sello de tiempo
+                </p>
+              </div>
+
+              {/* Denuncia */}
+              <div style={{
+                background: 'white',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #86efac',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>📢</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#16a34a',
+                  marginBottom: '10px'
+                }}>
+                  5. Denuncia
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#166534',
+                  lineHeight: '1.6'
+                }}>
+                  Presentación de denuncias ante organismos de control con evidencia certificada
+                </p>
+              </div>
+
+              {/* Seguimiento */}
+              <div style={{
+                background: 'white',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #86efac',
+                textAlign: 'center'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>📊</div>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#16a34a',
+                  marginBottom: '10px'
+                }}>
+                  6. Seguimiento
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#166534',
+                  lineHeight: '1.6'
+                }}>
+                  Monitoreo del proceso y rendición de cuentas a la ciudadanía
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Mecanismos de Control Social */}
+          <div style={{
+            background: 'white',
+            padding: '40px',
+            borderRadius: '20px',
+            boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+          }}>
+            <h3 style={{
+              fontSize: '24px',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '30px',
+              textAlign: 'center'
+            }}>
+              🛡️ Mecanismos de Control Social
+            </h3>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '25px'
+            }}>
+              {/* Veedurías Ciudadanas */}
+              <div style={{
+                background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #bbf7d0'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#16a34a',
+                  marginBottom: '15px'
+                }}>
+                  👥 Veedurías Ciudadanas
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#166534',
+                  lineHeight: '1.6',
+                  marginBottom: '15px'
+                }}>
+                  Organizaciones de la sociedad civil que vigilan la gestión pública y denuncian irregularidades
+                </p>
+                <ul style={{
+                  fontSize: '12px',
+                  color: '#166534',
+                  lineHeight: '1.5',
+                  paddingLeft: '15px',
+                  margin: 0
+                }}>
+                  <li>Veeduría de contratación</li>
+                  <li>Veeduría de obras públicas</li>
+                  <li>Veeduría de servicios públicos</li>
+                  <li>Veeduría de salud</li>
+                </ul>
+              </div>
+
+              {/* Acciones Constitucionales */}
+              <div style={{
+                background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #fecaca'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#dc2626',
+                  marginBottom: '15px'
+                }}>
+                  ⚖️ Acciones Constitucionales
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#7f1d1d',
+                  lineHeight: '1.6',
+                  marginBottom: '15px'
+                }}>
+                  Herramientas jurídicas para proteger derechos fundamentales y denunciar violaciones
+                </p>
+                <ul style={{
+                  fontSize: '12px',
+                  color: '#7f1d1d',
+                  lineHeight: '1.5',
+                  paddingLeft: '15px',
+                  margin: 0
+                }}>
+                  <li>Acción de Tutela</li>
+                  <li>Acción de Cumplimiento</li>
+                  <li>Acción Popular</li>
+                  <li>Acción de Grupo</li>
+                </ul>
+              </div>
+
+              {/* Mecanismos de Participación */}
+              <div style={{
+                background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #bae6fd'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#0369a1',
+                  marginBottom: '15px'
+                }}>
+                  🗳️ Mecanismos de Participación
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#0c4a6e',
+                  lineHeight: '1.6',
+                  marginBottom: '15px'
+                }}>
+                  Instrumentos democráticos para que los ciudadanos participen en las decisiones públicas
+                </p>
+                <ul style={{
+                  fontSize: '12px',
+                  color: '#0c4a6e',
+                  lineHeight: '1.5',
+                  paddingLeft: '15px',
+                  margin: 0
+                }}>
+                  <li>Consulta Popular</li>
+                  <li>Referendo</li>
+                  <li>Plebiscito</li>
+                  <li>Manifiesto Ciudadano</li>
+                </ul>
+              </div>
+
+              {/* Control Fiscal */}
+              <div style={{
+                background: 'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '2px solid #c4b5fd'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  color: '#7c3aed',
+                  marginBottom: '15px'
+                }}>
+                  💰 Control Fiscal
+                </h4>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#5b21b6',
+                  lineHeight: '1.6',
+                  marginBottom: '15px'
+                }}>
+                  Vigilancia de la gestión fiscal y presupuestal de las entidades públicas
+                </p>
+                <ul style={{
+                  fontSize: '12px',
+                  color: '#5b21b6',
+                  lineHeight: '1.5',
+                  paddingLeft: '15px',
+                  margin: 0
+                }}>
+                  <li>Auditorías fiscales</li>
+                  <li>Control de contratación</li>
+                  <li>Vigilancia presupuestal</li>
+                  <li>Denuncias por malversación</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Sección de Funcionalidades Implementadas */}
       <section style={{
         padding: '80px 0',
@@ -1813,6 +2518,231 @@ const Inicio = () => {
                 Publicación abierta de hallazgos, rendición de cuentas 
                 y participación ciudadana activa
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección de Impacto y Beneficios */}
+      <section style={{
+        padding: '80px 0',
+        backgroundColor: 'white'
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <h2 style={{
+              fontSize: '32px',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '20px'
+            }}>
+              🌟 Impacto y Beneficios del CSDT
+            </h2>
+            <p style={{
+              fontSize: '18px',
+              color: '#6b7280',
+              maxWidth: '800px',
+              margin: '0 auto'
+            }}>
+              Transformando la justicia territorial y fortaleciendo la democracia en Colombia
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '30px',
+            marginBottom: '50px'
+          }}>
+            {/* Beneficios para Ciudadanos */}
+            <div style={{
+              background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+              padding: '30px',
+              borderRadius: '20px',
+              border: '2px solid #0ea5e9',
+              boxShadow: '0 8px 25px rgba(14, 165, 233, 0.15)'
+            }}>
+              <div style={{
+                width: '60px',
+                height: '60px',
+                backgroundColor: '#0ea5e9',
+                borderRadius: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '20px'
+              }}>
+                <span style={{ fontSize: '30px' }}>👥</span>
+              </div>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: '#0c4a6e',
+                marginBottom: '15px'
+              }}>
+                Para Ciudadanos
+              </h3>
+              <ul style={{
+                fontSize: '14px',
+                color: '#075985',
+                lineHeight: '1.6',
+                paddingLeft: '20px',
+                margin: 0
+              }}>
+                <li style={{ marginBottom: '8px' }}>Herramientas gratuitas de denuncia</li>
+                <li style={{ marginBottom: '8px' }}>Protección de identidad y datos</li>
+                <li style={{ marginBottom: '8px' }}>Acceso a información transparente</li>
+                <li style={{ marginBottom: '8px' }}>Participación en decisiones públicas</li>
+                <li style={{ marginBottom: '8px' }}>Seguimiento de denuncias</li>
+                <li>Formación en control social</li>
+              </ul>
+            </div>
+
+            {/* Beneficios para Organizaciones */}
+            <div style={{
+              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+              padding: '30px',
+              borderRadius: '20px',
+              border: '2px solid #22c55e',
+              boxShadow: '0 8px 25px rgba(34, 197, 94, 0.15)'
+            }}>
+              <div style={{
+                width: '60px',
+                height: '60px',
+                backgroundColor: '#22c55e',
+                borderRadius: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '20px'
+              }}>
+                <span style={{ fontSize: '30px' }}>🏛️</span>
+              </div>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: '#14532d',
+                marginBottom: '15px'
+              }}>
+                Para Organizaciones
+              </h3>
+              <ul style={{
+                fontSize: '14px',
+                color: '#166534',
+                lineHeight: '1.6',
+                paddingLeft: '20px',
+                margin: 0
+              }}>
+                <li style={{ marginBottom: '8px' }}>Herramientas de análisis forense</li>
+                <li style={{ marginBottom: '8px' }}>Detección automática de irregularidades</li>
+                <li style={{ marginBottom: '8px' }}>Evidencia certificada para procesos</li>
+                <li style={{ marginBottom: '8px' }}>Reportes automatizados</li>
+                <li style={{ marginBottom: '8px' }}>Integración con sistemas existentes</li>
+                <li>Capacitación especializada</li>
+              </ul>
+            </div>
+
+            {/* Beneficios para el Estado */}
+            <div style={{
+              background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+              padding: '30px',
+              borderRadius: '20px',
+              border: '2px solid #f59e0b',
+              boxShadow: '0 8px 25px rgba(245, 158, 11, 0.15)'
+            }}>
+              <div style={{
+                width: '60px',
+                height: '60px',
+                backgroundColor: '#f59e0b',
+                borderRadius: '15px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '20px'
+              }}>
+                <span style={{ fontSize: '30px' }}>🏛️</span>
+              </div>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: '#92400e',
+                marginBottom: '15px'
+              }}>
+                Para el Estado
+              </h3>
+              <ul style={{
+                fontSize: '14px',
+                color: '#78350f',
+                lineHeight: '1.6',
+                paddingLeft: '20px',
+                margin: 0
+              }}>
+                <li style={{ marginBottom: '8px' }}>Fortalecimiento de la transparencia</li>
+                <li style={{ marginBottom: '8px' }}>Reducción de la corrupción</li>
+                <li style={{ marginBottom: '8px' }}>Mejora en la gestión pública</li>
+                <li style={{ marginBottom: '8px' }}>Cumplimiento normativo</li>
+                <li style={{ marginBottom: '8px' }}>Confianza ciudadana</li>
+                <li>Justicia transicional efectiva</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Estadísticas de Impacto */}
+          <div style={{
+            background: 'linear-gradient(135deg, #1e40af 0%, #7c3aed 100%)',
+            color: 'white',
+            padding: '40px',
+            borderRadius: '20px',
+            textAlign: 'center'
+          }}>
+            <h3 style={{
+              fontSize: '24px',
+              fontWeight: 'bold',
+              marginBottom: '30px'
+            }}>
+              📊 Impacto Esperado
+            </h3>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '25px'
+            }}>
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '20px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <div style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '10px' }}>90%</div>
+                <p style={{ fontSize: '14px', opacity: 0.9, margin: 0 }}>Reducción en tiempo de investigación</p>
+              </div>
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '20px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <div style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '10px' }}>95%</div>
+                <p style={{ fontSize: '14px', opacity: 0.9, margin: 0 }}>Precisión en detección de fraudes</p>
+              </div>
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '20px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <div style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '10px' }}>80%</div>
+                <p style={{ fontSize: '14px', opacity: 0.9, margin: 0 }}>Aumento en denuncias ciudadanas</p>
+              </div>
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '20px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <div style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '10px' }}>70%</div>
+                <p style={{ fontSize: '14px', opacity: 0.9, margin: 0 }}>Mejora en transparencia institucional</p>
+              </div>
             </div>
           </div>
         </div>
