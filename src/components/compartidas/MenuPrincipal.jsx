@@ -1355,16 +1355,13 @@ const MenuPrincipal = () => {
                   required
                 />
                 {!isRegistroMode && (
-                  <div style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
-                    <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>USUARIOS DE PRUEBA CORRECTOS:</div>
-                    <div style={{ fontSize: '10px', lineHeight: '1.4' }}>
-                      <div>👤 Cliente: cliente@ejemplo.com</div>
-                      <div>👨‍💻 Operador: operador@ejemplo.com</div>
-                      <div>👨‍💼 Administrador: admin@ejemplo.com</div>
-                      <div>👨‍💼 Admin Principal: esteban.41m@gmail.com</div>
-                      <div>👑 Super Admin: superadmin@ejemplo.com</div>
-                    </div>
-                  </div>
+                  <p style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
+                    Admin: esteban.41m@gmail.com / password123<br/>
+                    Cliente: cliente@ejemplo.com / cliente123<br/>
+                    Operador: operador@ejemplo.com / operador123<br/>
+                    Administrador: admin@ejemplo.com / admin123<br/>
+                    Super Admin: superadmin@ejemplo.com / superadmin123
+                  </p>
                 )}
               </div>
 
@@ -1394,18 +1391,6 @@ const MenuPrincipal = () => {
                   placeholder="Ingresa tu contraseña"
                   required
                 />
-                {!isRegistroMode && (
-                  <div style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
-                    <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>CONTRASEÑAS DE PRUEBA:</div>
-                    <div style={{ fontSize: '10px', lineHeight: '1.4' }}>
-                      <div>👤 Cliente: cliente123</div>
-                      <div>👨‍💻 Operador: operador123</div>
-                      <div>👨‍💼 Administrador: admin123</div>
-                      <div>👨‍💼 Admin Principal: password123</div>
-                      <div>👑 Super Admin: superadmin123</div>
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* Confirmar contraseña (solo en modo registro) */}
