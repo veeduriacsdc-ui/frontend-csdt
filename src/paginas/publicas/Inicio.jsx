@@ -84,27 +84,6 @@ const Inicio = () => {
             }}>
               📝 PQRSFD
             </Link>
-            <BotonAuthSimple 
-              texto="🔑 Iniciar Sesión / Registrarse"
-              estilo={{
-                background: 'rgba(255, 255, 255, 0.2)',
-                color: 'white',
-                border: '2px solid rgba(255, 255, 255, 0.3)',
-                padding: 'clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px)',
-                fontSize: 'clamp(12px, 2vw, 16px)',
-                boxShadow: 'rgba(255, 255, 255, 0.2) 0px 4px 15px'
-              }}
-              onSuccess={(resultado) => {
-                if (resultado && resultado.success) {
-                  if (resultado.user) {
-                    alert(`¡Bienvenido! ${resultado.user.nom || 'Usuario'}`);
-                    window.location.reload();
-                  } else {
-                    alert(`¡Registro exitoso! ${resultado.message || 'Usuario creado correctamente'}`);
-                  }
-                }
-              }}
-            />
           </div>
         </div>
       </section>
