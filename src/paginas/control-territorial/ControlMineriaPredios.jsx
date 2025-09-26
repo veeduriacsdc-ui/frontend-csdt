@@ -157,7 +157,6 @@ const ControlMineriaPredios = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando predio minero:', nuevoPredio);
   };
 
   const prediosFiltrados = predios.filter(predio => {

@@ -150,7 +150,6 @@ const DerechosEtnicos = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando derecho étnico:', nuevoDerecho);
     // Aquí se implementaría la lógica de envío
   };
 
@@ -163,7 +162,6 @@ const DerechosEtnicos = () => {
   };
 
   const generarReporte = (derecho) => {
-    console.log('Generando reporte para derecho:', derecho.titulo);
   };
 
   const derechosFiltrados = derechos.filter(derecho => {

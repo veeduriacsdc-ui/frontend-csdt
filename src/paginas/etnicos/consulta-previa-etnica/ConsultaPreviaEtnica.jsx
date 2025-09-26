@@ -136,7 +136,6 @@ const ConsultaPreviaEtnica = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando consulta previa:', nuevaConsulta);
     // Aquí se implementaría la lógica de envío
   };
 
@@ -149,7 +148,6 @@ const ConsultaPreviaEtnica = () => {
   };
 
   const generarReporte = (consulta) => {
-    console.log('Generando reporte para consulta:', consulta.titulo);
   };
 
   const consultasFiltradas = consultas.filter(consulta => {

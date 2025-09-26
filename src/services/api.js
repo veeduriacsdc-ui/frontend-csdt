@@ -47,8 +47,6 @@ const activeConfig = getActiveAPIConfig();
 const API_BASE_URL = import.meta.env.VITE_API_URL || activeConfig.url;
 
 // Log de configuración activa
-console.log('🔧 Configuración API activa:', activeConfig);
-
 // Crear instancia de axios
 const api = axios.create({
   baseURL: API_BASE_URL,

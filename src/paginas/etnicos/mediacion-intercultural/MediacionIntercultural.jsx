@@ -143,7 +143,6 @@ const MediacionIntercultural = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando mediación intercultural:', nuevaMediacion);
   };
 
   const mediacionesFiltradas = mediaciones.filter(mediacion => {

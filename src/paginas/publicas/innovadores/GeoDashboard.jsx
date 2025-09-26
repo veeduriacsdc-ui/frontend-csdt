@@ -265,7 +265,6 @@ const GeoDashboard = () => {
   };
 
   const handleMapClick = (latlng) => {
-    console.log('Coordenadas seleccionadas:', latlng);
   };
 
   const exportarDatos = () => {

@@ -147,7 +147,6 @@ const JusticiaCivil = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando caso civil:', nuevoCaso);
     // Aquí se implementaría la lógica de envío
   };
 
@@ -160,7 +159,6 @@ const JusticiaCivil = () => {
   };
 
   const generarReporte = (caso) => {
-    console.log('Generando reporte para caso:', caso.numero);
   };
 
   const casosFiltrados = casos.filter(caso => {

@@ -115,7 +115,6 @@ const HistoriaTerritorio = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando historia territorial:', nuevaHistoria);
   };
 
   const historiasFiltradas = historias.filter(historia => {

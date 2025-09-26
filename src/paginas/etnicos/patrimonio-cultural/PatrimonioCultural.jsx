@@ -149,7 +149,6 @@ const PatrimonioCultural = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando patrimonio cultural:', nuevoPatrimonio);
   };
 
   const patrimoniosFiltrados = patrimonios.filter(patrimonio => {

@@ -184,7 +184,6 @@ const ControlInstituciones = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando institución:', nuevaInstitucion);
   };
 
   const institucionesFiltradas = instituciones.filter(institucion => {

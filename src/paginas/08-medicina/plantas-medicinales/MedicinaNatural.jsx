@@ -182,7 +182,6 @@ const MedicinaNatural = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando planta medicinal:', nuevaPlanta);
     // Aquí se implementaría la lógica de envío
   };
 
@@ -195,7 +194,6 @@ const MedicinaNatural = () => {
   };
 
   const generarReporte = (planta) => {
-    console.log('Generando reporte para planta:', planta.nombre);
   };
 
   const plantasFiltradas = plantas.filter(planta => {

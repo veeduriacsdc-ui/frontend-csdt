@@ -31,7 +31,6 @@ const AdminRegistros = () => {
         throw new Error('API no disponible');
       }
     } catch (error) {
-      console.log('Cargando desde localStorage...');
       // Fallback a localStorage
       const registrosData = JSON.parse(localStorage.getItem('registrosUsuarios') || '[]');
       
@@ -103,7 +102,6 @@ const AdminRegistros = () => {
         throw new Error('API no disponible');
       }
     } catch (error) {
-      console.log('Procesando localmente...');
       // Fallback a actualización local
       const registrosActualizados = registros.map(registro => 
         registro.id === id 

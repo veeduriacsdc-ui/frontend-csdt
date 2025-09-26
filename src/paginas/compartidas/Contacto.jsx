@@ -105,7 +105,6 @@ const Contacto = () => {
     }
     
     // Simular envío
-    console.log('Formulario enviado:', formulario);
     setEnviado(true);
     
     // Resetear formulario después de 3 segundos

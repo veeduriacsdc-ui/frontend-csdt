@@ -1,11 +1,11 @@
 // Configuración del backend
 const configuracion = {
   // URL base del backend Laravel
-  backendUrl: process.env.REACT_APP_BACKEND_URL || 'https://csdt-backend-app.azurewebsites.net',
+  backendUrl: import.meta.env.VITE_BACKEND_URL || 'https://csdt-backend-app.azurewebsites.net',
   
   // Configuración de API
   api: {
-    baseUrl: process.env.REACT_APP_API_URL || 'https://csdt-backend-app.azurewebsites.net/api',
+    baseUrl: import.meta.env.VITE_API_URL || 'https://csdt-backend-app.azurewebsites.net/api',
     timeout: 30000, // 30 segundos
     retries: 3,
     retryDelay: 1000 // 1 segundo
@@ -65,14 +65,14 @@ const configuracion = {
 
   // Configuración de logging
   logging: {
-    nivel: process.env.NODE_ENV === 'production' ? 'error' : 'debug',
+    nivel: import.meta.env.MODE === 'production' ? 'error' : 'debug',
     habilitado: true
   },
 
   // Configuración de desarrollo
   desarrollo: {
-    modoDebug: process.env.NODE_ENV !== 'production',
-    mostrarErrores: process.env.NODE_ENV !== 'production',
+    modoDebug: import.meta.env.MODE !== 'production',
+    mostrarErrores: import.meta.env.MODE !== 'production',
     validarFormularios: true
   }
 };
@@ -178,7 +178,7 @@ export const utilidades = {
   // Log de información
   logInfo: (mensaje, datos = null) => {
     if (configuracion.logging.habilitado && configuracion.logging.nivel !== 'error') {
-      console.log(`[CSDT Info] ${mensaje}`, datos);
+
     }
   }
 };

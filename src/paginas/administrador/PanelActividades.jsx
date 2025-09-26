@@ -227,8 +227,6 @@ const PanelActividades = () => {
         tiempoRegistrado: tiempoRegistrado[act.id] || []
       }))
     };
-    
-    console.log('Reporte de Costos:', reporte);
     return reporte;
   };
 

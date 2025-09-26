@@ -9,28 +9,26 @@
 /**
  * @typedef {Object} UsuarioBase
  * @property {number} id - ID único del usuario
- * @property {string} nombres - Nombres del usuario
- * @property {string} apellidos - Apellidos del usuario
- * @property {string} usuario - Nombre de usuario único
- * @property {string} correo - Correo electrónico
- * @property {string} telefono - Número de teléfono
- * @property {string} documento_identidad - Número de documento
- * @property {string} tipo_documento - Tipo de documento (cc, ce, ti, pp, nit)
- * @property {string} fecha_nacimiento - Fecha de nacimiento
- * @property {string} direccion - Dirección física
- * @property {string} ciudad - Ciudad
- * @property {string} departamento - Departamento
- * @property {string} codigo_postal - Código postal
- * @property {string} genero - Género (masculino, femenino, otro, no_especificado)
- * @property {boolean} acepto_terminos - Si aceptó términos y condiciones
- * @property {boolean} acepto_politicas - Si aceptó políticas de privacidad
- * @property {boolean} correo_verificado - Si el correo está verificado
- * @property {string} correo_verificado_en - Fecha de verificación del correo
- * @property {string} ultimo_acceso - Último acceso al sistema
- * @property {string} estado - Estado del usuario (activo, inactivo, suspendido, pendiente_verificacion)
- * @property {string} notas - Notas adicionales
+ * @property {string} nom - Nombres del usuario
+ * @property {string} ape - Apellidos del usuario
+ * @property {string} cor - Correo electrónico
+ * @property {string} tel - Número de teléfono
+ * @property {string} doc - Número de documento
+ * @property {string} tip_doc - Tipo de documento (cc, ce, ti, pp, nit)
+ * @property {string} fec_nac - Fecha de nacimiento
+ * @property {string} dir - Dirección física
+ * @property {string} ciu - Ciudad
+ * @property {string} dep - Departamento
+ * @property {string} gen - Género (m, f, o, n)
+ * @property {string} rol - Rol del usuario (cli, ope, adm)
+ * @property {string} est - Estado del usuario (act, ina, sus, pen)
+ * @property {boolean} cor_ver - Si el correo está verificado
+ * @property {string} cor_ver_en - Fecha de verificación del correo
+ * @property {string} ult_acc - Último acceso al sistema
+ * @property {string} not - Notas adicionales
  * @property {string} created_at - Fecha de creación
  * @property {string} updated_at - Fecha de última actualización
+ * @property {string} deleted_at - Fecha de eliminación (soft delete)
  */
 
 // ==================== CLIENTE ====================
@@ -166,25 +164,33 @@
  * @property {string} [nivel_administracion] - Nivel de administración
  */
 
-// ==================== PQRSFD ====================
+// ==================== VEEDURÍA ====================
 
 /**
- * @typedef {Object} PQRSFD
+ * @typedef {Object} Veeduria
  * @property {number} id - ID único
- * @property {number} cliente_id - ID del cliente
- * @property {number} [operador_id] - ID del operador asignado
- * @property {string} tipo - Tipo de PQRSFD (peticion, queja, reclamo, sugerencia, felicitacion, denuncia)
- * @property {string} asunto - Asunto del caso
- * @property {string} descripcion - Descripción detallada
- * @property {string} estado - Estado del caso
- * @property {string} prioridad - Prioridad (baja, media, alta, critica)
- * @property {string} categoria - Categoría del caso
- * @property {Array<DocumentoAdjunto>} documentos - Documentos adjuntos
- * @property {string} fecha_creacion - Fecha de creación
- * @property {string} fecha_cierre - Fecha de cierre
- * @property {string} observaciones - Observaciones adicionales
- * @property {Cliente} cliente - Cliente asociado
- * @property {Operador} operador - Operador asignado
+ * @property {number} usu_id - ID del usuario (cliente)
+ * @property {number} [ope_id] - ID del operador asignado
+ * @property {string} tit - Título de la veeduría
+ * @property {string} des - Descripción detallada
+ * @property {string} tip - Tipo de veeduría (pet, que, rec, sug, fel, den)
+ * @property {string} est - Estado de la veeduría (pen, pro, rad, cer, can)
+ * @property {string} pri - Prioridad (baj, med, alt, urg)
+ * @property {string} [cat] - Categoría de la veeduría
+ * @property {string} [ubi] - Ubicación
+ * @property {number} [pre] - Presupuesto
+ * @property {string} fec_reg - Fecha de registro
+ * @property {string} [fec_rad] - Fecha de radicación
+ * @property {string} [fec_cer] - Fecha de cierre
+ * @property {string} [num_rad] - Número de radicación
+ * @property {string} [not_ope] - Notas del operador
+ * @property {Array} [rec_ia] - Recomendaciones de IA
+ * @property {Array} [arc] - Archivos adjuntos
+ * @property {string} created_at - Fecha de creación
+ * @property {string} updated_at - Fecha de actualización
+ * @property {string} [deleted_at] - Fecha de eliminación
+ * @property {UsuarioBase} usuario - Usuario asociado
+ * @property {UsuarioBase} [operador] - Operador asignado
  */
 
 // ==================== TAREA ====================
@@ -192,16 +198,57 @@
 /**
  * @typedef {Object} Tarea
  * @property {number} id - ID único
- * @property {string} titulo - Título de la tarea
- * @property {string} descripcion - Descripción de la tarea
- * @property {string} estado - Estado de la tarea
- * @property {string} prioridad - Prioridad de la tarea
- * @property {number} [operador_id] - ID del operador asignado
- * @property {number} [veeduria_id] - ID de la veeduría asociada
- * @property {string} fecha_vencimiento - Fecha de vencimiento
- * @property {string} fecha_completado - Fecha de completado
- * @property {string} observaciones - Observaciones
- * @property {Operador} operador - Operador asignado
+ * @property {number} [vee_id] - ID de la veeduría asociada
+ * @property {number} asig_por - ID del usuario que asigna
+ * @property {number} asig_a - ID del usuario asignado
+ * @property {string} tit - Título de la tarea
+ * @property {string} des - Descripción de la tarea
+ * @property {string} est - Estado de la tarea (pen, pro, com, can, sus)
+ * @property {string} pri - Prioridad de la tarea (baj, med, alt, urg)
+ * @property {string} [fec_ini] - Fecha de inicio
+ * @property {string} [fec_ven] - Fecha de vencimiento
+ * @property {string} [fec_com] - Fecha de completado
+ * @property {string} [not] - Notas
+ * @property {string} created_at - Fecha de creación
+ * @property {string} updated_at - Fecha de actualización
+ * @property {string} [deleted_at] - Fecha de eliminación
+ * @property {UsuarioBase} asignado_por - Usuario que asigna
+ * @property {UsuarioBase} asignado_a - Usuario asignado
+ * @property {Veeduria} [veeduria] - Veeduría asociada
+ */
+
+// ==================== DONACIÓN ====================
+
+/**
+ * @typedef {Object} Donacion
+ * @property {number} id - ID único
+ * @property {number} usu_id - ID del usuario
+ * @property {number} mon - Monto de la donación
+ * @property {string} tip - Tipo de pago (efec, tran, cheq, otr)
+ * @property {string} est - Estado (pen, pro, con, rej, can)
+ * @property {string} [ref] - Referencia
+ * @property {string} [des] - Descripción
+ * @property {string} fec_don - Fecha de donación
+ * @property {string} [fec_con] - Fecha de confirmación
+ * @property {string} [not] - Notas
+ * @property {string} created_at - Fecha de creación
+ * @property {string} updated_at - Fecha de actualización
+ * @property {string} [deleted_at] - Fecha de eliminación
+ * @property {UsuarioBase} usuario - Usuario que dona
+ */
+
+// ==================== ROL ====================
+
+/**
+ * @typedef {Object} Rol
+ * @property {number} id - ID único
+ * @property {string} nom - Nombre del rol
+ * @property {string} [des] - Descripción
+ * @property {string} est - Estado (act, ina)
+ * @property {Array} [perm] - Permisos del rol
+ * @property {string} created_at - Fecha de creación
+ * @property {string} updated_at - Fecha de actualización
+ * @property {string} [deleted_at] - Fecha de eliminación
  */
 
 // ==================== CONSEJO IA ====================
@@ -298,7 +345,7 @@
 
 export {
   // Tipos base
-  UsuarioBase,
+  // UsuarioBase, // Comentado temporalmente
   
   // Cliente
   Cliente,
@@ -313,8 +360,10 @@ export {
   AdministradorCreate,
   
   // Entidades relacionadas
-  PQRSFD,
+  Veeduria,
   Tarea,
+  Donacion,
+  Rol,
   NarracionConsejoIA,
   
   // Estadísticas

@@ -26,8 +26,6 @@ class ConnectionService {
         this.isConnected = true;
         this.lastHealthCheck = new Date();
         this.retryAttempts = 0;
-        
-        console.log('✅ Conexión con backend establecida:', response.data);
         return {
           success: true,
           data: response.data,
@@ -56,8 +54,6 @@ class ConnectionService {
    */
   async testConnectionWithRetry() {
     for (let attempt = 1; attempt <= this.maxRetries; attempt++) {
-      console.log(`🔄 Intento de conexión ${attempt}/${this.maxRetries}...`);
-      
       const result = await this.checkConnection();
       
       if (result.success) {
@@ -65,7 +61,6 @@ class ConnectionService {
       }
       
       if (attempt < this.maxRetries) {
-        console.log(`⏳ Esperando 2 segundos antes del siguiente intento...`);
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
     }
@@ -118,16 +113,12 @@ class ConnectionService {
           status: response.status,
           data: response.data
         });
-
-        console.log(`✅ ${endpoint.name}: OK`);
       } catch (error) {
         results.push({
           name: endpoint.name,
           success: false,
           error: error.message
         });
-
-        console.log(`❌ ${endpoint.name}: ${error.message}`);
       }
     }
 
@@ -151,8 +142,6 @@ class ConnectionService {
 
     try {
       const response = await api.post('/auth/register', testUser);
-      
-      console.log('✅ Registro de usuario exitoso:', response.data);
       return {
         success: true,
         data: response.data
@@ -175,8 +164,6 @@ class ConnectionService {
         cor: email,
         con: password
       });
-      
-      console.log('✅ Login exitoso:', response.data);
       return {
         success: true,
         data: response.data
@@ -194,8 +181,6 @@ class ConnectionService {
    * Diagnóstico completo del sistema
    */
   async runFullDiagnostic() {
-    console.log('🔍 Iniciando diagnóstico completo del sistema...');
-    
     const diagnostic = {
       timestamp: new Date(),
       config: this.config,
@@ -206,30 +191,23 @@ class ConnectionService {
     };
 
     // 1. Verificar conexión básica
-    console.log('1️⃣ Verificando conexión básica...');
     diagnostic.connection = await this.checkConnection();
 
     if (!diagnostic.connection.success) {
-      console.log('❌ No se puede continuar sin conexión básica');
       return diagnostic;
     }
 
     // 2. Probar endpoints
-    console.log('2️⃣ Probando endpoints...');
     diagnostic.endpoints = await this.testAllEndpoints();
 
     // 3. Probar registro
-    console.log('3️⃣ Probando registro de usuario...');
     diagnostic.registration = await this.testUserRegistration();
 
     // 4. Probar login (si el registro fue exitoso)
     if (diagnostic.registration.success) {
-      console.log('4️⃣ Probando login...');
       const testEmail = diagnostic.registration.data.data.user.cor;
       diagnostic.login = await this.testUserLogin(testEmail, 'password123');
     }
-
-    console.log('✅ Diagnóstico completo finalizado');
     return diagnostic;
   }
 }

@@ -116,7 +116,6 @@ const EducacionPropia = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando programa de educación propia:', nuevoPrograma);
   };
 
   const programasFiltrados = programas.filter(programa => {

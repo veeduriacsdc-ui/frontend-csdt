@@ -444,8 +444,6 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
   // IMPLEMENTACIÓN COMPLETAMENTE NUEVA Y ROBUSTA PARA ANONIMATO
   const handleAnonimatoChange = (e) => {
     const isAnonimo = e.target.checked;
-    console.log('🔒 Plebiscito - Anonimato cambiado a:', isAnonimo);
-    
     setFormulario(prev => {
       const nuevoFormulario = {
         ...prev,
@@ -468,8 +466,6 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
   // Función para toggle directo - IMPLEMENTACIÓN INDEPENDIENTE
   const toggleAnonimatoPlebiscito = () => {
     const nuevoEstado = !formulario.anonimato;
-    console.log('🔒 Plebiscito - Toggle directo a:', nuevoEstado);
-    
     setFormulario(prev => {
       const nuevoFormulario = {
         ...prev,
@@ -694,8 +690,6 @@ ${formulario.anonimato ? 'Identidad: Protegida' : 'Identidad: Visible'}
 ${archivoConsejoIAProcesado ? '🤖 Archivo Consejo IA procesado' : ''}
 
 La dependencia ha sido enviada al Panel de Actividades del Administrador para su gestión y asignación de recursos.`);
-    
-    console.log('Dependencia creada:', dependencia);
   };
 
   // Función para generar PDF como blob

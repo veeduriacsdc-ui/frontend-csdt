@@ -124,7 +124,6 @@ const PlanesEtnodesarrolloAvanzado = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando plan de etnodesarrollo:', nuevoPlan);
   };
 
   const planesFiltrados = planes.filter(plan => {

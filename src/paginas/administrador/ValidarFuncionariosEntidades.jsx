@@ -32,7 +32,6 @@ const ValidarFuncionariosEntidades = () => {
       // Verificar si hay datos corruptos en localStorage
       const monitoresData = localStorage.getItem('monitoresCSDT');
       if (monitoresData && monitoresData !== '[]' && !monitoresData.startsWith('[')) {
-        console.log('Datos corruptos encontrados en monitoresCSDT, limpiando...');
         localStorage.removeItem('monitoresCSDT');
       }
     } catch (error) {
@@ -51,16 +50,12 @@ const ValidarFuncionariosEntidades = () => {
 
   // Verificar si el usuario puede validar
   const puedeValidar = () => {
-    console.log('Usuario actual:', user);
-    console.log('Rol del usuario:', user?.rol);
-    
     // Si no hay usuario, verificar si hay uno en localStorage
     if (!user) {
       const savedUser = localStorage.getItem('csdt_user');
       if (savedUser) {
         try {
           const parsedUser = JSON.parse(savedUser);
-          console.log('Usuario encontrado en localStorage:', parsedUser);
           return parsedUser.rol === 'administrador_general' || parsedUser.rol === 'administrador';
         } catch (error) {
           console.error('Error parseando usuario del localStorage:', error);
@@ -69,7 +64,6 @@ const ValidarFuncionariosEntidades = () => {
     }
     
     const puede = user && (user.rol === 'administrador_general' || user.rol === 'administrador');
-    console.log('¿Puede validar?', puede);
     return puede;
   };
 
@@ -280,7 +274,6 @@ const ValidarFuncionariosEntidades = () => {
             <p style={{ fontSize: '12px', margin: '5px 0' }}>ID: {user ? user.id : 'No definido'}</p>
             <button
               onClick={() => {
-                console.log('Estado completo del usuario:', user);
                 console.log('localStorage csdt_user:', localStorage.getItem('csdt_user'));
                 alert('Información de debug enviada a la consola');
               }}

@@ -118,7 +118,6 @@ const NarracionesEtnicas = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando narración étnica:', nuevaNarracion);
   };
 
   const narracionesFiltradas = narraciones.filter(narracion => {

@@ -163,7 +163,6 @@ const JusticiaPenal = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando caso penal:', nuevoCaso);
     // Aquí se implementaría la lógica de envío
   };
 
@@ -176,7 +175,6 @@ const JusticiaPenal = () => {
   };
 
   const generarReporte = (caso) => {
-    console.log('Generando reporte para caso:', caso.numero);
   };
 
   const casosFiltrados = casos.filter(caso => {

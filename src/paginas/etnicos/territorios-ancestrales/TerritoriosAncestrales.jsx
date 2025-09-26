@@ -156,7 +156,6 @@ const TerritoriosAncestrales = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando territorio ancestral:', nuevoTerritorio);
     // Aquí se implementaría la lógica de envío
   };
 
@@ -169,7 +168,6 @@ const TerritoriosAncestrales = () => {
   };
 
   const generarReporte = (territorio) => {
-    console.log('Generando reporte para territorio:', territorio.nombre);
   };
 
   const territoriosFiltrados = territorios.filter(territorio => {

@@ -190,7 +190,6 @@ const ControlRegional = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando región:', nuevaRegion);
   };
 
   const regionesFiltradas = regiones.filter(region => {

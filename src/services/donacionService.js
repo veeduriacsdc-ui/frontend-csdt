@@ -26,7 +26,20 @@ const donacionService = {
   // Crear donación
   async crearDonacion(datosDonacion) {
     try {
-      const response = await api.post('/donaciones', datosDonacion);
+      // Mapear datos a la nueva estructura del backend
+      const datos = {
+        usu_id: datosDonacion.usuario_id || datosDonacion.usu_id || null,
+        mon: datosDonacion.monto || datosDonacion.mon || 0,
+        tip: datosDonacion.tipo_pago || datosDonacion.tip || 'efec',
+        est: datosDonacion.estado || datosDonacion.est || 'pen',
+        ref: datosDonacion.referencia || datosDonacion.ref || null,
+        des: datosDonacion.descripcion || datosDonacion.des || null,
+        fec_don: datosDonacion.fecha_donacion || datosDonacion.fec_don || new Date(),
+        fec_con: datosDonacion.fecha_confirmacion || datosDonacion.fec_con || null,
+        not: datosDonacion.notas || datosDonacion.not || null
+      };
+
+      const response = await api.post('/donaciones', datos);
       return response.data;
     } catch (error) {
       console.error('Error creando donación:', error);
@@ -37,7 +50,20 @@ const donacionService = {
   // Actualizar donación
   async actualizarDonacion(id, datosDonacion) {
     try {
-      const response = await api.put(`/donaciones/${id}`, datosDonacion);
+      // Mapear datos a la nueva estructura del backend
+      const datos = {
+        usu_id: datosDonacion.usuario_id || datosDonacion.usu_id || null,
+        mon: datosDonacion.monto || datosDonacion.mon || 0,
+        tip: datosDonacion.tipo_pago || datosDonacion.tip || 'efec',
+        est: datosDonacion.estado || datosDonacion.est || 'pen',
+        ref: datosDonacion.referencia || datosDonacion.ref || null,
+        des: datosDonacion.descripcion || datosDonacion.des || null,
+        fec_don: datosDonacion.fecha_donacion || datosDonacion.fec_don || new Date(),
+        fec_con: datosDonacion.fecha_confirmacion || datosDonacion.fec_con || null,
+        not: datosDonacion.notas || datosDonacion.not || null
+      };
+
+      const response = await api.put(`/donaciones/${id}`, datos);
       return response.data;
     } catch (error) {
       console.error('Error actualizando donación:', error);
@@ -56,13 +82,80 @@ const donacionService = {
     }
   },
 
-  // Cambiar estado de la donación
-  async cambiarEstado(id, estado) {
+  // Procesar donación
+  async procesarDonacion(id) {
     try {
-      const response = await api.put(`/donaciones/${id}/estado`, { estado });
+      const response = await api.post(`/donaciones/${id}/procesar`);
       return response.data;
     } catch (error) {
-      console.error('Error cambiando estado:', error);
+      console.error('Error procesando donación:', error);
+      throw error;
+    }
+  },
+
+  // Confirmar donación
+  async confirmarDonacion(id) {
+    try {
+      const response = await api.post(`/donaciones/${id}/confirmar`);
+      return response.data;
+    } catch (error) {
+      console.error('Error confirmando donación:', error);
+      throw error;
+    }
+  },
+
+  // Rechazar donación
+  async rechazarDonacion(id) {
+    try {
+      const response = await api.post(`/donaciones/${id}/rechazar`);
+      return response.data;
+    } catch (error) {
+      console.error('Error rechazando donación:', error);
+      throw error;
+    }
+  },
+
+  // Cancelar donación
+  async cancelarDonacion(id) {
+    try {
+      const response = await api.post(`/donaciones/${id}/cancelar`);
+      return response.data;
+    } catch (error) {
+      console.error('Error cancelando donación:', error);
+      throw error;
+    }
+  },
+
+  // Restaurar donación
+  async restaurarDonacion(id) {
+    try {
+      const response = await api.post(`/donaciones/${id}/restaurar`);
+      return response.data;
+    } catch (error) {
+      console.error('Error restaurando donación:', error);
+      throw error;
+    }
+  },
+
+  // Buscar donaciones
+  async buscarDonaciones(termino, filtros = {}) {
+    try {
+      const params = { termino, ...filtros };
+      const response = await api.get('/donaciones/buscar/termino', { params });
+      return response.data;
+    } catch (error) {
+      console.error('Error buscando donaciones:', error);
+      throw error;
+    }
+  },
+
+  // Obtener estadísticas de donaciones
+  async obtenerEstadisticas() {
+    try {
+      const response = await api.get('/donaciones/estadisticas/generales');
+      return response.data;
+    } catch (error) {
+      console.error('Error obteniendo estadísticas:', error);
       throw error;
     }
   }

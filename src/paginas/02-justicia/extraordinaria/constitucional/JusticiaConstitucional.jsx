@@ -160,7 +160,6 @@ const JusticiaConstitucional = () => {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    console.log('Enviando caso constitucional:', nuevoCaso);
     // Aquí se implementaría la lógica de envío
   };
 
@@ -173,7 +172,6 @@ const JusticiaConstitucional = () => {
   };
 
   const generarReporte = (caso) => {
-    console.log('Generando reporte para caso:', caso.numero);
   };
 
   const casosFiltrados = casos.filter(caso => {

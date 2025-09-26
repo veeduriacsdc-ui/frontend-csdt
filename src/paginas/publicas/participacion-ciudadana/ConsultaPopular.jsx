@@ -683,8 +683,6 @@ ${formulario.anonimato ? 'Identidad: Protegida' : 'Identidad: Visible'}
 ${archivoConsejoIAProcesado ? '🤖 Archivo Consejo IA procesado' : ''}
 
 La dependencia ha sido enviada al Panel de Actividades del Administrador para su gestión y asignación de recursos.`);
-    
-    console.log('Dependencia creada:', dependencia);
   };
 
   // Función para generar PDF como blob

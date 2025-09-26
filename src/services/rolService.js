@@ -26,7 +26,15 @@ const rolService = {
   // Crear rol
   async crearRol(datosRol) {
     try {
-      const response = await api.post('/roles', datosRol);
+      // Mapear datos a la nueva estructura del backend
+      const datos = {
+        nom: datosRol.nombre || datosRol.nom || '',
+        des: datosRol.descripcion || datosRol.des || '',
+        est: datosRol.estado || datosRol.est || 'act',
+        perm: datosRol.permisos || datosRol.perm || []
+      };
+
+      const response = await api.post('/roles', datos);
       return response.data;
     } catch (error) {
       console.error('Error creando rol:', error);
@@ -37,7 +45,15 @@ const rolService = {
   // Actualizar rol
   async actualizarRol(id, datosRol) {
     try {
-      const response = await api.put(`/roles/${id}`, datosRol);
+      // Mapear datos a la nueva estructura del backend
+      const datos = {
+        nom: datosRol.nombre || datosRol.nom || '',
+        des: datosRol.descripcion || datosRol.des || '',
+        est: datosRol.estado || datosRol.est || 'act',
+        perm: datosRol.permisos || datosRol.perm || []
+      };
+
+      const response = await api.put(`/roles/${id}`, datos);
       return response.data;
     } catch (error) {
       console.error('Error actualizando rol:', error);
@@ -56,24 +72,46 @@ const rolService = {
     }
   },
 
-  // Asignar permiso al rol
-  async asignarPermiso(id, permisoId) {
+  // Activar rol
+  async activarRol(id) {
     try {
-      const response = await api.post(`/roles/${id}/asignar-permiso`, { permiso_id: permisoId });
+      const response = await api.post(`/roles/${id}/activar`);
       return response.data;
     } catch (error) {
-      console.error('Error asignando permiso:', error);
+      console.error('Error activando rol:', error);
       throw error;
     }
   },
 
-  // Revocar permiso del rol
-  async revocarPermiso(id, permisoId) {
+  // Desactivar rol
+  async desactivarRol(id) {
     try {
-      const response = await api.post(`/roles/${id}/revocar-permiso`, { permiso_id: permisoId });
+      const response = await api.post(`/roles/${id}/desactivar`);
       return response.data;
     } catch (error) {
-      console.error('Error revocando permiso:', error);
+      console.error('Error desactivando rol:', error);
+      throw error;
+    }
+  },
+
+  // Agregar permiso al rol
+  async agregarPermiso(id, permisoId) {
+    try {
+      const response = await api.post(`/roles/${id}/agregar-permiso`, { perm_id: permisoId });
+      return response.data;
+    } catch (error) {
+      console.error('Error agregando permiso:', error);
+      throw error;
+    }
+  },
+
+  // Quitar permiso del rol
+  async quitarPermiso(id, permisoId) {
+    try {
+      const response = await api.post(`/roles/${id}/quitar-permiso`, { perm_id: permisoId });
+      return response.data;
+    } catch (error) {
+      console.error('Error quitando permiso:', error);
       throw error;
     }
   }

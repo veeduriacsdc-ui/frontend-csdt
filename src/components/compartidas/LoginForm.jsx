@@ -5,8 +5,8 @@ import RegistroForm from './RegistroForm';
 const LoginForm = ({ onClose }) => {
   const { login } = useAuth();
   const [formData, setFormData] = useState({
-    usuario: '',
-    contrasena: ''
+    email: '',
+    password: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -25,24 +25,24 @@ const LoginForm = ({ onClose }) => {
     setError('');
 
     try {
-      const resultado = await login(formData.usuario, formData.contrasena);
+      const resultado = await login(formData.email, formData.password);
       
       if (resultado.success) {
         onClose();
         // Redirigir según el rol
         const rol = resultado.user.rol;
-        if (rol === 'administrador' || rol === 'administrador_general') {
+        if (rol === 'adm') {
           window.location.href = '/admin/dashboard';
-        } else if (rol === 'operador') {
+        } else if (rol === 'ope') {
           window.location.href = '/operador/dashboard';
-        } else if (rol === 'cliente') {
+        } else if (rol === 'cli') {
           window.location.href = '/cliente/dashboard';
         }
       } else {
-        setError(resultado.error || 'Error al iniciar sesión');
+        setError(resultado.message || 'Error al iniciar sesión');
       }
     } catch (error) {
-      setError('Error de conexión. Verifique que el servidor esté funcionando.');
+      setError(error.message || 'Error de conexión. Verifique que el servidor esté funcionando.');
       console.error('Error en login:', error);
     } finally {
       setLoading(false);
@@ -122,12 +122,12 @@ const LoginForm = ({ onClose }) => {
               color: '#374151',
               marginBottom: '8px'
             }}>
-              Usuario
+              Correo Electrónico
             </label>
             <input
-              type="text"
-              name="usuario"
-              value={formData.usuario}
+              type="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
               required
               style={{
@@ -138,7 +138,7 @@ const LoginForm = ({ onClose }) => {
                 fontSize: '16px',
                 boxSizing: 'border-box'
               }}
-              placeholder="Ingrese su nombre de usuario"
+              placeholder="Ingrese su correo electrónico"
             />
           </div>
 
@@ -154,8 +154,8 @@ const LoginForm = ({ onClose }) => {
             </label>
             <input
               type="password"
-              name="contrasena"
-              value={formData.contrasena}
+              name="password"
+              value={formData.password}
               onChange={handleChange}
               required
               style={{
