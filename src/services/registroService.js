@@ -14,19 +14,22 @@ const registroService = {
         };
       }
 
-      // Usar la ruta de autenticación unificada
-      const response = await csdtApiService.auth.registerCliente({
+      // Usar la ruta de registro mejorada
+      const response = await csdtApiService.post('/registro/registrar', {
         nombre: datosRegistro.nombre?.trim(),
         email: datosRegistro.email?.trim().toLowerCase(),
-        usuario: datosRegistro.usuario?.trim(),
-        contrasena: datosRegistro.contrasena,
-        rol: datosRegistro.rol,
-        tipoDocumento: datosRegistro.tipoDocumento,
-        numeroDocumento: datosRegistro.numeroDocumento?.trim()
+        telefono: datosRegistro.telefono?.trim(),
+        documento_identidad: datosRegistro.documento_identidad?.trim(),
+        tipo_documento: datosRegistro.tipo_documento,
+        rol_solicitado: datosRegistro.rol_solicitado,
+        motivacion: datosRegistro.motivacion?.trim(),
+        experiencia: datosRegistro.experiencia?.trim()
       });
       
       return response.data;
     } catch (error) {
+      console.error('Error en registro:', error);
+      
       // Manejar errores de validación de manera más específica
       if (error.response?.data?.errors) {
         const errores = error.response.data.errors;
@@ -38,16 +41,30 @@ const registroService = {
         };
       }
       
-      // Manejar errores de red
-      if (error.code === 'NETWORK_ERROR' || !error.response) {
+      // Manejar errores de red o conexión
+      if (error.code === 'NETWORK_ERROR' || !error.response || error.code === 'ECONNABORTED') {
         throw {
           success: false,
-          message: 'Error de conexión. Verifica tu conexión a internet e intenta nuevamente.',
-          errors: ['Error de red']
+          message: 'Error de conexión. Verifica que el servidor esté funcionando y tu conexión a internet.',
+          errors: ['Error de conexión']
         };
       }
       
-      throw error.response?.data || error;
+      // Manejar errores del servidor
+      if (error.response?.status >= 500) {
+        throw {
+          success: false,
+          message: 'Error del servidor. Intenta nuevamente en unos minutos.',
+          errors: ['Error del servidor']
+        };
+      }
+      
+      // Manejar otros errores
+      throw error.response?.data || {
+        success: false,
+        message: error.message || 'Error desconocido al procesar el registro',
+        errors: ['Error desconocido']
+      };
     }
   },
 
@@ -85,9 +102,22 @@ const registroService = {
   // Validar campos únicos antes del registro
   async validarCampos(campos) {
     try {
-      const response = await csdtApiService.auth.validarCampos(campos);
+      const response = await csdtApiService.post('/registro/validar-campos', campos);
       return response.data;
     } catch (error) {
+      console.error('Error validando campos:', error);
+      
+      // Si no hay respuesta del servidor, asumir que los campos están disponibles
+      if (!error.response) {
+        return {
+          success: true,
+          data: {
+            email: { existe: false, mensaje: 'Email disponible' },
+            documento: { existe: false, mensaje: 'Documento disponible' }
+          }
+        };
+      }
+      
       throw error.response?.data || error;
     }
   },

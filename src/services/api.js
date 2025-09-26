@@ -1,36 +1,53 @@
-import axios from 'axios';
+﻿import axios from 'axios';
 
 // Configuración de múltiples APIs para conexión con bases de datos
 const API_CONFIGS = {
   local: {
-    url: 'http://localhost:8000/api',
+    url: 'http://127.0.0.1:8000/api',
     name: 'CSDT Backend Local',
-    description: 'Servidor Laravel local del CSDT',
-    timeout: 10000
+    description: 'Servidor Laravel local del CSDT (SQLite)',
+    timeout: 10000,
+    database: 'SQLite'
   },
   xampp: {
     url: 'http://127.0.0.1:8000/api',
     name: 'CSDT Backend XAMPP',
-    description: 'Servidor XAMPP con Laravel CSDT',
-    timeout: 10000
+    description: 'Servidor XAMPP con Laravel CSDT (MySQL)',
+    timeout: 10000,
+    database: 'MySQL'
+  },
+  servidor: {
+    url: 'http://134.209.221.193/api',
+    name: 'CSDT Backend Servidor',
+    description: 'Servidor DigitalOcean CSDT (MySQL)',
+    timeout: 15000,
+    database: 'MySQL'
   },
   produccion: {
-    url: 'https://api.csdt.com.co/api',
+    url: 'http://134.209.221.193/api',
     name: 'CSDT Backend Producción',
-    description: 'Servidor de producción CSDT',
-    timeout: 20000
+    description: 'Servidor de producción CSDT (DigitalOcean)',
+    timeout: 15000,
+    database: 'MySQL'
   }
 };
 
 // Función para obtener la configuración de API activa
 const getActiveAPIConfig = () => {
-  const activeConfig = localStorage.getItem('activeAPIConfig') || 'local';
-  return API_CONFIGS[activeConfig] || API_CONFIGS.local;
+  // Prioridad: variable de entorno > localStorage > servidor por defecto
+  const activeConfig = import.meta.env.VITE_API_CONFIG || 
+                      localStorage.getItem('activeAPIConfig') || 
+                      'servidor';
+  
+  return API_CONFIGS[activeConfig] || API_CONFIGS.servidor;
 };
 
 // Configuración base de la API (dinámica)
 const activeConfig = getActiveAPIConfig();
 const API_BASE_URL = import.meta.env.VITE_API_URL || activeConfig.url;
+
+// Log de configuración activa
+console.log('🔧 Configuración API activa:', activeConfig);
 
 // Crear instancia de axios
 const api = axios.create({

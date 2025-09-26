@@ -43,10 +43,19 @@ import AuditoriaForense from './paginas/publicas/innovadores/AuditoriaForense';
 import Monitor from './paginas/publicas/innovadores/Monitor';
 
 // Importar páginas de INVESTIGACIÓN ADMINISTRATIVA, PENAL Y DISCIPLINARIA
-import ConsejoIA from './paginas/publicas/ConsejoIA';
+// import ConsejoIA from './paginas/publicas/ConsejoIA'; // Comentado - usando nueva versión
 
 // Importar páginas de MECANISMOS ÉTNICOS Y DIFERENCIALES
 import PlanesEtnodesarrollo from './paginas/publicas/etnicos/PlanesEtnodesarrollo';
+import ConsultaPreviaEtnica from './paginas/etnicos/consulta-previa-etnica/ConsultaPreviaEtnica';
+import DerechosEtnicos from './paginas/06-etnico/derechos/DerechosEtnicos';
+import TerritoriosAncestrales from './paginas/etnicos/territorios-ancestrales/TerritoriosAncestrales';
+import PatrimonioCultural from './paginas/etnicos/patrimonio-cultural/PatrimonioCultural';
+import MediacionIntercultural from './paginas/etnicos/mediacion-intercultural/MediacionIntercultural';
+import EducacionPropia from './paginas/etnicos/educacion-propia/EducacionPropia';
+import HistoriaTerritorio from './paginas/etnicos/historia-territorio/HistoriaTerritorio';
+import NarracionesEtnicas from './paginas/etnicos/narraciones-etnicas/NarracionesEtnicas';
+import PlanesEtnodesarrolloAvanzado from './paginas/etnicos/planes-etnodesarrollo-avanzado/PlanesEtnodesarrolloAvanzado';
 import Noticias from './paginas/compartidas/Noticias';
 import Documentos from './paginas/compartidas/Documentos';
 import Contacto from './paginas/compartidas/Contacto';
@@ -72,6 +81,28 @@ import MenuPrincipal from './components/compartidas/MenuPrincipal';
 import Footer from './components/Footer';
 import PageWrapper from './components/compartidas/PageWrapper';
 import ConvocatoriasPublicas from './paginas/compartidas/ConvocatoriasPublicas';
+
+// Importar páginas de MEDICINA NATURAL
+import MedicinaNatural from './paginas/08-medicina/plantas-medicinales/MedicinaNatural';
+
+// Importar páginas de HERRAMIENTAS IA AVANZADAS
+import IaEspecialistas from './paginas/herramientas-ia/especialistas-ia/IaEspecialistas';
+
+// Importar páginas de INNOVACIÓN TECNOLÓGICA
+import ConsejoIA from './paginas/07-innovacion/consejo-ia/ConsejoIA';
+import ConsejoIAAvanzado from './paginas/07-innovacion/consejo-ia-avanzado/ConsejoIAAvanzado';
+
+// Importar páginas de CONTROL TERRITORIAL
+import ControlMineriaPredios from './paginas/control-territorial/ControlMineriaPredios';
+import ControlInstituciones from './paginas/control-territorial/ControlInstituciones';
+import ControlRegional from './paginas/control-territorial/ControlRegional';
+
+// Importar páginas de JUSTICIA ORDINARIA
+import JusticiaCivil from './paginas/02-justicia/ordinaria/civil/JusticiaCivil';
+import JusticiaPenal from './paginas/02-justicia/ordinaria/penal/JusticiaPenal';
+
+// Importar páginas de JUSTICIA EXTRAORDINARIA
+import JusticiaConstitucional from './paginas/02-justicia/extraordinaria/constitucional/JusticiaConstitucional';
 
 function App() {
   return (
@@ -112,7 +143,31 @@ function App() {
               <Route path="/referendo" element={<Referendo />} />
               <Route path="/plebiscito" element={<Plebiscito />} />
               <Route path="/planes-etnodesarrollo" element={<PlanesEtnodesarrollo />} />
+              <Route path="/consulta-previa-etnica" element={<ConsultaPreviaEtnica />} />
+              <Route path="/derechos-etnicos" element={<DerechosEtnicos />} />
+              <Route path="/territorios-ancestrales" element={<TerritoriosAncestrales />} />
+              <Route path="/patrimonio-cultural" element={<PatrimonioCultural />} />
+              <Route path="/mediacion-intercultural" element={<MediacionIntercultural />} />
+              <Route path="/educacion-propia" element={<EducacionPropia />} />
+              <Route path="/historia-territorio" element={<HistoriaTerritorio />} />
+              <Route path="/narraciones-etnicas" element={<NarracionesEtnicas />} />
+              <Route path="/planes-etnodesarrollo-avanzado" element={<PlanesEtnodesarrolloAvanzado />} />
+              <Route path="/medicina-natural" element={<MedicinaNatural />} />
+              <Route path="/ia/especialistas" element={<IaEspecialistas />} />
+              
+              {/* Rutas de Innovación Tecnológica */}
               <Route path="/consejo-ia" element={<ConsejoIA />} />
+              <Route path="/consejo-ia-avanzado" element={<ConsejoIAAvanzado />} />
+              <Route path="/control-mineria-predios" element={<ControlMineriaPredios />} />
+              <Route path="/control-instituciones" element={<ControlInstituciones />} />
+              <Route path="/control-regional" element={<ControlRegional />} />
+              
+              {/* Rutas de Justicia Ordinaria */}
+              <Route path="/justicia-civil" element={<JusticiaCivil />} />
+              <Route path="/justicia-penal" element={<JusticiaPenal />} />
+              
+              {/* Rutas de Justicia Extraordinaria */}
+              <Route path="/justicia-constitucional" element={<JusticiaConstitucional />} />
               <Route path="/geo-dashboard" element={<GeoDashboard />} />
               <Route path="/auditoria-forense" element={<AuditoriaForense />} />
               <Route path="/manifiesto" element={<Manifiesto />} />

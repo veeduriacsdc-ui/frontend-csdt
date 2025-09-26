@@ -1,158 +1,179 @@
 import api from './api';
 
-const authService = {
-  // Iniciar sesión
-  async iniciarSesion(credenciales) {
+/**
+ * Servicio de autenticación simplificado
+ * Usa directamente los endpoints del AuthController existente
+ */
+class AuthService {
+  constructor() {
+    this.baseUrl = '/auth';
+  }
+
+  /**
+   * Iniciar sesión
+   */
+  async login(email, password) {
     try {
-      const response = await api.post('/login', credenciales);
-      const { data } = response.data;
-      const { token, user } = data;
+      const response = await api.post(`${this.baseUrl}/login`, {
+        cor: email,
+        con: password
+      });
 
-      // Guardar datos de autenticación
-      localStorage.setItem('csdt_token', token);
-      localStorage.setItem('csdt_user', JSON.stringify(user));
-      // Mantener compatibilidad con versiones anteriores
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-
-      console.log('Sesión iniciada exitosamente', { usuario: user.email });
-      return { success: true, user, token };
-    } catch (error) {
-      console.error('Error iniciando sesión:', error);
-      throw error;
-    }
-  },
-
-  // Cerrar sesión
-  async cerrarSesion() {
-    try {
-      const token = localStorage.getItem('csdt_token') || localStorage.getItem('token');
-      if (token) {
-        await api.post('/logout', {}, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+      if (response.data.success) {
+        // Guardar token y datos del usuario
+        localStorage.setItem('csdt_token', response.data.data.token);
+        localStorage.setItem('csdt_user', JSON.stringify(response.data.data.user));
+        
+        return {
+          success: true,
+          user: response.data.data.user,
+          token: response.data.data.token,
+          message: response.data.message
+        };
+      } else {
+        return {
+          success: false,
+          message: response.data.message
+        };
       }
     } catch (error) {
-      console.error('Error cerrando sesión:', error);
+      console.error('Error en login:', error);
+      
+      if (error.response?.data) {
+        return {
+          success: false,
+          message: error.response.data.message || 'Error al iniciar sesión'
+        };
+      }
+      
+      return {
+        success: false,
+        message: 'Error de conexión. Verifica que el servidor esté funcionando.'
+      };
+    }
+  }
+
+  /**
+   * Registrar usuario
+   */
+  async register(userData) {
+    try {
+      // Mapear datos del formulario a los campos del backend
+      const datos = {
+        nom: userData.nombre || userData.nom || '',
+        ape: userData.apellido || userData.ape || '',
+        cor: userData.email || userData.cor || '',
+        con: userData.password || userData.con || userData.pass || '',
+        con_confirmation: userData.confirmar_password || userData.con_confirmation || userData.pass_confirmation || '',
+        tel: userData.telefono || userData.tel || '',
+        doc: userData.documento || userData.doc || userData.numeroDocumento || '',
+        tip_doc: userData.tipo_documento || userData.tip_doc || 'cc',
+        rol: userData.rol || 'cli'
+      };
+
+      const response = await api.post(`${this.baseUrl}/register`, datos);
+
+      if (response.data.success) {
+        return {
+          success: true,
+          user: response.data.data.user,
+          message: response.data.data.message
+        };
+      } else {
+        return {
+          success: false,
+          message: response.data.message,
+          errors: response.data.errors || {}
+        };
+      }
+    } catch (error) {
+      console.error('Error en registro:', error);
+      
+      if (error.response?.data) {
+        return {
+          success: false,
+          message: error.response.data.message || 'Error al registrar usuario',
+          errors: error.response.data.errors || {}
+        };
+      }
+      
+      return {
+        success: false,
+        message: 'Error de conexión. Verifica que el servidor esté funcionando.'
+      };
+    }
+  }
+
+  /**
+   * Cerrar sesión
+   */
+  async logout() {
+    try {
+      await api.post(`${this.baseUrl}/logout`);
+    } catch (error) {
+      console.error('Error en logout:', error);
     } finally {
       // Limpiar datos locales independientemente del resultado del servidor
       localStorage.removeItem('csdt_token');
       localStorage.removeItem('csdt_user');
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      console.log('Sesión cerrada');
-    }
-  },
-
-  // Registrar usuario
-  async registrarUsuario(datosUsuario) {
-    try {
-      const response = await api.post('/registro', datosUsuario);
-      const { data } = response.data;
-      const { user, message } = data;
-
-      console.log('Usuario registrado exitosamente', { usuario: user.email });
-      return { success: true, user, message };
-    } catch (error) {
-      console.error('Error registrando usuario:', error);
-      throw error;
-    }
-  },
-
-  // Verificar token
-  async verificarToken() {
-    try {
-      const token = localStorage.getItem('csdt_token') || localStorage.getItem('token');
-      if (!token) {
-        return { valid: false, user: null };
-      }
-
-      const response = await api.get('/usuario');
-      const { data } = response.data;
-      const { usuario } = data;
-
-      // Actualizar datos del usuario
-      localStorage.setItem('csdt_user', JSON.stringify(usuario));
-      localStorage.setItem('user', JSON.stringify(usuario));
-
-      return { valid: true, user: usuario };
-    } catch (error) {
-      console.error('Error verificando token:', error);
-      localStorage.removeItem('csdt_token');
-      localStorage.removeItem('csdt_user');
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      return { valid: false, user: null };
-    }
-  },
-
-  // Obtener usuario actual
-  obtenerUsuarioActual() {
-    const user = localStorage.getItem('csdt_user') || localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
-  },
-
-  // Verificar si está autenticado
-  estaAutenticado() {
-    const token = localStorage.getItem('csdt_token') || localStorage.getItem('token');
-    const user = localStorage.getItem('csdt_user') || localStorage.getItem('user');
-    return !!(token && user);
-  },
-
-  // Obtener token
-  obtenerToken() {
-    return localStorage.getItem('csdt_token') || localStorage.getItem('token');
-  },
-
-  // Cambiar contraseña
-  async cambiarContrasena(datos) {
-    try {
-      const response = await api.post('/auth/cambiar-contrasena', datos);
-      console.log('Contraseña cambiada exitosamente');
-      return { success: true, message: response.data.message };
-    } catch (error) {
-      console.error('Error cambiando contraseña:', error);
-      throw error;
-    }
-  },
-
-  // Solicitar restablecimiento de contraseña
-  async solicitarRestablecimiento(email, tipoUsuario) {
-    try {
-      const response = await api.post('/auth/recuperar-contrasena', { 
-        correo: email, 
-        tipo_usuario: tipoUsuario 
-      });
-      console.log('Solicitud de restablecimiento enviada', { email });
-      return { success: true, message: response.data.message };
-    } catch (error) {
-      console.error('Error solicitando restablecimiento:', error);
-      throw error;
-    }
-  },
-
-  // Restablecer contraseña
-  async restablecerContrasena(datos) {
-    try {
-      const response = await api.post('/auth/resetear-contrasena', datos);
-      console.log('Contraseña restablecida exitosamente');
-      return { success: true, message: response.data.message };
-    } catch (error) {
-      console.error('Error restableciendo contraseña:', error);
-      throw error;
-    }
-  },
-
-  // Validar campos únicos
-  async validarCampos(campos) {
-    try {
-      const response = await api.post('/auth/validar-campos', campos);
-      return response.data;
-    } catch (error) {
-      console.error('Error validando campos:', error);
-      throw error;
     }
   }
-};
 
-export default authService;
+  /**
+   * Obtener usuario actual
+   */
+  async getCurrentUser() {
+    try {
+      const response = await api.get(`${this.baseUrl}/me`);
+      
+      if (response.data.success) {
+        return {
+          success: true,
+          user: response.data.data
+        };
+      } else {
+        return {
+          success: false,
+          message: response.data.message
+        };
+      }
+    } catch (error) {
+      console.error('Error obteniendo usuario:', error);
+      return {
+        success: false,
+        message: 'Error al obtener datos del usuario'
+      };
+    }
+  }
+
+  /**
+   * Verificar si el usuario está autenticado
+   */
+  isAuthenticated() {
+    const token = localStorage.getItem('csdt_token');
+    const user = localStorage.getItem('csdt_user');
+    return !!(token && user);
+  }
+
+  /**
+   * Obtener usuario del localStorage
+   */
+  getStoredUser() {
+    try {
+      const user = localStorage.getItem('csdt_user');
+      return user ? JSON.parse(user) : null;
+    } catch (error) {
+      console.error('Error parseando usuario:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Obtener token del localStorage
+   */
+  getToken() {
+    return localStorage.getItem('csdt_token');
+  }
+}
+
+export default new AuthService();

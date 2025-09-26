@@ -57,43 +57,75 @@ const MenuPrincipal = () => {
     };
   }, [isMenuOpen]);
 
-  // Páginas públicas - Sin sesión requerida (basado en estructura real de carpetas)
+  // Páginas públicas - Nueva clasificación organizada y atractiva
   const paginasPublicas = [
-    // Páginas principales
-    { name: 'Inicio', href: '/', icon: '🏠', category: 'Principal' },
-    { name: 'Institucional', href: '/institucional', icon: '🏛️', category: 'Principal' },
-    { name: 'Proyectos', href: '/proyectos', icon: '🏗️', category: 'Principal' },
-    { name: 'Donaciones', href: '/donaciones', icon: '💰', category: 'Principal' },
+    // 01 - INSTITUCIONAL
+    { name: 'Inicio', href: '/', icon: '🏠', category: '01 - Institucional', color: 'blue' },
+    { name: 'Institucional', href: '/institucional', icon: '🏛️', category: '01 - Institucional', color: 'blue' },
+    { name: 'Proyectos', href: '/proyectos', icon: '🏗️', category: '01 - Institucional', color: 'blue' },
+    { name: 'Donaciones', href: '/donaciones', icon: '💰', category: '01 - Institucional', color: 'blue' },
     
-    // Acciones Constitucionales (carpeta: acciones-constitucionales)
-    { name: 'Acción de Tutela', href: '/accion-tutela', icon: '⚖️', category: 'Acciones Constitucionales' },
-    { name: 'Acción de Cumplimiento', href: '/accion-cumplimiento', icon: '📋', category: 'Acciones Constitucionales' },
-    { name: 'Acción Popular', href: '/accion-popular', icon: '👥', category: 'Acciones Constitucionales' },
-    { name: 'Acción de Grupo', href: '/accion-grupo', icon: '👨‍👩‍👧‍👦', category: 'Acciones Constitucionales' },
-    { name: 'Demanda Jurídica', href: '/demanda-juridica', icon: '⚖️', category: 'Acciones Constitucionales' },
-    { name: 'Acción de Nulidad', href: '/accion-nulidad', icon: '❌', category: 'Acciones Constitucionales' },
-    { name: 'Acción de Reparación', href: '/accion-reparacion-directa', icon: '💰', category: 'Acciones Constitucionales' },
+    // 02 - JUSTICIA ORDINARIA
+    { name: 'Justicia Civil', href: '/justicia-civil', icon: '⚖️', category: '02 - Justicia Ordinaria', color: 'red' },
+    { name: 'Justicia Penal', href: '/justicia-penal', icon: '🔨', category: '02 - Justicia Ordinaria', color: 'red' },
+    { name: 'Justicia Laboral', href: '/justicia-laboral', icon: '👷', category: '02 - Justicia Ordinaria', color: 'red' },
+    { name: 'Justicia Administrativa', href: '/justicia-administrativa', icon: '🏛️', category: '02 - Justicia Ordinaria', color: 'red' },
+    { name: 'Justicia de Familia', href: '/justicia-familia', icon: '👨‍👩‍👧‍👦', category: '02 - Justicia Ordinaria', color: 'red' },
     
-    // Participación Ciudadana (carpeta: participacion-ciudadana)
-    { name: 'Consulta Popular', href: '/consulta-popular', icon: '🗳️', category: 'Participación Ciudadana' },
-    { name: 'Referendo', href: '/referendo', icon: '📊', category: 'Participación Ciudadana' },
-    { name: 'Plebiscito', href: '/plebiscito', icon: '🗳️', category: 'Participación Ciudadana' },
-    { name: 'Manifiesto', href: '/manifiesto', icon: '📜', category: 'Participación Ciudadana' },
+    // 02B - JUSTICIA EXTRAORDINARIA
+    { name: 'Justicia Constitucional', href: '/justicia-constitucional', icon: '👑', category: '02B - Justicia Extraordinaria', color: 'purple' },
+    { name: 'Justicia Internacional', href: '/justicia-internacional', icon: '🌍', category: '02B - Justicia Extraordinaria', color: 'purple' },
+    { name: 'Arbitraje', href: '/arbitraje', icon: '⚖️', category: '02B - Justicia Extraordinaria', color: 'purple' },
+    { name: 'Conciliación', href: '/conciliacion', icon: '🤝', category: '02B - Justicia Extraordinaria', color: 'purple' },
     
-    // Control Social (carpeta: control-social)
-    { name: 'PQRSFD', href: '/pqrsfd', icon: '📝', category: 'Control Social' },
+    // 02C - ACCIONES CONSTITUCIONALES
+    { name: 'Acción de Tutela', href: '/accion-tutela', icon: '🛡️', category: '02C - Acciones Constitucionales', color: 'blue' },
+    { name: 'Acción de Cumplimiento', href: '/accion-cumplimiento', icon: '📋', category: '02C - Acciones Constitucionales', color: 'blue' },
+    { name: 'Acción Popular', href: '/accion-popular', icon: '👥', category: '02C - Acciones Constitucionales', color: 'blue' },
+    { name: 'Acción de Grupo', href: '/accion-grupo', icon: '👨‍👩‍👧‍👦', category: '02C - Acciones Constitucionales', color: 'blue' },
+    { name: 'Demanda Jurídica', href: '/demanda-juridica', icon: '⚖️', category: '02C - Acciones Constitucionales', color: 'blue' },
+    { name: 'Acción de Nulidad', href: '/accion-nulidad', icon: '❌', category: '02C - Acciones Constitucionales', color: 'blue' },
+    { name: 'Acción de Reparación', href: '/accion-reparacion-directa', icon: '💰', category: '02C - Acciones Constitucionales', color: 'blue' },
     
-    // Territoriales (carpeta: territoriales)
-    { name: 'Consejo de Veeduría', href: '/consejo-veeduria-territorial', icon: '🏛️', category: 'Territoriales' },
+    // 03 - PARTICIPACIÓN CIUDADANA
+    { name: 'Consulta Popular', href: '/consulta-popular', icon: '🗳️', category: '03 - Participación Ciudadana', color: 'green' },
+    { name: 'Referendo', href: '/referendo', icon: '📊', category: '03 - Participación Ciudadana', color: 'green' },
+    { name: 'Plebiscito', href: '/plebiscito', icon: '🗳️', category: '03 - Participación Ciudadana', color: 'green' },
+    { name: 'Manifiesto', href: '/manifiesto', icon: '📜', category: '03 - Participación Ciudadana', color: 'green' },
     
-    // Herramientas Innovadoras (carpeta: innovadores)
-    { name: 'Consejo IA', href: '/consejo-ia', icon: '🤖', category: 'Herramientas Innovadoras' },
-    { name: 'Mapa Interactivo', href: '/geo-dashboard', icon: '🗺️', category: 'Herramientas Innovadoras' },
-    { name: 'Auditoría Forense', href: '/auditoria-forense', icon: '🔬', category: 'Herramientas Innovadoras' },
-    { name: 'Monitor', href: '/monitor', icon: '📊', category: 'Herramientas Innovadoras' },
+    // 04 - CONTROL SOCIAL
+    { name: 'PQRSFD', href: '/pqrsfd', icon: '📝', category: '04 - Control Social', color: 'orange' },
+    { name: 'Auditoría Forense', href: '/auditoria-forense', icon: '🔬', category: '04 - Control Social', color: 'orange' },
+    { name: 'Monitor', href: '/monitor', icon: '📊', category: '04 - Control Social', color: 'orange' },
     
-    // Mecanismos Étnicos (carpeta: etnicos)
-    { name: 'Planes Etnodesarrollo', href: '/planes-etnodesarrollo', icon: '🌿', category: 'Mecanismos Étnicos' }
+    // 05 - CONTROL TERRITORIAL
+    { name: 'Consejo de Veeduría', href: '/consejo-veeduria-territorial', icon: '🏛️', category: '05 - Control Territorial', color: 'indigo' },
+    { name: 'Control Minería Predios', href: '/control-mineria-predios', icon: '⛏️', category: '05 - Control Territorial', color: 'indigo' },
+    { name: 'Control Instituciones', href: '/control-instituciones', icon: '🏢', category: '05 - Control Territorial', color: 'indigo' },
+    { name: 'Control Regional', href: '/control-regional', icon: '🗺️', category: '05 - Control Territorial', color: 'indigo' },
+    
+    // 06 - MECANISMOS ÉTNICOS
+    { name: 'Derechos Étnicos', href: '/derechos-etnicos', icon: '⚖️', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    { name: 'Consulta Previa Étnica', href: '/consulta-previa-etnica', icon: '🤝', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    { name: 'Territorios Ancestrales', href: '/territorios-ancestrales', icon: '🏔️', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    { name: 'Patrimonio Cultural', href: '/patrimonio-cultural', icon: '🏛️', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    { name: 'Mediación Intercultural', href: '/mediacion-intercultural', icon: '🤝', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    { name: 'Educación Propia', href: '/educacion-propia', icon: '📚', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    { name: 'Historia del Territorio', href: '/historia-territorio', icon: '📜', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    { name: 'Narraciones Étnicas', href: '/narraciones-etnicas', icon: '📖', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    { name: 'Planes Etnodesarrollo', href: '/planes-etnodesarrollo', icon: '🌿', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    { name: 'Planes Etnodesarrollo Avanzado', href: '/planes-etnodesarrollo-avanzado', icon: '🚀', category: '06 - Mecanismos Étnicos', color: 'purple' },
+    
+    // 07 - INNOVACIÓN TECNOLÓGICA
+    { name: 'Consejo IA', href: '/consejo-ia', icon: '🤖', category: '07 - Innovación Tecnológica', color: 'purple' },
+    { name: 'Consejo IA Avanzado', href: '/consejo-ia-avanzado', icon: '🧠', category: '07 - Innovación Tecnológica', color: 'purple' },
+    { name: 'Mapa Interactivo', href: '/geo-dashboard', icon: '🗺️', category: '07 - Innovación Tecnológica', color: 'purple' },
+    { name: 'Auditoría Forense', href: '/auditoria-forense', icon: '🔍', category: '07 - Innovación Tecnológica', color: 'purple' },
+    { name: 'Manifiesto', href: '/manifiesto', icon: '📜', category: '07 - Innovación Tecnológica', color: 'purple' },
+    { name: 'Monitor', href: '/monitor', icon: '📊', category: '07 - Innovación Tecnológica', color: 'purple' },
+    
+    // 08 - MEDICINA NATURAL
+    { name: 'Medicina Natural', href: '/medicina-natural', icon: '🌿', category: '08 - Medicina Natural', color: 'green' }
   ];
 
   // Páginas compartidas - Sin sesión requerida (basado en carpeta: compartidas)

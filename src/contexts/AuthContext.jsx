@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import authService from '../services/authService';
+import api from '../services/api';
 
 const AuthContext = createContext();
 
@@ -13,23 +13,23 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Verificar si hay un usuario guardado en localStorage
-    const verificarSesion = async () => {
+    const verificarSesion = () => {
       try {
-        const resultado = await authService.verificarToken();
-        if (resultado.valid && resultado.user) {
-          setUser(resultado.user);
+        const token = localStorage.getItem('csdt_token');
+        const userData = localStorage.getItem('csdt_user');
+        
+        if (token && userData) {
+          setUser(JSON.parse(userData));
         } else {
           setUser(null);
         }
       } catch (error) {
         console.error('Error verificando sesión:', error);
         setUser(null);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -40,20 +40,27 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     
     try {
-      const resultado = await authService.iniciarSesion({
-        email: email,
-        password: password
+      const response = await api.post('/auth/login', {
+        cor: email,
+        con: password
       });
 
-      if (resultado.success) {
-        setUser(resultado.user);
-        return { success: true, user: resultado.user };
+      if (response.data.success) {
+        const { user, token } = response.data.data;
+        
+        // Guardar en localStorage
+        localStorage.setItem('csdt_token', token);
+        localStorage.setItem('csdt_user', JSON.stringify(user));
+        
+        setUser(user);
+        return { success: true, user: user };
       } else {
-        throw new Error(resultado.error || 'Credenciales incorrectas');
+        throw new Error(response.data.message || 'Credenciales incorrectas');
       }
     } catch (error) {
       console.error('Error en login:', error);
-      throw new Error(error.response?.data?.message || error.message || 'Error al iniciar sesión');
+      const message = error.response?.data?.message || error.message || 'Error al iniciar sesión';
+      throw new Error(message);
     } finally {
       setLoading(false);
     }
@@ -63,24 +70,32 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     
     try {
-      const resultado = await authService.registrarUsuario({
-        nom: userData.nom,
-        ape: userData.ape,
-        email: userData.email,
-        pass: userData.pass,
-        pass_confirmation: userData.pass_confirmation,
+      // Mapear datos del formulario a los campos del backend
+      const datos = {
+        nom: userData.nombre || userData.nom || '',
+        ape: userData.apellido || userData.ape || '',
+        cor: userData.email || userData.cor || '',
+        con: userData.password || userData.con || userData.pass || '',
+        con_confirmation: userData.confirmar_password || userData.con_confirmation || userData.pass_confirmation || '',
+        tel: userData.telefono || userData.tel || '',
+        doc: userData.documento || userData.doc || userData.numeroDocumento || '',
+        tip_doc: userData.tipo_documento || userData.tip_doc || 'cc',
         rol: userData.rol || 'cli'
-      });
+      };
 
-      if (resultado.success) {
-        setUser(resultado.user);
-        return { success: true, user: resultado.user };
+      const response = await api.post('/auth/register', datos);
+
+      if (response.data.success) {
+        const { user } = response.data.data;
+        setUser(user);
+        return { success: true, user: user, message: response.data.data.message };
       } else {
-        throw new Error(resultado.error || 'Error al crear la cuenta');
+        throw new Error(response.data.message || 'Error al crear la cuenta');
       }
     } catch (error) {
       console.error('Error en registro:', error);
-      throw new Error(error.response?.data?.message || error.message || 'Error al crear la cuenta');
+      const message = error.response?.data?.message || error.message || 'Error al crear la cuenta';
+      throw new Error(message);
     } finally {
       setLoading(false);
     }
@@ -88,10 +103,14 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await authService.cerrarSesion();
+      // Intentar cerrar sesión en el servidor
+      await api.post('/auth/logout');
     } catch (error) {
       console.error('Error cerrando sesión:', error);
     } finally {
+      // Limpiar datos locales independientemente del resultado del servidor
+      localStorage.removeItem('csdt_token');
+      localStorage.removeItem('csdt_user');
       setUser(null);
     }
   };

@@ -1,22 +1,23 @@
+﻿// ConfiguraciÃ³n del sistema CSDT - Servidor DigitalOcean
 const config = {
-  // URL del backend en Azure
-  apiUrl: process.env.REACT_APP_API_URL || 'https://csdt-backend-app.azurewebsites.net/api',
+  // URL del backend - ConfiguraciÃ³n del servidor
+  apiUrl: import.meta.env.VITE_API_URL || 'http://134.209.221.193/api',
   
-  // Configuración de la aplicación
-  appName: 'CSDT - Consejo Social de Veeduría y Desarrollo Territorial',
-  environment: process.env.NODE_ENV || 'production',
+  // ConfiguraciÃ³n de la aplicaciÃ³n
+  appName: 'CONSEJO SOCIAL DE VEEDURÃA Y DESARROLLO TERRITORIAL',
+  environment: 'production',
   
-  // URLs de la aplicación
-  backendUrl: 'https://csdt-backend-app.azurewebsites.net',
-  frontendUrl: 'https://csdt-frontend-app.azurewebsites.net',
+  // URLs de la aplicaciÃ³n - Servidor DigitalOcean
+  backendUrl: import.meta.env.VITE_BACKEND_URL || 'http://134.209.221.193',
+  frontendUrl: import.meta.env.VITE_FRONTEND_URL || 'http://134.209.221.193',
   
-  // Configuración de timeout para requests
+  // ConfiguraciÃ³n de timeout para requests
   requestTimeout: 30000,
   
-  // Configuración de paginación
+  // ConfiguraciÃ³n de paginaciÃ³n
   defaultPageSize: 10,
   
-  // Configuración de archivos
+  // ConfiguraciÃ³n de archivos
   maxFileSize: 10 * 1024 * 1024, // 10MB
   allowedFileTypes: ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'],
 };

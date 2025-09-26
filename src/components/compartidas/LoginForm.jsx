@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import RegistroForm from './RegistroForm';
 
 const LoginForm = ({ onClose }) => {
   const { login } = useAuth();
@@ -9,6 +10,7 @@ const LoginForm = ({ onClose }) => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [mostrarRegistro, setMostrarRegistro] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -194,9 +196,36 @@ const LoginForm = ({ onClose }) => {
           fontSize: '14px',
           color: '#6b7280'
         }}>
-          <p>¿No tienes cuenta? <a href="#" style={{ color: '#3b82f6', textDecoration: 'none' }}>Regístrate aquí</a></p>
+          <p>¿No tienes cuenta? 
+            <button 
+              onClick={() => setMostrarRegistro(true)}
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+            >
+              Regístrate aquí
+            </button>
+          </p>
         </div>
       </div>
+
+      {mostrarRegistro && (
+        <RegistroForm 
+          onClose={() => setMostrarRegistro(false)}
+          onSuccess={(resultado) => {
+            setMostrarRegistro(false);
+            // Mostrar mensaje de éxito o redirigir
+            if (resultado.success) {
+              alert(resultado.message);
+            }
+          }}
+        />
+      )}
     </div>
   );
 };
