@@ -1356,7 +1356,7 @@ const MenuPrincipal = () => {
                 />
                 {!isRegistroMode && (
                   <p style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
-                    Prueba: cliente, operador, admin, adming
+                    Prueba: cliente@ejemplo.com, operador@ejemplo.com, admin@ejemplo.com, esteban.41m@gmail.com, superadmin@ejemplo.com
                   </p>
                 )}
               </div>
@@ -1389,7 +1389,7 @@ const MenuPrincipal = () => {
                 />
                 {!isRegistroMode && (
                   <p style={{ fontSize: '11px', color: '#6b7280', margin: '3px 0 0 0' }}>
-                    Prueba: cliente123, operador123, admin123, adming1234
+                    Prueba: cliente123, operador123, admin123, password123, superadmin123
                   </p>
                 )}
               </div>
