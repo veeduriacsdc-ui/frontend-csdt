@@ -17,6 +17,13 @@ const Login = () => {
   const navigate = useNavigate()
   const { login } = useAuth()
 
+  // Función para copiar credenciales de prueba
+  const handleCredentialClick = (email, password) => {
+    setEmail(email)
+    setPassword(password)
+    setError('')
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -100,6 +107,51 @@ const Login = () => {
         <Link to="/auth/register" className="text-blue-600 hover:text-blue-800 font-medium">
           Regístrate
         </Link>
+      </div>
+
+      {/* Usuarios de Prueba */}
+      <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+        <h3 className="text-sm font-semibold text-gray-700 mb-3">👥 Usuarios de Prueba</h3>
+        <div className="space-y-2 text-xs text-gray-600">
+          <div 
+            className="flex justify-between cursor-pointer hover:bg-gray-100 p-2 rounded transition-colors"
+            onClick={() => handleCredentialClick('superadmin@ejemplo.com', 'superadmin123')}
+          >
+            <span className="font-medium">👑 Super Admin:</span>
+            <span>superadmin@ejemplo.com / superadmin123</span>
+          </div>
+          <div 
+            className="flex justify-between cursor-pointer hover:bg-gray-100 p-2 rounded transition-colors"
+            onClick={() => handleCredentialClick('admin@ejemplo.com', 'admin123')}
+          >
+            <span className="font-medium">👨‍💼 Administrador:</span>
+            <span>admin@ejemplo.com / admin123</span>
+          </div>
+          <div 
+            className="flex justify-between cursor-pointer hover:bg-gray-100 p-2 rounded transition-colors"
+            onClick={() => handleCredentialClick('operador@ejemplo.com', 'operador123')}
+          >
+            <span className="font-medium">👨‍💻 Operador:</span>
+            <span>operador@ejemplo.com / operador123</span>
+          </div>
+          <div 
+            className="flex justify-between cursor-pointer hover:bg-gray-100 p-2 rounded transition-colors"
+            onClick={() => handleCredentialClick('cliente@ejemplo.com', 'cliente123')}
+          >
+            <span className="font-medium">👤 Cliente:</span>
+            <span>cliente@ejemplo.com / cliente123</span>
+          </div>
+          <div 
+            className="flex justify-between cursor-pointer hover:bg-gray-100 p-2 rounded transition-colors"
+            onClick={() => handleCredentialClick('esteban.41m@gmail.com', 'password123')}
+          >
+            <span className="font-medium">👨‍💼 Admin Principal:</span>
+            <span>esteban.41m@gmail.com / password123</span>
+          </div>
+        </div>
+        <div className="mt-3 text-xs text-gray-500 italic">
+          💡 Haz clic en cualquier credencial para copiarla automáticamente
+        </div>
       </div>
     </AuthLayout>
   )
