@@ -16,12 +16,13 @@ const registroService = {
 
       // Usar la ruta de registro mejorada
       const response = await csdtApiService.post('/registro/registrar', {
-        nombre: datosRegistro.nombre?.trim(),
-        email: datosRegistro.email?.trim().toLowerCase(),
-        telefono: datosRegistro.telefono?.trim(),
-        documento_identidad: datosRegistro.documento_identidad?.trim(),
-        tipo_documento: datosRegistro.tipo_documento,
-        rol_solicitado: datosRegistro.rol_solicitado,
+        nom: datosRegistro.nom || datosRegistro.nombre?.trim(),
+        ape: datosRegistro.ape || datosRegistro.apellido?.trim(),
+        cor: datosRegistro.cor || datosRegistro.email?.trim().toLowerCase(),
+        tel: datosRegistro.tel || datosRegistro.telefono?.trim(),
+        doc: datosRegistro.doc || datosRegistro.documento_identidad?.trim(),
+        tip_doc: datosRegistro.tip_doc || datosRegistro.tipo_documento,
+        rol: datosRegistro.rol || datosRegistro.rol_solicitado,
         motivacion: datosRegistro.motivacion?.trim(),
         experiencia: datosRegistro.experiencia?.trim()
       });
@@ -72,28 +73,35 @@ const registroService = {
   validarDatosRegistro(datos) {
     const errores = [];
     
-    if (!datos.nombre || datos.nombre.trim().length < 2) {
+    const nom = datos.nom || datos.nombre;
+    const ape = datos.ape || datos.apellido;
+    const cor = datos.cor || datos.email;
+    const con = datos.con || datos.contrasena;
+    const con_confirmation = datos.con_confirmation || datos.confirmar_contrasena;
+    
+    if (!nom || nom.trim().length < 2) {
       errores.push('El nombre debe tener al menos 2 caracteres');
     }
     
-    if (!datos.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email)) {
-      errores.push('El email debe tener un formato válido');
+    if (!ape || ape.trim().length < 2) {
+      errores.push('El apellido debe tener al menos 2 caracteres');
     }
     
-    if (!datos.usuario || datos.usuario.trim().length < 3) {
-      errores.push('El nombre de usuario debe tener al menos 3 caracteres');
+    if (!cor || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cor)) {
+      errores.push('El correo debe tener un formato válido');
     }
     
-    if (!/^[a-zA-Z0-9_]+$/.test(datos.usuario)) {
-      errores.push('El nombre de usuario solo puede contener letras, números y guiones bajos');
-    }
-    
-    if (!datos.contrasena || datos.contrasena.length < 6) {
+    if (!con || con.length < 6) {
       errores.push('La contraseña debe tener al menos 6 caracteres');
     }
     
-    if (!datos.numeroDocumento || datos.numeroDocumento.trim().length < 6) {
+    const doc = datos.doc || datos.documento_identidad || datos.numeroDocumento;
+    if (!doc || doc.trim().length < 6) {
       errores.push('El número de documento debe tener al menos 6 caracteres');
+    }
+    
+    if (con !== con_confirmation) {
+      errores.push('Las contraseñas no coinciden');
     }
     
     return errores;

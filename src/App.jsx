@@ -10,7 +10,7 @@ import Inicio from './paginas/publicas/Inicio';
 import Proyectos from './paginas/publicas/Proyectos';
 import Donaciones from './paginas/publicas/Donaciones';
 import Institucional from './paginas/publicas/Institucional';
-import Dashboard from './paginas/Dashboard';
+import Dashboard from './paginas/09-administracion/Dashboard';
 
 // Importar páginas de autenticación
 import Login from './paginas/auth/Login';

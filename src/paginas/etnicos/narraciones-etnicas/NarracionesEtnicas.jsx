@@ -35,18 +35,18 @@ import {
 const NarracionesEtnicas = () => {
   const [narraciones, setNarraciones] = useState([]);
   const [comunidades, setComunidades] = useState([]);
-  const [filtroComunidad, setFiltroComunidad] = useState('todas');
-  const [filtroTipo, setFiltroTipo] = useState('todos');
+  const [filtroCom, setFiltroCom] = useState('todas');
+  const [filtroTip, setFiltroTip] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevaNarracion, setNuevaNarracion] = useState({
-    titulo: '',
-    contenido: '',
-    comunidad: '',
-    tipo: 'mito',
-    narrador: '',
-    idioma: 'espanol',
-    fecha: '',
-    ubicacion: ''
+    tit: '',
+    con: '',
+    com: '',
+    tip: 'mito',
+    nar: '',
+    idi: 'espanol',
+    fec: '',
+    ubi: ''
   });
 
   useEffect(() => {

@@ -77,15 +77,15 @@ const MultiLegalAIComponent = ({
   });
 
   const [formData, setFormData] = useState({
-    text: '',
-    jurisdiction: 'colombia',
-    legal_area: 'General',
-    language: 'es',
-    document_type: '',
-    coordinates: null,
-    region: '',
-    document_references: '',
-    institutional_context: 'Análisis CSDT - Control Territorial'
+    tex: '',
+    jur: 'colombia',
+    are_leg: 'General',
+    idi: 'es',
+    tip_doc: '',
+    coor: null,
+    reg: '',
+    ref_doc: '',
+    con_ins: 'Análisis CSDT - Control Territorial'
   });
 
   // Cargar proveedores disponibles al montar el componente
@@ -96,18 +96,18 @@ const MultiLegalAIComponent = ({
 
   // Actualizar recomendación cuando cambien los parámetros
   useEffect(() => {
-    if (formData.jurisdiction || formData.legal_area) {
-      if (formData.text.length > 10) {
+    if (formData.jur || formData.are_leg) {
+      if (formData.tex.length > 10) {
         const recommendation = unifiedAIService.recommendProvider(formData);
         setRecommendedProvider(recommendation.recommendedProvider);
       }
     }
-  }, [formData.jurisdiction, formData.legal_area, formData.text]);
+  }, [formData.jur, formData.are_leg, formData.tex]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.text.trim()) {
+    if (!formData.tex.trim()) {
       toast.error('Por favor ingrese el texto legal a analizar');
       return;
     }
@@ -359,9 +359,9 @@ const MultiLegalAIComponent = ({
             <div className="lg:col-span-2">
               <Label htmlFor="text">Texto Legal a Analizar *</Label>
               <Textarea
-                id="text"
-                value={formData.text}
-                onChange={(e) => setFormData(prev => ({ ...prev, text: e.target.value }))}
+                id="tex"
+                value={formData.tex}
+                onChange={(e) => setFormData(prev => ({ ...prev, tex: e.target.value }))}
                 rows={8}
                 className="w-full resize-none font-mono text-sm"
                 placeholder={
@@ -371,9 +371,9 @@ const MultiLegalAIComponent = ({
                 }
                 required
               />
-              {formData.text && (
+              {formData.tex && (
                 <p className="mt-1 text-sm text-gray-500">
-                  Caracteres: {formData.text.length}
+                  Caracteres: {formData.tex.length}
                 </p>
               )}
             </div>

@@ -41,18 +41,18 @@ const ControlInstituciones = () => {
   const [filtroNivel, setFiltroNivel] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevaInstitucion, setNuevaInstitucion] = useState({
-    nombre: '',
-    sigla: '',
-    tipo: 'publica',
-    nivel: 'nacional',
-    sector: '',
-    ubicacion: '',
-    director: '',
-    telefono: '',
-    email: '',
-    sitioWeb: '',
-    descripcion: '',
-    estado: 'activa'
+    nom: '',
+    sig: '',
+    tip: 'publica',
+    niv: 'nacional',
+    sec: '',
+    ubi: '',
+    dir: '',
+    tel: '',
+    cor: '',
+    sit_web: '',
+    des: '',
+    est: 'activa'
   });
 
   useEffect(() => {

@@ -230,7 +230,6 @@ class CSDTApiService {
     historial: () => api.get('/voz-inteligente/historial'),
     configurarPreferencias: (preferencias) => api.post('/voz-inteligente/preferencias', preferencias),
     estadisticasUso: () => api.get('/voz-inteligente/estadisticas'),
-    probarSistema: () => api.post('/voz-inteligente/probar-sistema')
   };
 
   // ==================== SALUD DE LA API ====================

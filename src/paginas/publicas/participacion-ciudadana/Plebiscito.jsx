@@ -5,28 +5,28 @@ import autoTable from 'jspdf-autotable';
 
 const Plebiscito = () => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    documento: '',
-    email: '',
-    telefono: '',
-    direccion: '',
-    tipoPlebiscito: '',
-    hechos: '',
-    solicitud: '',
-    entidadDemandada: '',
-    archivos: [],
-    archivoConsejoIA: null,
-    evidencias: [],
-    hechosConIA: '',
-    solicitudConIA: '',
-    conceptoGeneral: '',
-    anonimato: false,
-    analisisIA: {
-      especialistaDerechos: '',
-      especialistaHechos: '',
-      especialistaSolicitud: '',
-      especialistaConcepto: '',
-      analisisUnificado: ''
+    nom: '',
+    doc: '',
+    cor: '',
+    tel: '',
+    dir: '',
+    tip_ple: '',
+    hec: '',
+    sol: '',
+    ent_dem: '',
+    arc: [],
+    arc_ia: null,
+    evi: [],
+    hec_ia: '',
+    sol_ia: '',
+    con_gen: '',
+    anon: false,
+    ana_ia: {
+      esp_der: '',
+      esp_hec: '',
+      esp_sol: '',
+      esp_con: '',
+      ana_uni: ''
     }
   });
 
@@ -40,51 +40,51 @@ const Plebiscito = () => {
   const tiposPlebiscito = [
     {
       id: 'vida',
-      nombre: 'Derecho a la Vida',
-      descripcion: 'Protección del derecho fundamental a la vida',
-      articulo: 'Artículo 11 Constitución Política'
+      nom: 'Derecho a la Vida',
+      des: 'Protección del derecho fundamental a la vida',
+      art: 'Artículo 11 Constitución Política'
     },
     {
       id: 'salud',
-      nombre: 'Derecho a la Salud',
-      descripcion: 'Acceso a servicios de salud y atención médica',
-      articulo: 'Artículo 49 Constitución Política'
+      nom: 'Derecho a la Salud',
+      des: 'Acceso a servicios de salud y atención médica',
+      art: 'Artículo 49 Constitución Política'
     },
     {
       id: 'educacion',
-      nombre: 'Derecho a la Educación',
-      descripcion: 'Acceso a educación pública y de calidad',
-      articulo: 'Artículo 67 Constitución Política'
+      nom: 'Derecho a la Educación',
+      des: 'Acceso a educación pública y de calidad',
+      art: 'Artículo 67 Constitución Política'
     },
     {
       id: 'trabajo',
-      nombre: 'Derecho al Trabajo',
-      descripcion: 'Derecho al trabajo digno y justamente remunerado',
-      articulo: 'Artículo 25 Constitución Política'
+      nom: 'Derecho al Trabajo',
+      des: 'Derecho al trabajo digno y justamente remunerado',
+      art: 'Artículo 25 Constitución Política'
     },
     {
       id: 'vivienda',
-      nombre: 'Derecho a la Vivienda Digna',
-      descripcion: 'Acceso a vivienda digna y adecuada',
-      articulo: 'Artículo 51 Constitución Política'
+      nom: 'Derecho a la Vivienda Digna',
+      des: 'Acceso a vivienda digna y adecuada',
+      art: 'Artículo 51 Constitución Política'
     },
     {
       id: 'alimentacion',
-      nombre: 'Derecho a la Alimentación',
-      descripcion: 'Acceso a alimentación adecuada y nutritiva',
-      articulo: 'Artículo 44 Constitución Política'
+      nom: 'Derecho a la Alimentación',
+      des: 'Acceso a alimentación adecuada y nutritiva',
+      art: 'Artículo 44 Constitución Política'
     },
     {
       id: 'agua',
-      nombre: 'Derecho al Agua',
-      descripcion: 'Acceso al agua potable y saneamiento básico',
-      articulo: 'Artículo 366 Constitución Política'
+      nom: 'Derecho al Agua',
+      des: 'Acceso al agua potable y saneamiento básico',
+      art: 'Artículo 366 Constitución Política'
     },
     {
       id: 'ambiente',
-      nombre: 'Derecho a un Ambiente Sano',
-      descripcion: 'Protección del medio ambiente y recursos naturales',
-      articulo: 'Artículo 79 Constitución Política'
+      nom: 'Derecho a un Ambiente Sano',
+      des: 'Protección del medio ambiente y recursos naturales',
+      art: 'Artículo 79 Constitución Política'
     }
   ];
 
@@ -258,9 +258,9 @@ CONSEJO DE ESPECIALISTAS CERTIFICADOS:
 
 INFORMACIÓN DEL CASO PROCESADA:
 ═══════════════════════════════════════════════════════════════════════════════
-• Solicitante: ${formulario.nombre} ${formulario.anonimato ? '(MODO ANÓNIMO)' : ''}
-• Documento: ${formulario.documento}
-• Entidad Demandada: ${formulario.entidadDemandada}
+• Solicitante: ${formulario.nom} ${formulario.anon ? '(MODO ANÓNIMO)' : ''}
+• Documento: ${formulario.doc}
+• Entidad Demandada: ${formulario.ent_dem}
 • Fecha de Análisis: ${new Date().toLocaleDateString('es-CO')}
 • Hora de Procesamiento: ${new Date().toLocaleTimeString('es-CO')}
 
@@ -289,14 +289,14 @@ FUNDAMENTOS CONSTITUCIONALES Y LEGALES:
 ═══════════════════════════════════════════════════════════════════════════════
 • Artículo 103 de la Constitución Política de Colombia
 • Ley 1757 de 2015 - Participación Ciudadana
-• Tipo de plebiscito: ${formulario.tipoPlebiscito}
-• Entidad responsable: ${formulario.entidadDemandada}
+• Tipo de plebiscito: ${formulario.tip_ple}
+• Entidad responsable: ${formulario.ent_dem}
 • Procedencia del plebiscito: CONFIRMADA
 • Jurisprudencia aplicable: C-543/92, T-002/92, T-406/92, T-760/08
 
 ANÁLISIS ESPECÍFICO DEL TIPO DE PLEBISCITO:
 ═══════════════════════════════════════════════════════════════════════════════
-• Tipo seleccionado: ${formulario.tipoPlebiscito}
+• Tipo seleccionado: ${formulario.tip_ple}
 • Características específicas: Identificadas y analizadas
 • Requisitos de procedencia: CUMPLIDOS
 • Viabilidad constitucional: CONFIRMADA
@@ -304,7 +304,7 @@ ANÁLISIS ESPECÍFICO DEL TIPO DE PLEBISCITO:
 
 ANÁLISIS DE LA ENTIDAD DEMANDADA:
 ═══════════════════════════════════════════════════════════════════════════════
-• Entidad: ${formulario.entidadDemandada}
+• Entidad: ${formulario.ent_dem}
 • Obligación constitucional: GARANTIZAR PARTICIPACIÓN CIUDADANA
 • Responsabilidad: CONSTITUCIONAL Y LEGAL
 • Deber de participación: INMEDIATO
@@ -401,7 +401,7 @@ DOCUMENTOS ADICIONALES RECOMENDADOS:
 CONCLUSIÓN UNÁNIME DEL CONSEJO DE ESPECIALISTAS:
 ═══════════════════════════════════════════════════════════════════════════════
 
-"El presente caso reúne todos los requisitos constitucionales y legales para la procedencia del plebiscito. Los especialistas del consejo unánimemente consideran que existe una clara necesidad de plebiscito en el tipo de plebiscito ${formulario.tipoPlebiscito} por parte de ${formulario.entidadDemandada}, lo que amerita la intervención inmediata de la autoridad competente para su realización efectiva.
+"El presente caso reúne todos los requisitos constitucionales y legales para la procedencia del plebiscito. Los especialistas del consejo unánimemente consideran que existe una clara necesidad de plebiscito en el tipo de plebiscito ${formulario.tip_ple} por parte de ${formulario.ent_dem}, lo que amerita la intervención inmediata de la autoridad competente para su realización efectiva.
 
 ${formulario.evidencias.length > 0 ? 'Las evidencias cargadas y procesadas por las IAs especializadas fortalecen significativamente el caso, proporcionando una base probatoria sólida y documentación completa.' : 'Se recomienda cargar evidencias adicionales para fortalecer la base probatoria del caso mediante el procesamiento avanzado de IA.'}
 
@@ -452,11 +452,11 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
       
       // Si se activa anonimato, limpiar datos personales
       if (isAnonimo) {
-        nuevoFormulario.nombre = '';
-        nuevoFormulario.documento = '';
-        nuevoFormulario.email = '';
-        nuevoFormulario.telefono = '';
-        nuevoFormulario.direccion = '';
+        nuevoFormulario.nom = '';
+        nuevoFormulario.doc = '';
+        nuevoFormulario.cor = '';
+        nuevoFormulario.tel = '';
+        nuevoFormulario.dir = '';
       }
       
       return nuevoFormulario;
@@ -474,11 +474,11 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
       
       // Si se activa anonimato, limpiar datos personales
       if (nuevoEstado) {
-        nuevoFormulario.nombre = '';
-        nuevoFormulario.documento = '';
-        nuevoFormulario.email = '';
-        nuevoFormulario.telefono = '';
-        nuevoFormulario.direccion = '';
+        nuevoFormulario.nom = '';
+        nuevoFormulario.doc = '';
+        nuevoFormulario.cor = '';
+        nuevoFormulario.tel = '';
+        nuevoFormulario.dir = '';
       }
       
       return nuevoFormulario;

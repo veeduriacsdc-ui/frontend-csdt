@@ -5,8 +5,8 @@ import RegistroForm from './RegistroForm';
 const LoginForm = ({ onClose }) => {
   const { login } = useAuth();
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    cor: '',
+    con: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -25,7 +25,7 @@ const LoginForm = ({ onClose }) => {
     setError('');
 
     try {
-      const resultado = await login(formData.email, formData.password);
+      const resultado = await login(formData.cor, formData.con);
       
       if (resultado.success) {
         onClose();
@@ -126,8 +126,8 @@ const LoginForm = ({ onClose }) => {
             </label>
             <input
               type="email"
-              name="email"
-              value={formData.email}
+              name="cor"
+              value={formData.cor}
               onChange={handleChange}
               required
               style={{
@@ -154,8 +154,8 @@ const LoginForm = ({ onClose }) => {
             </label>
             <input
               type="password"
-              name="password"
-              value={formData.password}
+              name="con"
+              value={formData.con}
               onChange={handleChange}
               required
               style={{

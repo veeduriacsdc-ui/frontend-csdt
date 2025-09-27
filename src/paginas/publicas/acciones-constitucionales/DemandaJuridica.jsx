@@ -5,28 +5,28 @@ import autoTable from 'jspdf-autotable';
 
 const DemandaJuridica = () => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    documento: '',
-    email: '',
-    telefono: '',
-    direccion: '',
-    tipoDemanda: '',
-    hechos: '',
-    solicitud: '',
-    entidadDemandada: '',
-    archivos: [],
-    archivoConsejoIA: null,
-    evidencias: [],
-    hechosConIA: '',
-    solicitudConIA: '',
-    conceptoGeneral: '',
-    anonimato: false,
-    analisisIA: {
-      especialistaDerechos: '',
-      especialistaHechos: '',
-      especialistaSolicitud: '',
-      especialistaConcepto: '',
-      analisisUnificado: ''
+    nom: '',
+    doc: '',
+    cor: '',
+    tel: '',
+    dir: '',
+    tip_dem: '',
+    hec: '',
+    sol: '',
+    ent_dem: '',
+    arc: [],
+    arc_ia: null,
+    evi: [],
+    hec_ia: '',
+    sol_ia: '',
+    con_gen: '',
+    anon: false,
+    ana_ia: {
+      esp_der: '',
+      esp_hec: '',
+      esp_sol: '',
+      esp_con: '',
+      ana_uni: ''
     }
   });
 

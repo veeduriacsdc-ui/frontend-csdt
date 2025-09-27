@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 const TareasAsignadas = () => {
   const { user } = useAuth();
   const [tareas, setTareas] = useState([]);
-  const [filtroEstado, setFiltroEstado] = useState('todos');
+  const [filtroEst, setFiltroEst] = useState('todos');
   const [tareaSeleccionada, setTareaSeleccionada] = useState(null);
 
   // Cargar tareas desde localStorage
@@ -79,7 +79,7 @@ const TareasAsignadas = () => {
   };
 
   const tareasFiltradas = tareas.filter(tarea => {
-    return filtroEstado === 'todos' || tarea.estado === filtroEstado;
+    return filtroEst === 'todos' || tarea.est === filtroEst;
   });
 
   const calcularProgresoPromedio = () => {

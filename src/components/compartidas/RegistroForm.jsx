@@ -5,15 +5,15 @@ import registroService from '../../services/registroService';
 const RegistroForm = ({ onClose, onSuccess }) => {
   const { register } = useAuth();
   const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
-    email: '',
-    telefono: '',
-    documento_identidad: '',
-    tipo_documento: 'CC',
-    rol_solicitado: 'cliente',
-    contrasena: '',
-    confirmar_contrasena: '',
+    nom: '',
+    ape: '',
+    cor: '',
+    tel: '',
+    doc: '',
+    tip_doc: 'cc',
+    rol: 'cli',
+    con: '',
+    con_confirmation: '',
     motivacion: '',
     experiencia: ''
   });
@@ -22,24 +22,24 @@ const RegistroForm = ({ onClose, onSuccess }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [validaciones, setValidaciones] = useState({
-    email: null,
-    documento: null
+    cor: null,
+    doc: null
   });
 
   const [errores, setErrores] = useState({});
 
   const tiposDocumento = [
-    { value: 'CC', label: 'Cédula de Ciudadanía' },
-    { value: 'CE', label: 'Cédula de Extranjería' },
-    { value: 'TI', label: 'Tarjeta de Identidad' },
-    { value: 'RC', label: 'Registro Civil' },
-    { value: 'PA', label: 'Pasaporte' }
+    { value: 'cc', label: 'Cédula de Ciudadanía' },
+    { value: 'ce', label: 'Cédula de Extranjería' },
+    { value: 'ti', label: 'Tarjeta de Identidad' },
+    { value: 'pp', label: 'Pasaporte' },
+    { value: 'nit', label: 'NIT' }
   ];
 
   const roles = [
-    { value: 'cliente', label: 'Cliente' },
-    { value: 'operador', label: 'Operador' },
-    { value: 'administrador', label: 'Administrador' }
+    { value: 'cli', label: 'Cliente' },
+    { value: 'ope', label: 'Operador' },
+    { value: 'adm', label: 'Administrador' }
   ];
 
   const handleChange = (e) => {
@@ -58,22 +58,22 @@ const RegistroForm = ({ onClose, onSuccess }) => {
     }
 
     // Limpiar validaciones cuando el usuario modifica
-    if (name === 'email') {
-      setValidaciones(prev => ({ ...prev, email: null }));
+    if (name === 'cor') {
+      setValidaciones(prev => ({ ...prev, cor: null }));
     }
-    if (name === 'documento_identidad') {
-      setValidaciones(prev => ({ ...prev, documento: null }));
+    if (name === 'doc') {
+      setValidaciones(prev => ({ ...prev, doc: null }));
     }
   };
 
   // Validar email en tiempo real
-  const validarEmail = async (email) => {
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  const validarEmail = async (cor) => {
+    if (!cor || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cor)) {
       return;
     }
 
     try {
-      const resultado = await registroService.validarCampos({ email });
+      const resultado = await registroService.validarCampos({ cor });
       if (resultado.existe) {
         setValidaciones(prev => ({
           ...prev,

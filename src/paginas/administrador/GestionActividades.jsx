@@ -6,20 +6,20 @@ const GestionActividades = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [actividadEditando, setActividadEditando] = useState(null);
   const [nuevaActividad, setNuevaActividad] = useState({
-    nombre: '',
-    descripcion: '',
-    tipo: 'juridica',
-    prioridad: 'media',
-    estado: 'pendiente',
-    fechaInicio: '',
-    fechaFin: '',
-    duracion: 1,
-    responsable: '',
-    dependencias: [],
-    recursos: [],
-    costoEstimado: 0,
-    progreso: 0,
-    presupuestoId: ''
+    nom: '',
+    des: '',
+    tip: 'juridica',
+    pri: 'med',
+    est: 'pendiente',
+    fec_ini: '',
+    fec_fin: '',
+    dur: 1,
+    resp: '',
+    dep: [],
+    rec: [],
+    cos_est: 0,
+    pro: 0,
+    pre_id: ''
   });
 
   // Estados para presupuestos

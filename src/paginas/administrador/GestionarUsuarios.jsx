@@ -27,8 +27,8 @@ const GestionarUsuarios = () => {
   const [formData, setFormData] = useState({
     nom: '',
     ape: '',
-    email: '',
-    pass: '',
+    cor: '',
+    con: '',
     rol: 'cli'
   })
 
@@ -58,7 +58,7 @@ const GestionarUsuarios = () => {
       }
       setShowForm(false)
       setEditingUser(null)
-      setFormData({ nom: '', ape: '', email: '', pass: '', rol: 'cli' })
+      setFormData({ nom: '', ape: '', cor: '', con: '', rol: 'cli' })
       cargarUsuarios()
     } catch (error) {
       console.error('Error guardando usuario:', error)
@@ -70,8 +70,8 @@ const GestionarUsuarios = () => {
     setFormData({
       nom: usuario.nom || '',
       ape: usuario.ape || '',
-      email: usuario.email || '',
-      pass: '',
+      cor: usuario.cor || '',
+      con: '',
       rol: usuario.rol || 'cli'
     })
     setShowForm(true)
@@ -100,7 +100,7 @@ const GestionarUsuarios = () => {
   const filteredUsuarios = usuarios.filter(usuario =>
     usuario.nom?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     usuario.ape?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    usuario.email?.toLowerCase().includes(searchTerm.toLowerCase())
+    usuario.cor?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   const getRoleColor = (rol) => {
@@ -150,7 +150,7 @@ const GestionarUsuarios = () => {
             <div className="relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Buscar por nombre, apellido o email..."
+                placeholder="Buscar por nombre, apellido o correo..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -190,22 +190,22 @@ const GestionarUsuarios = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="cor">Correo</Label>
                   <Input
-                    id="email"
+                    id="cor"
                     type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    value={formData.cor}
+                    onChange={(e) => setFormData({ ...formData, cor: e.target.value })}
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="pass">Contraseña</Label>
+                  <Label htmlFor="con">Contraseña</Label>
                   <Input
-                    id="pass"
+                    id="con"
                     type="password"
-                    value={formData.pass}
-                    onChange={(e) => setFormData({ ...formData, pass: e.target.value })}
+                    value={formData.con}
+                    onChange={(e) => setFormData({ ...formData, con: e.target.value })}
                     required={!editingUser}
                   />
                 </div>
@@ -235,7 +235,7 @@ const GestionarUsuarios = () => {
                     onClick={() => {
                       setShowForm(false)
                       setEditingUser(null)
-                      setFormData({ nom: '', ape: '', email: '', pass: '', rol: 'cli' })
+                      setFormData({ nom: '', ape: '', cor: '', con: '', rol: 'cli' })
                     }}
                   >
                     Cancelar
@@ -276,7 +276,7 @@ const GestionarUsuarios = () => {
                           {usuario.nom} {usuario.ape}
                         </h3>
                         <p className="text-sm text-muted-foreground">
-                          {usuario.email}
+                          {usuario.cor}
                         </p>
                       </div>
                     </div>

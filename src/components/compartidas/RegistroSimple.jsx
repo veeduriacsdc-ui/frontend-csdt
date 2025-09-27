@@ -3,14 +3,14 @@ import authService from '../../services/authService';
 
 const RegistroSimple = ({ onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
-    email: '',
-    password: '',
-    confirmar_password: '',
-    telefono: '',
-    documento: '',
-    tipo_documento: 'cc',
+    nom: '',
+    ape: '',
+    cor: '',
+    con: '',
+    con_conf: '',
+    tel: '',
+    doc: '',
+    tip_doc: 'cc',
     rol: 'cli'
   });
 
@@ -52,32 +52,32 @@ const RegistroSimple = ({ onClose, onSuccess }) => {
   const validarFormulario = () => {
     const nuevosErrores = {};
 
-    if (!formData.nombre.trim()) {
-      nuevosErrores.nombre = 'El nombre es obligatorio';
+    if (!formData.nom.trim()) {
+      nuevosErrores.nom = 'El nombre es obligatorio';
     }
 
-    if (!formData.apellido.trim()) {
-      nuevosErrores.apellido = 'El apellido es obligatorio';
+    if (!formData.ape.trim()) {
+      nuevosErrores.ape = 'El apellido es obligatorio';
     }
 
-    if (!formData.email.trim()) {
-      nuevosErrores.email = 'El email es obligatorio';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      nuevosErrores.email = 'El email debe tener un formato válido';
+    if (!formData.cor.trim()) {
+      nuevosErrores.cor = 'El email es obligatorio';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.cor)) {
+      nuevosErrores.cor = 'El email debe tener un formato válido';
     }
 
-    if (!formData.password) {
-      nuevosErrores.password = 'La contraseña es obligatoria';
-    } else if (formData.password.length < 6) {
-      nuevosErrores.password = 'La contraseña debe tener al menos 6 caracteres';
+    if (!formData.con) {
+      nuevosErrores.con = 'La contraseña es obligatoria';
+    } else if (formData.con.length < 6) {
+      nuevosErrores.con = 'La contraseña debe tener al menos 6 caracteres';
     }
 
-    if (formData.password !== formData.confirmar_password) {
-      nuevosErrores.confirmar_password = 'Las contraseñas no coinciden';
+    if (formData.con !== formData.con_conf) {
+      nuevosErrores.con_conf = 'Las contraseñas no coinciden';
     }
 
-    if (!formData.documento.trim()) {
-      nuevosErrores.documento = 'El documento es obligatorio';
+    if (!formData.doc.trim()) {
+      nuevosErrores.doc = 'El documento es obligatorio';
     }
 
     setErrores(nuevosErrores);

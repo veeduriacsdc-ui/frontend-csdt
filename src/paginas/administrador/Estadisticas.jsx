@@ -26,29 +26,29 @@ const Estadisticas = () => {
   const [loading, setLoading] = useState(true)
   const [periodo, setPeriodo] = useState('mes')
   const [estadisticas, setEstadisticas] = useState({
-    usuarios: {
-      total: 0,
-      activos: 0,
-      nuevos: 0,
+    usu: {
+      tot: 0,
+      act: 0,
+      nue: 0,
       porRol: { cli: 0, ope: 0, adm: 0 }
     },
-    veedurias: {
-      total: 0,
-      activas: 0,
-      completadas: 0,
-      porTipo: { social: 0, ambiental: 0, urbana: 0, rural: 0 }
+    vee: {
+      tot: 0,
+      act: 0,
+      com: 0,
+      porTip: { social: 0, ambiental: 0, urbana: 0, rural: 0 }
     },
-    donaciones: {
-      total: 0,
-      montoTotal: 0,
-      aprobadas: 0,
-      porTipo: { monetaria: 0, especie: 0, servicios: 0 }
+    don: {
+      tot: 0,
+      monTot: 0,
+      apr: 0,
+      porTip: { monetaria: 0, especie: 0, servicios: 0 }
     },
-    tareas: {
-      total: 0,
-      completadas: 0,
-      pendientes: 0,
-      porPrioridad: { alta: 0, media: 0, baja: 0 }
+    tar: {
+      tot: 0,
+      com: 0,
+      pen: 0,
+      porPri: { alta: 0, media: 0, baja: 0 }
     }
   })
 
@@ -70,7 +70,7 @@ const Estadisticas = () => {
 
       // Procesar estadísticas de usuarios
       const usuariosData = usuarios.data || []
-      const usuariosActivos = usuariosData.filter(u => u.estado === 'activo').length
+      const usuariosActivos = usuariosData.filter(u => u.est === 'act').length
       const usuariosNuevos = usuariosData.filter(u => {
         const fechaCreacion = new Date(u.created_at)
         const fechaLimite = new Date()
@@ -85,58 +85,58 @@ const Estadisticas = () => {
 
       // Procesar estadísticas de veedurías
       const veeduriasData = veedurias.data || []
-      const veeduriasActivas = veeduriasData.filter(v => v.estado === 'activa').length
-      const veeduriasCompletadas = veeduriasData.filter(v => v.estado === 'completada').length
+      const veeduriasActivas = veeduriasData.filter(v => ['pen', 'pro', 'rad'].includes(v.est)).length
+      const veeduriasCompletadas = veeduriasData.filter(v => v.est === 'cer').length
 
       const veeduriasPorTipo = veeduriasData.reduce((acc, v) => {
-        acc[v.tipo] = (acc[v.tipo] || 0) + 1
+        acc[v.tip] = (acc[v.tip] || 0) + 1
         return acc
       }, {})
 
       // Procesar estadísticas de donaciones
       const donacionesData = donaciones.data || []
-      const donacionesAprobadas = donacionesData.filter(d => d.estado === 'aprobada').length
-      const montoTotal = donacionesData.reduce((sum, d) => sum + (parseFloat(d.monto) || 0), 0)
+      const donacionesAprobadas = donacionesData.filter(d => d.est === 'con').length
+      const montoTotal = donacionesData.reduce((sum, d) => sum + (parseFloat(d.mon) || 0), 0)
 
       const donacionesPorTipo = donacionesData.reduce((acc, d) => {
-        acc[d.tipo] = (acc[d.tipo] || 0) + 1
+        acc[d.tip] = (acc[d.tip] || 0) + 1
         return acc
       }, {})
 
       // Procesar estadísticas de tareas
       const tareasData = tareas.data || []
-      const tareasCompletadas = tareasData.filter(t => t.estado === 'completada').length
-      const tareasPendientes = tareasData.filter(t => t.estado === 'pendiente').length
+      const tareasCompletadas = tareasData.filter(t => t.est === 'com').length
+      const tareasPendientes = tareasData.filter(t => t.est === 'pen').length
 
       const tareasPorPrioridad = tareasData.reduce((acc, t) => {
-        acc[t.prioridad] = (acc[t.prioridad] || 0) + 1
+        acc[t.pri] = (acc[t.pri] || 0) + 1
         return acc
       }, {})
 
       setEstadisticas({
-        usuarios: {
-          total: usuariosData.length,
-          activos: usuariosActivos,
-          nuevos: usuariosNuevos,
+        usu: {
+          tot: usuariosData.length,
+          act: usuariosActivos,
+          nue: usuariosNuevos,
           porRol: usuariosPorRol
         },
-        veedurias: {
-          total: veeduriasData.length,
-          activas: veeduriasActivas,
-          completadas: veeduriasCompletadas,
-          porTipo: veeduriasPorTipo
+        vee: {
+          tot: veeduriasData.length,
+          act: veeduriasActivas,
+          com: veeduriasCompletadas,
+          porTip: veeduriasPorTipo
         },
-        donaciones: {
-          total: donacionesData.length,
-          montoTotal,
-          aprobadas: donacionesAprobadas,
-          porTipo: donacionesPorTipo
+        don: {
+          tot: donacionesData.length,
+          monTot: montoTotal,
+          apr: donacionesAprobadas,
+          porTip: donacionesPorTipo
         },
-        tareas: {
-          total: tareasData.length,
-          completadas: tareasCompletadas,
-          pendientes: tareasPendientes,
-          porPrioridad: tareasPorPrioridad
+        tar: {
+          tot: tareasData.length,
+          com: tareasCompletadas,
+          pen: tareasPendientes,
+          porPri: tareasPorPrioridad
         }
       })
     } catch (error) {
@@ -205,10 +205,10 @@ const Estadisticas = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {loading ? '...' : estadisticas.usuarios.total}
+                {loading ? '...' : estadisticas.usu.tot}
               </div>
               <p className="text-xs text-blue-600">
-                {estadisticas.usuarios.activos} activos ({getPorcentaje(estadisticas.usuarios.activos, estadisticas.usuarios.total)}%)
+                {estadisticas.usu.act} activos ({getPorcentaje(estadisticas.usu.act, estadisticas.usu.tot)}%)
               </p>
             </CardContent>
           </Card>
@@ -222,10 +222,10 @@ const Estadisticas = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {loading ? '...' : estadisticas.veedurias.total}
+                {loading ? '...' : estadisticas.vee.tot}
               </div>
               <p className="text-xs text-green-600">
-                {estadisticas.veedurias.activas} activas ({getPorcentaje(estadisticas.veedurias.activas, estadisticas.veedurias.total)}%)
+                {estadisticas.vee.act} activas ({getPorcentaje(estadisticas.vee.act, estadisticas.vee.tot)}%)
               </p>
             </CardContent>
           </Card>
@@ -239,10 +239,10 @@ const Estadisticas = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {loading ? '...' : estadisticas.donaciones.total}
+                {loading ? '...' : estadisticas.don.tot}
               </div>
               <p className="text-xs text-purple-600">
-                {formatMonto(estadisticas.donaciones.montoTotal)} recaudado
+                {formatMonto(estadisticas.don.monTot)} recaudado
               </p>
             </CardContent>
           </Card>
@@ -256,10 +256,10 @@ const Estadisticas = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {loading ? '...' : estadisticas.tareas.total}
+                {loading ? '...' : estadisticas.tar.tot}
               </div>
               <p className="text-xs text-orange-600">
-                {estadisticas.tareas.completadas} completadas ({getPorcentaje(estadisticas.tareas.completadas, estadisticas.tareas.total)}%)
+                {estadisticas.tar.com} completadas ({getPorcentaje(estadisticas.tar.com, estadisticas.tar.tot)}%)
               </p>
             </CardContent>
           </Card>
@@ -282,7 +282,7 @@ const Estadisticas = () => {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {Object.entries(estadisticas.usuarios.porRol).map(([rol, cantidad]) => (
+                  {Object.entries(estadisticas.usu.porRol).map(([rol, cantidad]) => (
                     <div key={rol} className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <div className={`w-3 h-3 rounded-full ${
@@ -305,7 +305,7 @@ const Estadisticas = () => {
                               rol === 'ope' ? 'bg-blue-500' :
                               'bg-purple-500'
                             }`}
-                            style={{ width: `${getPorcentaje(cantidad, estadisticas.usuarios.total)}%` }}
+                            style={{ width: `${getPorcentaje(cantidad, estadisticas.usu.tot)}%` }}
                           />
                         </div>
                       </div>
@@ -331,7 +331,7 @@ const Estadisticas = () => {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {Object.entries(estadisticas.veedurias.porTipo).map(([tipo, cantidad]) => (
+                  {Object.entries(estadisticas.vee.porTip).map(([tipo, cantidad]) => (
                     <div key={tipo} className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <div className={`w-3 h-3 rounded-full ${
@@ -352,7 +352,7 @@ const Estadisticas = () => {
                               tipo === 'urbana' ? 'bg-purple-500' :
                               'bg-orange-500'
                             }`}
-                            style={{ width: `${getPorcentaje(cantidad, estadisticas.veedurias.total)}%` }}
+                            style={{ width: `${getPorcentaje(cantidad, estadisticas.vee.tot)}%` }}
                           />
                         </div>
                       </div>
@@ -382,7 +382,7 @@ const Estadisticas = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-blue-600">
-                    {estadisticas.usuarios.nuevos}
+                    {estadisticas.usu.nue}
                   </div>
                   <div className="text-sm text-muted-foreground">
                     Usuarios nuevos este {periodo}
@@ -390,7 +390,7 @@ const Estadisticas = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-green-600">
-                    {estadisticas.veedurias.completadas}
+                    {estadisticas.vee.com}
                   </div>
                   <div className="text-sm text-muted-foreground">
                     Veedurías completadas
@@ -398,7 +398,7 @@ const Estadisticas = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-purple-600">
-                    {estadisticas.donaciones.aprobadas}
+                    {estadisticas.don.apr}
                   </div>
                   <div className="text-sm text-muted-foreground">
                     Donaciones aprobadas
@@ -406,7 +406,7 @@ const Estadisticas = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-orange-600">
-                    {estadisticas.tareas.pendientes}
+                    {estadisticas.tar.pen}
                   </div>
                   <div className="text-sm text-muted-foreground">
                     Tareas pendientes

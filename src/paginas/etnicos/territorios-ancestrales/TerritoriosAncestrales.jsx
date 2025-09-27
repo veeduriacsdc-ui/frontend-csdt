@@ -34,19 +34,19 @@ import {
 const TerritoriosAncestrales = () => {
   const [territorios, setTerritorios] = useState([]);
   const [comunidades, setComunidades] = useState([]);
-  const [filtroComunidad, setFiltroComunidad] = useState('todas');
-  const [filtroEstado, setFiltroEstado] = useState('todos');
+  const [filtroCom, setFiltroCom] = useState('todas');
+  const [filtroEst, setFiltroEst] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevoTerritorio, setNuevoTerritorio] = useState({
-    nombre: '',
-    descripcion: '',
-    comunidad: '',
-    area: '',
-    ubicacion: '',
-    tipo: 'resguardo',
-    estado: 'reconocido',
-    fechaReconocimiento: '',
-    documentos: []
+    nom: '',
+    des: '',
+    com: '',
+    are: '',
+    ubi: '',
+    tip: 'resguardo',
+    est: 'reconocido',
+    fec_rec: '',
+    doc: []
   });
 
   useEffect(() => {

@@ -5,14 +5,14 @@ const AuthSimple = ({ onClose, onSuccess }) => {
   const { login, register } = useAuth();
   const [modo, setModo] = useState('login'); // 'login' o 'register'
   const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
-    email: '',
-    password: '',
-    confirmar_password: '',
-    telefono: '',
-    documento: '',
-    tipo_documento: 'cc',
+    nom: '',
+    ape: '',
+    cor: '',
+    con: '',
+    con_conf: '',
+    tel: '',
+    doc: '',
+    tip_doc: 'cc',
     rol: 'cli'
   });
   const [loading, setLoading] = useState(false);
@@ -34,7 +34,7 @@ const AuthSimple = ({ onClose, onSuccess }) => {
       let resultado;
       
       if (modo === 'login') {
-        resultado = await login(formData.email, formData.password);
+        resultado = await login(formData.cor, formData.con);
       } else {
         resultado = await register(formData);
       }
@@ -153,8 +153,8 @@ const AuthSimple = ({ onClose, onSuccess }) => {
                 </label>
                 <input
                   type="text"
-                  name="nombre"
-                  value={formData.nombre}
+                  name="nom"
+                  value={formData.nom}
                   onChange={handleChange}
                   required
                   style={{

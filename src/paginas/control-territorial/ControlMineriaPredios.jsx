@@ -41,18 +41,18 @@ const ControlMineriaPredios = () => {
   const [filtroEstado, setFiltroEstado] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevoPredio, setNuevoPredio] = useState({
-    nombre: '',
-    ubicacion: '',
-    region: '',
-    tipoActividad: 'mineria_legal',
-    estado: 'activo',
-    area: '',
-    propietario: '',
-    licencia: '',
-    fechaInicio: '',
-    fechaFin: '',
-    coordenadas: '',
-    observaciones: ''
+    nom: '',
+    ubi: '',
+    reg: '',
+    tip_act: 'mineria_legal',
+    est: 'activo',
+    are: '',
+    prop: '',
+    lic: '',
+    fec_ini: '',
+    fec_fin: '',
+    coor: '',
+    obs: ''
   });
 
   useEffect(() => {

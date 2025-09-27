@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import DiagnosticoConexion from '../../components/compartidas/DiagnosticoConexion';
 
 const MantenimientoSistema = () => {
   const { user } = useAuth();
   const [usuarios, setUsuarios] = useState([]);
   const [permisosVista, setPermisosVista] = useState([]);
   const [estadisticas, setEstadisticas] = useState({
-    totalUsuarios: 0,
-    usuariosVetados: 0,
-    usuariosActivos: 0,
-    totalPermisos: 0,
-    permisosActivos: 0
+    tot_usu: 0,
+    usu_vet: 0,
+    usu_act: 0,
+    tot_perm: 0,
+    perm_act: 0
   });
 
   useEffect(() => {
@@ -33,11 +34,11 @@ const MantenimientoSistema = () => {
       const permisosActivos = permisosData.filter(p => p.estado === 'activo').length;
 
       setEstadisticas({
-        totalUsuarios: usuariosData.length,
-        usuariosVetados,
-        usuariosActivos,
-        totalPermisos: permisosData.length,
-        permisosActivos
+        tot_usu: usuariosData.length,
+        usu_vet: usuariosVetados,
+        usu_act: usuariosActivos,
+        tot_perm: permisosData.length,
+        perm_act: permisosActivos
       });
     } catch (error) {
       console.error('Error cargando datos:', error);
@@ -255,6 +256,11 @@ const MantenimientoSistema = () => {
         <p style={{ color: '#6b7280', fontSize: '16px' }}>
           Herramientas de administración para mantenimiento y mejoras del sistema
         </p>
+      </div>
+
+      {/* Diagnóstico de Conexión */}
+      <div style={{ marginBottom: '30px' }}>
+        <DiagnosticoConexion />
       </div>
 
       {/* Estadísticas */}

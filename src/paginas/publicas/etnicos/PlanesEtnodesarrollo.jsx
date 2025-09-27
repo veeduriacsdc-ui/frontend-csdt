@@ -5,59 +5,59 @@ import autoTable from 'jspdf-autotable';
 
 const PlanesEtnodesarrollo = () => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    documento: '',
-    email: '',
-    telefono: '',
-    direccion: '',
-    tipoComunidad: '',
-    nombreComunidad: '',
-    proyecto: '',
-    descripcion: '',
-    objetivos: '',
-    archivos: []
+    nom: '',
+    doc: '',
+    cor: '',
+    tel: '',
+    dir: '',
+    tip_com: '',
+    nom_com: '',
+    pro: '',
+    des: '',
+    obj: '',
+    arc: []
   });
 
   const tiposComunidad = [
     {
       id: 'indigena',
-      nombre: 'Comunidad Indígena',
-      descripcion: 'Comunidad indígena reconocida por el Estado',
-      procedimiento: 'Vía Administrativa',
-      plazo: 'Según cronograma del proyecto',
-      competencia: 'Ministerio del Interior - Dirección de Asuntos Indígenas',
-      fundamento: 'Constitución Política Art. 330, Ley 89 de 1890',
-      beneficios: 'Desarrollo con identidad cultural, autonomía territorial'
+      nom: 'Comunidad Indígena',
+      des: 'Comunidad indígena reconocida por el Estado',
+      proc: 'Vía Administrativa',
+      pla: 'Según cronograma del proyecto',
+      comp: 'Ministerio del Interior - Dirección de Asuntos Indígenas',
+      fun: 'Constitución Política Art. 330, Ley 89 de 1890',
+      ben: 'Desarrollo con identidad cultural, autonomía territorial'
     },
     {
       id: 'afrodescendiente',
-      nombre: 'Comunidad Afrodescendiente',
-      descripcion: 'Comunidad negra, afrocolombiana, raizal y palenquera',
-      procedimiento: 'Vía Administrativa',
-      plazo: 'Según cronograma del proyecto',
-      competencia: 'Ministerio del Interior - Dirección de Asuntos Afrodescendientes',
-      fundamento: 'Constitución Política Art. 7, Ley 70 de 1993',
-      beneficios: 'Desarrollo con identidad cultural, derechos territoriales'
+      nom: 'Comunidad Afrodescendiente',
+      des: 'Comunidad negra, afrocolombiana, raizal y palenquera',
+      proc: 'Vía Administrativa',
+      pla: 'Según cronograma del proyecto',
+      comp: 'Ministerio del Interior - Dirección de Asuntos Afrodescendientes',
+      fun: 'Constitución Política Art. 7, Ley 70 de 1993',
+      ben: 'Desarrollo con identidad cultural, derechos territoriales'
     },
     {
       id: 'gitana',
-      nombre: 'Comunidad Gitana',
-      descripcion: 'Comunidad gitana o rom reconocida por el Estado',
-      procedimiento: 'Vía Administrativa',
-      plazo: 'Según cronograma del proyecto',
-      competencia: 'Ministerio del Interior - Dirección de Asuntos Étnicos',
-      fundamento: 'Constitución Política Art. 7, Ley 1482 de 2011',
-      beneficios: 'Desarrollo con identidad cultural, protección de derechos'
+      nom: 'Comunidad Gitana',
+      des: 'Comunidad gitana o rom reconocida por el Estado',
+      proc: 'Vía Administrativa',
+      pla: 'Según cronograma del proyecto',
+      comp: 'Ministerio del Interior - Dirección de Asuntos Étnicos',
+      fun: 'Constitución Política Art. 7, Ley 1482 de 2011',
+      ben: 'Desarrollo con identidad cultural, protección de derechos'
     },
     {
       id: 'raizal',
-      nombre: 'Comunidad Raizal',
-      descripcion: 'Comunidad raizal del Archipiélago de San Andrés, Providencia y Santa Catalina',
-      procedimiento: 'Vía Administrativa',
-      plazo: 'Según cronograma del proyecto',
-      competencia: 'Ministerio del Interior - Dirección de Asuntos Étnicos',
-      fundamento: 'Constitución Política Art. 7, Ley 47 de 1993',
-      beneficios: 'Desarrollo con identidad cultural, autonomía territorial'
+      nom: 'Comunidad Raizal',
+      des: 'Comunidad raizal del Archipiélago de San Andrés, Providencia y Santa Catalina',
+      proc: 'Vía Administrativa',
+      pla: 'Según cronograma del proyecto',
+      comp: 'Ministerio del Interior - Dirección de Asuntos Étnicos',
+      fun: 'Constitución Política Art. 7, Ley 47 de 1993',
+      ben: 'Desarrollo con identidad cultural, autonomía territorial'
     }
   ];
 
@@ -95,17 +95,17 @@ const PlanesEtnodesarrollo = () => {
     
     // Limpiar formulario
     setFormulario({
-      nombre: '',
-      documento: '',
-      email: '',
-      telefono: '',
-      direccion: '',
-      tipoComunidad: '',
-      nombreComunidad: '',
-      proyecto: '',
-      descripcion: '',
-      objetivos: '',
-      archivos: []
+      nom: '',
+      doc: '',
+      cor: '',
+      tel: '',
+      dir: '',
+      tip_com: '',
+      nom_com: '',
+      pro: '',
+      des: '',
+      obj: '',
+      arc: []
     });
   };
 
@@ -231,7 +231,7 @@ const PlanesEtnodesarrollo = () => {
     }
   };
 
-  const tipoComunidadSeleccionado = tiposComunidad.find(tipo => tipo.id === formulario.tipoComunidad);
+  const tipoComunidadSeleccionado = tiposComunidad.find(tipo => tipo.id === formulario.tip_com);
 
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)' }}>
@@ -434,22 +434,22 @@ const PlanesEtnodesarrollo = () => {
                   color: '#1e40af',
                   marginBottom: '8px'
                 }}>
-                  {tipo.nombre}
+                  {tipo.nom}
                 </h3>
                 <p style={{ color: '#64748b', fontSize: '0.9rem', marginBottom: '8px' }}>
-                  {tipo.descripcion}
+                  {tipo.des}
                 </p>
                 <p style={{ color: '#64748b', fontSize: '0.8rem', marginBottom: '4px' }}>
-                  <strong>Procedimiento:</strong> {tipo.procedimiento}
+                  <strong>Procedimiento:</strong> {tipo.proc}
                 </p>
                 <p style={{ color: '#64748b', fontSize: '0.8rem', marginBottom: '4px' }}>
-                  <strong>Competencia:</strong> {tipo.competencia}
+                  <strong>Competencia:</strong> {tipo.comp}
                 </p>
                 <p style={{ color: '#64748b', fontSize: '0.8rem', marginBottom: '4px' }}>
-                  <strong>Fundamento:</strong> {tipo.fundamento}
+                  <strong>Fundamento:</strong> {tipo.fun}
                 </p>
                 <p style={{ color: '#64748b', fontSize: '0.8rem' }}>
-                  <strong>Beneficios:</strong> {tipo.beneficios}
+                  <strong>Beneficios:</strong> {tipo.ben}
                 </p>
               </div>
             ))}
@@ -632,7 +632,7 @@ const PlanesEtnodesarrollo = () => {
                   <option value="">Seleccione el tipo</option>
                   {tiposComunidad.map(tipo => (
                     <option key={tipo.id} value={tipo.id}>
-                      {tipo.nombre}
+                      {tipo.nom}
                     </option>
                   ))}
                 </select>

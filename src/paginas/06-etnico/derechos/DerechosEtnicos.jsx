@@ -36,17 +36,17 @@ const DerechosEtnicos = () => {
   const [derechos, setDerechos] = useState([]);
   const [comunidades, setComunidades] = useState([]);
   const [categorias, setCategorias] = useState([]);
-  const [filtroComunidad, setFiltroComunidad] = useState('todas');
-  const [filtroCategoria, setFiltroCategoria] = useState('todas');
+  const [filtroCom, setFiltroCom] = useState('todas');
+  const [filtroCat, setFiltroCat] = useState('todas');
   const [nuevoDerecho, setNuevoDerecho] = useState({
-    titulo: '',
-    descripcion: '',
-    comunidad: '',
-    categoria: 'territorial',
-    marcoLegal: '',
-    estado: 'vigente',
-    fechaVigencia: '',
-    documentos: []
+    tit: '',
+    des: '',
+    com: '',
+    cat: 'territorial',
+    mar_leg: '',
+    est: 'vigente',
+    fec_vig: '',
+    doc: []
   });
 
   useEffect(() => {
@@ -58,53 +58,53 @@ const DerechosEtnicos = () => {
     const derechosSimulados = [
       {
         id: 'derecho_001',
-        titulo: 'Derecho a la Consulta Previa',
-        descripcion: 'Derecho fundamental de las comunidades étnicas a ser consultadas sobre decisiones que las afecten',
-        comunidad: 'todas',
-        categoria: 'participacion',
-        marcoLegal: 'Convenio 169 OIT, Constitución Política Art. 330',
-        estado: 'vigente',
-        fechaVigencia: '1991-07-04',
-        documentos: ['convenio_169_oit.pdf', 'const_art_330.pdf'],
+        tit: 'Derecho a la Consulta Previa',
+        des: 'Derecho fundamental de las comunidades étnicas a ser consultadas sobre decisiones que las afecten',
+        com: 'todas',
+        cat: 'participacion',
+        mar_leg: 'Convenio 169 OIT, Constitución Política Art. 330',
+        est: 'vigente',
+        fec_vig: '1991-07-04',
+        doc: ['convenio_169_oit.pdf', 'const_art_330.pdf'],
         casos: 45,
         violaciones: 12
       },
       {
         id: 'derecho_002',
-        titulo: 'Derecho al Territorio Ancestral',
-        descripcion: 'Derecho inalienable e imprescriptible de las comunidades étnicas sobre sus territorios ancestrales',
-        comunidad: 'wayuu',
-        categoria: 'territorial',
-        marcoLegal: 'Ley 70 de 1993, Decreto 2164 de 1995',
-        estado: 'vigente',
-        fechaVigencia: '1993-08-27',
-        documentos: ['ley_70_1993.pdf', 'decreto_2164_1995.pdf'],
+        tit: 'Derecho al Territorio Ancestral',
+        des: 'Derecho inalienable e imprescriptible de las comunidades étnicas sobre sus territorios ancestrales',
+        com: 'wayuu',
+        cat: 'territorial',
+        mar_leg: 'Ley 70 de 1993, Decreto 2164 de 1995',
+        est: 'vigente',
+        fec_vig: '1993-08-27',
+        doc: ['ley_70_1993.pdf', 'decreto_2164_1995.pdf'],
         casos: 23,
         violaciones: 8
       },
       {
         id: 'derecho_003',
-        titulo: 'Derecho a la Autonomía',
-        descripcion: 'Derecho de las comunidades étnicas a gobernarse según sus usos y costumbres',
-        comunidad: 'nasa',
-        categoria: 'autonomia',
-        marcoLegal: 'Constitución Política Art. 7, Ley 89 de 1890',
-        estado: 'vigente',
-        fechaVigencia: '1991-07-04',
-        documentos: ['const_art_7.pdf', 'ley_89_1890.pdf'],
+        tit: 'Derecho a la Autonomía',
+        des: 'Derecho de las comunidades étnicas a gobernarse según sus usos y costumbres',
+        com: 'nasa',
+        cat: 'autonomia',
+        mar_leg: 'Constitución Política Art. 7, Ley 89 de 1890',
+        est: 'vigente',
+        fec_vig: '1991-07-04',
+        doc: ['const_art_7.pdf', 'ley_89_1890.pdf'],
         casos: 18,
         violaciones: 5
       },
       {
         id: 'derecho_004',
-        titulo: 'Derecho a la Educación Propia',
-        descripcion: 'Derecho a una educación que respete y fortalezca la identidad cultural',
-        comunidad: 'embera',
-        categoria: 'educacion',
-        marcoLegal: 'Ley 115 de 1994, Decreto 804 de 1995',
-        estado: 'vigente',
-        fechaVigencia: '1994-02-08',
-        documentos: ['ley_115_1994.pdf', 'decreto_804_1995.pdf'],
+        tit: 'Derecho a la Educación Propia',
+        des: 'Derecho a una educación que respete y fortalezca la identidad cultural',
+        com: 'embera',
+        cat: 'educacion',
+        mar_leg: 'Ley 115 de 1994, Decreto 804 de 1995',
+        est: 'vigente',
+        fec_vig: '1994-02-08',
+        doc: ['ley_115_1994.pdf', 'decreto_804_1995.pdf'],
         casos: 32,
         violaciones: 15
       }
@@ -173,7 +173,7 @@ const DerechosEtnicos = () => {
   const stats = [
     { icon: Scale, value: derechos.length, label: 'Total Derechos' },
     { icon: Users, value: comunidades.length - 1, label: 'Comunidades' },
-    { icon: CheckCircle, value: derechos.filter(d => d.estado === 'vigente').length, label: 'Vigentes' },
+    { icon: CheckCircle, value: derechos.filter(d => d.est === 'vigente').length, label: 'Vigentes' },
     { icon: AlertTriangle, value: derechos.reduce((acc, d) => acc + d.violaciones, 0), label: 'Violaciones' }
   ];
 
@@ -342,10 +342,10 @@ const DerechosEtnicos = () => {
                   </div>
                   
                   <div>
-                    <Label htmlFor="comunidad">Comunidad</Label>
+                    <Label htmlFor="com">Comunidad</Label>
                     <Select 
-                      value={nuevoDerecho.comunidad} 
-                      onValueChange={(value) => setNuevoDerecho({...nuevoDerecho, comunidad: value})}
+                      value={nuevoDerecho.com} 
+                      onValueChange={(value) => setNuevoDerecho({...nuevoDerecho, com: value})}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar comunidad" />
@@ -375,10 +375,10 @@ const DerechosEtnicos = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <Label htmlFor="categoria">Categoría</Label>
+                    <Label htmlFor="cat">Categoría</Label>
                     <Select 
-                      value={nuevoDerecho.categoria} 
-                      onValueChange={(value) => setNuevoDerecho({...nuevoDerecho, categoria: value})}
+                      value={nuevoDerecho.cat} 
+                      onValueChange={(value) => setNuevoDerecho({...nuevoDerecho, cat: value})}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar categoría" />
@@ -394,10 +394,10 @@ const DerechosEtnicos = () => {
                   </div>
                   
                   <div>
-                    <Label htmlFor="estado">Estado</Label>
+                    <Label htmlFor="est">Estado</Label>
                     <Select 
-                      value={nuevoDerecho.estado} 
-                      onValueChange={(value) => setNuevoDerecho({...nuevoDerecho, estado: value})}
+                      value={nuevoDerecho.est} 
+                      onValueChange={(value) => setNuevoDerecho({...nuevoDerecho, est: value})}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar estado" />
@@ -411,23 +411,23 @@ const DerechosEtnicos = () => {
                   </div>
                   
                   <div>
-                    <Label htmlFor="fecha-vigencia">Fecha de Vigencia</Label>
+                    <Label htmlFor="fec_vig">Fecha de Vigencia</Label>
                     <Input
-                      id="fecha-vigencia"
+                      id="fec_vig"
                       type="date"
-                      value={nuevoDerecho.fechaVigencia}
-                      onChange={(e) => setNuevoDerecho({...nuevoDerecho, fechaVigencia: e.target.value})}
+                      value={nuevoDerecho.fec_vig}
+                      onChange={(e) => setNuevoDerecho({...nuevoDerecho, fec_vig: e.target.value})}
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="marco-legal">Marco Legal</Label>
+                  <Label htmlFor="mar_leg">Marco Legal</Label>
                   <Textarea
-                    id="marco-legal"
-                    value={nuevoDerecho.marcoLegal}
-                    onChange={(e) => setNuevoDerecho({...nuevoDerecho, marcoLegal: e.target.value})}
+                    id="mar_leg"
+                    value={nuevoDerecho.mar_leg}
+                    onChange={(e) => setNuevoDerecho({...nuevoDerecho, mar_leg: e.target.value})}
                     placeholder="Especifique el marco legal que respalda este derecho"
                     rows={3}
                     required

@@ -5,28 +5,28 @@ import autoTable from 'jspdf-autotable';
 
 const PQRSFD = () => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    documento: '',
-    email: '',
-    telefono: '',
-    direccion: '',
-    tipoPQRSFD: '',
-    hechos: '',
-    solicitud: '',
-    entidadDemandada: '',
-    archivos: [],
-    archivoConsejoIA: null,
-    evidencias: [],
-    hechosConIA: '',
-    solicitudConIA: '',
-    conceptoGeneral: '',
-    anonimato: false,
-    analisisIA: {
-      especialistaDerechos: '',
-      especialistaHechos: '',
-      especialistaSolicitud: '',
-      especialistaConcepto: '',
-      analisisUnificado: ''
+    nom: '',
+    doc: '',
+    cor: '',
+    tel: '',
+    dir: '',
+    tip_pqrsfd: '',
+    hec: '',
+    sol: '',
+    ent_dem: '',
+    arc: [],
+    arc_ia: null,
+    evi: [],
+    hec_ia: '',
+    sol_ia: '',
+    con_gen: '',
+    anon: false,
+    ana_ia: {
+      esp_der: '',
+      esp_hec: '',
+      esp_sol: '',
+      esp_con: '',
+      ana_uni: ''
     }
   });
 
@@ -140,8 +140,8 @@ const PQRSFD = () => {
 Como especialista con más de 15 años de experiencia en derecho constitucional, analizo los hechos presentados:
 
 FUNDAMENTOS JURÍDICOS IDENTIFICADOS:
-• Vulneración del derecho fundamental: ${formulario.tipoPQRSFD}
-• Entidad responsable: ${formulario.entidadDemandada}
+• Vulneración del derecho fundamental: ${formulario.tip_pqrsfd}
+• Entidad responsable: ${formulario.ent_dem}
 • Hechos que configuran la vulneración: ${texto}
 
 RECOMENDACIONES PROFESIONALES:
@@ -161,8 +161,8 @@ Como especialista en acciones de tutela con experiencia en más de 500 casos exi
 
 ANÁLISIS DE LA SOLICITUD ACTUAL:
 • Solicitud presentada: ${texto}
-• Derecho vulnerado: ${formulario.tipoPQRSFD}
-• Entidad demandada: ${formulario.entidadDemandada}
+• Derecho vulnerado: ${formulario.tip_pqrsfd}
+• Entidad demandada: ${formulario.ent_dem}
 
 OPTIMIZACIÓN PROFESIONAL:
 1. La solicitud debe ser específica y medible
@@ -183,8 +183,8 @@ Como especialista en derecho constitucional con más de 20 años de experiencia,
 
 ANÁLISIS JURÍDICO:
 • Viabilidad de la acción: ALTA
-• Derecho fundamental vulnerado: ${formulario.tipoPQRSFD}
-• Entidad responsable: ${formulario.entidadDemandada}
+• Derecho fundamental vulnerado: ${formulario.tip_pqrsfd}
+• Entidad responsable: ${formulario.ent_dem}
 • Fundamentos constitucionales aplicables
 
 RECOMENDACIONES ESTRATÉGICAS:
@@ -258,8 +258,8 @@ CONSEJO DE ESPECIALISTAS CERTIFICADOS:
 
 INFORMACIÓN DEL CASO PROCESADA:
 ═══════════════════════════════════════════════════════════════════════════════
-• Solicitante: ${formulario.nombre} ${formulario.anonimato ? '(MODO ANÓNIMO)' : ''}
-• Documento: ${formulario.documento}
+• Solicitante: ${formulario.nom} ${formulario.anon ? '(MODO ANÓNIMO)' : ''}
+• Documento: ${formulario.doc}
 • Entidad Demandada: ${formulario.entidadDemandada}
 • Fecha de Análisis: ${new Date().toLocaleDateString('es-CO')}
 • Hora de Procesamiento: ${new Date().toLocaleTimeString('es-CO')}
@@ -267,7 +267,7 @@ INFORMACIÓN DEL CASO PROCESADA:
 DOCUMENTOS Y EVIDENCIAS PROCESADOS POR IA:
 ═══════════════════════════════════════════════════════════════════════════════
 ${archivoConsejoIA ? 
-  `• Archivo Consejo IA: ${archivoConsejoIA.nombre} (${archivoConsejoIA.tipo.toUpperCase()}, ${archivoConsejoIA.tamaño} MB)
+  `• Archivo Consejo IA: ${archivoConsejoIA.nom} (${archivoConsejoIA.tip.toUpperCase()}, ${archivoConsejoIA.tam} MB)
   - Estado: PROCESADO Y ANALIZADO
   - Contenido: Integrado al análisis jurídico
   - Relevancia: ALTA - Proporciona contexto adicional valioso` : 
@@ -290,14 +290,14 @@ FUNDAMENTOS CONSTITUCIONALES Y LEGALES:
 • Artículo 23 de la Constitución Política de Colombia - Derecho de Petición
 • Ley 1757 de 2015 - Participación Ciudadana
 • Decreto 1227 de 2005 - Reglamentación PQRSFD
-• Tipo de PQRSFD: ${formulario.tipoPQRSFD}
-• Entidad responsable: ${formulario.entidadDemandada}
+• Tipo de PQRSFD: ${formulario.tip_pqrsfd}
+• Entidad responsable: ${formulario.ent_dem}
 • Procedencia del PQRSFD: CONFIRMADA
 • Jurisprudencia aplicable: C-543/92, T-002/92, T-406/92, T-760/08
 
 ANÁLISIS ESPECÍFICO DEL TIPO DE PQRSFD:
 ═══════════════════════════════════════════════════════════════════════════════
-• Tipo seleccionado: ${formulario.tipoPQRSFD}
+• Tipo seleccionado: ${formulario.tip_pqrsfd}
 • Características específicas: Identificadas y analizadas
 • Requisitos de procedencia: CUMPLIDOS
 • Viabilidad constitucional: CONFIRMADA
@@ -402,7 +402,7 @@ DOCUMENTOS ADICIONALES RECOMENDADOS:
 CONCLUSIÓN UNÁNIME DEL CONSEJO DE ESPECIALISTAS:
 ═══════════════════════════════════════════════════════════════════════════════
 
-"El presente caso reúne todos los requisitos constitucionales y legales para la procedencia del PQRSFD. Los especialistas del consejo unánimemente consideran que existe una clara necesidad de PQRSFD en el tipo de PQRSFD ${formulario.tipoPQRSFD} por parte de ${formulario.entidadDemandada}, lo que amerita la intervención inmediata de la autoridad competente para su realización efectiva.
+"El presente caso reúne todos los requisitos constitucionales y legales para la procedencia del PQRSFD. Los especialistas del consejo unánimemente consideran que existe una clara necesidad de PQRSFD en el tipo de PQRSFD ${formulario.tip_pqrsfd} por parte de ${formulario.ent_dem}, lo que amerita la intervención inmediata de la autoridad competente para su realización efectiva.
 
 ${formulario.evidencias.length > 0 ? 'Las evidencias cargadas y procesadas por las IAs especializadas fortalecen significativamente el caso, proporcionando una base probatoria sólida y documentación completa.' : 'Se recomienda cargar evidencias adicionales para fortalecer la base probatoria del caso mediante el procesamiento avanzado de IA.'}
 
@@ -453,8 +453,8 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
       
       // Si se activa anonimato, limpiar datos personales
       if (isAnonimo) {
-        nuevoFormulario.nombre = '';
-        nuevoFormulario.documento = '';
+        nuevoFormulario.nom = '';
+        nuevoFormulario.doc = '';
         nuevoFormulario.email = '';
         nuevoFormulario.telefono = '';
         nuevoFormulario.direccion = '';
@@ -475,8 +475,8 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
       
       // Si se activa anonimato, limpiar datos personales
       if (nuevoEstado) {
-        nuevoFormulario.nombre = '';
-        nuevoFormulario.documento = '';
+        nuevoFormulario.nom = '';
+        nuevoFormulario.doc = '';
         nuevoFormulario.email = '';
         nuevoFormulario.telefono = '';
         nuevoFormulario.direccion = '';
@@ -507,8 +507,8 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
     
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${formulario.anonimato ? 'Identificador' : 'Nombre'}: ${formulario.nombre}`, 20, 60);
-    doc.text(`${formulario.anonimato ? 'ID Documento' : 'Documento'}: ${formulario.documento}`, 20, 65);
+    doc.text(`${formulario.anon ? 'Identificador' : 'Nombre'}: ${formulario.nom}`, 20, 60);
+    doc.text(`${formulario.anon ? 'ID Documento' : 'Documento'}: ${formulario.doc}`, 20, 65);
     if (formulario.email) {
       doc.text(`Email: ${formulario.email}`, 20, 70);
     }
@@ -532,8 +532,8 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
     
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text(`Derecho Vulnerado: ${formulario.tipoPQRSFD}`, 20, 105);
-    doc.text(`Entidad Demandada: ${formulario.entidadDemandada}`, 20, 110);
+    doc.text(`Derecho Vulnerado: ${formulario.tip_pqrsfd}`, 20, 105);
+    doc.text(`Entidad Demandada: ${formulario.ent_dem}`, 20, 110);
     
     // Archivo Consejo IA si existe
     if (formulario.archivoConsejoIA) {
@@ -603,7 +603,7 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
     doc.text('Documento generado por el Sistema CSDT con IA - Fecha: ' + new Date().toLocaleDateString(), 20, 280);
     
     // Descargar PDF
-    doc.save(`PQRSFD_${formulario.nombre.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+    doc.save(`PQRSFD_${formulario.nom.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
   };
 
   // Función para generar dependencia
@@ -634,13 +634,13 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
     const dependencia = {
       id: Date.now(),
       tipo: 'PQRSFD',
-      solicitante: formulario.nombre,
-      documento: formulario.documento,
-      email: formulario.email,
-      telefono: formulario.telefono,
-      direccion: formulario.direccion,
-      tipoPQRSFD: formulario.tipoPQRSFD,
-      entidadDemandada: formulario.entidadDemandada,
+      solicitante: formulario.nom,
+      documento: formulario.doc,
+      email: formulario.cor,
+      telefono: formulario.tel,
+      direccion: formulario.dir,
+      tipoPQRSFD: formulario.tip_pqrsfd,
+      entidadDemandada: formulario.ent_dem,
       fechaCreacion: new Date().toISOString(),
       estado: 'Pendiente',
       prioridad: 'Alta',
@@ -648,7 +648,7 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
       
       // Archivos y documentos
       pdfGenerado: {
-        nombre: `PQRSFD_${formulario.nombre.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`,
+        nombre: `PQRSFD_${formulario.nom.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`,
         url: pdfUrl,
         fechaGeneracion: new Date().toISOString(),
         tamaño: pdfBlob.size
@@ -714,8 +714,8 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
     
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${formulario.anonimato ? 'Identificador' : 'Nombre'}: ${formulario.nombre}`, 20, 60);
-    doc.text(`${formulario.anonimato ? 'ID Documento' : 'Documento'}: ${formulario.documento}`, 20, 65);
+    doc.text(`${formulario.anon ? 'Identificador' : 'Nombre'}: ${formulario.nom}`, 20, 60);
+    doc.text(`${formulario.anon ? 'ID Documento' : 'Documento'}: ${formulario.doc}`, 20, 65);
     if (formulario.email) {
       doc.text(`Email: ${formulario.email}`, 20, 70);
     }
@@ -739,8 +739,8 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
     
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text(`Derecho Vulnerado: ${formulario.tipoPQRSFD}`, 20, 105);
-    doc.text(`Entidad Demandada: ${formulario.entidadDemandada}`, 20, 110);
+    doc.text(`Derecho Vulnerado: ${formulario.tip_pqrsfd}`, 20, 105);
+    doc.text(`Entidad Demandada: ${formulario.ent_dem}`, 20, 110);
     
     // Archivo Consejo IA si existe
     if (formulario.archivoConsejoIA) {
@@ -818,10 +818,10 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
     
     // Validar campos requeridos según el modo
     const camposRequeridos = [
-      { campo: formulario.nombre, nombre: formulario.anonimato ? 'Identificador' : 'Nombre' },
-      { campo: formulario.documento, nombre: formulario.anonimato ? 'ID Documento' : 'Documento' },
-      { campo: formulario.tipoPQRSFD, nombre: 'Derecho Vulnerado' },
-      { campo: formulario.hechos, nombre: 'Hechos' },
+      { campo: formulario.nom, nombre: formulario.anon ? 'Identificador' : 'Nombre' },
+      { campo: formulario.doc, nombre: formulario.anon ? 'ID Documento' : 'Documento' },
+      { campo: formulario.tip_pqrsfd, nombre: 'Derecho Vulnerado' },
+      { campo: formulario.hec, nombre: 'Hechos' },
       { campo: formulario.solicitud, nombre: 'Solicitud' }
     ];
     
@@ -850,7 +850,7 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
     }
   };
 
-  const derechoSeleccionado = tiposPQRSFD.find(derecho => derecho.id === formulario.tipoPQRSFD);
+  const derechoSeleccionado = tiposPQRSFD.find(derecho => derecho.id === formulario.tip_pqrsfd);
 
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)' }}>
@@ -1278,8 +1278,8 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
                 </label>
                 <input
                   type="text"
-                  name="nombre"
-                  value={formulario.nombre}
+                  name="nom"
+                  value={formulario.nom}
                   onChange={handleInputChange}
                   required
                   placeholder={formulario.anonimato ? 'Ej: Ciudadano Anónimo, Usuario 123, etc.' : 'Ingrese su nombre completo'}
@@ -1441,8 +1441,8 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
                   Derecho Fundamental Vulnerado *
                 </label>
                 <select
-                  name="tipoPQRSFD"
-                  value={formulario.tipoPQRSFD}
+                  name="tip_pqrsfd"
+                  value={formulario.tip_pqrsfd}
                   onChange={handleInputChange}
                   required
                   style={{
@@ -1870,16 +1870,16 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
                 <button
                   type="button"
                   onClick={generarPDFProfesional}
-                  disabled={!formulario.nombre || !formulario.hechos || !formulario.solicitud}
+                  disabled={!formulario.nom || !formulario.hec || !formulario.sol}
                   style={{
-                    background: !formulario.nombre || !formulario.hechos || !formulario.solicitud ? '#9ca3af' : '#3b82f6',
+                    background: !formulario.nom || !formulario.hec || !formulario.sol ? '#9ca3af' : '#3b82f6',
                     color: 'white',
                     padding: '12px 24px',
                     border: 'none',
                     borderRadius: '10px',
                     fontSize: '1rem',
                     fontWeight: 'bold',
-                    cursor: !formulario.nombre || !formulario.hechos || !formulario.solicitud ? 'not-allowed' : 'pointer',
+                    cursor: !formulario.nom || !formulario.hec || !formulario.sol ? 'not-allowed' : 'pointer',
                     transition: 'all 0.3s ease',
                     boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
                     display: 'flex',

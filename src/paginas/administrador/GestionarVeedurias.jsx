@@ -28,11 +28,11 @@ const GestionarVeedurias = () => {
   const [showForm, setShowForm] = useState(false)
   const [editingVeeduria, setEditingVeeduria] = useState(null)
   const [formData, setFormData] = useState({
-    titulo: '',
-    descripcion: '',
-    tipo: 'social',
-    estado: 'pendiente',
-    prioridad: 'media'
+    tit: '',
+    des: '',
+    tip: 'pet',
+    est: 'pen',
+    pri: 'med'
   })
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const GestionarVeedurias = () => {
       }
       setShowForm(false)
       setEditingVeeduria(null)
-      setFormData({ titulo: '', descripcion: '', tipo: 'social', estado: 'pendiente', prioridad: 'media' })
+      setFormData({ tit: '', des: '', tip: 'pet', est: 'pen', pri: 'med' })
       cargarVeedurias()
     } catch (error) {
       console.error('Error guardando veeduría:', error)
@@ -71,11 +71,11 @@ const GestionarVeedurias = () => {
   const handleEdit = (veeduria) => {
     setEditingVeeduria(veeduria)
     setFormData({
-      titulo: veeduria.titulo || '',
-      descripcion: veeduria.descripcion || '',
-      tipo: veeduria.tipo || 'social',
-      estado: veeduria.estado || 'pendiente',
-      prioridad: veeduria.prioridad || 'media'
+      tit: veeduria.tit || '',
+      des: veeduria.des || '',
+      tip: veeduria.tip || 'pet',
+      est: veeduria.est || 'pen',
+      pri: veeduria.pri || 'med'
     })
     setShowForm(true)
   }
@@ -101,36 +101,40 @@ const GestionarVeedurias = () => {
   }
 
   const filteredVeedurias = veedurias.filter(veeduria =>
-    veeduria.titulo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    veeduria.descripcion?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    veeduria.tipo?.toLowerCase().includes(searchTerm.toLowerCase())
+    veeduria.tit?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    veeduria.des?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    veeduria.tip?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   const getEstadoColor = (estado) => {
     switch (estado) {
-      case 'activa': return 'bg-green-100 text-green-800'
-      case 'pendiente': return 'bg-yellow-100 text-yellow-800'
-      case 'completada': return 'bg-blue-100 text-blue-800'
-      case 'cancelada': return 'bg-red-100 text-red-800'
+      case 'rad': return 'bg-green-100 text-green-800'
+      case 'pen': return 'bg-yellow-100 text-yellow-800'
+      case 'pro': return 'bg-blue-100 text-blue-800'
+      case 'cer': return 'bg-gray-100 text-gray-800'
+      case 'can': return 'bg-red-100 text-red-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
 
   const getPrioridadColor = (prioridad) => {
     switch (prioridad) {
-      case 'alta': return 'bg-red-100 text-red-800'
-      case 'media': return 'bg-yellow-100 text-yellow-800'
-      case 'baja': return 'bg-green-100 text-green-800'
+      case 'alt': return 'bg-red-100 text-red-800'
+      case 'med': return 'bg-yellow-100 text-yellow-800'
+      case 'baj': return 'bg-green-100 text-green-800'
+      case 'urg': return 'bg-purple-100 text-purple-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
 
   const getTipoName = (tipo) => {
     switch (tipo) {
-      case 'social': return 'Social'
-      case 'ambiental': return 'Ambiental'
-      case 'urbana': return 'Urbana'
-      case 'rural': return 'Rural'
+      case 'pet': return 'Petición'
+      case 'que': return 'Queja'
+      case 'rec': return 'Reclamo'
+      case 'sug': return 'Sugerencia'
+      case 'fel': return 'Felicitación'
+      case 'den': return 'Denuncia'
       default: return 'Desconocido'
     }
   }
@@ -184,72 +188,76 @@ const GestionarVeedurias = () => {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="titulo">Título</Label>
+                  <Label htmlFor="tit">Título</Label>
                   <Input
-                    id="titulo"
-                    value={formData.titulo}
-                    onChange={(e) => setFormData({ ...formData, titulo: e.target.value })}
+                    id="tit"
+                    value={formData.tit}
+                    onChange={(e) => setFormData({ ...formData, tit: e.target.value })}
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="descripcion">Descripción</Label>
+                  <Label htmlFor="des">Descripción</Label>
                   <Textarea
-                    id="descripcion"
-                    value={formData.descripcion}
-                    onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
+                    id="des"
+                    value={formData.des}
+                    onChange={(e) => setFormData({ ...formData, des: e.target.value })}
                     required
                     rows={4}
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="tipo">Tipo</Label>
+                    <Label htmlFor="tip">Tipo</Label>
                     <Select
-                      value={formData.tipo}
-                      onValueChange={(value) => setFormData({ ...formData, tipo: value })}
+                      value={formData.tip}
+                      onValueChange={(value) => setFormData({ ...formData, tip: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar tipo" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="social">Social</SelectItem>
-                        <SelectItem value="ambiental">Ambiental</SelectItem>
-                        <SelectItem value="urbana">Urbana</SelectItem>
-                        <SelectItem value="rural">Rural</SelectItem>
+                        <SelectItem value="pet">Petición</SelectItem>
+                        <SelectItem value="que">Queja</SelectItem>
+                        <SelectItem value="rec">Reclamo</SelectItem>
+                        <SelectItem value="sug">Sugerencia</SelectItem>
+                        <SelectItem value="fel">Felicitación</SelectItem>
+                        <SelectItem value="den">Denuncia</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="estado">Estado</Label>
+                    <Label htmlFor="est">Estado</Label>
                     <Select
-                      value={formData.estado}
-                      onValueChange={(value) => setFormData({ ...formData, estado: value })}
+                      value={formData.est}
+                      onValueChange={(value) => setFormData({ ...formData, est: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar estado" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="pendiente">Pendiente</SelectItem>
-                        <SelectItem value="activa">Activa</SelectItem>
-                        <SelectItem value="completada">Completada</SelectItem>
-                        <SelectItem value="cancelada">Cancelada</SelectItem>
+                        <SelectItem value="pen">Pendiente</SelectItem>
+                        <SelectItem value="pro">En Proceso</SelectItem>
+                        <SelectItem value="rad">Radicada</SelectItem>
+                        <SelectItem value="cer">Cerrada</SelectItem>
+                        <SelectItem value="can">Cancelada</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="prioridad">Prioridad</Label>
+                    <Label htmlFor="pri">Prioridad</Label>
                     <Select
-                      value={formData.prioridad}
-                      onValueChange={(value) => setFormData({ ...formData, prioridad: value })}
+                      value={formData.pri}
+                      onValueChange={(value) => setFormData({ ...formData, pri: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar prioridad" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="baja">Baja</SelectItem>
-                        <SelectItem value="media">Media</SelectItem>
-                        <SelectItem value="alta">Alta</SelectItem>
+                        <SelectItem value="baj">Baja</SelectItem>
+                        <SelectItem value="med">Media</SelectItem>
+                        <SelectItem value="alt">Alta</SelectItem>
+                        <SelectItem value="urg">Urgente</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -264,7 +272,7 @@ const GestionarVeedurias = () => {
                     onClick={() => {
                       setShowForm(false)
                       setEditingVeeduria(null)
-                      setFormData({ titulo: '', descripcion: '', tipo: 'social', estado: 'pendiente', prioridad: 'media' })
+                      setFormData({ tit: '', des: '', tip: 'pet', est: 'pen', pri: 'med' })
                     }}
                   >
                     Cancelar
@@ -302,20 +310,20 @@ const GestionarVeedurias = () => {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-medium">
-                          {veeduria.titulo}
+                          {veeduria.tit}
                         </h3>
                         <p className="text-sm text-muted-foreground">
-                          {veeduria.descripcion?.substring(0, 100)}...
+                          {veeduria.des?.substring(0, 100)}...
                         </p>
                         <div className="flex items-center space-x-2 mt-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(veeduria.estado)}`}>
-                            {veeduria.estado}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(veeduria.est)}`}>
+                            {veeduria.est}
                           </span>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(veeduria.prioridad)}`}>
-                            {veeduria.prioridad}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(veeduria.pri)}`}>
+                            {veeduria.pri}
                           </span>
                           <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                            {getTipoName(veeduria.tipo)}
+                            {getTipoName(veeduria.tip)}
                           </span>
                         </div>
                       </div>

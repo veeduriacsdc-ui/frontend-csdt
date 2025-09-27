@@ -34,19 +34,19 @@ const MediacionIntercultural = () => {
   const [mediaciones, setMediaciones] = useState([]);
   const [mediadores, setMediadores] = useState([]);
   const [comunidades, setComunidades] = useState([]);
-  const [filtroComunidad, setFiltroComunidad] = useState('todas');
-  const [filtroEstado, setFiltroEstado] = useState('todos');
+  const [filtroCom, setFiltroCom] = useState('todas');
+  const [filtroEst, setFiltroEst] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevaMediacion, setNuevaMediacion] = useState({
-    titulo: '',
-    descripcion: '',
-    comunidad: '',
-    mediador: '',
-    tipo: 'conflicto_territorial',
-    estado: 'pendiente',
-    fechaInicio: '',
-    fechaFin: '',
-    resultado: ''
+    tit: '',
+    des: '',
+    com: '',
+    med: '',
+    tip: 'conflicto_territorial',
+    est: 'pendiente',
+    fec_ini: '',
+    fec_fin: '',
+    res: ''
   });
 
   useEffect(() => {

@@ -40,21 +40,21 @@ import {
 const ControlRegional = () => {
   const [regiones, setRegiones] = useState([]);
   const [estadisticas, setEstadisticas] = useState({});
-  const [filtroRegion, setFiltroRegion] = useState('todas');
-  const [filtroTipo, setFiltroTipo] = useState('todos');
+  const [filtroReg, setFiltroReg] = useState('todas');
+  const [filtroTip, setFiltroTip] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevaRegion, setNuevaRegion] = useState({
-    nombre: '',
-    departamento: '',
-    municipios: [],
-    poblacion: '',
-    area: '',
-    coordenadas: '',
-    descripcion: '',
-    gobernador: '',
-    alcalde: '',
-    telefono: '',
-    email: ''
+    nom: '',
+    dep: '',
+    mun: [],
+    pob: '',
+    are: '',
+    coor: '',
+    des: '',
+    gob: '',
+    alc: '',
+    tel: '',
+    cor: ''
   });
 
   useEffect(() => {
@@ -66,17 +66,17 @@ const ControlRegional = () => {
     const regionesSimuladas = [
       {
         id: 'region_001',
-        nombre: 'Región Caribe',
-        departamento: 'Atlántico, Bolívar, Cesar, Córdoba, La Guajira, Magdalena, Sucre',
-        municipios: 150,
-        poblacion: 10000000,
-        area: '132000',
-        coordenadas: '10.4637, -75.5144',
-        descripcion: 'Región del Caribe colombiano con importante actividad minera y portuaria',
-        gobernador: 'Dr. Eduardo Verano',
-        alcalde: 'Dr. Jaime Pumarejo',
-        telefono: '605-340-0000',
-        email: 'contacto@caribe.gov.co',
+        nom: 'Región Caribe',
+        dep: 'Atlántico, Bolívar, Cesar, Córdoba, La Guajira, Magdalena, Sucre',
+        mun: 150,
+        pob: 10000000,
+        are: '132000',
+        coor: '10.4637, -75.5144',
+        des: 'Región del Caribe colombiano con importante actividad minera y portuaria',
+        gob: 'Dr. Eduardo Verano',
+        alc: 'Dr. Jaime Pumarejo',
+        tel: '605-340-0000',
+        cor: 'contacto@caribe.gov.co',
         proyectos: 45,
         irregularidades: 12,
         denuncias: 28,
@@ -85,17 +85,17 @@ const ControlRegional = () => {
       },
       {
         id: 'region_002',
-        nombre: 'Región Pacífico',
-        departamento: 'Chocó, Valle del Cauca, Cauca, Nariño',
-        municipios: 89,
-        poblacion: 6500000,
-        area: '83000',
-        coordenadas: '3.4516, -76.5320',
-        descripcion: 'Región del Pacífico con alta biodiversidad y actividad minera',
-        gobernador: 'Dr. Dilian Francisca Toro',
-        alcalde: 'Dr. Maurice Armitage',
-        telefono: '602-524-0000',
-        email: 'contacto@pacifico.gov.co',
+        nom: 'Región Pacífico',
+        dep: 'Chocó, Valle del Cauca, Cauca, Nariño',
+        mun: 89,
+        pob: 6500000,
+        are: '83000',
+        coor: '3.4516, -76.5320',
+        des: 'Región del Pacífico con alta biodiversidad y actividad minera',
+        gob: 'Dr. Dilian Francisca Toro',
+        alc: 'Dr. Maurice Armitage',
+        tel: '602-524-0000',
+        cor: 'contacto@pacifico.gov.co',
         proyectos: 32,
         irregularidades: 18,
         denuncias: 45,
@@ -193,11 +193,11 @@ const ControlRegional = () => {
   };
 
   const regionesFiltradas = regiones.filter(region => {
-    const cumpleRegion = filtroRegion === 'todas' || region.id === filtroRegion;
-    const cumpleTipo = filtroTipo === 'todos' || region.nombre.toLowerCase().includes(filtroTipo.toLowerCase());
+    const cumpleRegion = filtroReg === 'todas' || region.id === filtroReg;
+    const cumpleTipo = filtroTip === 'todos' || region.nom.toLowerCase().includes(filtroTip.toLowerCase());
     const cumpleBusqueda = busqueda === '' || 
-      region.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
-      region.departamento.toLowerCase().includes(busqueda.toLowerCase());
+      region.nom.toLowerCase().includes(busqueda.toLowerCase()) ||
+      region.dep.toLowerCase().includes(busqueda.toLowerCase());
     
     return cumpleRegion && cumpleTipo && cumpleBusqueda;
   });
@@ -267,7 +267,7 @@ const ControlRegional = () => {
                     <SelectItem value="todas">Todas las regiones</SelectItem>
                     {regiones.map(region => (
                       <SelectItem key={region.id} value={region.id}>
-                        {region.nombre}
+                        {region.nom}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -282,9 +282,9 @@ const ControlRegional = () => {
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
-                        <CardTitle className="text-xl mb-2">{region.nombre}</CardTitle>
-                        <p className="text-gray-600 mb-2">{region.departamento}</p>
-                        <p className="text-sm text-gray-600 mb-4">{region.descripcion}</p>
+                        <CardTitle className="text-xl mb-2">{region.nom}</CardTitle>
+                        <p className="text-gray-600 mb-2">{region.dep}</p>
+                        <p className="text-sm text-gray-600 mb-4">{region.des}</p>
                         
                         <div className="flex flex-wrap gap-2 mb-4">
                           <Badge className={getCalificacionColor(region.calificacion)}>
@@ -301,11 +301,11 @@ const ControlRegional = () => {
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600">
                           <div className="flex items-center space-x-2">
                             <Users className="h-4 w-4" />
-                            <span>{region.poblacion.toLocaleString()} habitantes</span>
+                            <span>{region.pob.toLocaleString()} habitantes</span>
                           </div>
                           <div className="flex items-center space-x-2">
                             <MapPin className="h-4 w-4" />
-                            <span>{region.area} km²</span>
+                            <span>{region.are} km²</span>
                           </div>
                           <div className="flex items-center space-x-2">
                             <BarChart3 className="h-4 w-4" />
@@ -319,16 +319,16 @@ const ControlRegional = () => {
 
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
                           <div>
-                            <strong>Gobernador:</strong> {region.gobernador}
+                            <strong>Gobernador:</strong> {region.gob}
                           </div>
                           <div>
-                            <strong>Alcalde:</strong> {region.alcalde}
+                            <strong>Alcalde:</strong> {region.alc}
                           </div>
                           <div>
-                            <strong>Teléfono:</strong> {region.telefono}
+                            <strong>Teléfono:</strong> {region.tel}
                           </div>
                           <div>
-                            <strong>Email:</strong> {region.email}
+                            <strong>Email:</strong> {region.cor}
                           </div>
                         </div>
                       </div>
@@ -579,12 +579,12 @@ const ControlRegional = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center space-x-2 text-orange-800">
                       <AlertTriangle className="h-5 w-5" />
-                      <span>{region.nombre}</span>
+                      <span>{region.nom}</span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      <p className="text-sm text-gray-600">{region.departamento}</p>
+                      <p className="text-sm text-gray-600">{region.dep}</p>
                       <div className="flex items-center space-x-4 text-sm">
                         <span className="text-orange-600 font-medium">
                           {region.irregularidades} irregularidades detectadas

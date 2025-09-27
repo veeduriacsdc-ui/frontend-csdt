@@ -4,16 +4,16 @@ import jsPDF from 'jspdf';
 
 const ConsejoVeeduriaTerritorial = () => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    documento: '',
-    email: '',
-    telefono: '',
-    direccion: '',
-    tipoOrganizacion: '',
-    experiencia: '',
-    motivacion: '',
-    compromiso: '',
-    archivos: []
+    nom: '',
+    doc: '',
+    cor: '',
+    tel: '',
+    dir: '',
+    tip_org: '',
+    exp: '',
+    mot: '',
+    comp: '',
+    arc: []
   });
 
   const [analisisTerritorial, setAnalisisTerritorial] = useState(null);

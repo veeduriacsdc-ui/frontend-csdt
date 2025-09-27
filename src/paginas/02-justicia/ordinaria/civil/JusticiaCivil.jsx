@@ -39,18 +39,18 @@ const JusticiaCivil = () => {
   const [filtroEstado, setFiltroEstado] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevoCaso, setNuevoCaso] = useState({
-    numero: '',
-    demandante: '',
-    demandado: '',
-    tipo: 'contratos',
-    monto: '',
-    descripcion: '',
-    fechaInicio: '',
-    estado: 'iniciado',
-    juzgado: '',
-    juez: '',
-    abogado: '',
-    documentos: []
+    num: '',
+    dem_nte: '',
+    dem_do: '',
+    tip: 'contratos',
+    mon: '',
+    des: '',
+    fec_ini: '',
+    est: 'iniciado',
+    juz: '',
+    jue: '',
+    abo: '',
+    doc: []
   });
 
   useEffect(() => {

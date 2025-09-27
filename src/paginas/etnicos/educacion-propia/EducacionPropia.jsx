@@ -37,15 +37,15 @@ const EducacionPropia = () => {
   const [filtroNivel, setFiltroNivel] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevoPrograma, setNuevoPrograma] = useState({
-    nombre: '',
-    descripcion: '',
-    comunidad: '',
-    nivel: 'basica',
-    modalidad: 'presencial',
-    duracion: '',
-    estado: 'activo',
-    fechaInicio: '',
-    estudiantes: 0
+    nom: '',
+    des: '',
+    com: '',
+    niv: 'basica',
+    mod: 'presencial',
+    dur: '',
+    est: 'activo',
+    fec_ini: '',
+    est: 0
   });
 
   useEffect(() => {

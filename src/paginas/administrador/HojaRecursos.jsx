@@ -5,18 +5,18 @@ const HojaRecursos = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [recursoEditando, setRecursoEditando] = useState(null);
   const [nuevoRecurso, setNuevoRecurso] = useState({
-    nombre: '',
-    tipo: 'trabajo',
-    etiqueta: '',
-    iniciales: '',
-    grupo: '',
-    capacidad: 100,
-    tasa: 0,
-    tasaHoras: 0,
-    costoUso: 0,
-    acumulacion: 'inicio',
-    calendario: 'estandar',
-    codigo: ''
+    nom: '',
+    tip: 'trabajo',
+    eti: '',
+    ini: '',
+    gru: '',
+    cap: 100,
+    tas: 0,
+    tas_hor: 0,
+    cos_uso: 0,
+    acu: 'inicio',
+    cal: 'estandar',
+    cod: ''
   });
 
   // Cargar recursos desde localStorage

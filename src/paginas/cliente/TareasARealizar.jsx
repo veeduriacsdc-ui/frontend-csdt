@@ -5,18 +5,18 @@ const TareasARealizar = () => {
   const { user } = useAuth();
   const [tareas, setTareas] = useState([]);
   const [filtros, setFiltros] = useState({
-    estado: 'todos',
-    tipo: 'todos'
+    est: 'todos',
+    tip: 'todos'
   });
   const [tareaSeleccionada, setTareaSeleccionada] = useState(null);
   const [mostrarChat, setMostrarChat] = useState(false);
   const [nuevoMensaje, setNuevoMensaje] = useState('');
   const [nuevaTarea, setNuevaTarea] = useState({
-    nombre: '',
-    descripcion: '',
-    tipo: 'general',
-    prioridad: 'media',
-    fechaLimite: ''
+    nom: '',
+    des: '',
+    tip: 'general',
+    pri: 'med',
+    fec_lim: ''
   });
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
@@ -34,20 +34,20 @@ const TareasARealizar = () => {
       const datosPrueba = [
         {
           id: 1,
-          nombre: 'Solicitud de Acción de Tutela',
-          descripcion: 'Presentar acción de tutela por violación del derecho a la salud',
-          tipo: 'legal',
-          prioridad: 'alta',
-          estado: 'en_progreso',
-          fechaCreacion: '2024-01-15T10:00:00Z',
-          fechaLimite: '2024-01-25T17:00:00Z',
-          operadorAsignado: 'Operador CSDT',
-          progreso: 65,
-          observaciones: 'Documentos enviados, esperando respuesta del operador',
+          nom: 'Solicitud de Acción de Tutela',
+          des: 'Presentar acción de tutela por violación del derecho a la salud',
+          tip: 'legal',
+          pri: 'alta',
+          est: 'en_progreso',
+          fec_cre: '2024-01-15T10:00:00Z',
+          fec_lim: '2024-01-25T17:00:00Z',
+          ope_asig: 'Operador CSDT',
+          pro: 65,
+          obs: 'Documentos enviados, esperando respuesta del operador',
           mensajes: [
             {
               id: 1,
-              remitente: user?.nombre || 'Cliente CSDT',
+              remitente: user?.nom || 'Cliente CSDT',
               mensaje: 'Hola, he enviado los documentos solicitados',
               fecha: '2024-01-15T10:30:00Z',
               tipo: 'cliente'
@@ -60,47 +60,47 @@ const TareasARealizar = () => {
               tipo: 'operador'
             }
           ],
-          costoEstimado: 500000,
-          costoReal: 320000,
-          documentos: ['Cédula', 'Historia clínica', 'Recetas médicas']
+          cos_est: 500000,
+          cos_real: 320000,
+          doc: ['Cédula', 'Historia clínica', 'Recetas médicas']
         },
         {
           id: 2,
-          nombre: 'Consulta sobre Proceso de Licitación',
-          descripcion: 'Investigar irregularidades en proceso de licitación municipal',
-          tipo: 'investigacion',
-          prioridad: 'media',
-          estado: 'pendiente',
-          fechaCreacion: '2024-01-16T14:00:00Z',
-          fechaLimite: '2024-01-30T17:00:00Z',
-          operadorAsignado: 'Pendiente asignación',
-          progreso: 0,
-          observaciones: 'Esperando asignación de operador',
+          nom: 'Consulta sobre Proceso de Licitación',
+          des: 'Investigar irregularidades en proceso de licitación municipal',
+          tip: 'investigacion',
+          pri: 'media',
+          est: 'pendiente',
+          fec_cre: '2024-01-16T14:00:00Z',
+          fec_lim: '2024-01-30T17:00:00Z',
+          ope_asig: 'Pendiente asignación',
+          pro: 0,
+          obs: 'Esperando asignación de operador',
           mensajes: [
             {
               id: 1,
-              remitente: user?.nombre || 'Cliente CSDT',
+              remitente: user?.nom || 'Cliente CSDT',
               mensaje: 'Necesito ayuda con este caso de licitación',
               fecha: '2024-01-16T14:15:00Z',
               tipo: 'cliente'
             }
           ],
-          costoEstimado: 750000,
-          costoReal: 0,
-          documentos: ['Documentos de licitación', 'Evidencias']
+          cos_est: 750000,
+          cos_real: 0,
+          doc: ['Documentos de licitación', 'Evidencias']
         },
         {
           id: 3,
-          nombre: 'Solicitud de Informe Técnico',
-          descripcion: 'Solicitar informe técnico sobre proyecto de infraestructura',
-          tipo: 'tecnico',
-          prioridad: 'baja',
-          estado: 'completada',
-          fechaCreacion: '2024-01-10T09:00:00Z',
-          fechaLimite: '2024-01-20T17:00:00Z',
-          operadorAsignado: 'Operador CSDT',
-          progreso: 100,
-          observaciones: 'Informe completado y entregado',
+          nom: 'Solicitud de Informe Técnico',
+          des: 'Solicitar informe técnico sobre proyecto de infraestructura',
+          tip: 'tecnico',
+          pri: 'baja',
+          est: 'completada',
+          fec_cre: '2024-01-10T09:00:00Z',
+          fec_lim: '2024-01-20T17:00:00Z',
+          ope_asig: 'Operador CSDT',
+          pro: 100,
+          obs: 'Informe completado y entregado',
           mensajes: [
             {
               id: 1,
@@ -111,15 +111,15 @@ const TareasARealizar = () => {
             },
             {
               id: 2,
-              remitente: user?.nombre || 'Cliente CSDT',
+              remitente: user?.nom || 'Cliente CSDT',
               mensaje: 'El informe está excelente, muchas gracias',
               fecha: '2024-01-20T16:30:00Z',
               tipo: 'cliente'
             }
           ],
-          costoEstimado: 300000,
-          costoReal: 280000,
-          documentos: ['Informe técnico final.pdf']
+          cos_est: 300000,
+          cos_real: 280000,
+          doc: ['Informe técnico final.pdf']
         }
       ];
       
@@ -133,47 +133,47 @@ const TareasARealizar = () => {
   const filtrarTareas = () => {
     let tareasFiltradas = tareas;
     
-    if (filtros.estado !== 'todos') {
-      tareasFiltradas = tareasFiltradas.filter(tarea => tarea.estado === filtros.estado);
+    if (filtros.est !== 'todos') {
+      tareasFiltradas = tareasFiltradas.filter(tarea => tarea.est === filtros.est);
     }
     
-    if (filtros.tipo !== 'todos') {
-      tareasFiltradas = tareasFiltradas.filter(tarea => tarea.tipo === filtros.tipo);
+    if (filtros.tip !== 'todos') {
+      tareasFiltradas = tareasFiltradas.filter(tarea => tarea.tip === filtros.tip);
     }
     
     return tareasFiltradas;
   };
 
   const crearNuevaTarea = () => {
-    if (!nuevaTarea.nombre || !nuevaTarea.descripcion) {
+    if (!nuevaTarea.nom || !nuevaTarea.des) {
       alert('Por favor, complete todos los campos obligatorios');
       return;
     }
 
     const tarea = {
       id: Date.now(),
-      nombre: nuevaTarea.nombre,
-      descripcion: nuevaTarea.descripcion,
-      tipo: nuevaTarea.tipo,
-      prioridad: nuevaTarea.prioridad,
-      estado: 'pendiente',
-      fechaCreacion: new Date().toISOString(),
-      fechaLimite: nuevaTarea.fechaLimite || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-      operadorAsignado: 'Pendiente asignación',
-      progreso: 0,
-      observaciones: 'Tarea creada, esperando asignación de operador',
+      nom: nuevaTarea.nom,
+      des: nuevaTarea.des,
+      tip: nuevaTarea.tip,
+      pri: nuevaTarea.pri,
+      est: 'pendiente',
+      fec_cre: new Date().toISOString(),
+      fec_lim: nuevaTarea.fec_lim || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+      ope_asig: 'Pendiente asignación',
+      pro: 0,
+      obs: 'Tarea creada, esperando asignación de operador',
       mensajes: [
         {
           id: 1,
-          remitente: user?.nombre || 'Cliente CSDT',
-          mensaje: `Nueva tarea creada: ${nuevaTarea.nombre}`,
+          remitente: user?.nom || 'Cliente CSDT',
+          mensaje: `Nueva tarea creada: ${nuevaTarea.nom}`,
           fecha: new Date().toISOString(),
           tipo: 'cliente'
         }
       ],
-      costoEstimado: 0,
-      costoReal: 0,
-      documentos: []
+      cos_est: 0,
+      cos_real: 0,
+      doc: []
     };
 
     const tareasActualizadas = [...tareas, tarea];
@@ -181,11 +181,11 @@ const TareasARealizar = () => {
     localStorage.setItem('tareasCliente', JSON.stringify(tareasActualizadas));
     
     setNuevaTarea({
-      nombre: '',
-      descripcion: '',
-      tipo: 'general',
-      prioridad: 'media',
-      fechaLimite: ''
+      nom: '',
+      des: '',
+      tip: 'general',
+      pri: 'med',
+      fec_lim: ''
     });
     setMostrarFormulario(false);
     alert('Tarea creada exitosamente');
@@ -196,7 +196,7 @@ const TareasARealizar = () => {
     
     const mensaje = {
       id: Date.now(),
-      remitente: user?.nombre || 'Cliente CSDT',
+      remitente: user?.nom || 'Cliente CSDT',
       mensaje: nuevoMensaje,
       fecha: new Date().toISOString(),
       tipo: 'cliente'
@@ -336,8 +336,8 @@ const TareasARealizar = () => {
                 </label>
                 <input
                   type="text"
-                  value={nuevaTarea.nombre}
-                  onChange={(e) => setNuevaTarea({...nuevaTarea, nombre: e.target.value})}
+                  value={nuevaTarea.nom}
+                  onChange={(e) => setNuevaTarea({...nuevaTarea, nom: e.target.value})}
                   placeholder="Ej: Solicitud de acción de tutela"
                   style={{
                     width: '100%',
@@ -359,8 +359,8 @@ const TareasARealizar = () => {
                   Tipo
                 </label>
                 <select
-                  value={nuevaTarea.tipo}
-                  onChange={(e) => setNuevaTarea({...nuevaTarea, tipo: e.target.value})}
+                  value={nuevaTarea.tip}
+                  onChange={(e) => setNuevaTarea({...nuevaTarea, tip: e.target.value})}
                   style={{
                     width: '100%',
                     padding: '12px',
@@ -387,8 +387,8 @@ const TareasARealizar = () => {
                   Prioridad
                 </label>
                 <select
-                  value={nuevaTarea.prioridad}
-                  onChange={(e) => setNuevaTarea({...nuevaTarea, prioridad: e.target.value})}
+                  value={nuevaTarea.pri}
+                  onChange={(e) => setNuevaTarea({...nuevaTarea, pri: e.target.value})}
                   style={{
                     width: '100%',
                     padding: '12px',
@@ -414,8 +414,8 @@ const TareasARealizar = () => {
                 </label>
                 <input
                   type="date"
-                  value={nuevaTarea.fechaLimite}
-                  onChange={(e) => setNuevaTarea({...nuevaTarea, fechaLimite: e.target.value})}
+                  value={nuevaTarea.fec_lim}
+                  onChange={(e) => setNuevaTarea({...nuevaTarea, fec_lim: e.target.value})}
                   style={{
                     width: '100%',
                     padding: '12px',
@@ -437,8 +437,8 @@ const TareasARealizar = () => {
                 Descripción *
               </label>
               <textarea
-                value={nuevaTarea.descripcion}
-                onChange={(e) => setNuevaTarea({...nuevaTarea, descripcion: e.target.value})}
+                value={nuevaTarea.des}
+                onChange={(e) => setNuevaTarea({...nuevaTarea, des: e.target.value})}
                 placeholder="Describe detalladamente tu solicitud..."
                 rows="4"
                 style={{
@@ -511,8 +511,8 @@ const TareasARealizar = () => {
                 Estado
               </label>
               <select
-                value={filtros.estado}
-                onChange={(e) => setFiltros({...filtros, estado: e.target.value})}
+                value={filtros.est}
+                onChange={(e) => setFiltros({...filtros, est: e.target.value})}
                 style={{
                   width: '100%',
                   padding: '10px',
@@ -539,8 +539,8 @@ const TareasARealizar = () => {
                 Tipo
               </label>
               <select
-                value={filtros.tipo}
-                onChange={(e) => setFiltros({...filtros, tipo: e.target.value})}
+                value={filtros.tip}
+                onChange={(e) => setFiltros({...filtros, tip: e.target.value})}
                 style={{
                   width: '100%',
                   padding: '10px',
@@ -575,7 +575,7 @@ const TareasARealizar = () => {
             boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
           }}>
             <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#f59e0b' }}>
-              {tareas.filter(t => t.estado === 'pendiente').length}
+              {tareas.filter(t => t.est === 'pendiente').length}
             </div>
             <div style={{ fontSize: '1rem', color: '#6b7280' }}>Pendientes</div>
           </div>
@@ -588,7 +588,7 @@ const TareasARealizar = () => {
             boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
           }}>
             <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#3b82f6' }}>
-              {tareas.filter(t => t.estado === 'en_progreso').length}
+              {tareas.filter(t => t.est === 'en_progreso').length}
             </div>
             <div style={{ fontSize: '1rem', color: '#6b7280' }}>En Progreso</div>
           </div>
@@ -601,7 +601,7 @@ const TareasARealizar = () => {
             boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
           }}>
             <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#10b981' }}>
-              {tareas.filter(t => t.estado === 'completada').length}
+              {tareas.filter(t => t.est === 'completada').length}
             </div>
             <div style={{ fontSize: '1rem', color: '#6b7280' }}>Completadas</div>
           </div>
@@ -674,20 +674,20 @@ const TareasARealizar = () => {
                           color: '#1f2937',
                           margin: '0 0 8px 0'
                         }}>
-                          {tarea.nombre}
+                          {tarea.nom}
                         </h3>
                         <p style={{ 
                           color: '#6b7280', 
                           fontSize: '0.9rem',
                           margin: '0 0 10px 0'
                         }}>
-                          {tarea.descripcion}
+                          {tarea.des}
                         </p>
                       </div>
                       
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'flex-end' }}>
                         <span style={{
-                          backgroundColor: getEstadoColor(tarea.estado),
+                          backgroundColor: getEstadoColor(tarea.est),
                           color: 'white',
                           padding: '4px 12px',
                           borderRadius: '20px',
@@ -695,11 +695,11 @@ const TareasARealizar = () => {
                           fontWeight: 'bold',
                           textTransform: 'capitalize'
                         }}>
-                          {tarea.estado.replace('_', ' ')}
+                          {tarea.est.replace('_', ' ')}
                         </span>
                         
                         <span style={{
-                          backgroundColor: getPrioridadColor(tarea.prioridad),
+                          backgroundColor: getPrioridadColor(tarea.pri),
                           color: 'white',
                           padding: '4px 12px',
                           borderRadius: '20px',
@@ -707,11 +707,11 @@ const TareasARealizar = () => {
                           fontWeight: 'bold',
                           textTransform: 'capitalize'
                         }}>
-                          {tarea.prioridad}
+                          {tarea.pri}
                         </span>
                         
                         <span style={{
-                          backgroundColor: getTipoColor(tarea.tipo),
+                          backgroundColor: getTipoColor(tarea.tip),
                           color: 'white',
                           padding: '4px 12px',
                           borderRadius: '20px',
@@ -719,7 +719,7 @@ const TareasARealizar = () => {
                           fontWeight: 'bold',
                           textTransform: 'capitalize'
                         }}>
-                          {tarea.tipo}
+                          {tarea.tip}
                         </span>
                       </div>
                     </div>
@@ -761,7 +761,7 @@ const TareasARealizar = () => {
                       <div>
                         <strong style={{ color: '#374151' }}>Fecha Límite:</strong>
                         <div style={{ color: '#6b7280', fontSize: '0.9rem' }}>
-                          {new Date(tarea.fechaLimite).toLocaleDateString('es-CO')}
+                          {new Date(tarea.fec_lim).toLocaleDateString('es-CO')}
                         </div>
                       </div>
                       
@@ -807,7 +807,7 @@ const TareasARealizar = () => {
                 color: '#059669',
                 marginBottom: '20px'
               }}>
-                {tareaSeleccionada.nombre}
+                {tareaSeleccionada.nom}
               </h3>
               
               {/* Chat */}

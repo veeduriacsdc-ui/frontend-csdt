@@ -20,13 +20,13 @@ import tareaService from '../../services/tareaService'
 const DashboardCliente = () => {
   const { user } = useAuth()
   const [stats, setStats] = useState({
-    veedurias: 0,
-    donaciones: 0,
-    tareas: 0,
-    tareasPendientes: 0
+    vee: 0,
+    don: 0,
+    tar: 0,
+    tarPen: 0
   })
   const [loading, setLoading] = useState(true)
-  const [recentActivities, setRecentActivities] = useState([])
+  const [actRecientes, setActRecientes] = useState([])
 
   useEffect(() => {
     cargarDatos()
@@ -43,40 +43,40 @@ const DashboardCliente = () => {
         tareaService.obtenerTareas().catch(() => ({ data: [] }))
       ])
 
-      const tareasPendientes = tareas.data?.filter(t => t.estado === 'pendiente').length || 0
+      const tarPen = tareas.data?.filter(t => t.est === 'pen').length || 0
 
       setStats({
-        veedurias: veedurias.data?.length || 0,
-        donaciones: donaciones.data?.length || 0,
-        tareas: tareas.data?.length || 0,
-        tareasPendientes
+        vee: veedurias.data?.length || 0,
+        don: donaciones.data?.length || 0,
+        tar: tareas.data?.length || 0,
+        tarPen
       })
 
       // Simular actividades recientes
-      setRecentActivities([
+      setActRecientes([
         {
           id: 1,
-          action: 'Veeduría enviada',
-          time: 'Hace 2 horas',
-          type: 'success'
+          acc: 'Veeduría enviada',
+          tiem: 'Hace 2 horas',
+          tip: 'success'
         },
         {
           id: 2,
-          action: 'Donación realizada',
-          time: 'Hace 4 horas',
-          type: 'success'
+          acc: 'Donación realizada',
+          tiem: 'Hace 4 horas',
+          tip: 'success'
         },
         {
           id: 3,
-          action: 'Tarea completada',
-          time: 'Hace 6 horas',
-          type: 'success'
+          acc: 'Tarea completada',
+          tiem: 'Hace 6 horas',
+          tip: 'success'
         },
         {
           id: 4,
-          action: 'Veeduría en revisión',
-          time: 'Hace 8 horas',
-          type: 'info'
+          acc: 'Veeduría en revisión',
+          tiem: 'Hace 8 horas',
+          tip: 'info'
         }
       ])
     } catch (error) {
@@ -86,33 +86,33 @@ const DashboardCliente = () => {
     }
   }
 
-  const quickActions = [
+  const accRapidas = [
     {
-      title: 'Crear Veeduría',
-      description: 'Enviar nueva veeduría ciudadana',
-      icon: FileText,
-      color: 'bg-green-500',
+      tit: 'Crear Veeduría',
+      des: 'Enviar nueva veeduría ciudadana',
+      ico: FileText,
+      col: 'bg-green-500',
       href: '/cliente/veedurias'
     },
     {
-      title: 'Realizar Donación',
-      description: 'Contribuir al desarrollo territorial',
-      icon: DollarSign,
-      color: 'bg-blue-500',
+      tit: 'Realizar Donación',
+      des: 'Contribuir al desarrollo territorial',
+      ico: DollarSign,
+      col: 'bg-blue-500',
       href: '/cliente/donaciones'
     },
     {
-      title: 'Ver Mis Tareas',
-      description: 'Revisar tareas asignadas',
-      icon: CheckSquare,
-      color: 'bg-purple-500',
+      tit: 'Ver Mis Tareas',
+      des: 'Revisar tareas asignadas',
+      ico: CheckSquare,
+      col: 'bg-purple-500',
       href: '/cliente/tareas'
     },
     {
-      title: 'Seguimiento de Casos',
-      description: 'Ver estado de mis solicitudes',
-      icon: Activity,
-      color: 'bg-orange-500',
+      tit: 'Seguimiento de Casos',
+      des: 'Ver estado de mis solicitudes',
+      ico: Activity,
+      col: 'bg-orange-500',
       href: '/cliente/seguimiento-casos'
     }
   ]
@@ -147,9 +147,9 @@ const DashboardCliente = () => {
               <FileText className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
-                {loading ? '...' : stats.veedurias}
-              </div>
+            <div className="text-2xl font-bold">
+              {loading ? '...' : stats.vee}
+            </div>
               <p className="text-xs text-green-600 flex items-center">
                 <TrendingUp className="h-3 w-3 mr-1" />
                 +2 este mes
@@ -165,9 +165,9 @@ const DashboardCliente = () => {
               <DollarSign className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
-                {loading ? '...' : stats.donaciones}
-              </div>
+            <div className="text-2xl font-bold">
+              {loading ? '...' : stats.don}
+            </div>
               <p className="text-xs text-blue-600 flex items-center">
                 <TrendingUp className="h-3 w-3 mr-1" />
                 +1 este mes
@@ -183,9 +183,9 @@ const DashboardCliente = () => {
               <CheckSquare className="h-4 w-4 text-purple-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
-                {loading ? '...' : stats.tareas}
-              </div>
+            <div className="text-2xl font-bold">
+              {loading ? '...' : stats.tar}
+            </div>
               <p className="text-xs text-purple-600 flex items-center">
                 <TrendingUp className="h-3 w-3 mr-1" />
                 +3 este mes
@@ -201,9 +201,9 @@ const DashboardCliente = () => {
               <Clock className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
-                {loading ? '...' : stats.tareasPendientes}
-              </div>
+            <div className="text-2xl font-bold">
+              {loading ? '...' : stats.tarPen}
+            </div>
               <p className="text-xs text-yellow-600 flex items-center">
                 <AlertCircle className="h-3 w-3 mr-1" />
                 Requieren atención
@@ -224,23 +224,23 @@ const DashboardCliente = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {recentActivities.map((activity) => (
-                  <div key={activity.id} className="flex items-center space-x-4">
-                    <div className={`w-2 h-2 rounded-full ${
-                      activity.type === 'success' ? 'bg-green-500' :
-                      activity.type === 'warning' ? 'bg-yellow-500' :
-                      'bg-blue-500'
-                    }`} />
-                    <div className="flex-1 space-y-1">
-                      <p className="text-sm font-medium leading-none">
-                        {activity.action}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {activity.time}
-                      </p>
-                    </div>
+              {actRecientes.map((actividad) => (
+                <div key={actividad.id} className="flex items-center space-x-4">
+                  <div className={`w-2 h-2 rounded-full ${
+                    actividad.tip === 'success' ? 'bg-green-500' :
+                    actividad.tip === 'warning' ? 'bg-yellow-500' :
+                    'bg-blue-500'
+                  }`} />
+                  <div className="flex-1 space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      {actividad.acc}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {actividad.tiem}
+                    </p>
                   </div>
-                ))}
+                </div>
+              ))}
               </div>
             </CardContent>
           </Card>
@@ -255,26 +255,26 @@ const DashboardCliente = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {quickActions.map((action, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    className="w-full justify-start h-auto p-4"
-                    asChild
-                  >
-                    <a href={action.href}>
-                      <div className={`w-8 h-8 rounded-md ${action.color} flex items-center justify-center mr-3`}>
-                        <action.icon className="h-4 w-4 text-white" />
+              {accRapidas.map((action, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  className="w-full justify-start h-auto p-4"
+                  asChild
+                >
+                  <a href={action.href}>
+                    <div className={`w-8 h-8 rounded-md ${action.col} flex items-center justify-center mr-3`}>
+                      <action.ico className="h-4 w-4 text-white" />
+                    </div>
+                    <div className="text-left">
+                      <div className="font-medium">{action.tit}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {action.des}
                       </div>
-                      <div className="text-left">
-                        <div className="font-medium">{action.title}</div>
-                        <div className="text-sm text-muted-foreground">
-                          {action.description}
-                        </div>
-                      </div>
-                    </a>
-                  </Button>
-                ))}
+                    </div>
+                  </a>
+                </Button>
+              ))}
               </div>
             </CardContent>
           </Card>

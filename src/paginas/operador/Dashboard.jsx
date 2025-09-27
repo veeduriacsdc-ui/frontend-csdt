@@ -5,10 +5,10 @@ import { useAuth } from '../../contexts/AuthContext';
 const DashboardOperador = () => {
   const { user } = useAuth();
   const [estadisticas] = useState({
-    tareasPendientes: 12,
-    proyectosActivos: 8,
-    eficiencia: 95,
-    reportesGenerados: 3
+    tar_pen: 12,
+    pro_act: 8,
+    efi: 95,
+    rep_gen: 3
   });
 
   const containerStyle = {
@@ -70,7 +70,7 @@ const DashboardOperador = () => {
               color: '#1f2937',
               marginBottom: '10px'
             }}>
-              {estadisticas.tareasPendientes}
+              {estadisticas.tar_pen}
             </h3>
             <p style={{
               color: '#6b7280',
@@ -91,7 +91,7 @@ const DashboardOperador = () => {
               color: '#1f2937',
               marginBottom: '10px'
             }}>
-              {estadisticas.proyectosActivos}
+              {estadisticas.pro_act}
             </h3>
             <p style={{
               color: '#6b7280',
@@ -112,7 +112,7 @@ const DashboardOperador = () => {
               color: '#1f2937',
               marginBottom: '10px'
             }}>
-              {estadisticas.eficiencia}%
+              {estadisticas.efi}%
             </h3>
             <p style={{
               color: '#6b7280',
@@ -133,7 +133,7 @@ const DashboardOperador = () => {
               color: '#1f2937',
               marginBottom: '10px'
             }}>
-              {estadisticas.reportesGenerados}
+              {estadisticas.rep_gen}
             </h3>
             <p style={{
               color: '#6b7280',

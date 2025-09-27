@@ -4,38 +4,38 @@ import { useAuth } from '../../contexts/AuthContext';
 const ConvocatoriasPublicas = () => {
   const { user } = useAuth();
   const [convocatorias, setConvocatorias] = useState([]);
-  const [filtroTipo, setFiltroTipo] = useState('todos');
-  const [filtroPrioridad, setFiltroPrioridad] = useState('todos');
+  const [filtroTip, setFiltroTip] = useState('todos');
+  const [filtroPri, setFiltroPri] = useState('todos');
   const [convocatoriaSeleccionada, setConvocatoriaSeleccionada] = useState(null);
   const [mostrarFormularioPostulacion, setMostrarFormularioPostulacion] = useState(false);
   const [postulacion, setPostulacion] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    experiencia: '',
-    motivacion: '',
-    disponibilidad: '',
-    archivos: []
+    nom: '',
+    cor: '',
+    tel: '',
+    exp: '',
+    mot: '',
+    disp: '',
+    arc: []
   });
 
   // Cargar convocatorias desde localStorage
   useEffect(() => {
     const convocatoriasGuardadas = JSON.parse(localStorage.getItem('convocatoriasTareas') || '[]');
     // Solo mostrar convocatorias publicadas
-    const convocatoriasPublicas = convocatoriasGuardadas.filter(c => c.estado === 'publicada');
+    const convocatoriasPublicas = convocatoriasGuardadas.filter(c => c.est === 'publicada');
     setConvocatorias(convocatoriasPublicas);
   }, []);
 
   const handlePostularse = (convocatoria) => {
     setConvocatoriaSeleccionada(convocatoria);
     setPostulacion({
-      nombre: user?.nombre || '',
-      email: '',
-      telefono: '',
-      experiencia: '',
-      motivacion: '',
-      disponibilidad: '',
-      archivos: []
+      nom: user?.nom || '',
+      cor: '',
+      tel: '',
+      exp: '',
+      mot: '',
+      disp: '',
+      arc: []
     });
     setMostrarFormularioPostulacion(true);
   };
@@ -50,14 +50,14 @@ const ConvocatoriasPublicas = () => {
       fechaPostulacion: new Date().toISOString(),
       estado: 'pendiente',
       tipoUsuario: 'operador', // Por defecto operador, se puede cambiar según el usuario logueado
-      prioridad: convocatoriaSeleccionada.prioridadOperadores ? 'alta' : 'normal'
+      pri: convocatoriaSeleccionada.pri_ope ? 'alta' : 'normal'
     };
 
     // Actualizar la convocatoria con la nueva postulación
     const convocatoriasGuardadas = JSON.parse(localStorage.getItem('convocatoriasTareas') || '[]');
     const convocatoriasActualizadas = convocatoriasGuardadas.map(conv => 
       conv.id === convocatoriaSeleccionada.id 
-        ? { ...conv, postulaciones: [...(conv.postulaciones || []), nuevaPostulacion] }
+        ? { ...conv, post: [...(conv.post || []), nuevaPostulacion] }
         : conv
     );
     localStorage.setItem('convocatoriasTareas', JSON.stringify(convocatoriasActualizadas));
@@ -65,7 +65,7 @@ const ConvocatoriasPublicas = () => {
     // Actualizar el estado local
     setConvocatorias(convocatorias.map(conv => 
       conv.id === convocatoriaSeleccionada.id 
-        ? { ...conv, postulaciones: [...(conv.postulaciones || []), nuevaPostulacion] }
+        ? { ...conv, post: [...(conv.post || []), nuevaPostulacion] }
         : conv
     ));
 
@@ -75,14 +75,14 @@ const ConvocatoriasPublicas = () => {
   };
 
   const convocatoriasFiltradas = convocatorias.filter(convocatoria => {
-    const cumpleTipo = filtroTipo === 'todos' || convocatoria.tipo === filtroTipo;
-    const cumplePrioridad = filtroPrioridad === 'todos' || convocatoria.prioridad === filtroPrioridad;
+    const cumpleTipo = filtroTip === 'todos' || convocatoria.tip === filtroTip;
+    const cumplePrioridad = filtroPri === 'todos' || convocatoria.pri === filtroPri;
     return cumpleTipo && cumplePrioridad;
   });
 
   const yaSePostulo = (convocatoria) => {
     if (!user) return false;
-    return convocatoria.postulaciones?.some(p => p.nombre === user.nombre);
+    return convocatoria.post?.some(p => p.nom === user.nom);
   };
 
   return (
@@ -201,32 +201,32 @@ const ConvocatoriasPublicas = () => {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '15px' }}>
                     <div>
                       <h3 style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#2d3748', marginBottom: '5px' }}>
-                        {convocatoria.codigo} - {convocatoria.titulo}
+                        {convocatoria.cod} - {convocatoria.tit}
                       </h3>
                       <p style={{ color: '#4a5568', marginBottom: '10px' }}>
-                        <strong>Tipo:</strong> {convocatoria.tipo} | 
-                        <strong> Prioridad:</strong> {convocatoria.prioridad} | 
-                        <strong> Presupuesto:</strong> ${convocatoria.presupuesto.toLocaleString()}
+                        <strong>Tipo:</strong> {convocatoria.tip} | 
+                        <strong> Prioridad:</strong> {convocatoria.pri} | 
+                        <strong> Presupuesto:</strong> ${convocatoria.pre.toLocaleString()}
                       </p>
-                      {convocatoria.prioridadOperadores && (
+                      {convocatoria.pri_ope && (
                         <p style={{ color: '#3182ce', marginBottom: '10px', fontWeight: 'bold' }}>
                           ⭐ Prioridad para Operadores
                         </p>
                       )}
-                      <p style={{ color: '#4a5568' }}>{convocatoria.descripcion}</p>
+                      <p style={{ color: '#4a5568' }}>{convocatoria.des}</p>
                     </div>
                     <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                       <span style={{ 
-                        background: convocatoria.prioridad === 'critica' ? '#e53e3e' : 
-                                   convocatoria.prioridad === 'alta' ? '#d69e2e' : 
-                                   convocatoria.prioridad === 'media' ? '#3182ce' : '#38a169',
+                        background: convocatoria.pri === 'critica' ? '#e53e3e' : 
+                                   convocatoria.pri === 'alta' ? '#d69e2e' : 
+                                   convocatoria.pri === 'media' ? '#3182ce' : '#38a169',
                         color: 'white',
                         padding: '6px 12px',
                         borderRadius: '6px',
                         fontSize: '0.9rem',
                         fontWeight: 'bold'
                       }}>
-                        {convocatoria.prioridad}
+                        {convocatoria.pri}
                       </span>
                       <span style={{ 
                         background: '#805ad5',
@@ -236,13 +236,13 @@ const ConvocatoriasPublicas = () => {
                         fontSize: '0.9rem',
                         fontWeight: 'bold'
                       }}>
-                        ${convocatoria.presupuesto.toLocaleString()}
+                        ${convocatoria.pre.toLocaleString()}
                       </span>
                     </div>
                   </div>
                   
                   {/* Requisitos */}
-                  {convocatoria.requisitos.length > 0 && (
+                  {convocatoria.req.length > 0 && (
                     <div style={{ 
                       borderTop: '2px solid #e2e8f0', 
                       paddingTop: '15px',
@@ -252,7 +252,7 @@ const ConvocatoriasPublicas = () => {
                         📋 Requisitos:
                       </h4>
                       <ul style={{ marginLeft: '20px' }}>
-                        {convocatoria.requisitos.map((requisito, index) => (
+                        {convocatoria.req.map((requisito, index) => (
                           <li key={index} style={{ color: '#4a5568', fontSize: '0.9rem', marginBottom: '5px' }}>
                             {requisito}
                           </li>
@@ -262,7 +262,7 @@ const ConvocatoriasPublicas = () => {
                   )}
 
                   {/* Beneficios */}
-                  {convocatoria.beneficios.length > 0 && (
+                  {convocatoria.ben.length > 0 && (
                     <div style={{ 
                       borderTop: '2px solid #e2e8f0', 
                       paddingTop: '15px',
@@ -272,7 +272,7 @@ const ConvocatoriasPublicas = () => {
                         🎁 Beneficios:
                       </h4>
                       <ul style={{ marginLeft: '20px' }}>
-                        {convocatoria.beneficios.map((beneficio, index) => (
+                        {convocatoria.ben.map((beneficio, index) => (
                           <li key={index} style={{ color: '#4a5568', fontSize: '0.9rem', marginBottom: '5px' }}>
                             {beneficio}
                           </li>
@@ -292,10 +292,10 @@ const ConvocatoriasPublicas = () => {
                     </h4>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px' }}>
                       <div style={{ fontSize: '0.9rem' }}>
-                        <strong>Publicación:</strong> {convocatoria.fechaPublicacion}
+                        <strong>Publicación:</strong> {convocatoria.fec_pub}
                       </div>
                       <div style={{ fontSize: '0.9rem' }}>
-                        <strong>Cierre:</strong> {convocatoria.fechaCierre}
+                        <strong>Cierre:</strong> {convocatoria.fec_cierre}
                       </div>
                     </div>
                   </div>

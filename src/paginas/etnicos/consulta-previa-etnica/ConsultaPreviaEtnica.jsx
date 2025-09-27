@@ -34,15 +34,15 @@ const ConsultaPreviaEtnica = () => {
   const [filtroComunidad, setFiltroComunidad] = useState('todas');
   const [filtroEstado, setFiltroEstado] = useState('todos');
   const [nuevaConsulta, setNuevaConsulta] = useState({
-    titulo: '',
-    descripcion: '',
-    comunidad: '',
-    proyecto: '',
-    tipoConsulta: 'informacion',
-    fechaInicio: '',
-    fechaFin: '',
-    documentos: [],
-    estado: 'pendiente'
+    tit: '',
+    des: '',
+    com: '',
+    pro: '',
+    tip_con: 'informacion',
+    fec_ini: '',
+    fec_fin: '',
+    doc: [],
+    est: 'pendiente'
   });
 
   useEffect(() => {

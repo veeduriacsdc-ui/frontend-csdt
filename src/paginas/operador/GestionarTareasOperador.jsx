@@ -26,15 +26,15 @@ const GestionarTareasOperador = () => {
   const [tareas, setTareas] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
-  const [filterEstado, setFilterEstado] = useState('todos')
+  const [filtroEst, setFiltroEst] = useState('todos')
   const [showForm, setShowForm] = useState(false)
   const [editingTarea, setEditingTarea] = useState(null)
   const [formData, setFormData] = useState({
-    titulo: '',
-    descripcion: '',
-    prioridad: 'media',
-    estado: 'pendiente',
-    fecha_vencimiento: ''
+    tit: '',
+    des: '',
+    pri: 'med',
+    est: 'pen',
+    fec_ven: ''
   })
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const GestionarTareasOperador = () => {
       }
       setShowForm(false)
       setEditingTarea(null)
-      setFormData({ titulo: '', descripcion: '', prioridad: 'media', estado: 'pendiente', fecha_vencimiento: '' })
+      setFormData({ tit: '', des: '', pri: 'med', est: 'pen', fec_ven: '' })
       cargarTareas()
     } catch (error) {
       console.error('Error guardando tarea:', error)
@@ -73,11 +73,11 @@ const GestionarTareasOperador = () => {
   const handleEdit = (tarea) => {
     setEditingTarea(tarea)
     setFormData({
-      titulo: tarea.titulo || '',
-      descripcion: tarea.descripcion || '',
-      prioridad: tarea.prioridad || 'media',
-      estado: tarea.estado || 'pendiente',
-      fecha_vencimiento: tarea.fecha_vencimiento || ''
+      tit: tarea.tit || tarea.titulo || '',
+      des: tarea.des || tarea.descripcion || '',
+      pri: tarea.pri || tarea.prioridad || 'med',
+      est: tarea.est || tarea.estado || 'pen',
+      fec_ven: tarea.fec_ven || tarea.fecha_vencimiento || ''
     })
     setShowForm(true)
   }
@@ -92,9 +92,9 @@ const GestionarTareasOperador = () => {
   }
 
   const filteredTareas = tareas.filter(tarea => {
-    const matchesSearch = tarea.titulo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         tarea.descripcion?.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesFilter = filterEstado === 'todos' || tarea.estado === filterEstado
+    const matchesSearch = tarea.tit?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         tarea.des?.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesFilter = filtroEst === 'todos' || tarea.est === filtroEst
     return matchesSearch && matchesFilter
   })
 
@@ -202,8 +202,8 @@ const GestionarTareasOperador = () => {
                   <Label htmlFor="descripcion">Descripción</Label>
                   <Textarea
                     id="descripcion"
-                    value={formData.descripcion}
-                    onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
+                    value={formData.des}
+                    onChange={(e) => setFormData({ ...formData, des: e.target.value })}
                     required
                     rows={4}
                   />
@@ -212,8 +212,8 @@ const GestionarTareasOperador = () => {
                   <div className="space-y-2">
                     <Label htmlFor="prioridad">Prioridad</Label>
                     <Select
-                      value={formData.prioridad}
-                      onValueChange={(value) => setFormData({ ...formData, prioridad: value })}
+                      value={formData.pri}
+                      onValueChange={(value) => setFormData({ ...formData, pri: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar prioridad" />
@@ -228,8 +228,8 @@ const GestionarTareasOperador = () => {
                   <div className="space-y-2">
                     <Label htmlFor="estado">Estado</Label>
                     <Select
-                      value={formData.estado}
-                      onValueChange={(value) => setFormData({ ...formData, estado: value })}
+                      value={formData.est}
+                      onValueChange={(value) => setFormData({ ...formData, est: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar estado" />
@@ -247,8 +247,8 @@ const GestionarTareasOperador = () => {
                     <Input
                       id="fecha_vencimiento"
                       type="date"
-                      value={formData.fecha_vencimiento}
-                      onChange={(e) => setFormData({ ...formData, fecha_vencimiento: e.target.value })}
+                      value={formData.fec_ven}
+                      onChange={(e) => setFormData({ ...formData, fec_ven: e.target.value })}
                     />
                   </div>
                 </div>
@@ -262,7 +262,7 @@ const GestionarTareasOperador = () => {
                     onClick={() => {
                       setShowForm(false)
                       setEditingTarea(null)
-                      setFormData({ titulo: '', descripcion: '', prioridad: 'media', estado: 'pendiente', fecha_vencimiento: '' })
+                      setFormData({ tit: '', des: '', pri: 'med', est: 'pen', fec_ven: '' })
                     }}
                   >
                     Cancelar
@@ -304,23 +304,23 @@ const GestionarTareasOperador = () => {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-medium">
-                          {tarea.titulo}
+                          {tarea.tit}
                         </h3>
                         <p className="text-sm text-muted-foreground">
-                          {tarea.descripcion?.substring(0, 100)}...
+                          {tarea.des?.substring(0, 100)}...
                         </p>
                         <div className="flex items-center space-x-2 mt-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(tarea.estado)}`}>
-                            {tarea.estado}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(tarea.est)}`}>
+                            {tarea.est}
                           </span>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(tarea.prioridad)}`}>
-                            {tarea.prioridad}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(tarea.pri)}`}>
+                            {tarea.pri}
                           </span>
                           <span className="text-xs text-muted-foreground">
                             <Calendar className="h-3 w-3 inline mr-1" />
-                            {formatFecha(tarea.fecha_vencimiento)}
+                            {formatFecha(tarea.fec_ven)}
                           </span>
-                          {isVencida(tarea.fecha_vencimiento) && tarea.estado !== 'completada' && (
+                          {isVencida(tarea.fec_ven) && tarea.est !== 'completada' && (
                             <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                               <AlertCircle className="h-3 w-3 inline mr-1" />
                               Vencida
@@ -337,7 +337,7 @@ const GestionarTareasOperador = () => {
                       >
                         <Edit className="h-4 w-4" />
                       </Button>
-                      {tarea.estado === 'pendiente' && (
+                      {tarea.est === 'pendiente' && (
                         <Button
                           size="sm"
                           variant="outline"
@@ -347,7 +347,7 @@ const GestionarTareasOperador = () => {
                           <Clock className="h-4 w-4" />
                         </Button>
                       )}
-                      {tarea.estado === 'en_progreso' && (
+                      {tarea.est === 'en_progreso' && (
                         <Button
                           size="sm"
                           variant="outline"

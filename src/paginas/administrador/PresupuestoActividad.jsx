@@ -5,30 +5,30 @@ const PresupuestoActividad = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [presupuestoEditando, setPresupuestoEditando] = useState(null);
   const [nuevoPresupuesto, setNuevoPresupuesto] = useState({
-    codigo: '',
-    nombre: '',
-    descripcion: '',
-    tipo: 'juridica',
-    prioridad: 'media',
-    fechaInicio: '',
-    fechaFin: '',
-    duracion: 0,
-    estado: 'planificacion',
-    responsable: '',
-    apuSeleccionado: '',
-    dependenciaId: '',
-    recursos: [],
-    costos: {
-      materiales: 0,
-      manoObra: 0,
-      equipos: 0,
-      subcontratos: 0,
-      indirectos: 0,
-      utilidad: 0,
-      total: 0
+    cod: '',
+    nom: '',
+    des: '',
+    tip: 'juridica',
+    pri: 'med',
+    fec_ini: '',
+    fec_fin: '',
+    dur: 0,
+    est: 'planificacion',
+    resp: '',
+    apu_sel: '',
+    dep_id: '',
+    rec: [],
+    cos: {
+      mat: 0,
+      man_obr: 0,
+      equ: 0,
+      sub: 0,
+      ind: 0,
+      uti: 0,
+      tot: 0
     },
-    progreso: 0,
-    observaciones: ''
+    pro: 0,
+    obs: ''
   });
 
   // Estados para APUs, dependencias y tareas

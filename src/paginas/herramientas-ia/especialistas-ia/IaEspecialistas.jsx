@@ -40,8 +40,8 @@ const IaEspecialistas = () => {
   const [especialidad, setEspecialidad] = useState('derecho_constitucional');
   const [tipoAnalisis, setTipoAnalisis] = useState('completo');
   const [contexto, setContexto] = useState('');
-  const [filtroEspecialidad, setFiltroEspecialidad] = useState('todas');
-  const [filtroExperiencia, setFiltroExperiencia] = useState('todas');
+  const [filtroEsp, setFiltroEsp] = useState('todas');
+  const [filtroExp, setFiltroExp] = useState('todas');
 
   useEffect(() => {
     cargarEspecialistas();
@@ -58,68 +58,68 @@ const IaEspecialistas = () => {
         const especialistasSimulados = [
           {
             id: 'esp_001',
-            nombre: 'Dr. María González',
-            especialidad: 'derecho_constitucional',
-            experiencia: '15 años',
-            universidad: 'Universidad Nacional de Colombia',
+            nom: 'Dr. María González',
+            esp: 'derecho_constitucional',
+            exp: '15 años',
+            uni: 'Universidad Nacional de Colombia',
             casos: 245,
-            calificacion: 4.8,
-            disponibilidad: 'disponible',
-            idiomas: ['Español', 'Inglés'],
-            certificaciones: ['Especialista en Derecho Constitucional', 'Magíster en Derecho Público'],
-            descripcion: 'Especialista en derecho constitucional con amplia experiencia en consulta previa y derechos étnicos.'
+            cal: 4.8,
+            disp: 'disponible',
+            idi: ['Español', 'Inglés'],
+            cert: ['Especialista en Derecho Constitucional', 'Magíster en Derecho Público'],
+            des: 'Especialista en derecho constitucional con amplia experiencia en consulta previa y derechos étnicos.'
           },
           {
             id: 'esp_002',
-            nombre: 'Dr. Carlos Rodríguez',
-            especialidad: 'derecho_administrativo',
-            experiencia: '12 años',
-            universidad: 'Universidad de los Andes',
+            nom: 'Dr. Carlos Rodríguez',
+            esp: 'derecho_administrativo',
+            exp: '12 años',
+            uni: 'Universidad de los Andes',
             casos: 189,
-            calificacion: 4.6,
-            disponibilidad: 'ocupado',
-            idiomas: ['Español', 'Francés'],
-            certificaciones: ['Especialista en Derecho Administrativo', 'Doctor en Derecho'],
-            descripcion: 'Experto en derecho administrativo y procedimientos de contratación estatal.'
+            cal: 4.6,
+            disp: 'ocupado',
+            idi: ['Español', 'Francés'],
+            cert: ['Especialista en Derecho Administrativo', 'Doctor en Derecho'],
+            des: 'Experto en derecho administrativo y procedimientos de contratación estatal.'
           },
           {
             id: 'esp_003',
-            nombre: 'Dra. Ana Martínez',
-            especialidad: 'derecho_penal',
-            experiencia: '18 años',
-            universidad: 'Universidad Externado de Colombia',
+            nom: 'Dra. Ana Martínez',
+            esp: 'derecho_penal',
+            exp: '18 años',
+            uni: 'Universidad Externado de Colombia',
             casos: 312,
-            calificacion: 4.9,
-            disponibilidad: 'disponible',
-            idiomas: ['Español', 'Inglés', 'Portugués'],
-            certificaciones: ['Especialista en Derecho Penal', 'Magíster en Criminología'],
-            descripcion: 'Especialista en derecho penal con enfoque en delitos contra la administración pública.'
+            cal: 4.9,
+            disp: 'disponible',
+            idi: ['Español', 'Inglés', 'Portugués'],
+            cert: ['Especialista en Derecho Penal', 'Magíster en Criminología'],
+            des: 'Especialista en derecho penal con enfoque en delitos contra la administración pública.'
           },
           {
             id: 'esp_004',
-            nombre: 'Dr. Luis Fernández',
-            especialidad: 'derecho_ambiental',
-            experiencia: '10 años',
-            universidad: 'Universidad del Rosario',
+            nom: 'Dr. Luis Fernández',
+            esp: 'derecho_ambiental',
+            exp: '10 años',
+            uni: 'Universidad del Rosario',
             casos: 156,
-            calificacion: 4.7,
-            disponibilidad: 'disponible',
-            idiomas: ['Español', 'Inglés'],
-            certificaciones: ['Especialista en Derecho Ambiental', 'Magíster en Gestión Ambiental'],
-            descripcion: 'Experto en derecho ambiental y consulta previa para proyectos de impacto ambiental.'
+            cal: 4.7,
+            disp: 'disponible',
+            idi: ['Español', 'Inglés'],
+            cert: ['Especialista en Derecho Ambiental', 'Magíster en Gestión Ambiental'],
+            des: 'Experto en derecho ambiental y consulta previa para proyectos de impacto ambiental.'
           },
           {
             id: 'esp_005',
-            nombre: 'Dra. Patricia López',
-            especialidad: 'derecho_laboral',
-            experiencia: '14 años',
-            universidad: 'Pontificia Universidad Javeriana',
+            nom: 'Dra. Patricia López',
+            esp: 'derecho_laboral',
+            exp: '14 años',
+            uni: 'Pontificia Universidad Javeriana',
             casos: 203,
-            calificacion: 4.5,
-            disponibilidad: 'disponible',
-            idiomas: ['Español', 'Inglés'],
-            certificaciones: ['Especialista en Derecho Laboral', 'Magíster en Relaciones Laborales'],
-            descripcion: 'Especialista en derecho laboral y protección de derechos de trabajadores étnicos.'
+            cal: 4.5,
+            disp: 'disponible',
+            idi: ['Español', 'Inglés'],
+            cert: ['Especialista en Derecho Laboral', 'Magíster en Relaciones Laborales'],
+            des: 'Especialista en derecho laboral y protección de derechos de trabajadores étnicos.'
           }
         ];
         setEspecialistas(especialistasSimulados);
@@ -192,11 +192,11 @@ const IaEspecialistas = () => {
   };
 
   const especialistasFiltrados = especialistas.filter(especialista => {
-    const cumpleEspecialidad = filtroEspecialidad === 'todas' || especialista.especialidad === filtroEspecialidad;
-    const cumpleExperiencia = filtroExperiencia === 'todas' || 
-      (filtroExperiencia === 'experto' && parseInt(especialista.experiencia) >= 15) ||
-      (filtroExperiencia === 'intermedio' && parseInt(especialista.experiencia) >= 5 && parseInt(especialista.experiencia) < 15) ||
-      (filtroExperiencia === 'junior' && parseInt(especialista.experiencia) < 5);
+    const cumpleEspecialidad = filtroEsp === 'todas' || especialista.esp === filtroEsp;
+    const cumpleExperiencia = filtroExp === 'todas' || 
+      (filtroExp === 'experto' && parseInt(especialista.exp) >= 15) ||
+      (filtroExp === 'intermedio' && parseInt(especialista.exp) >= 5 && parseInt(especialista.exp) < 15) ||
+      (filtroExp === 'junior' && parseInt(especialista.exp) < 5);
     
     return cumpleEspecialidad && cumpleExperiencia;
   });
@@ -243,7 +243,7 @@ const IaEspecialistas = () => {
             <div className="flex flex-wrap gap-4 mb-6">
               <div className="flex-1 min-w-[200px]">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Especialidad</label>
-                <Select value={filtroEspecialidad} onValueChange={setFiltroEspecialidad}>
+                <Select value={filtroEsp} onValueChange={setFiltroEsp}>
                   <SelectTrigger>
                     <SelectValue placeholder="Seleccionar especialidad" />
                   </SelectTrigger>
@@ -262,7 +262,7 @@ const IaEspecialistas = () => {
               
               <div className="flex-1 min-w-[200px]">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Experiencia</label>
-                <Select value={filtroExperiencia} onValueChange={setFiltroExperiencia}>
+                <Select value={filtroExp} onValueChange={setFiltroExp}>
                   <SelectTrigger>
                     <SelectValue placeholder="Seleccionar experiencia" />
                   </SelectTrigger>
@@ -283,22 +283,22 @@ const IaEspecialistas = () => {
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
-                        <CardTitle className="text-xl mb-2">{especialista.nombre}</CardTitle>
-                        <p className="text-sm text-gray-600 mb-4">{especialista.descripcion}</p>
+                        <CardTitle className="text-xl mb-2">{especialista.nom}</CardTitle>
+                        <p className="text-sm text-gray-600 mb-4">{especialista.des}</p>
                         
                         <div className="flex flex-wrap gap-2 mb-4">
-                          <Badge className={getEspecialidadColor(especialista.especialidad)}>
-                            {getEspecialidadNombre(especialista.especialidad)}
+                          <Badge className={getEspecialidadColor(especialista.esp)}>
+                            {getEspecialidadNombre(especialista.esp)}
                           </Badge>
-                          <Badge className={getDisponibilidadColor(especialista.disponibilidad)}>
-                            {especialista.disponibilidad.replace('_', ' ').toUpperCase()}
+                          <Badge className={getDisponibilidadColor(especialista.disp)}>
+                            {especialista.disp.replace('_', ' ').toUpperCase()}
                           </Badge>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
                           <div className="flex items-center space-x-2">
                             <GraduationCap className="h-4 w-4" />
-                            <span>{especialista.experiencia}</span>
+                            <span>{especialista.exp}</span>
                           </div>
                           <div className="flex items-center space-x-2">
                             <FileText className="h-4 w-4" />
@@ -306,18 +306,18 @@ const IaEspecialistas = () => {
                           </div>
                           <div className="flex items-center space-x-2">
                             <Star className="h-4 w-4" />
-                            <span>{especialista.calificacion}/5</span>
+                            <span>{especialista.cal}/5</span>
                           </div>
                           <div className="flex items-center space-x-2">
                             <BookOpen className="h-4 w-4" />
-                            <span>{especialista.universidad}</span>
+                            <span>{especialista.uni}</span>
                           </div>
                         </div>
 
                         <div className="mt-4">
                           <p className="text-sm font-medium text-gray-700 mb-2">Idiomas:</p>
                           <div className="flex flex-wrap gap-1">
-                            {especialista.idiomas.map((idioma, index) => (
+                            {especialista.idi.map((idioma, index) => (
                               <Badge key={index} variant="outline" className="text-xs">
                                 {idioma}
                               </Badge>
@@ -328,7 +328,7 @@ const IaEspecialistas = () => {
                         <div className="mt-3">
                           <p className="text-sm font-medium text-gray-700 mb-2">Certificaciones:</p>
                           <div className="space-y-1">
-                            {especialista.certificaciones.map((cert, index) => (
+                            {especialista.cert.map((cert, index) => (
                               <p key={index} className="text-xs text-gray-600">• {cert}</p>
                             ))}
                           </div>

@@ -36,18 +36,18 @@ const MedicinaNatural = () => {
   const [filtroCategoria, setFiltroCategoria] = useState('todas');
   const [busqueda, setBusqueda] = useState('');
   const [nuevaPlanta, setNuevaPlanta] = useState({
-    nombre: '',
-    nombreCientifico: '',
-    comunidad: '',
-    categoria: 'digestiva',
-    propiedades: '',
-    preparacion: '',
-    dosis: '',
-    contraindicaciones: '',
+    nom: '',
+    nom_cien: '',
+    com: '',
+    cat: 'digestiva',
+    prop: '',
+    prep: '',
+    dos: '',
+    cont: '',
     uso: 'medicinal',
-    estacion: 'todo_el_ano',
-    parteUsada: 'hojas',
-    imagen: ''
+    est: 'todo_el_ano',
+    par_usa: 'hojas',
+    img: ''
   });
 
   useEffect(() => {

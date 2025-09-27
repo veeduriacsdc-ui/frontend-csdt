@@ -7,14 +7,14 @@ const CentroGestionLegal = () => {
   const [casos, setCasos] = useState([]);
   const [casoSeleccionado, setCasoSeleccionado] = useState(null);
   const [filtros, setFiltros] = useState({
-    estado: 'todos',
-    prioridad: 'todos',
-    tipo: 'todos'
+    est: 'todos',
+    pri: 'todos',
+    tip: 'todos'
   });
   const [nuevaComunicacion, setNuevaComunicacion] = useState({
-    tipo: 'solicitud',
-    mensaje: '',
-    archivos: []
+    tip: 'solicitud',
+    men: '',
+    arc: []
   });
   const [mostrarFormularioComunicacion, setMostrarFormularioComunicacion] = useState(false);
 

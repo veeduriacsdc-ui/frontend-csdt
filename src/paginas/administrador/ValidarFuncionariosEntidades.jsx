@@ -6,9 +6,9 @@ const ValidarFuncionariosEntidades = () => {
   const { user } = useAuth();
   const [monitores, setMonitores] = useState([]);
   const [filtros, setFiltros] = useState({
-    estado: '',
-    tipoEntidad: '',
-    busqueda: ''
+    est: '',
+    tip_ent: '',
+    bus: ''
   });
   const [monitorSeleccionado, setMonitorSeleccionado] = useState(null);
   const [mostrarModalValidacion, setMostrarModalValidacion] = useState(false);

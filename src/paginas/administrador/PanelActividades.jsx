@@ -3,25 +3,25 @@ import React, { useState, useEffect } from 'react';
 const PanelActividades = () => {
   const [dependencias, setDependencias] = useState([]);
   const [actividades, setActividades] = useState([]);
-  const [filtroEstado, setFiltroEstado] = useState('todos');
-  const [filtroPrioridad, setFiltroPrioridad] = useState('todos');
-  const [filtroTipo, setFiltroTipo] = useState('todos');
+  const [filtroEst, setFiltroEst] = useState('todos');
+  const [filtroPri, setFiltroPri] = useState('todos');
+  const [filtroTip, setFiltroTip] = useState('todos');
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [dependenciaSeleccionada, setDependenciaSeleccionada] = useState(null);
   const [tareaExpandida, setTareaExpandida] = useState(null);
   const [nuevaTarea, setNuevaTarea] = useState({
-    titulo: '',
-    descripcion: '',
-    tipo: 'juridica',
-    prioridad: 'media',
-    estado: 'pendiente',
-    fechaInicio: '',
-    fechaVencimiento: '',
-    responsable: '',
-    costoEstimado: 0,
-    recursos: [],
-    archivosRequeridos: [],
-    dependencias: []
+    tit: '',
+    des: '',
+    tip: 'juridica',
+    pri: 'med',
+    est: 'pendiente',
+    fec_ini: '',
+    fec_ven: '',
+    resp: '',
+    cos_est: 0,
+    rec: [],
+    arc_req: [],
+    dep: []
   });
 
   // Cargar dependencias desde localStorage

@@ -6,8 +6,8 @@ const GestionarRolesUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [filtros, setFiltros] = useState({
     rol: '',
-    busqueda: '',
-    estado: ''
+    bus: '',
+    est: ''
   });
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
   const [mostrarModalCambioRol, setMostrarModalCambioRol] = useState(false);
@@ -132,11 +132,11 @@ const GestionarRolesUsuarios = () => {
   // Filtrar usuarios
   const usuariosFiltrados = usuarios.filter(usuario => {
     const cumpleRol = !filtros.rol || usuario.rol === filtros.rol;
-    const cumpleEstado = !filtros.estado || usuario.estadoVeto === filtros.estado;
-    const cumpleBusqueda = !filtros.busqueda || 
-      usuario.nombre.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
-      usuario.email.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
-      (usuario.numeroDocumento && usuario.numeroDocumento.includes(filtros.busqueda));
+    const cumpleEstado = !filtros.est || usuario.estadoVeto === filtros.est;
+    const cumpleBusqueda = !filtros.bus || 
+      usuario.nombre.toLowerCase().includes(filtros.bus.toLowerCase()) ||
+      usuario.email.toLowerCase().includes(filtros.bus.toLowerCase()) ||
+      (usuario.numeroDocumento && usuario.numeroDocumento.includes(filtros.bus));
     
     return cumpleRol && cumpleEstado && cumpleBusqueda;
   });
@@ -327,8 +327,8 @@ const GestionarRolesUsuarios = () => {
                 Estado
               </label>
               <select
-                value={filtros.estado}
-                onChange={(e) => setFiltros(prev => ({ ...prev, estado: e.target.value }))}
+                value={filtros.est}
+                onChange={(e) => setFiltros(prev => ({ ...prev, est: e.target.value }))}
                 style={{
                   padding: '8px 12px',
                   border: '1px solid #d1d5db',
@@ -349,8 +349,8 @@ const GestionarRolesUsuarios = () => {
               <input
                 type="text"
                 placeholder="Buscar por nombre, email o documento..."
-                value={filtros.busqueda}
-                onChange={(e) => setFiltros(prev => ({ ...prev, busqueda: e.target.value }))}
+                value={filtros.bus}
+                onChange={(e) => setFiltros(prev => ({ ...prev, bus: e.target.value }))}
                 style={{
                   padding: '8px 12px',
                   border: '1px solid #d1d5db',

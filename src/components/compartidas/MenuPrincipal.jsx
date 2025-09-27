@@ -11,14 +11,14 @@ const MenuPrincipal = () => {
   const [isRegistroMode, setIsRegistroMode] = useState(false);
   const [mostrarSeleccionRol, setMostrarSeleccionRol] = useState(false);
   const [loginData, setLoginData] = useState({ 
-    usuario: '', 
-    contrasena: '',
-    email: '',
-    confirmarContrasena: '',
-    nombre: '',
+    usu: '', 
+    con: '',
+    cor: '',
+    con_conf: '',
+    nom: '',
     rol: 'cliente',
-    tipoDocumento: 'cc',
-    numeroDocumento: ''
+    tip_doc: 'cc',
+    num_doc: ''
   });
   const [loginError, setLoginError] = useState('');
   const [loginSuccess, setLoginSuccess] = useState('');

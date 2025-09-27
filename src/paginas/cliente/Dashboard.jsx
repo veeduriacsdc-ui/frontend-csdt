@@ -5,10 +5,10 @@ import { useAuth } from '../../contexts/AuthContext';
 const DashboardCliente = () => {
   const { user } = useAuth();
   const [estadisticas] = useState({
-    pqrsfdPendientes: 3,
-    donacionesRealizadas: 2,
-    proyectosSeguimiento: 1,
-    ultimaActividad: 'Hace 2 días'
+    pqrsfd_pen: 3,
+    don_real: 2,
+    pro_seg: 1,
+    ult_act: 'Hace 2 días'
   });
 
   const containerStyle = {
@@ -70,7 +70,7 @@ const DashboardCliente = () => {
               color: '#1f2937',
               marginBottom: '10px'
             }}>
-              {estadisticas.pqrsfdPendientes}
+              {estadisticas.pqrsfd_pen}
             </h3>
             <p style={{
               color: '#6b7280',
@@ -91,7 +91,7 @@ const DashboardCliente = () => {
               color: '#1f2937',
               marginBottom: '10px'
             }}>
-              {estadisticas.donacionesRealizadas}
+              {estadisticas.don_real}
             </h3>
             <p style={{
               color: '#6b7280',
@@ -112,7 +112,7 @@ const DashboardCliente = () => {
               color: '#1f2937',
               marginBottom: '10px'
             }}>
-              {estadisticas.proyectosSeguimiento}
+              {estadisticas.pro_seg}
             </h3>
             <p style={{
               color: '#6b7280',
@@ -133,7 +133,7 @@ const DashboardCliente = () => {
               color: '#1f2937',
               marginBottom: '10px'
             }}>
-              {estadisticas.ultimaActividad}
+              {estadisticas.ult_act}
             </h3>
             <p style={{
               color: '#6b7280',

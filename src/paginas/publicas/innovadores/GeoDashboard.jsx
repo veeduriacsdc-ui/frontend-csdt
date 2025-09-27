@@ -30,135 +30,135 @@ const GeoDashboard = () => {
         const mockPuntosVeeduria = [
         {
           id: 1,
-            nombre: 'Oficina Principal CSDT',
-            descripcion: 'Sede principal del Consejo Social de Veeduría y Desarrollo Territorial',
-            categoria: 'oficina',
-            latitud: 6.2442,
-            longitud: -75.5812,
-            fechaCreacion: '2024-01-15',
-            estado: 'activo',
-            telefono: '3001234567',
-            email: 'info@csdt.gov.co',
-            responsable: 'María González',
-            servicios: ['Atención al ciudadano', 'Veeduría ciudadana', 'Asesoría legal'],
-            horario: 'Lunes a Viernes 8:00 AM - 5:00 PM'
+            nom: 'Oficina Principal CSDT',
+            des: 'Sede principal del Consejo Social de Veeduría y Desarrollo Territorial',
+            cat: 'oficina',
+            lat: 6.2442,
+            lng: -75.5812,
+            fec_cre: '2024-01-15',
+            est: 'activo',
+            tel: '3001234567',
+            cor: 'info@csdt.gov.co',
+            resp: 'María González',
+            ser: ['Atención al ciudadano', 'Veeduría ciudadana', 'Asesoría legal'],
+            hor: 'Lunes a Viernes 8:00 AM - 5:00 PM'
         },
         {
           id: 2,
-            nombre: 'Punto de Veeduría Norte',
-            descripcion: 'Punto de atención para veeduría ciudadana en la zona norte',
-            categoria: 'punto_veeduria',
-            latitud: 6.2450,
-            longitud: -75.5800,
-            fechaCreacion: '2024-01-20',
-            estado: 'activo',
-            telefono: '3009876543',
-            email: 'norte@csdt.gov.co',
-            responsable: 'Carlos Rodríguez',
-            servicios: ['Veeduría ciudadana', 'Recepción de denuncias'],
-            horario: 'Lunes a Viernes 8:00 AM - 4:00 PM'
+            nom: 'Punto de Veeduría Norte',
+            des: 'Punto de atención para veeduría ciudadana en la zona norte',
+            cat: 'punto_veeduria',
+            lat: 6.2450,
+            lng: -75.5800,
+            fec_cre: '2024-01-20',
+            est: 'activo',
+            tel: '3009876543',
+            cor: 'norte@csdt.gov.co',
+            resp: 'Carlos Rodríguez',
+            ser: ['Veeduría ciudadana', 'Recepción de denuncias'],
+            hor: 'Lunes a Viernes 8:00 AM - 4:00 PM'
         },
         {
           id: 3,
-            nombre: 'Centro de Asesoría Legal',
-            descripcion: 'Centro especializado en asesoría legal para casos de veeduría',
-            categoria: 'asesoria_legal',
-            latitud: 6.2430,
-            longitud: -75.5820,
-            fechaCreacion: '2024-01-25',
-            estado: 'activo',
-            telefono: '3005555555',
-            email: 'legal@csdt.gov.co',
-            responsable: 'Ana Sánchez',
-            servicios: ['Asesoría legal', 'Acciones de tutela', 'Acciones populares'],
-            horario: 'Lunes a Viernes 9:00 AM - 6:00 PM'
+            nom: 'Centro de Asesoría Legal',
+            des: 'Centro especializado en asesoría legal para casos de veeduría',
+            cat: 'asesoria_legal',
+            lat: 6.2430,
+            lng: -75.5820,
+            fec_cre: '2024-01-25',
+            est: 'activo',
+            tel: '3005555555',
+            cor: 'legal@csdt.gov.co',
+            resp: 'Ana Sánchez',
+            ser: ['Asesoría legal', 'Acciones de tutela', 'Acciones populares'],
+            hor: 'Lunes a Viernes 9:00 AM - 6:00 PM'
           },
           {
             id: 4,
-            nombre: 'Punto de Veeduría Sur',
-            descripcion: 'Punto de atención para veeduría ciudadana en la zona sur',
-            categoria: 'punto_veeduria',
-            latitud: 6.2420,
-            longitud: -75.5830,
-            fechaCreacion: '2024-02-01',
-            estado: 'activo',
-            telefono: '3001111111',
-            email: 'sur@csdt.gov.co',
-            responsable: 'Roberto Jiménez',
-            servicios: ['Veeduría ciudadana', 'Recepción de denuncias', 'Seguimiento de casos'],
-            horario: 'Lunes a Viernes 8:00 AM - 4:00 PM'
+            nom: 'Punto de Veeduría Sur',
+            des: 'Punto de atención para veeduría ciudadana en la zona sur',
+            cat: 'punto_veeduria',
+            lat: 6.2420,
+            lng: -75.5830,
+            fec_cre: '2024-02-01',
+            est: 'activo',
+            tel: '3001111111',
+            cor: 'sur@csdt.gov.co',
+            resp: 'Roberto Jiménez',
+            ser: ['Veeduría ciudadana', 'Recepción de denuncias', 'Seguimiento de casos'],
+            hor: 'Lunes a Viernes 8:00 AM - 4:00 PM'
           },
           {
             id: 5,
-            nombre: 'Centro de Capacitación',
-            descripcion: 'Centro de capacitación para veedores ciudadanos',
-            categoria: 'capacitacion',
-            latitud: 6.2460,
-            longitud: -75.5790,
-            fechaCreacion: '2024-02-05',
-            estado: 'activo',
-            telefono: '3002222222',
-            email: 'capacitacion@csdt.gov.co',
-            responsable: 'Patricia Morales',
-            servicios: ['Capacitación de veedores', 'Talleres ciudadanos', 'Formación en derechos'],
-            horario: 'Lunes a Viernes 8:00 AM - 5:00 PM'
+            nom: 'Centro de Capacitación',
+            des: 'Centro de capacitación para veedores ciudadanos',
+            cat: 'capacitacion',
+            lat: 6.2460,
+            lng: -75.5790,
+            fec_cre: '2024-02-05',
+            est: 'activo',
+            tel: '3002222222',
+            cor: 'capacitacion@csdt.gov.co',
+            resp: 'Patricia Morales',
+            ser: ['Capacitación de veedores', 'Talleres ciudadanos', 'Formación en derechos'],
+            hor: 'Lunes a Viernes 8:00 AM - 5:00 PM'
           }
         ];
 
         const mockCasos = [
         {
           id: 1,
-            titulo: 'Veeduría a Obra Pública - Avenida Principal',
-            descripcion: 'Seguimiento a la construcción de la avenida principal del municipio',
-            tipo: 'veeduria_obra_publica',
-            estado: 'en_progreso',
-            fechaCreacion: '2024-01-15',
-            fechaLimite: '2024-06-15',
-            ubicacion: {
-              latitud: 6.2445,
-              longitud: -75.5805,
-              direccion: 'Avenida Principal, Sector Centro'
+            tit: 'Veeduría a Obra Pública - Avenida Principal',
+            des: 'Seguimiento a la construcción de la avenida principal del municipio',
+            tip: 'veeduria_obra_publica',
+            est: 'en_progreso',
+            fec_cre: '2024-01-15',
+            fec_lim: '2024-06-15',
+            ubi: {
+              lat: 6.2445,
+              lng: -75.5805,
+              dir: 'Avenida Principal, Sector Centro'
             },
-            presupuesto: 5000000000,
-            progreso: 65,
-            responsable: 'María González',
-            observaciones: 'Obra en ejecución según cronograma'
+            pre: 5000000000,
+            pro: 65,
+            resp: 'María González',
+            obs: 'Obra en ejecución según cronograma'
           },
           {
             id: 2,
-            titulo: 'Veeduría a Servicios Públicos - Zona Norte',
-            descripcion: 'Control social al suministro de servicios públicos en la zona norte',
-            tipo: 'veeduria_servicios_publicos',
-            estado: 'pendiente',
-            fechaCreacion: '2024-01-20',
-            fechaLimite: '2024-05-20',
-            ubicacion: {
-              latitud: 6.2455,
-              longitud: -75.5795,
-              direccion: 'Zona Norte, Barrios Unidos'
+            tit: 'Veeduría a Servicios Públicos - Zona Norte',
+            des: 'Control social al suministro de servicios públicos en la zona norte',
+            tip: 'veeduria_servicios_publicos',
+            est: 'pendiente',
+            fec_cre: '2024-01-20',
+            fec_lim: '2024-05-20',
+            ubi: {
+              lat: 6.2455,
+              lng: -75.5795,
+              dir: 'Zona Norte, Barrios Unidos'
             },
-            presupuesto: 0,
-            progreso: 15,
-            responsable: 'Carlos Rodríguez',
-            observaciones: 'Iniciando recolección de información'
+            pre: 0,
+            pro: 15,
+            resp: 'Carlos Rodríguez',
+            obs: 'Iniciando recolección de información'
           },
           {
             id: 3,
-            titulo: 'Veeduría Ambiental - Río Municipal',
-            descripcion: 'Control social a la calidad del agua del río municipal',
-            tipo: 'veeduria_ambiental',
-            estado: 'completada',
-            fechaCreacion: '2024-01-10',
-            fechaLimite: '2024-03-10',
-            ubicacion: {
-              latitud: 6.2435,
-              longitud: -75.5825,
-              direccion: 'Río Municipal, Sector Ecológico'
+            tit: 'Veeduría Ambiental - Río Municipal',
+            des: 'Control social a la calidad del agua del río municipal',
+            tip: 'veeduria_ambiental',
+            est: 'completada',
+            fec_cre: '2024-01-10',
+            fec_lim: '2024-03-10',
+            ubi: {
+              lat: 6.2435,
+              lng: -75.5825,
+              dir: 'Río Municipal, Sector Ecológico'
             },
-            presupuesto: 200000000,
-            progreso: 100,
-            responsable: 'Ana Sánchez',
-            observaciones: 'Veeduría completada exitosamente'
+            pre: 200000000,
+            pro: 100,
+            resp: 'Ana Sánchez',
+            obs: 'Veeduría completada exitosamente'
           }
         ];
 
@@ -177,9 +177,9 @@ const GeoDashboard = () => {
         total_puntos: puntosGuardados.length || 5,
         total_casos: casosGuardados.length || 3,
         casos_en_progreso: (casosGuardados.length || 3) > 0 ? 
-          casosGuardados.filter(c => c.estado === 'en_progreso').length : 1,
+          casosGuardados.filter(c => c.est === 'en_progreso').length : 1,
         casos_completados: (casosGuardados.length || 3) > 0 ? 
-          casosGuardados.filter(c => c.estado === 'completada').length : 1,
+          casosGuardados.filter(c => c.est === 'completada').length : 1,
         categorias_count: {
           oficina: 1,
           punto_veeduria: 2,
@@ -239,21 +239,21 @@ const GeoDashboard = () => {
 
   // Filtrar puntos por categoría
   const filteredPoints = puntosVeeduria.filter(punto => {
-    const matchesCategory = !selectedCategory || punto.categoria === selectedCategory;
+    const matchesCategory = !selectedCategory || punto.cat === selectedCategory;
     const matchesSearch = !searchQuery ||
-      punto.nombre.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      punto.categoria.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (punto.descripcion && punto.descripcion.toLowerCase().includes(searchQuery.toLowerCase()));
+      punto.nom.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      punto.cat.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (punto.des && punto.des.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 
   // Filtrar casos por categoría
   const filteredCasos = casos.filter(caso => {
-    const matchesCategory = !selectedCategory || caso.tipo === selectedCategory;
+    const matchesCategory = !selectedCategory || caso.tip === selectedCategory;
     const matchesSearch = !searchQuery ||
-      caso.titulo.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      caso.tipo.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (caso.descripcion && caso.descripcion.toLowerCase().includes(searchQuery.toLowerCase()));
+      caso.tit.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      caso.tip.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (caso.des && caso.des.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 
@@ -273,30 +273,30 @@ const GeoDashboard = () => {
         ...puntosVeeduria.map(punto => ({
           'Tipo': 'Punto de Veeduría',
           'ID': punto.id,
-          'Nombre': punto.nombre,
-          'Descripción': punto.descripcion,
-          'Categoría': getCategoryLabel(punto.categoria),
-          'Estado': punto.estado,
-          'Latitud': punto.latitud,
-          'Longitud': punto.longitud,
-          'Teléfono': punto.telefono,
-          'Email': punto.email,
-          'Responsable': punto.responsable,
-          'Horario': punto.horario
+          'Nombre': punto.nom,
+          'Descripción': punto.des,
+          'Categoría': getCategoryLabel(punto.cat),
+          'Estado': punto.est,
+          'Latitud': punto.lat,
+          'Longitud': punto.lng,
+          'Teléfono': punto.tel,
+          'Email': punto.cor,
+          'Responsable': punto.resp,
+          'Horario': punto.hor
         })),
         ...casos.map(caso => ({
           'Tipo': 'Caso de Veeduría',
           'ID': caso.id,
-          'Nombre': caso.titulo,
-          'Descripción': caso.descripcion,
-          'Categoría': getCategoryLabel(caso.tipo),
-          'Estado': caso.estado,
-          'Latitud': caso.ubicacion.latitud,
-          'Longitud': caso.ubicacion.longitud,
-          'Dirección': caso.ubicacion.direccion,
-          'Presupuesto': caso.presupuesto,
-          'Progreso': `${caso.progreso}%`,
-          'Responsable': caso.responsable
+          'Nombre': caso.tit,
+          'Descripción': caso.des,
+          'Categoría': getCategoryLabel(caso.tip),
+          'Estado': caso.est,
+          'Latitud': caso.ubi.lat,
+          'Longitud': caso.ubi.lng,
+          'Dirección': caso.ubi.dir,
+          'Presupuesto': caso.pre,
+          'Progreso': `${caso.pro}%`,
+          'Responsable': caso.resp
         }))
       ];
 
@@ -794,34 +794,34 @@ const GeoDashboard = () => {
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <span style={{ fontSize: '20px', marginRight: '8px' }}>📍</span>
                       <span style={{ fontSize: '14px', fontWeight: '500', color: '#1f2937' }}>
-                        {getCategoryLabel(punto.categoria)}
+                        {getCategoryLabel(punto.cat)}
                       </span>
                     </div>
                     <span style={{
                       padding: '2px 6px',
-                      backgroundColor: getEstadoColor(punto.estado) + '20',
-                      color: getEstadoColor(punto.estado),
+                      backgroundColor: getEstadoColor(punto.est) + '20',
+                      color: getEstadoColor(punto.est),
                       borderRadius: '4px',
                       fontSize: '10px'
                     }}>
-                      {punto.estado}
+                      {punto.est}
                     </span>
                   </div>
 
                   <h4 style={{ fontWeight: '600', color: '#1f2937', marginBottom: '8px' }}>
-                    {punto.nombre}
+                    {punto.nom}
                   </h4>
 
-                  {punto.descripcion && (
+                  {punto.des && (
                     <p style={{ fontSize: '14px', color: '#6b7280', marginBottom: '12px', lineHeight: '1.4' }}>
-                      {punto.descripcion}
+                      {punto.des}
                     </p>
                   )}
 
                   <div style={{ fontSize: '12px', color: '#9ca3af' }}>
-                    <div>Responsable: {punto.responsable}</div>
-                    <div>Tel: {punto.telefono}</div>
-                    <div>Lat: {punto.latitud.toFixed(4)} | Lng: {punto.longitud.toFixed(4)}</div>
+                    <div>Responsable: {punto.resp}</div>
+                    <div>Tel: {punto.tel}</div>
+                    <div>Lat: {punto.lat.toFixed(4)} | Lng: {punto.lng.toFixed(4)}</div>
                   </div>
                 </div>
               ))}
@@ -849,35 +849,35 @@ const GeoDashboard = () => {
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <span style={{ fontSize: '20px', marginRight: '8px' }}>📋</span>
                       <span style={{ fontSize: '14px', fontWeight: '500', color: '#1f2937' }}>
-                        {getCategoryLabel(caso.tipo)}
+                        {getCategoryLabel(caso.tip)}
                       </span>
                     </div>
                     <span style={{
                       padding: '2px 6px',
-                      backgroundColor: getEstadoColor(caso.estado) + '20',
-                      color: getEstadoColor(caso.estado),
+                      backgroundColor: getEstadoColor(caso.est) + '20',
+                      color: getEstadoColor(caso.est),
                       borderRadius: '4px',
                       fontSize: '10px'
                     }}>
-                      {caso.estado}
+                      {caso.est}
                     </span>
                   </div>
 
                   <h4 style={{ fontWeight: '600', color: '#1f2937', marginBottom: '8px' }}>
-                    {caso.titulo}
+                    {caso.tit}
                   </h4>
 
-                  {caso.descripcion && (
+                  {caso.des && (
                     <p style={{ fontSize: '14px', color: '#6b7280', marginBottom: '12px', lineHeight: '1.4' }}>
-                      {caso.descripcion}
+                      {caso.des}
                     </p>
                   )}
 
                   <div style={{ fontSize: '12px', color: '#9ca3af' }}>
-                    <div>Responsable: {caso.responsable}</div>
-                    <div>Progreso: {caso.progreso}%</div>
-                    <div>Presupuesto: ${caso.presupuesto.toLocaleString()}</div>
-                    <div>Lat: {caso.ubicacion.latitud.toFixed(4)} | Lng: {caso.ubicacion.longitud.toFixed(4)}</div>
+                    <div>Responsable: {caso.resp}</div>
+                    <div>Progreso: {caso.pro}%</div>
+                    <div>Presupuesto: ${caso.pre.toLocaleString()}</div>
+                    <div>Lat: {caso.ubi.lat.toFixed(4)} | Lng: {caso.ubi.lng.toFixed(4)}</div>
                   </div>
                 </div>
               ))}

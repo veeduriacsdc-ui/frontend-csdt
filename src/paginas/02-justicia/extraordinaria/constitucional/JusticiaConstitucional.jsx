@@ -43,17 +43,17 @@ const JusticiaConstitucional = () => {
   const [filtroEstado, setFiltroEstado] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevoCaso, setNuevoCaso] = useState({
-    numero: '',
-    accionante: '',
-    accionado: '',
-    tipo: 'tutela',
-    descripcion: '',
-    fechaRadicacion: '',
-    estado: 'admisibilidad',
-    magistrado: '',
-    ponente: '',
-    secretario: '',
-    documentos: []
+    num: '',
+    acc_nte: '',
+    acc_do: '',
+    tip: 'tutela',
+    des: '',
+    fec_rad: '',
+    est: 'admisibilidad',
+    mag: '',
+    pon: '',
+    sec: '',
+    doc: []
   });
 
   useEffect(() => {

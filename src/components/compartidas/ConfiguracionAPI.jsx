@@ -33,19 +33,6 @@ const ConfiguracionAPI = () => {
     }
   };
 
-  const probarConexion = async (url) => {
-    try {
-      const response = await fetch(`${url}/health`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      return response.ok;
-    } catch (error) {
-      return false;
-    }
-  };
 
   const getEstadoConexion = (config) => {
     if (config.key === configuracionActual?.key) {

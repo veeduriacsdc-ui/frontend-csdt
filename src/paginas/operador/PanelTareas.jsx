@@ -5,9 +5,9 @@ const PanelTareas = () => {
   const { user } = useAuth();
   const [tareas, setTareas] = useState([]);
   const [filtros, setFiltros] = useState({
-    estado: 'todos',
-    tipo: 'todos',
-    prioridad: 'todos'
+    est: 'todos',
+    tip: 'todos',
+    pri: 'todos'
   });
   const [tareaSeleccionada, setTareaSeleccionada] = useState(null);
   const [mostrarChat, setMostrarChat] = useState(false);
@@ -28,14 +28,14 @@ const PanelTareas = () => {
       const datosPrueba = [
         {
           id: 1,
-          nombre: 'Revisión de Documentos Legales',
-          descripcion: 'Revisar y analizar documentos legales para el caso de acción de tutela',
-          tipo: 'legal',
-          prioridad: 'alta',
-          estado: 'en_progreso',
-          fechaCreacion: '2024-01-15T10:00:00Z',
-          fechaLimite: '2024-01-25T17:00:00Z',
-          asignadoA: user?.nombre || 'Operador CSDT',
+          nom: 'Revisión de Documentos Legales',
+          des: 'Revisar y analizar documentos legales para el caso de acción de tutela',
+          tip: 'legal',
+          pri: 'alta',
+          est: 'en_progreso',
+          fec_cre: '2024-01-15T10:00:00Z',
+          fec_lim: '2024-01-25T17:00:00Z',
+          asig_a: user?.nombre || 'Operador CSDT',
           cliente: {
             nombre: 'María González',
             email: 'maria@email.com',
@@ -65,14 +65,14 @@ const PanelTareas = () => {
         },
         {
           id: 2,
-          nombre: 'Investigación de Caso Administrativo',
-          descripcion: 'Investigar irregularidades en proceso de licitación municipal',
-          tipo: 'investigacion',
-          prioridad: 'media',
-          estado: 'pendiente',
-          fechaCreacion: '2024-01-16T14:00:00Z',
-          fechaLimite: '2024-01-30T17:00:00Z',
-          asignadoA: user?.nombre || 'Operador CSDT',
+          nom: 'Investigación de Caso Administrativo',
+          des: 'Investigar irregularidades en proceso de licitación municipal',
+          tip: 'investigacion',
+          pri: 'media',
+          est: 'pendiente',
+          fec_cre: '2024-01-16T14:00:00Z',
+          fec_lim: '2024-01-30T17:00:00Z',
+          asig_a: user?.nombre || 'Operador CSDT',
           cliente: {
             nombre: 'Carlos Rodríguez',
             email: 'carlos@email.com',
@@ -95,14 +95,14 @@ const PanelTareas = () => {
         },
         {
           id: 3,
-          nombre: 'Elaboración de Informe Técnico',
-          descripcion: 'Elaborar informe técnico sobre proyecto de infraestructura',
-          tipo: 'tecnico',
-          prioridad: 'baja',
-          estado: 'completada',
-          fechaCreacion: '2024-01-10T09:00:00Z',
-          fechaLimite: '2024-01-20T17:00:00Z',
-          asignadoA: user?.nombre || 'Operador CSDT',
+          nom: 'Elaboración de Informe Técnico',
+          des: 'Elaborar informe técnico sobre proyecto de infraestructura',
+          tip: 'tecnico',
+          pri: 'baja',
+          est: 'completada',
+          fec_cre: '2024-01-10T09:00:00Z',
+          fec_lim: '2024-01-20T17:00:00Z',
+          asig_a: user?.nombre || 'Operador CSDT',
           cliente: {
             nombre: 'Ana Sánchez',
             email: 'ana@email.com',

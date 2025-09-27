@@ -28,12 +28,12 @@ const GestionarDonaciones = () => {
   const [showForm, setShowForm] = useState(false)
   const [editingDonacion, setEditingDonacion] = useState(null)
   const [formData, setFormData] = useState({
-    titulo: '',
-    descripcion: '',
-    monto: '',
-    tipo: 'monetaria',
-    estado: 'pendiente',
-    fecha_limite: ''
+    tit: '',
+    des: '',
+    mon: '',
+    tip: 'mon',
+    est: 'pen',
+    fec_lim: ''
   })
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const GestionarDonaciones = () => {
       }
       setShowForm(false)
       setEditingDonacion(null)
-      setFormData({ titulo: '', descripcion: '', monto: '', tipo: 'monetaria', estado: 'pendiente', fecha_limite: '' })
+      setFormData({ tit: '', des: '', mon: '', tip: 'mon', est: 'pen', fec_lim: '' })
       cargarDonaciones()
     } catch (error) {
       console.error('Error guardando donación:', error)
@@ -72,12 +72,12 @@ const GestionarDonaciones = () => {
   const handleEdit = (donacion) => {
     setEditingDonacion(donacion)
     setFormData({
-      titulo: donacion.titulo || '',
-      descripcion: donacion.descripcion || '',
-      monto: donacion.monto || '',
-      tipo: donacion.tipo || 'monetaria',
-      estado: donacion.estado || 'pendiente',
-      fecha_limite: donacion.fecha_limite || ''
+      tit: donacion.tit || donacion.titulo || '',
+      des: donacion.des || donacion.descripcion || '',
+      mon: donacion.mon || donacion.monto || '',
+      tip: donacion.tip || donacion.tipo || 'mon',
+      est: donacion.est || donacion.estado || 'pen',
+      fec_lim: donacion.fec_lim || donacion.fecha_limite || ''
     })
     setShowForm(true)
   }
@@ -103,35 +103,35 @@ const GestionarDonaciones = () => {
   }
 
   const filteredDonaciones = donaciones.filter(donacion =>
-    donacion.titulo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    donacion.descripcion?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    donacion.tipo?.toLowerCase().includes(searchTerm.toLowerCase())
+    donacion.tit?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    donacion.des?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    donacion.tip?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   const getEstadoColor = (estado) => {
     switch (estado) {
-      case 'aprobada': return 'bg-green-100 text-green-800'
-      case 'pendiente': return 'bg-yellow-100 text-yellow-800'
-      case 'rechazada': return 'bg-red-100 text-red-800'
-      case 'completada': return 'bg-blue-100 text-blue-800'
+      case 'apr': return 'bg-green-100 text-green-800'
+      case 'pen': return 'bg-yellow-100 text-yellow-800'
+      case 'rej': return 'bg-red-100 text-red-800'
+      case 'com': return 'bg-blue-100 text-blue-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
 
   const getTipoColor = (tipo) => {
     switch (tipo) {
-      case 'monetaria': return 'bg-green-100 text-green-800'
-      case 'especie': return 'bg-blue-100 text-blue-800'
-      case 'servicios': return 'bg-purple-100 text-purple-800'
+      case 'mon': return 'bg-green-100 text-green-800'
+      case 'esp': return 'bg-blue-100 text-blue-800'
+      case 'ser': return 'bg-purple-100 text-purple-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
 
   const getTipoName = (tipo) => {
     switch (tipo) {
-      case 'monetaria': return 'Monetaria'
-      case 'especie': return 'En Especie'
-      case 'servicios': return 'Servicios'
+      case 'mon': return 'Monetaria'
+      case 'esp': return 'En Especie'
+      case 'ser': return 'Servicios'
       default: return 'Desconocido'
     }
   }
@@ -194,18 +194,18 @@ const GestionarDonaciones = () => {
                 <div className="space-y-2">
                   <Label htmlFor="titulo">Título</Label>
                   <Input
-                    id="titulo"
-                    value={formData.titulo}
-                    onChange={(e) => setFormData({ ...formData, titulo: e.target.value })}
+                    id="tit"
+                    value={formData.tit}
+                    onChange={(e) => setFormData({ ...formData, tit: e.target.value })}
                     required
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="descripcion">Descripción</Label>
                   <Textarea
-                    id="descripcion"
-                    value={formData.descripcion}
-                    onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
+                    id="des"
+                    value={formData.des}
+                    onChange={(e) => setFormData({ ...formData, des: e.target.value })}
                     required
                     rows={4}
                   />
@@ -216,16 +216,16 @@ const GestionarDonaciones = () => {
                     <Input
                       id="monto"
                       type="number"
-                      value={formData.monto}
-                      onChange={(e) => setFormData({ ...formData, monto: e.target.value })}
+                      value={formData.mon}
+                      onChange={(e) => setFormData({ ...formData, mon: e.target.value })}
                       required
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="tipo">Tipo</Label>
                     <Select
-                      value={formData.tipo}
-                      onValueChange={(value) => setFormData({ ...formData, tipo: value })}
+                      value={formData.tip}
+                      onValueChange={(value) => setFormData({ ...formData, tip: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar tipo" />
@@ -242,8 +242,8 @@ const GestionarDonaciones = () => {
                   <div className="space-y-2">
                     <Label htmlFor="estado">Estado</Label>
                     <Select
-                      value={formData.estado}
-                      onValueChange={(value) => setFormData({ ...formData, estado: value })}
+                      value={formData.est}
+                      onValueChange={(value) => setFormData({ ...formData, est: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar estado" />
@@ -261,8 +261,8 @@ const GestionarDonaciones = () => {
                     <Input
                       id="fecha_limite"
                       type="date"
-                      value={formData.fecha_limite}
-                      onChange={(e) => setFormData({ ...formData, fecha_limite: e.target.value })}
+                      value={formData.fec_lim}
+                      onChange={(e) => setFormData({ ...formData, fec_lim: e.target.value })}
                     />
                   </div>
                 </div>
@@ -276,7 +276,7 @@ const GestionarDonaciones = () => {
                     onClick={() => {
                       setShowForm(false)
                       setEditingDonacion(null)
-                      setFormData({ titulo: '', descripcion: '', monto: '', tipo: 'monetaria', estado: 'pendiente', fecha_limite: '' })
+                      setFormData({ tit: '', des: '', mon: '', tip: 'mon', est: 'pen', fec_lim: '' })
                     }}
                   >
                     Cancelar

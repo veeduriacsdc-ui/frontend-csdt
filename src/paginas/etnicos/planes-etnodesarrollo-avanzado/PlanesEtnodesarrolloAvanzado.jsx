@@ -37,20 +37,20 @@ import {
 const PlanesEtnodesarrolloAvanzado = () => {
   const [planes, setPlanes] = useState([]);
   const [comunidades, setComunidades] = useState([]);
-  const [filtroComunidad, setFiltroComunidad] = useState('todas');
-  const [filtroEstado, setFiltroEstado] = useState('todos');
+  const [filtroCom, setFiltroCom] = useState('todas');
+  const [filtroEst, setFiltroEst] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevoPlan, setNuevoPlan] = useState({
-    nombre: '',
-    descripcion: '',
-    comunidad: '',
-    objetivo: '',
-    duracion: '',
-    presupuesto: '',
-    estado: 'en_desarrollo',
-    fechaInicio: '',
-    fechaFin: '',
-    responsables: []
+    nom: '',
+    des: '',
+    com: '',
+    obj: '',
+    dur: '',
+    pre: '',
+    est: 'en_desarrollo',
+    fec_ini: '',
+    fec_fin: '',
+    resp: []
   });
 
   useEffect(() => {

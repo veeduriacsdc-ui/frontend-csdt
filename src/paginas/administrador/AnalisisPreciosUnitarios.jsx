@@ -5,16 +5,16 @@ const AnalisisPreciosUnitarios = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [apuEditando, setApuEditando] = useState(null);
   const [nuevoApu, setNuevoApu] = useState({
-    codigo: '',
-    descripcion: '',
-    unidad: '',
-    cantidad: 1,
-    precioUnitario: 0,
-    materiales: [],
-    manoObra: [],
-    equipos: [],
-    subcontratos: [],
-    otros: []
+    cod: '',
+    des: '',
+    uni: '',
+    can: 1,
+    pre_uni: 0,
+    mat: [],
+    man_obr: [],
+    equ: [],
+    sub: [],
+    otr: []
   });
 
   // Cargar APUs desde localStorage

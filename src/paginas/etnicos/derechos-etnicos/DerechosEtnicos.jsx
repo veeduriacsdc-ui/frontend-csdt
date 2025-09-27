@@ -38,14 +38,14 @@ const DerechosEtnicos = () => {
   const [filtroComunidad, setFiltroComunidad] = useState('todas');
   const [filtroCategoria, setFiltroCategoria] = useState('todas');
   const [nuevoDerecho, setNuevoDerecho] = useState({
-    titulo: '',
-    descripcion: '',
-    comunidad: '',
-    categoria: 'territorial',
-    marcoLegal: '',
-    estado: 'vigente',
-    fechaVigencia: '',
-    documentos: []
+    tit: '',
+    des: '',
+    com: '',
+    cat: 'territorial',
+    mar_leg: '',
+    est: 'vigente',
+    fec_vig: '',
+    doc: []
   });
 
   useEffect(() => {

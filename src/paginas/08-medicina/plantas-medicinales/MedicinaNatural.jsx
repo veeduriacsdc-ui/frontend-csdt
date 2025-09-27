@@ -36,22 +36,22 @@ const MedicinaNatural = () => {
   const [plantas, setPlantas] = useState([]);
   const [comunidades, setComunidades] = useState([]);
   const [categorias, setCategorias] = useState([]);
-  const [filtroComunidad, setFiltroComunidad] = useState('todas');
-  const [filtroCategoria, setFiltroCategoria] = useState('todas');
+  const [filtroCom, setFiltroCom] = useState('todas');
+  const [filtroCat, setFiltroCat] = useState('todas');
   const [busqueda, setBusqueda] = useState('');
   const [nuevaPlanta, setNuevaPlanta] = useState({
-    nombre: '',
-    nombreCientifico: '',
-    comunidad: '',
-    categoria: 'digestiva',
-    propiedades: '',
-    preparacion: '',
-    dosis: '',
-    contraindicaciones: '',
+    nom: '',
+    nom_cien: '',
+    com: '',
+    cat: 'digestiva',
+    prop: '',
+    prep: '',
+    dos: '',
+    cont: '',
     uso: 'medicinal',
-    estacion: 'todo_el_ano',
-    parteUsada: 'hojas',
-    imagen: ''
+    est: 'todo_el_ano',
+    par_usa: 'hojas',
+    img: ''
   });
 
   useEffect(() => {
@@ -63,91 +63,91 @@ const MedicinaNatural = () => {
     const plantasSimuladas = [
       {
         id: 'planta_001',
-        nombre: 'Manzanilla',
-        nombreCientifico: 'Matricaria chamomilla',
-        comunidad: 'todas',
-        categoria: 'digestiva',
-        propiedades: 'Antiinflamatoria, antiespasmódica, sedante suave',
-        preparacion: 'Infusión de 1 cucharada por taza de agua hirviendo',
-        dosis: '2-3 tazas al día',
-        contraindicaciones: 'Alergia a las asteráceas',
+        nom: 'Manzanilla',
+        nom_cien: 'Matricaria chamomilla',
+        com: 'todas',
+        cat: 'digestiva',
+        prop: 'Antiinflamatoria, antiespasmódica, sedante suave',
+        prep: 'Infusión de 1 cucharada por taza de agua hirviendo',
+        dos: '2-3 tazas al día',
+        cont: 'Alergia a las asteráceas',
         uso: 'medicinal',
-        estacion: 'primavera_verano',
-        parteUsada: 'flores',
-        imagen: '',
+        est: 'primavera_verano',
+        par_usa: 'flores',
+        img: '',
         casos: 45,
         efectividad: 95
       },
       {
         id: 'planta_002',
-        nombre: 'Eucalipto',
-        nombreCientifico: 'Eucalyptus globulus',
-        comunidad: 'wayuu',
-        categoria: 'respiratoria',
-        propiedades: 'Expectorante, antiséptico, descongestionante',
-        preparacion: 'Vaporización o infusión de hojas',
-        dosis: '2-3 veces al día',
-        contraindicaciones: 'No usar en niños menores de 2 años',
+        nom: 'Eucalipto',
+        nom_cien: 'Eucalyptus globulus',
+        com: 'wayuu',
+        cat: 'respiratoria',
+        prop: 'Expectorante, antiséptico, descongestionante',
+        prep: 'Vaporización o infusión de hojas',
+        dos: '2-3 veces al día',
+        cont: 'No usar en niños menores de 2 años',
         uso: 'medicinal',
-        estacion: 'todo_el_ano',
-        parteUsada: 'hojas',
-        imagen: '',
+        est: 'todo_el_ano',
+        par_usa: 'hojas',
+        img: '',
         casos: 32,
         efectividad: 88
       },
       {
         id: 'planta_003',
-        nombre: 'Aloe Vera',
-        nombreCientifico: 'Aloe barbadensis',
-        comunidad: 'embera',
-        categoria: 'dermatologica',
-        propiedades: 'Cicatrizante, antiinflamatoria, hidratante',
-        preparacion: 'Gel fresco de la hoja',
-        dosis: 'Aplicar 2-3 veces al día',
-        contraindicaciones: 'No ingerir en grandes cantidades',
+        nom: 'Aloe Vera',
+        nom_cien: 'Aloe barbadensis',
+        com: 'embera',
+        cat: 'dermatologica',
+        prop: 'Cicatrizante, antiinflamatoria, hidratante',
+        prep: 'Gel fresco de la hoja',
+        dos: 'Aplicar 2-3 veces al día',
+        cont: 'No ingerir en grandes cantidades',
         uso: 'medicinal',
-        estacion: 'todo_el_ano',
-        parteUsada: 'hojas',
-        imagen: '',
+        est: 'todo_el_ano',
+        par_usa: 'hojas',
+        img: '',
         casos: 28,
         efectividad: 92
       },
       {
         id: 'planta_004',
-        nombre: 'Jengibre',
-        nombreCientifico: 'Zingiber officinale',
-        comunidad: 'nasa',
-        categoria: 'digestiva',
-        propiedades: 'Antiinflamatorio, digestivo, antinauseoso',
-        preparacion: 'Infusión de raíz fresca o seca',
-        dosis: '1-2 tazas al día',
-        contraindicaciones: 'Evitar en embarazo avanzado',
+        nom: 'Jengibre',
+        nom_cien: 'Zingiber officinale',
+        com: 'nasa',
+        cat: 'digestiva',
+        prop: 'Antiinflamatorio, digestivo, antinauseoso',
+        prep: 'Infusión de raíz fresca o seca',
+        dos: '1-2 tazas al día',
+        cont: 'Evitar en embarazo avanzado',
         uso: 'medicinal',
-        estacion: 'todo_el_ano',
-        parteUsada: 'raiz',
-        imagen: '',
+        est: 'todo_el_ano',
+        par_usa: 'raiz',
+        img: '',
         casos: 38,
         efectividad: 90
       }
     ];
 
     const comunidadesSimuladas = [
-      { id: 'wayuu', nombre: 'Wayuu', territorio: 'La Guajira', poblacion: 270000 },
-      { id: 'nasa', nombre: 'Nasa', territorio: 'Cauca', poblacion: 150000 },
-      { id: 'embera', nombre: 'Embera', territorio: 'Chocó', poblacion: 80000 },
-      { id: 'kogui', nombre: 'Kogui', territorio: 'Sierra Nevada', poblacion: 12000 },
-      { id: 'afrocolombiana', nombre: 'Afrocolombiana', territorio: 'Pacífico', poblacion: 4500000 },
-      { id: 'todas', nombre: 'Todas las Comunidades', territorio: 'Nacional', poblacion: 0 }
+      { id: 'wayuu', nom: 'Wayuu', territorio: 'La Guajira', poblacion: 270000 },
+      { id: 'nasa', nom: 'Nasa', territorio: 'Cauca', poblacion: 150000 },
+      { id: 'embera', nom: 'Embera', territorio: 'Chocó', poblacion: 80000 },
+      { id: 'kogui', nom: 'Kogui', territorio: 'Sierra Nevada', poblacion: 12000 },
+      { id: 'afrocolombiana', nom: 'Afrocolombiana', territorio: 'Pacífico', poblacion: 4500000 },
+      { id: 'todas', nom: 'Todas las Comunidades', territorio: 'Nacional', poblacion: 0 }
     ];
 
     const categoriasSimuladas = [
-      { id: 'digestiva', nombre: 'Digestiva', icono: '🌿', color: 'bg-green-100 text-green-800' },
-      { id: 'respiratoria', nombre: 'Respiratoria', icono: '💨', color: 'bg-blue-100 text-blue-800' },
-      { id: 'dermatologica', nombre: 'Dermatológica', icono: '🌱', color: 'bg-emerald-100 text-emerald-800' },
-      { id: 'nerviosa', nombre: 'Sistema Nervioso', icono: '🧠', color: 'bg-purple-100 text-purple-800' },
-      { id: 'cardiovascular', nombre: 'Cardiovascular', icono: '❤️', color: 'bg-red-100 text-red-800' },
-      { id: 'inmune', nombre: 'Sistema Inmune', icono: '🛡️', color: 'bg-yellow-100 text-yellow-800' },
-      { id: 'reproductiva', nombre: 'Reproductiva', icono: '🌸', color: 'bg-pink-100 text-pink-800' }
+      { id: 'digestiva', nom: 'Digestiva', icono: '🌿', color: 'bg-green-100 text-green-800' },
+      { id: 'respiratoria', nom: 'Respiratoria', icono: '💨', color: 'bg-blue-100 text-blue-800' },
+      { id: 'dermatologica', nom: 'Dermatológica', icono: '🌱', color: 'bg-emerald-100 text-emerald-800' },
+      { id: 'nerviosa', nom: 'Sistema Nervioso', icono: '🧠', color: 'bg-purple-100 text-purple-800' },
+      { id: 'cardiovascular', nom: 'Cardiovascular', icono: '❤️', color: 'bg-red-100 text-red-800' },
+      { id: 'inmune', nom: 'Sistema Inmune', icono: '🛡️', color: 'bg-yellow-100 text-yellow-800' },
+      { id: 'reproductiva', nom: 'Reproductiva', icono: '🌸', color: 'bg-pink-100 text-pink-800' }
     ];
 
     setPlantas(plantasSimuladas);
@@ -402,22 +402,22 @@ const MedicinaNatural = () => {
               <form onSubmit={manejarEnvio} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="nombre">Nombre Común</Label>
+                    <Label htmlFor="nom">Nombre Común</Label>
                     <Input
-                      id="nombre"
-                      value={nuevaPlanta.nombre}
-                      onChange={(e) => setNuevaPlanta({...nuevaPlanta, nombre: e.target.value})}
+                      id="nom"
+                      value={nuevaPlanta.nom}
+                      onChange={(e) => setNuevaPlanta({...nuevaPlanta, nom: e.target.value})}
                       placeholder="Nombre común de la planta"
                       required
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="nombre-cientifico">Nombre Científico</Label>
+                    <Label htmlFor="nom_cien">Nombre Científico</Label>
                     <Input
-                      id="nombre-cientifico"
-                      value={nuevaPlanta.nombreCientifico}
-                      onChange={(e) => setNuevaPlanta({...nuevaPlanta, nombreCientifico: e.target.value})}
+                      id="nom_cien"
+                      value={nuevaPlanta.nom_cien}
+                      onChange={(e) => setNuevaPlanta({...nuevaPlanta, nom_cien: e.target.value})}
                       placeholder="Nombre científico"
                       required
                     />

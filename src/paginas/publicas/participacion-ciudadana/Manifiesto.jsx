@@ -5,28 +5,28 @@ import autoTable from 'jspdf-autotable';
 
 const Manifiesto = () => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    documento: '',
-    email: '',
-    telefono: '',
-    direccion: '',
-    tipoManifiesto: '',
-    hechos: '',
-    solicitud: '',
-    entidadDestinataria: '',
-    archivos: [],
-    archivoConsejoIA: null,
-    evidencias: [],
-    hechosConIA: '',
-    solicitudConIA: '',
-    conceptoGeneral: '',
-    anonimato: false,
-    analisisIA: {
-      especialistaDerechos: '',
-      especialistaHechos: '',
-      especialistaSolicitud: '',
-      especialistaConcepto: '',
-      analisisUnificado: ''
+    nom: '',
+    doc: '',
+    cor: '',
+    tel: '',
+    dir: '',
+    tip_man: '',
+    hec: '',
+    sol: '',
+    ent_des: '',
+    arc: [],
+    arc_ia: null,
+    evi: [],
+    hec_ia: '',
+    sol_ia: '',
+    con_gen: '',
+    anon: false,
+    ana_ia: {
+      esp_der: '',
+      esp_hec: '',
+      esp_sol: '',
+      esp_con: '',
+      ana_uni: ''
     }
   });
 

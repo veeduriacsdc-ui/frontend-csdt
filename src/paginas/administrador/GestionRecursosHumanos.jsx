@@ -5,16 +5,16 @@ const GestionRecursosHumanos = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [recursoEditando, setRecursoEditando] = useState(null);
   const [nuevoRecurso, setNuevoRecurso] = useState({
-    nombre: '',
-    tipo: 'operador',
-    especialidad: '',
-    experiencia: '',
-    disponibilidad: 'disponible',
-    costoHora: 0,
-    telefono: '',
-    email: '',
-    direccion: '',
-    observaciones: ''
+    nom: '',
+    tip: 'operador',
+    esp: '',
+    exp: '',
+    disp: 'disponible',
+    cos_hor: 0,
+    tel: '',
+    cor: '',
+    dir: '',
+    obs: ''
   });
 
   // Cargar recursos desde localStorage

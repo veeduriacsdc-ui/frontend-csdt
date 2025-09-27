@@ -5,28 +5,28 @@ import autoTable from 'jspdf-autotable';
 
 const AccionCumplimiento = () => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    documento: '',
-    email: '',
-    telefono: '',
-    direccion: '',
-    normaIncumplida: '',
-    hechos: '',
-    solicitud: '',
-    entidadDemandada: '',
-    archivos: [],
-    archivoConsejoIA: null,
-    evidencias: [],
-    hechosConIA: '',
-    solicitudConIA: '',
-    conceptoGeneral: '',
-    anonimato: false,
-    analisisIA: {
-      especialistaDerechos: '',
-      especialistaHechos: '',
-      especialistaSolicitud: '',
-      especialistaConcepto: '',
-      analisisUnificado: ''
+    nom: '',
+    doc: '',
+    cor: '',
+    tel: '',
+    dir: '',
+    nor_inc: '',
+    hec: '',
+    sol: '',
+    ent_dem: '',
+    arc: [],
+    arc_ia: null,
+    evi: [],
+    hec_ia: '',
+    sol_ia: '',
+    con_gen: '',
+    anon: false,
+    ana_ia: {
+      esp_der: '',
+      esp_hec: '',
+      esp_sol: '',
+      esp_con: '',
+      ana_uni: ''
     }
   });
 
@@ -259,8 +259,8 @@ CONSEJO DE ESPECIALISTAS CERTIFICADOS:
 
 INFORMACIÓN DEL CASO PROCESADA:
 ═══════════════════════════════════════════════════════════════════════════════
-• Solicitante: ${formulario.nombre} ${formulario.anonimato ? '(MODO ANÓNIMO)' : ''}
-• Documento: ${formulario.documento}
+• Solicitante: ${formulario.nom} ${formulario.anon ? '(MODO ANÓNIMO)' : ''}
+• Documento: ${formulario.doc}
 • Entidad Demandada: ${formulario.entidadDemandada}
 • Fecha de Análisis: ${new Date().toLocaleDateString('es-CO')}
 • Hora de Procesamiento: ${new Date().toLocaleTimeString('es-CO')}
@@ -447,8 +447,8 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
       ...prev,
       anonimato: isAnonimo,
       // Si se activa anonimato, limpiar datos personales
-      nombre: isAnonimo ? '' : prev.nombre,
-      documento: isAnonimo ? '' : prev.documento,
+      nom: isAnonimo ? '' : prev.nom,
+      doc: isAnonimo ? '' : prev.doc,
       email: isAnonimo ? '' : prev.email,
       telefono: isAnonimo ? '' : prev.telefono,
       direccion: isAnonimo ? '' : prev.direccion
@@ -476,8 +476,8 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
     
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${formulario.anonimato ? 'Identificador' : 'Nombre'}: ${formulario.nombre}`, 20, 60);
-    doc.text(`${formulario.anonimato ? 'ID Documento' : 'Documento'}: ${formulario.documento}`, 20, 65);
+    doc.text(`${formulario.anon ? 'Identificador' : 'Nombre'}: ${formulario.nom}`, 20, 60);
+    doc.text(`${formulario.anon ? 'ID Documento' : 'Documento'}: ${formulario.doc}`, 20, 65);
     if (formulario.email) {
       doc.text(`Email: ${formulario.email}`, 20, 70);
     }
@@ -572,7 +572,7 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
     doc.text('Documento generado por el Sistema CSDT con IA - Fecha: ' + new Date().toLocaleDateString(), 20, 280);
     
     // Descargar PDF
-    doc.save(`AccionCumplimiento_${formulario.nombre.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+    doc.save(`AccionCumplimiento_${formulario.nom.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
   };
 
   // Función para generar dependencia
@@ -603,8 +603,8 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
     const dependencia = {
       id: Date.now(),
       tipo: 'AccionCumplimiento',
-      solicitante: formulario.nombre,
-      documento: formulario.documento,
+      solicitante: formulario.nom,
+      documento: formulario.doc,
       email: formulario.email,
       telefono: formulario.telefono,
       direccion: formulario.direccion,
@@ -617,7 +617,7 @@ Certificado de Análisis Profesional - N° ${Date.now()}`;
       
       // Archivos y documentos
       pdfGenerado: {
-        nombre: `AccionCumplimiento_${formulario.nombre.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`,
+        nombre: `AccionCumplimiento_${formulario.nom.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`,
         url: pdfUrl,
         fechaGeneracion: new Date().toISOString(),
         tamaño: pdfBlob.size
@@ -683,8 +683,8 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
     
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${formulario.anonimato ? 'Identificador' : 'Nombre'}: ${formulario.nombre}`, 20, 60);
-    doc.text(`${formulario.anonimato ? 'ID Documento' : 'Documento'}: ${formulario.documento}`, 20, 65);
+    doc.text(`${formulario.anon ? 'Identificador' : 'Nombre'}: ${formulario.nom}`, 20, 60);
+    doc.text(`${formulario.anon ? 'ID Documento' : 'Documento'}: ${formulario.doc}`, 20, 65);
     if (formulario.email) {
       doc.text(`Email: ${formulario.email}`, 20, 70);
     }
@@ -787,8 +787,8 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
     
     // Validar campos requeridos según el modo
     const camposRequeridos = [
-      { campo: formulario.nombre, nombre: formulario.anonimato ? 'Identificador' : 'Nombre' },
-      { campo: formulario.documento, nombre: formulario.anonimato ? 'ID Documento' : 'Documento' },
+      { campo: formulario.nom, nombre: formulario.anon ? 'Identificador' : 'Nombre' },
+      { campo: formulario.doc, nombre: formulario.anon ? 'ID Documento' : 'Documento' },
       { campo: formulario.normaIncumplida, nombre: 'Norma Incumplida' },
       { campo: formulario.hechos, nombre: 'Hechos' },
       { campo: formulario.solicitud, nombre: 'Solicitud' }
@@ -1243,8 +1243,8 @@ La dependencia ha sido enviada al Panel de Actividades del Administrador para su
                 </label>
                 <input
                   type="text"
-                  name="nombre"
-                  value={formulario.nombre}
+                  name="nom"
+                  value={formulario.nom}
                   onChange={handleInputChange}
                   required
                   placeholder={formulario.anonimato ? 'Ej: Ciudadano Anónimo, Usuario 123, etc.' : 'Ingrese su nombre completo'}

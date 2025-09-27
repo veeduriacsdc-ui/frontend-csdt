@@ -8,9 +8,9 @@ const ControlPermisosVista = () => {
   const [listaNegra, setListaNegra] = useState([]);
   const [vistaActiva, setVistaActiva] = useState('usuarios');
   const [filtros, setFiltros] = useState({
-    estado: '',
+    est: '',
     rol: '',
-    busqueda: ''
+    bus: ''
   });
 
   // Páginas del sistema
@@ -49,35 +49,35 @@ const ControlPermisosVista = () => {
         const usuariosEjemplo = [
           {
             id: 1,
-            nombre: 'Administrador General',
-            email: 'admin@csdt.com',
+            nom: 'Administrador General',
+            cor: 'admin@csdt.com',
             rol: 'administrador_general',
-            estadoVeto: 'activo',
-            fechaRegistro: '2024-01-01'
+            est_vet: 'activo',
+            fec_reg: '2024-01-01'
           },
           {
             id: 2,
-            nombre: 'Administrador Principal',
-            email: 'admin.principal@csdt.com',
+            nom: 'Administrador Principal',
+            cor: 'admin.principal@csdt.com',
             rol: 'administrador',
-            estadoVeto: 'activo',
-            fechaRegistro: '2024-01-02'
+            est_vet: 'activo',
+            fec_reg: '2024-01-02'
           },
           {
             id: 3,
-            nombre: 'Operador Senior',
-            email: 'operador.senior@csdt.com',
+            nom: 'Operador Senior',
+            cor: 'operador.senior@csdt.com',
             rol: 'operador',
-            estadoVeto: 'activo',
-            fechaRegistro: '2024-01-03'
+            est_vet: 'activo',
+            fec_reg: '2024-01-03'
           },
           {
             id: 4,
-            nombre: 'Cliente Empresarial',
-            email: 'cliente.empresarial@csdt.com',
+            nom: 'Cliente Empresarial',
+            cor: 'cliente.empresarial@csdt.com',
             rol: 'cliente',
-            estadoVeto: 'activo',
-            fechaRegistro: '2024-01-04'
+            est_vet: 'activo',
+            fec_reg: '2024-01-04'
           }
         ];
         setUsuarios(usuariosEjemplo);

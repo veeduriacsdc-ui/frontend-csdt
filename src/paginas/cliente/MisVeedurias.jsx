@@ -26,13 +26,13 @@ const MisVeedurias = () => {
   const [veedurias, setVeedurias] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
-  const [filterEstado, setFilterEstado] = useState('todos')
+  const [filtroEst, setFiltroEst] = useState('todos')
   const [showForm, setShowForm] = useState(false)
   const [formData, setFormData] = useState({
-    titulo: '',
-    descripcion: '',
-    tipo: 'social',
-    prioridad: 'media'
+    tit: '',
+    des: '',
+    tip: 'pet',
+    pri: 'med'
   })
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const MisVeedurias = () => {
       setLoading(true)
       const response = await veeduriaService.obtenerVeedurias()
       // Filtrar solo las veedurías del usuario actual
-      const veeduriasUsuario = response.data?.filter(v => v.usuario_id === user?.id) || []
+      const veeduriasUsuario = response.data?.filter(v => v.usu_id === user?.id) || []
       setVeedurias(veeduriasUsuario)
     } catch (error) {
       console.error('Error cargando veedurías:', error)
@@ -58,11 +58,11 @@ const MisVeedurias = () => {
     try {
       await veeduriaService.crearVeeduria({
         ...formData,
-        usuario_id: user?.id,
-        estado: 'pendiente'
+        usu_id: user?.id,
+        est: 'pen'
       })
       setShowForm(false)
-      setFormData({ titulo: '', descripcion: '', tipo: 'social', prioridad: 'media' })
+      setFormData({ tit: '', des: '', tip: 'pet', pri: 'med' })
       cargarVeedurias()
     } catch (error) {
       console.error('Error creando veeduría:', error)
@@ -70,9 +70,9 @@ const MisVeedurias = () => {
   }
 
   const filteredVeedurias = veedurias.filter(veeduria => {
-    const matchesSearch = veeduria.titulo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         veeduria.descripcion?.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesFilter = filterEstado === 'todos' || veeduria.estado === filterEstado
+    const matchesSearch = veeduria.tit?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         veeduria.des?.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesFilter = filtroEst === 'todos' || veeduria.est === filtroEst
     return matchesSearch && matchesFilter
   })
 
@@ -88,19 +88,22 @@ const MisVeedurias = () => {
 
   const getPrioridadColor = (prioridad) => {
     switch (prioridad) {
-      case 'alta': return 'bg-red-100 text-red-800'
-      case 'media': return 'bg-yellow-100 text-yellow-800'
-      case 'baja': return 'bg-green-100 text-green-800'
+      case 'alt': return 'bg-red-100 text-red-800'
+      case 'med': return 'bg-yellow-100 text-yellow-800'
+      case 'baj': return 'bg-green-100 text-green-800'
+      case 'urg': return 'bg-purple-100 text-purple-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
 
   const getTipoName = (tipo) => {
     switch (tipo) {
-      case 'social': return 'Social'
-      case 'ambiental': return 'Ambiental'
-      case 'urbana': return 'Urbana'
-      case 'rural': return 'Rural'
+      case 'pet': return 'Petición'
+      case 'que': return 'Queja'
+      case 'rec': return 'Reclamo'
+      case 'sug': return 'Sugerencia'
+      case 'fel': return 'Felicitación'
+      case 'den': return 'Denuncia'
       default: return 'Desconocido'
     }
   }
@@ -171,21 +174,21 @@ const MisVeedurias = () => {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="titulo">Título</Label>
+                  <Label htmlFor="tit">Título</Label>
                   <Input
-                    id="titulo"
-                    value={formData.titulo}
-                    onChange={(e) => setFormData({ ...formData, titulo: e.target.value })}
+                    id="tit"
+                    value={formData.tit}
+                    onChange={(e) => setFormData({ ...formData, tit: e.target.value })}
                     placeholder="Título de la veeduría"
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="descripcion">Descripción</Label>
+                  <Label htmlFor="des">Descripción</Label>
                   <Textarea
-                    id="descripcion"
-                    value={formData.descripcion}
-                    onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
+                    id="des"
+                    value={formData.des}
+                    onChange={(e) => setFormData({ ...formData, des: e.target.value })}
                     placeholder="Describe detalladamente la situación que quieres denunciar o vigilar"
                     required
                     rows={4}
@@ -193,35 +196,38 @@ const MisVeedurias = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="tipo">Tipo de Veeduría</Label>
+                    <Label htmlFor="tip">Tipo de Veeduría</Label>
                     <Select
-                      value={formData.tipo}
-                      onValueChange={(value) => setFormData({ ...formData, tipo: value })}
+                      value={formData.tip}
+                      onValueChange={(value) => setFormData({ ...formData, tip: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar tipo" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="social">Social</SelectItem>
-                        <SelectItem value="ambiental">Ambiental</SelectItem>
-                        <SelectItem value="urbana">Urbana</SelectItem>
-                        <SelectItem value="rural">Rural</SelectItem>
+                        <SelectItem value="pet">Petición</SelectItem>
+                        <SelectItem value="que">Queja</SelectItem>
+                        <SelectItem value="rec">Reclamo</SelectItem>
+                        <SelectItem value="sug">Sugerencia</SelectItem>
+                        <SelectItem value="fel">Felicitación</SelectItem>
+                        <SelectItem value="den">Denuncia</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="prioridad">Prioridad</Label>
+                    <Label htmlFor="pri">Prioridad</Label>
                     <Select
-                      value={formData.prioridad}
-                      onValueChange={(value) => setFormData({ ...formData, prioridad: value })}
+                      value={formData.pri}
+                      onValueChange={(value) => setFormData({ ...formData, pri: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar prioridad" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="baja">Baja</SelectItem>
-                        <SelectItem value="media">Media</SelectItem>
-                        <SelectItem value="alta">Alta</SelectItem>
+                        <SelectItem value="baj">Baja</SelectItem>
+                        <SelectItem value="med">Media</SelectItem>
+                        <SelectItem value="alt">Alta</SelectItem>
+                        <SelectItem value="urg">Urgente</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -235,7 +241,7 @@ const MisVeedurias = () => {
                     variant="outline"
                     onClick={() => {
                       setShowForm(false)
-                      setFormData({ titulo: '', descripcion: '', tipo: 'social', prioridad: 'media' })
+                      setFormData({ tit: '', des: '', tip: 'pet', pri: 'med' })
                     }}
                   >
                     Cancelar
@@ -273,20 +279,20 @@ const MisVeedurias = () => {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-medium">
-                          {veeduria.titulo}
+                          {veeduria.tit}
                         </h3>
                         <p className="text-sm text-muted-foreground">
-                          {veeduria.descripcion?.substring(0, 100)}...
+                          {veeduria.des?.substring(0, 100)}...
                         </p>
                         <div className="flex items-center space-x-2 mt-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(veeduria.estado)}`}>
-                            {veeduria.estado}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(veeduria.est)}`}>
+                            {veeduria.est}
                           </span>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(veeduria.prioridad)}`}>
-                            {veeduria.prioridad}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(veeduria.pri)}`}>
+                            {veeduria.pri}
                           </span>
                           <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                            {getTipoName(veeduria.tipo)}
+                            {getTipoName(veeduria.tip)}
                           </span>
                           <span className="text-xs text-muted-foreground">
                             <Calendar className="h-3 w-3 inline mr-1" />

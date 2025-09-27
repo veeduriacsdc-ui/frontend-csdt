@@ -5,22 +5,22 @@ const ConvocatoriasTareas = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [convocatoriaEditando, setConvocatoriaEditando] = useState(null);
   const [nuevaConvocatoria, setNuevaConvocatoria] = useState({
-    codigo: '',
-    titulo: '',
-    descripcion: '',
-    tipo: 'juridica',
-    prioridad: 'media',
-    fechaPublicacion: '',
-    fechaCierre: '',
-    presupuesto: 0,
-    requisitos: [],
-    beneficios: [],
-    estado: 'borrador',
-    postulaciones: [],
-    observaciones: '',
-    prioridadOperadores: true,
-    tareaId: '',
-    tipoAsignacion: 'voluntaria' // 'asignada' o 'voluntaria'
+    cod: '',
+    tit: '',
+    des: '',
+    tip: 'juridica',
+    pri: 'med',
+    fec_pub: '',
+    fec_cierre: '',
+    pre: 0,
+    req: [],
+    ben: [],
+    est: 'borrador',
+    post: [],
+    obs: '',
+    pri_ope: true,
+    tar_id: '',
+    tip_asig: 'voluntaria' // 'asignada' o 'voluntaria'
   });
 
   // Estados para tareas

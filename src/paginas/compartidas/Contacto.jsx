@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 const Contacto = () => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    tipoConsulta: 'general',
-    asunto: '',
-    mensaje: '',
-    aceptaTerminos: false
+    nom: '',
+    cor: '',
+    tel: '',
+    tip_con: 'general',
+    asu: '',
+    men: '',
+    acep_ter: false
   });
 
   const [enviado, setEnviado] = useState(false);
@@ -25,65 +25,65 @@ const Contacto = () => {
 
   const oficinas = [
     {
-      ciudad: 'Bogotá D.C.',
-      direccion: 'Calle 100 #15-60, Oficina 502',
-      telefono: '+57 (1) 234-5678',
-      email: 'bogota@csdt.gov.co',
-      horario: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+      ciu: 'Bogotá D.C.',
+      dir: 'Calle 100 #15-60, Oficina 502',
+      tel: '+57 (1) 234-5678',
+      cor: 'bogota@csdt.gov.co',
+      hor: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
       esPrincipal: true
     },
     {
-      ciudad: 'Medellín',
-      direccion: 'Carrera 43A #1-50, Torre Ejecutiva',
-      telefono: '+57 (4) 567-8901',
-      email: 'medellin@csdt.gov.co',
-      horario: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+      ciu: 'Medellín',
+      dir: 'Carrera 43A #1-50, Torre Ejecutiva',
+      tel: '+57 (4) 567-8901',
+      cor: 'medellin@csdt.gov.co',
+      hor: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
       esPrincipal: false
     },
     {
-      ciudad: 'Cali',
-      direccion: 'Avenida 6N #28-30, Edificio Corporativo',
-      telefono: '+57 (2) 890-1234',
-      email: 'cali@csdt.gov.co',
-      horario: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+      ciu: 'Cali',
+      dir: 'Avenida 6N #28-30, Edificio Corporativo',
+      tel: '+57 (2) 890-1234',
+      cor: 'cali@csdt.gov.co',
+      hor: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
       esPrincipal: false
     },
     {
-      ciudad: 'Barranquilla',
-      direccion: 'Calle 84 #45-23, Centro Empresarial',
-      telefono: '+57 (5) 123-4567',
-      email: 'barranquilla@csdt.gov.co',
-      horario: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
+      ciu: 'Barranquilla',
+      dir: 'Calle 84 #45-23, Centro Empresarial',
+      tel: '+57 (5) 123-4567',
+      cor: 'barranquilla@csdt.gov.co',
+      hor: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
       esPrincipal: false
     }
   ];
 
   const canales = [
     {
-      nombre: 'Línea Nacional',
-      numero: '018000-123456',
-      descripcion: 'Línea gratuita para todo el país',
+      nom: 'Línea Nacional',
+      num: '018000-123456',
+      des: 'Línea gratuita para todo el país',
       icono: '📞',
       color: '#059669'
     },
     {
-      nombre: 'WhatsApp',
-      numero: '+57 300 123 4567',
-      descripcion: 'Atención por WhatsApp',
+      nom: 'WhatsApp',
+      num: '+57 300 123 4567',
+      des: 'Atención por WhatsApp',
       icono: '💬',
       color: '#25D366'
     },
     {
-      nombre: 'Email Principal',
-      numero: 'contacto@csdt.gov.co',
-      descripcion: 'Correo electrónico principal',
+      nom: 'Email Principal',
+      num: 'contacto@csdt.gov.co',
+      des: 'Correo electrónico principal',
       icono: '📧',
       color: '#3B82F6'
     },
     {
-      nombre: 'Chat en Línea',
-      numero: 'Disponible 24/7',
-      descripcion: 'Chat en tiempo real',
+      nom: 'Chat en Línea',
+      num: 'Disponible 24/7',
+      des: 'Chat en tiempo real',
       icono: '💻',
       color: '#8B5CF6'
     }
@@ -206,7 +206,7 @@ const Contacto = () => {
                   color: '#1f2937',
                   marginBottom: '10px'
                 }}>
-                  {canal.nombre}
+                  {canal.nom}
                 </h3>
                 <p style={{
                   fontSize: '16px',
@@ -214,14 +214,14 @@ const Contacto = () => {
                   color: canal.color,
                   marginBottom: '8px'
                 }}>
-                  {canal.numero}
+                  {canal.num}
                 </p>
                 <p style={{
                   fontSize: '12px',
                   color: '#6b7280',
                   lineHeight: '1.4'
                 }}>
-                  {canal.descripcion}
+                  {canal.des}
                 </p>
               </div>
             ))}
@@ -564,7 +564,7 @@ const Contacto = () => {
                   alignItems: 'center',
                   gap: '10px'
                 }}>
-                  🏢 {oficina.ciudad}
+                  🏢 {oficina.ciu}
                 </h3>
                 
                 <div style={{
@@ -575,19 +575,19 @@ const Contacto = () => {
                 }}>
                   <div style={{ marginBottom: '8px' }}>
                     <strong>📍 Dirección:</strong><br />
-                    {oficina.direccion}
+                    {oficina.dir}
                   </div>
                   <div style={{ marginBottom: '8px' }}>
                     <strong>📞 Teléfono:</strong><br />
-                    {oficina.telefono}
+                    {oficina.tel}
                   </div>
                   <div style={{ marginBottom: '8px' }}>
                     <strong>📧 Email:</strong><br />
-                    {oficina.email}
+                    {oficina.cor}
                   </div>
                   <div>
                     <strong>🕒 Horario:</strong><br />
-                    {oficina.horario}
+                    {oficina.hor}
                   </div>
                 </div>
                 

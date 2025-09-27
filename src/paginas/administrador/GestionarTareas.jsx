@@ -31,12 +31,12 @@ const GestionarTareas = () => {
   const [showForm, setShowForm] = useState(false)
   const [editingTarea, setEditingTarea] = useState(null)
   const [formData, setFormData] = useState({
-    titulo: '',
-    descripcion: '',
-    prioridad: 'media',
-    estado: 'pendiente',
-    fecha_vencimiento: '',
-    usuario_asignado: ''
+    tit: '',
+    des: '',
+    pri: 'med',
+    est: 'pen',
+    fec_ven: '',
+    asig_a: ''
   })
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const GestionarTareas = () => {
       }
       setShowForm(false)
       setEditingTarea(null)
-      setFormData({ titulo: '', descripcion: '', prioridad: 'media', estado: 'pendiente', fecha_vencimiento: '', usuario_asignado: '' })
+      setFormData({ tit: '', des: '', pri: 'med', est: 'pen', fec_ven: '', asig_a: '' })
       cargarDatos()
     } catch (error) {
       console.error('Error guardando tarea:', error)
@@ -79,12 +79,12 @@ const GestionarTareas = () => {
   const handleEdit = (tarea) => {
     setEditingTarea(tarea)
     setFormData({
-      titulo: tarea.titulo || '',
-      descripcion: tarea.descripcion || '',
-      prioridad: tarea.prioridad || 'media',
-      estado: tarea.estado || 'pendiente',
-      fecha_vencimiento: tarea.fecha_vencimiento || '',
-      usuario_asignado: tarea.usuario_asignado || ''
+      tit: tarea.tit || '',
+      des: tarea.des || '',
+      pri: tarea.pri || 'med',
+      est: tarea.est || 'pen',
+      fec_ven: tarea.fec_ven || '',
+      asig_a: tarea.asig_a || ''
     })
     setShowForm(true)
   }
@@ -119,26 +119,28 @@ const GestionarTareas = () => {
   }
 
   const filteredTareas = tareas.filter(tarea =>
-    tarea.titulo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    tarea.descripcion?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    tarea.prioridad?.toLowerCase().includes(searchTerm.toLowerCase())
+    tarea.tit?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    tarea.des?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    tarea.pri?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   const getEstadoColor = (estado) => {
     switch (estado) {
-      case 'completada': return 'bg-green-100 text-green-800'
-      case 'en_progreso': return 'bg-blue-100 text-blue-800'
-      case 'pendiente': return 'bg-yellow-100 text-yellow-800'
-      case 'cancelada': return 'bg-red-100 text-red-800'
+      case 'com': return 'bg-green-100 text-green-800'
+      case 'pro': return 'bg-blue-100 text-blue-800'
+      case 'pen': return 'bg-yellow-100 text-yellow-800'
+      case 'can': return 'bg-red-100 text-red-800'
+      case 'sus': return 'bg-orange-100 text-orange-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
 
   const getPrioridadColor = (prioridad) => {
     switch (prioridad) {
-      case 'alta': return 'bg-red-100 text-red-800'
-      case 'media': return 'bg-yellow-100 text-yellow-800'
-      case 'baja': return 'bg-green-100 text-green-800'
+      case 'alt': return 'bg-red-100 text-red-800'
+      case 'med': return 'bg-yellow-100 text-yellow-800'
+      case 'baj': return 'bg-green-100 text-green-800'
+      case 'urg': return 'bg-purple-100 text-purple-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
@@ -202,74 +204,76 @@ const GestionarTareas = () => {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="titulo">Título</Label>
+                  <Label htmlFor="tit">Título</Label>
                   <Input
-                    id="titulo"
-                    value={formData.titulo}
-                    onChange={(e) => setFormData({ ...formData, titulo: e.target.value })}
+                    id="tit"
+                    value={formData.tit}
+                    onChange={(e) => setFormData({ ...formData, tit: e.target.value })}
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="descripcion">Descripción</Label>
+                  <Label htmlFor="des">Descripción</Label>
                   <Textarea
-                    id="descripcion"
-                    value={formData.descripcion}
-                    onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
+                    id="des"
+                    value={formData.des}
+                    onChange={(e) => setFormData({ ...formData, des: e.target.value })}
                     required
                     rows={4}
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="prioridad">Prioridad</Label>
+                    <Label htmlFor="pri">Prioridad</Label>
                     <Select
-                      value={formData.prioridad}
-                      onValueChange={(value) => setFormData({ ...formData, prioridad: value })}
+                      value={formData.pri}
+                      onValueChange={(value) => setFormData({ ...formData, pri: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar prioridad" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="baja">Baja</SelectItem>
-                        <SelectItem value="media">Media</SelectItem>
-                        <SelectItem value="alta">Alta</SelectItem>
+                        <SelectItem value="baj">Baja</SelectItem>
+                        <SelectItem value="med">Media</SelectItem>
+                        <SelectItem value="alt">Alta</SelectItem>
+                        <SelectItem value="urg">Urgente</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="estado">Estado</Label>
+                    <Label htmlFor="est">Estado</Label>
                     <Select
-                      value={formData.estado}
-                      onValueChange={(value) => setFormData({ ...formData, estado: value })}
+                      value={formData.est}
+                      onValueChange={(value) => setFormData({ ...formData, est: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar estado" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="pendiente">Pendiente</SelectItem>
-                        <SelectItem value="en_progreso">En Progreso</SelectItem>
-                        <SelectItem value="completada">Completada</SelectItem>
-                        <SelectItem value="cancelada">Cancelada</SelectItem>
+                        <SelectItem value="pen">Pendiente</SelectItem>
+                        <SelectItem value="pro">En Progreso</SelectItem>
+                        <SelectItem value="com">Completada</SelectItem>
+                        <SelectItem value="can">Cancelada</SelectItem>
+                        <SelectItem value="sus">Suspendida</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="fecha_vencimiento">Fecha de Vencimiento</Label>
+                    <Label htmlFor="fec_ven">Fecha de Vencimiento</Label>
                     <Input
-                      id="fecha_vencimiento"
+                      id="fec_ven"
                       type="date"
-                      value={formData.fecha_vencimiento}
-                      onChange={(e) => setFormData({ ...formData, fecha_vencimiento: e.target.value })}
+                      value={formData.fec_ven}
+                      onChange={(e) => setFormData({ ...formData, fec_ven: e.target.value })}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="usuario_asignado">Usuario Asignado</Label>
+                    <Label htmlFor="asig_a">Usuario Asignado</Label>
                     <Select
-                      value={formData.usuario_asignado}
-                      onValueChange={(value) => setFormData({ ...formData, usuario_asignado: value })}
+                      value={formData.asig_a}
+                      onValueChange={(value) => setFormData({ ...formData, asig_a: value })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Seleccionar usuario" />
@@ -294,7 +298,7 @@ const GestionarTareas = () => {
                     onClick={() => {
                       setShowForm(false)
                       setEditingTarea(null)
-                      setFormData({ titulo: '', descripcion: '', prioridad: 'media', estado: 'pendiente', fecha_vencimiento: '', usuario_asignado: '' })
+                      setFormData({ tit: '', des: '', pri: 'med', est: 'pen', fec_ven: '', asig_a: '' })
                     }}
                   >
                     Cancelar
@@ -332,25 +336,25 @@ const GestionarTareas = () => {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-medium">
-                          {tarea.titulo}
+                          {tarea.tit}
                         </h3>
                         <p className="text-sm text-muted-foreground">
-                          {tarea.descripcion?.substring(0, 100)}...
+                          {tarea.des?.substring(0, 100)}...
                         </p>
                         <div className="flex items-center space-x-2 mt-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(tarea.estado)}`}>
-                            {tarea.estado}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(tarea.est)}`}>
+                            {tarea.est}
                           </span>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(tarea.prioridad)}`}>
-                            {tarea.prioridad}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(tarea.pri)}`}>
+                            {tarea.pri}
                           </span>
                           <span className="text-xs text-muted-foreground">
                             <User className="h-3 w-3 inline mr-1" />
-                            {getUsuarioName(tarea.usuario_asignado)}
+                            {getUsuarioName(tarea.asig_a)}
                           </span>
                           <span className="text-xs text-muted-foreground">
                             <Calendar className="h-3 w-3 inline mr-1" />
-                            {formatFecha(tarea.fecha_vencimiento)}
+                            {formatFecha(tarea.fec_ven)}
                           </span>
                         </div>
                       </div>

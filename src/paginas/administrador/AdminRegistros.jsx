@@ -5,9 +5,9 @@ const AdminRegistros = () => {
   const { user } = useAuth();
   const [registros, setRegistros] = useState([]);
   const [filtros, setFiltros] = useState({
-    estado: '',
+    est: '',
     rol: '',
-    busqueda: ''
+    bus: ''
   });
   const [estadisticas, setEstadisticas] = useState({
     total: 0,
@@ -39,30 +39,30 @@ const AdminRegistros = () => {
         const datosPrueba = [
           {
             id: '1',
-            nombre: 'María González',
-            email: 'maria@ejemplo.com',
-            usuario: 'maria',
+            nom: 'María González',
+            cor: 'maria@ejemplo.com',
+            usu: 'maria',
             rol: 'cliente',
-            estado: 'pendiente',
-            fechaRegistro: '2024-01-15'
+            est: 'pendiente',
+            fec_reg: '2024-01-15'
           },
           {
             id: '2',
-            nombre: 'Carlos Rodríguez',
-            email: 'carlos@ejemplo.com',
-            usuario: 'carlos',
+            nom: 'Carlos Rodríguez',
+            cor: 'carlos@ejemplo.com',
+            usu: 'carlos',
             rol: 'operador',
-            estado: 'aprobado',
-            fechaRegistro: '2024-01-16'
+            est: 'aprobado',
+            fec_reg: '2024-01-16'
           },
           {
             id: '3',
-            nombre: 'Ana Sánchez',
-            email: 'ana@ejemplo.com',
-            usuario: 'ana',
+            nom: 'Ana Sánchez',
+            cor: 'ana@ejemplo.com',
+            usu: 'ana',
             rol: 'administrador',
-            estado: 'aprobado',
-            fechaRegistro: '2024-01-17'
+            est: 'aprobado',
+            fec_reg: '2024-01-17'
           }
         ];
         setRegistros(datosPrueba);
@@ -75,9 +75,9 @@ const AdminRegistros = () => {
 
   const calcularEstadisticas = () => {
     const total = registros.length;
-    const pendientes = registros.filter(r => r.estado === 'pendiente').length;
-    const aprobados = registros.filter(r => r.estado === 'aprobado').length;
-    const rechazados = registros.filter(r => r.estado === 'rechazado').length;
+    const pendientes = registros.filter(r => r.est === 'pendiente').length;
+    const aprobados = registros.filter(r => r.est === 'aprobado').length;
+    const rechazados = registros.filter(r => r.est === 'rechazado').length;
 
     setEstadisticas({ total, pendientes, aprobados, rechazados });
   };
@@ -105,7 +105,7 @@ const AdminRegistros = () => {
       // Fallback a actualización local
       const registrosActualizados = registros.map(registro => 
         registro.id === id 
-          ? { ...registro, estado: accion }
+          ? { ...registro, est: accion }
           : registro
       );
       
@@ -144,12 +144,12 @@ const AdminRegistros = () => {
   };
 
   const registrosFiltrados = registros.filter(registro => {
-    const cumpleEstado = !filtros.estado || registro.estado === filtros.estado;
+    const cumpleEstado = !filtros.est || registro.est === filtros.est;
     const cumpleRol = !filtros.rol || registro.rol === filtros.rol;
-    const cumpleBusqueda = !filtros.busqueda || 
-      registro.nombre.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
-      registro.email.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
-      registro.usuario.toLowerCase().includes(filtros.busqueda.toLowerCase());
+    const cumpleBusqueda = !filtros.bus || 
+      registro.nom.toLowerCase().includes(filtros.bus.toLowerCase()) ||
+      registro.cor.toLowerCase().includes(filtros.bus.toLowerCase()) ||
+      registro.usu.toLowerCase().includes(filtros.bus.toLowerCase());
     
     return cumpleEstado && cumpleRol && cumpleBusqueda;
   });
@@ -219,8 +219,8 @@ const AdminRegistros = () => {
                 Estado
               </label>
               <select
-                value={filtros.estado}
-                onChange={(e) => setFiltros({...filtros, estado: e.target.value})}
+                value={filtros.est}
+                onChange={(e) => setFiltros({...filtros, est: e.target.value})}
                 style={{
                   width: '100%',
                   padding: '8px 12px',
@@ -263,8 +263,8 @@ const AdminRegistros = () => {
               </label>
               <input
                 type="text"
-                value={filtros.busqueda}
-                onChange={(e) => setFiltros({...filtros, busqueda: e.target.value})}
+                value={filtros.bus}
+                onChange={(e) => setFiltros({...filtros, bus: e.target.value})}
                 placeholder="Buscar por nombre, email o usuario..."
                 style={{
                   width: '100%',
@@ -309,9 +309,9 @@ const AdminRegistros = () => {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
               <div>
                       <h4 style={{ fontSize: '18px', fontWeight: 'bold', color: '#1f2937', marginBottom: '4px' }}>
-                    {registro.nombre}
+                    {registro.nom}
                       </h4>
-                      <p style={{ color: '#6b7280', marginBottom: '8px' }}>{registro.email}</p>
+                      <p style={{ color: '#6b7280', marginBottom: '8px' }}>{registro.cor}</p>
                       <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
                   <span style={{
                           padding: '4px 12px',
@@ -325,25 +325,25 @@ const AdminRegistros = () => {
                   </span>
                   <span style={{
                           padding: '4px 12px',
-                          backgroundColor: getEstadoColor(registro.estado) + '20',
-                          color: getEstadoColor(registro.estado),
+                          backgroundColor: getEstadoColor(registro.est) + '20',
+                          color: getEstadoColor(registro.est),
                           borderRadius: '20px',
                     fontSize: '12px',
                     fontWeight: 'bold'
                   }}>
-                          {registro.estado.toUpperCase()}
+                          {registro.est.toUpperCase()}
                   </span>
                 </div>
                 </div>
                     <div style={{ textAlign: 'right', fontSize: '12px', color: '#6b7280' }}>
                       <div>ID: {registro.id}</div>
-                      <div>Registro: {registro.fechaRegistro}</div>
+                      <div>Registro: {registro.fec_reg}</div>
                     </div>
               </div>
 
                   {/* Botones de Acción */}
                   <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                {registro.estado === 'pendiente' && (
+                {registro.est === 'pendiente' && (
                   <>
                     <button
                           onClick={() => procesarRegistro(registro.id, 'aprobado')}
@@ -377,7 +377,7 @@ const AdminRegistros = () => {
                     </button>
                   </>
                 )}
-                    {registro.estado === 'aprobado' && (
+                    {registro.est === 'aprobado' && (
               <button
                         onClick={() => procesarRegistro(registro.id, 'pendiente')}
                 style={{
@@ -394,7 +394,7 @@ const AdminRegistros = () => {
                         🔄 Revisar
               </button>
                     )}
-                    {registro.estado === 'rechazado' && (
+                    {registro.est === 'rechazado' && (
               <button
                         onClick={() => procesarRegistro(registro.id, 'pendiente')}
                 style={{

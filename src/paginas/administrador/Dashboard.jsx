@@ -301,65 +301,6 @@ const DashboardAdmin = () => {
         </div>
       </div>
 
-      {/* Información del Sistema */}
-      <div style={cardStyle}>
-        <h2 style={{
-          fontSize: '24px',
-          fontWeight: 'bold',
-          color: '#1f2937',
-          marginBottom: '20px'
-        }}>
-          Estado del Sistema
-        </h2>
-        
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '20px'
-        }}>
-          <div style={{
-            padding: '15px',
-            backgroundColor: '#f0fdf4',
-            borderRadius: '10px',
-            border: '1px solid #bbf7d0',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '24px', marginBottom: '10px' }}>✅</div>
-            <strong style={{ color: '#166534' }}>Sistema Operativo</strong>
-            <p style={{ color: '#6b7280', margin: '5px 0 0 0', fontSize: '14px' }}>
-              Todos los servicios funcionando correctamente
-            </p>
-          </div>
-          
-          <div style={{
-            padding: '15px',
-            backgroundColor: '#f0f9ff',
-            borderRadius: '10px',
-            border: '1px solid #bfdbfe',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '24px', marginBottom: '10px' }}>🔒</div>
-            <strong style={{ color: '#1e40af' }}>Seguridad Activa</strong>
-            <p style={{ color: '#6b7280', margin: '5px 0 0 0', fontSize: '14px' }}>
-              Sistema de permisos funcionando
-            </p>
-          </div>
-          
-          <div style={{
-            padding: '15px',
-            backgroundColor: '#fef3c7',
-            borderRadius: '10px',
-            border: '1px solid #fde68a',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '24px', marginBottom: '10px' }}>📊</div>
-            <strong style={{ color: '#92400e' }}>Base de Datos</strong>
-            <p style={{ color: '#6b7280', margin: '5px 0 0 0', fontSize: '14px' }}>
-              Conexión estable y sincronizada
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

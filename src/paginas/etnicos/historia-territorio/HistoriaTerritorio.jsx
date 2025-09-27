@@ -33,18 +33,18 @@ import {
 const HistoriaTerritorio = () => {
   const [historias, setHistorias] = useState([]);
   const [comunidades, setComunidades] = useState([]);
-  const [filtroComunidad, setFiltroComunidad] = useState('todas');
-  const [filtroPeriodo, setFiltroPeriodo] = useState('todos');
+  const [filtroCom, setFiltroCom] = useState('todas');
+  const [filtroPer, setFiltroPer] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevaHistoria, setNuevaHistoria] = useState({
-    titulo: '',
-    descripcion: '',
-    comunidad: '',
-    periodo: 'precolombino',
-    fecha: '',
-    ubicacion: '',
-    tipo: 'evento',
-    fuentes: []
+    tit: '',
+    des: '',
+    com: '',
+    per: 'precolombino',
+    fec: '',
+    ubi: '',
+    tip: 'evento',
+    fue: []
   });
 
   useEffect(() => {

@@ -26,7 +26,7 @@ const GestionarVeeduriasOperador = () => {
   const [veedurias, setVeedurias] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
-  const [filterEstado, setFilterEstado] = useState('todos')
+  const [filtroEst, setFiltroEst] = useState('todos')
 
   useEffect(() => {
     cargarVeedurias()
@@ -54,37 +54,41 @@ const GestionarVeeduriasOperador = () => {
   }
 
   const filteredVeedurias = veedurias.filter(veeduria => {
-    const matchesSearch = veeduria.titulo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         veeduria.descripcion?.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesFilter = filterEstado === 'todos' || veeduria.estado === filterEstado
+    const matchesSearch = veeduria.tit?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         veeduria.des?.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesFilter = filtroEst === 'todos' || veeduria.est === filtroEst
     return matchesSearch && matchesFilter
   })
 
   const getEstadoColor = (estado) => {
     switch (estado) {
-      case 'activa': return 'bg-green-100 text-green-800'
-      case 'pendiente': return 'bg-yellow-100 text-yellow-800'
-      case 'completada': return 'bg-blue-100 text-blue-800'
-      case 'cancelada': return 'bg-red-100 text-red-800'
+      case 'rad': return 'bg-green-100 text-green-800'
+      case 'pen': return 'bg-yellow-100 text-yellow-800'
+      case 'pro': return 'bg-blue-100 text-blue-800'
+      case 'cer': return 'bg-gray-100 text-gray-800'
+      case 'can': return 'bg-red-100 text-red-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
 
   const getPrioridadColor = (prioridad) => {
     switch (prioridad) {
-      case 'alta': return 'bg-red-100 text-red-800'
-      case 'media': return 'bg-yellow-100 text-yellow-800'
-      case 'baja': return 'bg-green-100 text-green-800'
+      case 'alt': return 'bg-red-100 text-red-800'
+      case 'med': return 'bg-yellow-100 text-yellow-800'
+      case 'baj': return 'bg-green-100 text-green-800'
+      case 'urg': return 'bg-purple-100 text-purple-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
 
   const getTipoName = (tipo) => {
     switch (tipo) {
-      case 'social': return 'Social'
-      case 'ambiental': return 'Ambiental'
-      case 'urbana': return 'Urbana'
-      case 'rural': return 'Rural'
+      case 'pet': return 'Petición'
+      case 'que': return 'Queja'
+      case 'rec': return 'Reclamo'
+      case 'sug': return 'Sugerencia'
+      case 'fel': return 'Felicitación'
+      case 'den': return 'Denuncia'
       default: return 'Desconocido'
     }
   }
@@ -132,10 +136,11 @@ const GestionarVeeduriasOperador = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="todos">Todos los estados</SelectItem>
-                  <SelectItem value="pendiente">Pendiente</SelectItem>
-                  <SelectItem value="activa">Activa</SelectItem>
-                  <SelectItem value="completada">Completada</SelectItem>
-                  <SelectItem value="cancelada">Cancelada</SelectItem>
+                  <SelectItem value="pen">Pendiente</SelectItem>
+                  <SelectItem value="pro">En Proceso</SelectItem>
+                  <SelectItem value="rad">Radicada</SelectItem>
+                  <SelectItem value="cer">Cerrada</SelectItem>
+                  <SelectItem value="can">Cancelada</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -169,20 +174,20 @@ const GestionarVeeduriasOperador = () => {
                       </div>
                       <div className="flex-1">
                         <h3 className="font-medium">
-                          {veeduria.titulo}
+                          {veeduria.tit}
                         </h3>
                         <p className="text-sm text-muted-foreground">
-                          {veeduria.descripcion?.substring(0, 100)}...
+                          {veeduria.des?.substring(0, 100)}...
                         </p>
                         <div className="flex items-center space-x-2 mt-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(veeduria.estado)}`}>
-                            {veeduria.estado}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getEstadoColor(veeduria.est)}`}>
+                            {veeduria.est}
                           </span>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(veeduria.prioridad)}`}>
-                            {veeduria.prioridad}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPrioridadColor(veeduria.pri)}`}>
+                            {veeduria.pri}
                           </span>
                           <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                            {getTipoName(veeduria.tipo)}
+                            {getTipoName(veeduria.tip)}
                           </span>
                           <span className="text-xs text-muted-foreground">
                             <Calendar className="h-3 w-3 inline mr-1" />
@@ -199,12 +204,12 @@ const GestionarVeeduriasOperador = () => {
                       >
                         <Eye className="h-4 w-4" />
                       </Button>
-                      {veeduria.estado === 'pendiente' && (
+                      {veeduria.est === 'pen' && (
                         <>
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => handleCambiarEstado(veeduria.id, 'activa')}
+                            onClick={() => handleCambiarEstado(veeduria.id, 'pro')}
                             className="text-green-600 hover:text-green-700"
                           >
                             <CheckCircle className="h-4 w-4" />
@@ -212,18 +217,18 @@ const GestionarVeeduriasOperador = () => {
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => handleCambiarEstado(veeduria.id, 'cancelada')}
+                            onClick={() => handleCambiarEstado(veeduria.id, 'can')}
                             className="text-red-600 hover:text-red-700"
                           >
                             <XCircle className="h-4 w-4" />
                           </Button>
                         </>
                       )}
-                      {veeduria.estado === 'activa' && (
+                      {veeduria.est === 'pro' && (
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => handleCambiarEstado(veeduria.id, 'completada')}
+                          onClick={() => handleCambiarEstado(veeduria.id, 'cer')}
                           className="text-blue-600 hover:text-blue-700"
                         >
                           <CheckCircle className="h-4 w-4" />

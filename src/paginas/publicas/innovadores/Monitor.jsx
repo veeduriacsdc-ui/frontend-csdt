@@ -6,20 +6,20 @@ const Monitor = () => {
   const { user } = useAuth();
   const [mostrarRegistro, setMostrarRegistro] = useState(false);
   const [datosRegistro, setDatosRegistro] = useState({
-    cedula: '',
-    nombreCompleto: '',
-    entidad: '',
-    tipoEntidad: '',
-    telefono: '',
-    email: '',
-    direccion: '',
-    experiencia: '',
-    disponibilidad: '',
-    motivacion: '',
-    documentosEntidad: [],
-    hojaVida: null,
-    certificaciones: [],
-    referencias: []
+    ced: '',
+    nom_com: '',
+    ent: '',
+    tip_ent: '',
+    tel: '',
+    cor: '',
+    dir: '',
+    exp: '',
+    disp: '',
+    mot: '',
+    doc_ent: [],
+    hoja_vid: null,
+    cert: [],
+    ref: []
   });
   const [validacion, setValidacion] = useState(null);
   const [cargando, setCargando] = useState(false);

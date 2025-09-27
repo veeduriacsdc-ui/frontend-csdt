@@ -35,19 +35,19 @@ const PatrimonioCultural = () => {
   const [patrimonios, setPatrimonios] = useState([]);
   const [comunidades, setComunidades] = useState([]);
   const [categorias, setCategorias] = useState([]);
-  const [filtroComunidad, setFiltroComunidad] = useState('todas');
-  const [filtroCategoria, setFiltroCategoria] = useState('todas');
+  const [filtroCom, setFiltroCom] = useState('todas');
+  const [filtroCat, setFiltroCat] = useState('todas');
   const [busqueda, setBusqueda] = useState('');
   const [nuevoPatrimonio, setNuevoPatrimonio] = useState({
-    nombre: '',
-    descripcion: '',
-    comunidad: '',
-    categoria: 'tangible',
-    tipo: 'arqueologico',
-    ubicacion: '',
-    estado: 'protegido',
-    fechaDeclaracion: '',
-    documentos: []
+    nom: '',
+    des: '',
+    com: '',
+    cat: 'tangible',
+    tip: 'arqueologico',
+    ubi: '',
+    est: 'protegido',
+    fec_dec: '',
+    doc: []
   });
 
   useEffect(() => {

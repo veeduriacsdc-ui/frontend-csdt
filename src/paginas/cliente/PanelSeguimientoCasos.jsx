@@ -6,8 +6,8 @@ const PanelSeguimientoCasos = () => {
   const { user } = useAuth();
   const [casos, setCasos] = useState([]);
   const [filtros, setFiltros] = useState({
-    estado: 'todos',
-    tipo: 'todos'
+    est: 'todos',
+    tip: 'todos'
   });
   const [casoSeleccionado, setCasoSeleccionado] = useState(null);
   const [mostrarChat, setMostrarChat] = useState(false);
@@ -214,8 +214,8 @@ const PanelSeguimientoCasos = () => {
   };
 
   const casosFiltrados = casos.filter(caso => {
-    if (filtros.estado !== 'todos' && caso.estado !== filtros.estado) return false;
-    if (filtros.tipo !== 'todos' && caso.tipo !== filtros.tipo) return false;
+    if (filtros.est !== 'todos' && caso.estado !== filtros.est) return false;
+    if (filtros.tip !== 'todos' && caso.tipo !== filtros.tip) return false;
     return true;
   });
 

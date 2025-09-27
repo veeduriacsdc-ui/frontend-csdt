@@ -3,8 +3,8 @@ import authService from '../../services/authService';
 
 const LoginSimple = ({ onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    cor: '',
+    con: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -22,7 +22,7 @@ const LoginSimple = ({ onClose, onSuccess }) => {
     setError('');
 
     try {
-      const resultado = await authService.login(formData.email, formData.password);
+      const resultado = await authService.login(formData.cor, formData.con);
       
       if (resultado.success) {
         if (onSuccess) {
@@ -119,8 +119,8 @@ const LoginSimple = ({ onClose, onSuccess }) => {
             </label>
             <input
               type="email"
-              name="email"
-              value={formData.email}
+                name="cor"
+                value={formData.cor}
               onChange={handleChange}
               required
               style={{
@@ -147,8 +147,8 @@ const LoginSimple = ({ onClose, onSuccess }) => {
             </label>
             <input
               type="password"
-              name="password"
-              value={formData.password}
+                name="con"
+                value={formData.con}
               onChange={handleChange}
               required
               style={{

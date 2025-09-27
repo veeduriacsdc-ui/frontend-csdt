@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card'
 import { Button } from '../../components/ui/button'
 import AppLayout from '../../layouts/AppLayout'
+import DiagnosticoConexion from '../../components/compartidas/DiagnosticoConexion'
 import { 
   Users, 
   FileText, 
@@ -20,13 +21,13 @@ import tareaService from '../../services/tareaService'
 const DashboardOperador = () => {
   const { user } = useAuth()
   const [stats, setStats] = useState({
-    veedurias: 0,
-    donaciones: 0,
-    tareas: 0,
-    tareasPendientes: 0
+    vee: 0,
+    don: 0,
+    tar: 0,
+    tarPen: 0
   })
   const [loading, setLoading] = useState(true)
-  const [recentActivities, setRecentActivities] = useState([])
+  const [actRecientes, setActRecientes] = useState([])
 
   useEffect(() => {
     cargarDatos()
@@ -43,40 +44,40 @@ const DashboardOperador = () => {
         tareaService.obtenerTareas().catch(() => ({ data: [] }))
       ])
 
-      const tareasPendientes = tareas.data?.filter(t => t.estado === 'pendiente').length || 0
+      const tarPen = tareas.data?.filter(t => t.est === 'pen').length || 0
 
       setStats({
-        veedurias: veedurias.data?.length || 0,
-        donaciones: donaciones.data?.length || 0,
-        tareas: tareas.data?.length || 0,
-        tareasPendientes
+        vee: veedurias.data?.length || 0,
+        don: donaciones.data?.length || 0,
+        tar: tareas.data?.length || 0,
+        tarPen
       })
 
       // Simular actividades recientes
-      setRecentActivities([
+      setActRecientes([
         {
           id: 1,
-          action: 'Nueva veeduría asignada',
-          time: 'Hace 2 horas',
-          type: 'info'
+          acc: 'Nueva veeduría asignada',
+          tiem: 'Hace 2 horas',
+          tip: 'info'
         },
         {
           id: 2,
-          action: 'Tarea completada',
-          time: 'Hace 4 horas',
-          type: 'success'
+          acc: 'Tarea completada',
+          tiem: 'Hace 4 horas',
+          tip: 'success'
         },
         {
           id: 3,
-          action: 'Donación procesada',
-          time: 'Hace 6 horas',
-          type: 'success'
+          acc: 'Donación procesada',
+          tiem: 'Hace 6 horas',
+          tip: 'success'
         },
         {
           id: 4,
-          action: 'Veeduría requiere revisión',
-          time: 'Hace 8 horas',
-          type: 'warning'
+          acc: 'Veeduría requiere revisión',
+          tiem: 'Hace 8 horas',
+          tip: 'warning'
         }
       ])
     } catch (error) {
@@ -86,33 +87,33 @@ const DashboardOperador = () => {
     }
   }
 
-  const quickActions = [
+  const accRapidas = [
     {
-      title: 'Gestionar Veedurías',
-      description: 'Revisar y procesar veedurías',
-      icon: FileText,
-      color: 'bg-green-500',
+      tit: 'Gestionar Veedurías',
+      des: 'Revisar y procesar veedurías',
+      ico: FileText,
+      col: 'bg-green-500',
       href: '/operador/veedurias'
     },
     {
-      title: 'Gestionar Tareas',
-      description: 'Ver y asignar tareas',
-      icon: CheckSquare,
-      color: 'bg-blue-500',
+      tit: 'Gestionar Tareas',
+      des: 'Ver y asignar tareas',
+      ico: CheckSquare,
+      col: 'bg-blue-500',
       href: '/operador/tareas'
     },
     {
-      title: 'Gestionar Donaciones',
-      description: 'Procesar donaciones',
-      icon: DollarSign,
-      color: 'bg-purple-500',
+      tit: 'Gestionar Donaciones',
+      des: 'Procesar donaciones',
+      ico: DollarSign,
+      col: 'bg-purple-500',
       href: '/operador/donaciones'
     },
     {
-      title: 'Gestionar Archivos',
-      description: 'Administrar documentos',
-      icon: FileText,
-      color: 'bg-orange-500',
+      tit: 'Gestionar Archivos',
+      des: 'Administrar documentos',
+      ico: FileText,
+      col: 'bg-orange-500',
       href: '/operador/archivos'
     }
   ]
@@ -137,6 +138,19 @@ const DashboardOperador = () => {
           </div>
         </div>
 
+        {/* Diagnóstico de Conexión - Solo para operadores */}
+        <Card>
+          <CardHeader>
+            <CardTitle>🔧 Diagnóstico del Sistema</CardTitle>
+            <CardDescription>
+              Herramientas de diagnóstico y monitoreo del sistema
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <DiagnosticoConexion />
+          </CardContent>
+        </Card>
+
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card className="hover:shadow-lg transition-shadow">
@@ -148,7 +162,7 @@ const DashboardOperador = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {loading ? '...' : stats.veedurias}
+                {loading ? '...' : stats.vee}
               </div>
               <p className="text-xs text-green-600 flex items-center">
                 <TrendingUp className="h-3 w-3 mr-1" />
@@ -166,7 +180,7 @@ const DashboardOperador = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {loading ? '...' : stats.donaciones}
+                {loading ? '...' : stats.don}
               </div>
               <p className="text-xs text-blue-600 flex items-center">
                 <TrendingUp className="h-3 w-3 mr-1" />
@@ -184,7 +198,7 @@ const DashboardOperador = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {loading ? '...' : stats.tareas}
+                {loading ? '...' : stats.tar}
               </div>
               <p className="text-xs text-purple-600 flex items-center">
                 <TrendingUp className="h-3 w-3 mr-1" />
@@ -202,7 +216,7 @@ const DashboardOperador = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {loading ? '...' : stats.tareasPendientes}
+                {loading ? '...' : stats.tarPen}
               </div>
               <p className="text-xs text-yellow-600 flex items-center">
                 <AlertCircle className="h-3 w-3 mr-1" />
@@ -224,19 +238,19 @@ const DashboardOperador = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {recentActivities.map((activity) => (
-                  <div key={activity.id} className="flex items-center space-x-4">
+                {actRecientes.map((actividad) => (
+                  <div key={actividad.id} className="flex items-center space-x-4">
                     <div className={`w-2 h-2 rounded-full ${
-                      activity.type === 'success' ? 'bg-green-500' :
-                      activity.type === 'warning' ? 'bg-yellow-500' :
+                      actividad.tip === 'success' ? 'bg-green-500' :
+                      actividad.tip === 'warning' ? 'bg-yellow-500' :
                       'bg-blue-500'
                     }`} />
                     <div className="flex-1 space-y-1">
                       <p className="text-sm font-medium leading-none">
-                        {activity.action}
+                        {actividad.acc}
                       </p>
                       <p className="text-sm text-muted-foreground">
-                        {activity.time}
+                        {actividad.tiem}
                       </p>
                     </div>
                   </div>
@@ -255,7 +269,7 @@ const DashboardOperador = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {quickActions.map((action, index) => (
+                {accRapidas.map((action, index) => (
                   <Button
                     key={index}
                     variant="outline"
@@ -263,13 +277,13 @@ const DashboardOperador = () => {
                     asChild
                   >
                     <a href={action.href}>
-                      <div className={`w-8 h-8 rounded-md ${action.color} flex items-center justify-center mr-3`}>
-                        <action.icon className="h-4 w-4 text-white" />
+                      <div className={`w-8 h-8 rounded-md ${action.col} flex items-center justify-center mr-3`}>
+                        <action.ico className="h-4 w-4 text-white" />
                       </div>
                       <div className="text-left">
-                        <div className="font-medium">{action.title}</div>
+                        <div className="font-medium">{action.tit}</div>
                         <div className="text-sm text-muted-foreground">
-                          {action.description}
+                          {action.des}
                         </div>
                       </div>
                     </a>
@@ -280,34 +294,6 @@ const DashboardOperador = () => {
           </Card>
         </div>
 
-        {/* System Status */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Estado del Sistema</CardTitle>
-            <CardDescription>
-              Monitoreo de componentes y servicios
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="text-sm">Base de Datos</span>
-                <span className="text-sm text-green-600 ml-auto">Operativa</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="text-sm">Servicios de IA</span>
-                <span className="text-sm text-green-600 ml-auto">Activos</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="text-sm">Sistema de Archivos</span>
-                <span className="text-sm text-green-600 ml-auto">Disponible</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </AppLayout>
   )

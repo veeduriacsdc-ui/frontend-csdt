@@ -7,45 +7,45 @@ const AuditoriaForense = () => {
   const [casosAbiertos, setCasosAbiertos] = useState([
     {
       id: 1,
-      titulo: 'Análisis Catastral - Municipio X',
-      fecha: '2024-01-15',
-      estado: 'En Proceso',
-      tipo: 'Catastral',
-      urgencia: 'Alta',
-      descripcion: 'Análisis de irregularidades en registros catastrales',
-      evidencias: 15,
-      avance: 65
+      tit: 'Análisis Catastral - Municipio X',
+      fec: '2024-01-15',
+      est: 'En Proceso',
+      tip: 'Catastral',
+      urg: 'Alta',
+      des: 'Análisis de irregularidades en registros catastrales',
+      evi: 15,
+      ava: 65
     },
     {
       id: 2,
-      titulo: 'Auditoría Minera - Región Y',
-      fecha: '2024-01-20',
-      estado: 'Completado',
-      tipo: 'Minera',
-      urgencia: 'Media',
-      descripcion: 'Verificación de títulos mineros y concesiones',
-      evidencias: 8,
-      avance: 100
+      tit: 'Auditoría Minera - Región Y',
+      fec: '2024-01-20',
+      est: 'Completado',
+      tip: 'Minera',
+      urg: 'Media',
+      des: 'Verificación de títulos mineros y concesiones',
+      evi: 8,
+      ava: 100
     },
     {
       id: 3,
-      titulo: 'Revisión Administrativa - Entidad Z',
-      fecha: '2024-01-25',
-      estado: 'Pendiente',
-      tipo: 'Administrativa',
-      urgencia: 'Baja',
-      descripcion: 'Análisis de actos administrativos sospechosos',
-      evidencias: 3,
-      avance: 20
+      tit: 'Revisión Administrativa - Entidad Z',
+      fec: '2024-01-25',
+      est: 'Pendiente',
+      tip: 'Administrativa',
+      urg: 'Baja',
+      des: 'Análisis de actos administrativos sospechosos',
+      evi: 3,
+      ava: 20
     }
   ]);
 
   const [nuevoCaso, setNuevoCaso] = useState({
-    titulo: '',
-    tipo: 'Catastral',
-    urgencia: 'Media',
-    descripcion: '',
-    archivos: []
+    tit: '',
+    tip: 'Catastral',
+    urg: 'Media',
+    des: '',
+    arc: []
   });
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
@@ -63,7 +63,7 @@ const AuditoriaForense = () => {
     const archivos = Array.from(e.target.files);
     setNuevoCaso(prev => ({
       ...prev,
-      archivos: [...prev.archivos, ...archivos]
+      arc: [...prev.arc, ...archivos]
     }));
   };
 
@@ -73,19 +73,19 @@ const AuditoriaForense = () => {
     const casoCompleto = {
       ...nuevoCaso,
       id: nuevoId,
-      fecha: new Date().toISOString().split('T')[0],
-      estado: 'Pendiente',
-      evidencias: nuevoCaso.archivos.length,
-      avance: 0
+      fec: new Date().toISOString().split('T')[0],
+      est: 'Pendiente',
+      evi: nuevoCaso.arc.length,
+      ava: 0
     };
     
     setCasosAbiertos(prev => [casoCompleto, ...prev]);
     setNuevoCaso({
-      titulo: '',
-      tipo: 'Catastral',
-      urgencia: 'Media',
-      descripcion: '',
-      archivos: []
+      tit: '',
+      tip: 'Catastral',
+      urg: 'Media',
+      des: '',
+      arc: []
     });
     setMostrarFormulario(false);
   };

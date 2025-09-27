@@ -3,15 +3,15 @@ import api from '../../services/api';
 
 const Donaciones = () => {
   const [formulario, setFormulario] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    monto: '',
-    tipoDonacion: 'unica',
-    metodoPago: 'nequi',
-    mensaje: '',
-    referenciaDonacion: '',
-    archivoComprobante: null
+    nom: '',
+    cor: '',
+    tel: '',
+    mon: '',
+    tip: 'unica',
+    met_pag: 'nequi',
+    men: '',
+    ref: '',
+    arc: null
   });
 
   const [busquedaReferencia, setBusquedaReferencia] = useState('');
@@ -29,7 +29,7 @@ const Donaciones = () => {
   const manejarCambio = (e) => {
     const { name, value, files } = e.target;
     
-    if (name === 'archivoComprobante') {
+    if (name === 'arc') {
       setFormulario(prev => ({
         ...prev,
         [name]: files[0] || null
@@ -49,17 +49,17 @@ const Donaciones = () => {
 
     try {
       const formData = new FormData();
-      formData.append('nombre_donante', formulario.nombre);
-      formData.append('email_donante', formulario.email);
-      formData.append('telefono_donante', formulario.telefono);
-      formData.append('monto', formulario.monto);
-      formData.append('tipo_donacion', formulario.tipoDonacion);
-      formData.append('metodo_pago', formulario.metodoPago);
-      formData.append('mensaje', formulario.mensaje);
-      formData.append('referencia_donacion', formulario.referenciaDonacion);
+      formData.append('nom', formulario.nom);
+      formData.append('cor', formulario.cor);
+      formData.append('tel', formulario.tel);
+      formData.append('mon', formulario.mon);
+      formData.append('tip', formulario.tip);
+      formData.append('met_pag', formulario.met_pag);
+      formData.append('men', formulario.men);
+      formData.append('ref', formulario.ref);
       
-      if (formulario.archivoComprobante) {
-        formData.append('archivo_comprobante', formulario.archivoComprobante);
+      if (formulario.arc) {
+        formData.append('arc', formulario.arc);
       }
 
       const response = await api.post('/donaciones', formData, {
@@ -71,15 +71,15 @@ const Donaciones = () => {
       if (response.data.success) {
         setMensaje(`¡Donación registrada exitosamente! Tu número de referencia es: ${response.data.data.numero_referencia}`);
         setFormulario({
-          nombre: '',
-          email: '',
-          telefono: '',
-          monto: '',
-          tipoDonacion: 'unica',
-          metodoPago: 'nequi',
-          mensaje: '',
-          referenciaDonacion: '',
-          archivoComprobante: null
+          nom: '',
+          cor: '',
+          tel: '',
+          mon: '',
+          tip: 'unica',
+          met_pag: 'nequi',
+          men: '',
+          ref: '',
+          arc: null
         });
         setMostrarBusqueda(true);
       }
@@ -266,8 +266,8 @@ const Donaciones = () => {
               </label>
               <input
                 type="text"
-                name="nombre"
-                value={formulario.nombre}
+                name="nom"
+                value={formulario.nom}
                 onChange={manejarCambio}
                 required
                 style={{
@@ -292,8 +292,8 @@ const Donaciones = () => {
               </label>
               <input
                 type="email"
-                name="email"
-                value={formulario.email}
+                name="cor"
+                value={formulario.cor}
                 onChange={manejarCambio}
                 required
                 style={{
@@ -318,8 +318,8 @@ const Donaciones = () => {
               </label>
               <input
                 type="tel"
-                name="telefono"
-                value={formulario.telefono}
+                name="tel"
+                value={formulario.tel}
                 onChange={manejarCambio}
                 style={{
                   width: '100%',
@@ -343,8 +343,8 @@ const Donaciones = () => {
               </label>
               <input
                 type="number"
-                name="monto"
-                value={formulario.monto}
+                name="mon"
+                value={formulario.mon}
                 onChange={manejarCambio}
                 required
                 min="10000"
@@ -369,8 +369,8 @@ const Donaciones = () => {
                 Método de Pago *
               </label>
               <select
-                name="metodoPago"
-                value={formulario.metodoPago}
+                name="met_pag"
+                value={formulario.met_pag}
                 onChange={manejarCambio}
                 required
                 style={{
@@ -402,8 +402,8 @@ const Donaciones = () => {
                 Tipo de Donación *
               </label>
               <select
-                name="tipoDonacion"
-                value={formulario.tipoDonacion}
+                name="tip"
+                value={formulario.tip}
                 onChange={manejarCambio}
                 required
                 style={{
@@ -431,8 +431,8 @@ const Donaciones = () => {
                 Mensaje (Opcional)
               </label>
               <textarea
-                name="mensaje"
-                value={formulario.mensaje}
+                name="men"
+                value={formulario.men}
                 onChange={manejarCambio}
                 rows="3"
                 style={{
@@ -458,8 +458,8 @@ const Donaciones = () => {
               </label>
               <input
                 type="text"
-                name="referenciaDonacion"
-                value={formulario.referenciaDonacion || ''}
+                name="ref"
+                value={formulario.ref || ''}
                 onChange={manejarCambio}
                 style={{
                   width: '100%',

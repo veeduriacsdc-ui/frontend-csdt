@@ -11,9 +11,9 @@ const Register = () => {
   const [formData, setFormData] = useState({
     nom: '',
     ape: '',
-    email: '',
-    pass: '',
-    pass_confirmation: '',
+    cor: '',
+    con: '',
+    con_confirmation: '',
     rol: 'cli'
   })
   const [loading, setLoading] = useState(false)
@@ -33,7 +33,7 @@ const Register = () => {
     setLoading(true)
     setError('')
 
-    if (formData.pass !== formData.pass_confirmation) {
+    if (formData.con !== formData.con_confirmation) {
       setError('Las contraseñas no coinciden')
       setLoading(false)
       return
@@ -89,12 +89,12 @@ const Register = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email">Correo electrónico</Label>
+          <Label htmlFor="cor">Correo electrónico</Label>
           <Input
-            id="email"
+            id="cor"
             type="email"
-            name="email"
-            value={formData.email}
+            name="cor"
+            value={formData.cor}
             onChange={handleChange}
             placeholder="correo@ejemplo.com"
             required
@@ -102,12 +102,12 @@ const Register = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="pass">Contraseña</Label>
+          <Label htmlFor="con">Contraseña</Label>
           <Input
-            id="pass"
+            id="con"
             type="password"
-            name="pass"
-            value={formData.pass}
+            name="con"
+            value={formData.con}
             onChange={handleChange}
             placeholder="Contraseña"
             required
@@ -115,12 +115,12 @@ const Register = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="pass_confirmation">Confirmar contraseña</Label>
+          <Label htmlFor="con_confirmation">Confirmar contraseña</Label>
           <Input
-            id="pass_confirmation"
+            id="con_confirmation"
             type="password"
-            name="pass_confirmation"
-            value={formData.pass_confirmation}
+            name="con_confirmation"
+            value={formData.con_confirmation}
             onChange={handleChange}
             placeholder="Confirmar contraseña"
             required

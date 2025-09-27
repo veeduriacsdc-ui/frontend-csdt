@@ -9,8 +9,8 @@ import { LoaderCircle } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [cor, setCor] = useState('')
+  const [con, setCon] = useState('')
   const [remember, setRemember] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -18,9 +18,9 @@ const Login = () => {
   const { login } = useAuth()
 
   // Función para copiar credenciales de prueba
-  const handleCredentialClick = (email, password) => {
-    setEmail(email)
-    setPassword(password)
+  const handleCredentialClick = (cor, con) => {
+    setCor(cor)
+    setCon(con)
     setError('')
   }
 
@@ -30,7 +30,7 @@ const Login = () => {
     setError('')
 
     try {
-      await login(email, password)
+      await login(cor, con)
       navigate('/')
     } catch (err) {
       setError(err.message || 'Error al iniciar sesión')
@@ -52,12 +52,12 @@ const Login = () => {
         )}
         
         <div className="space-y-2">
-          <Label htmlFor="email">Correo electrónico</Label>
+          <Label htmlFor="cor">Correo electrónico</Label>
           <Input
-            id="email"
+            id="cor"
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={cor}
+            onChange={(e) => setCor(e.target.value)}
             placeholder="correo@ejemplo.com"
             required
             autoFocus
@@ -65,12 +65,12 @@ const Login = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="password">Contraseña</Label>
+          <Label htmlFor="con">Contraseña</Label>
           <Input
-            id="password"
+            id="con"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={con}
+            onChange={(e) => setCon(e.target.value)}
             placeholder="Contraseña"
             required
           />

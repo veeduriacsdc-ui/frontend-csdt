@@ -8,10 +8,10 @@ const AdminDonaciones = () => {
   const [estadisticas, setEstadisticas] = useState({});
   const [cargando, setCargando] = useState(true);
   const [filtros, setFiltros] = useState({
-    estado: 'todos',
-    tipo_donacion: 'todos',
-    fecha_desde: '',
-    fecha_hasta: ''
+    est: 'todos',
+    tip: 'todos',
+    fec_des: '',
+    fec_has: ''
   });
   const [donacionSeleccionada, setDonacionSeleccionada] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -28,10 +28,10 @@ const AdminDonaciones = () => {
       setCargando(true);
       const params = new URLSearchParams();
       
-      if (filtros.estado !== 'todos') params.append('estado', filtros.estado);
-      if (filtros.tipo_donacion !== 'todos') params.append('tipo_donacion', filtros.tipo_donacion);
-      if (filtros.fecha_desde) params.append('fecha_desde', filtros.fecha_desde);
-      if (filtros.fecha_hasta) params.append('fecha_hasta', filtros.fecha_hasta);
+      if (filtros.est !== 'todos') params.append('est', filtros.est);
+      if (filtros.tip !== 'todos') params.append('tip', filtros.tip);
+      if (filtros.fec_des) params.append('fec_des', filtros.fec_des);
+      if (filtros.fec_has) params.append('fec_has', filtros.fec_has);
 
       const response = await api.get(`/donaciones?${params.toString()}`);
       

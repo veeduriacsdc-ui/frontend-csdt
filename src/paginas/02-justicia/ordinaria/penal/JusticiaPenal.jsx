@@ -37,22 +37,22 @@ const JusticiaPenal = () => {
   const [casos, setCasos] = useState([]);
   const [tiposDelito, setTiposDelito] = useState([]);
   const [estados, setEstados] = useState([]);
-  const [filtroTipo, setFiltroTipo] = useState('todos');
-  const [filtroEstado, setFiltroEstado] = useState('todos');
+  const [filtroTip, setFiltroTip] = useState('todos');
+  const [filtroEst, setFiltroEst] = useState('todos');
   const [busqueda, setBusqueda] = useState('');
   const [nuevoCaso, setNuevoCaso] = useState({
-    numero: '',
-    imputado: '',
-    victima: '',
-    tipo: 'hurto',
-    descripcion: '',
-    fechaHecho: '',
-    estado: 'investigacion',
-    fiscalia: '',
-    fiscal: '',
-    defensor: '',
-    juez: '',
-    documentos: []
+    num: '',
+    imp: '',
+    vic: '',
+    tip: 'hurto',
+    des: '',
+    fec_hec: '',
+    est: 'investigacion',
+    fis: '',
+    fis_nom: '',
+    def: '',
+    jue: '',
+    doc: []
   });
 
   useEffect(() => {

@@ -46,35 +46,35 @@ import jsPDF from 'jspdf';
 const ConsejoIA = () => {
   // Estados principales
   const [datosCliente, setDatosCliente] = useState({
-    tipo: 'cliente',
-    nombre: '',
-    telefono: '',
-    whatsapp: '',
-    alias: '',
-    telefono_contacto: '',
-    whatsapp_contacto: ''
+    tip: 'cliente',
+    nom: '',
+    tel: '',
+    whats: '',
+    ali: '',
+    tel_con: '',
+    whats_con: ''
   });
 
   const [ubicacion, setUbicacion] = useState({
-    municipio: '',
-    departamento: '',
-    pais: 'Colombia',
-    coordenadas: null,
-    codigo: '',
-    consecutivo: 1,
-    fecha: new Date().toISOString().split('T')[0]
+    mun: '',
+    dep: '',
+    pai: 'Colombia',
+    coor: null,
+    cod: '',
+    con: 1,
+    fec: new Date().toISOString().split('T')[0]
   });
 
   const [narracionHechos, setNarracionHechos] = useState({
-    texto: '',
-    timestamp: new Date(),
-    version: 1
+    tex: '',
+    tim: new Date(),
+    ver: 1
   });
 
   const [consejoIA, setConsejoIA] = useState({
-    respuestas: [],
-    analisis_general: '',
-    timestamp: new Date()
+    res: [],
+    ana_gen: '',
+    tim: new Date()
   });
 
   const [isRecording, setIsRecording] = useState(false);
