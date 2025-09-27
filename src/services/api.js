@@ -81,12 +81,23 @@ api.interceptors.response.use(
   (error) => {
     const { response } = error;
     
+    // Log detallado de errores para debugging
+    console.error('Error de API:', {
+      url: error.config?.url,
+      method: error.config?.method,
+      status: response?.status,
+      statusText: response?.statusText,
+      data: response?.data,
+      message: error.message
+    });
+    
     if (response?.status === 401) {
       // Token expirado o inválido
       localStorage.removeItem('csdt_token');
       localStorage.removeItem('token');
       localStorage.removeItem('csdt_user');
       localStorage.removeItem('user');
+      console.warn('Sesión expirada, redirigiendo al login...');
       window.location.href = '/';
     } else if (response?.status === 403) {
       // Acceso denegado
@@ -100,9 +111,10 @@ api.interceptors.response.use(
     } else if (error.code === 'ECONNABORTED') {
       // Timeout
       console.error('Timeout: La solicitud tardó demasiado tiempo');
-    } else if (error.code === 'NETWORK_ERROR') {
+    } else if (error.code === 'NETWORK_ERROR' || !response) {
       // Error de red
       console.error('Error de red: No se pudo conectar al servidor');
+      console.error('Verifica que el servidor esté funcionando en:', activeConfig.url);
     }
     
     return Promise.reject(error);
