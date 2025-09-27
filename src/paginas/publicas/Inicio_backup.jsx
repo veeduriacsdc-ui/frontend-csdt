@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import DiagnosticoConexion from '../../components/compartidas/DiagnosticoConexion';
 
 const Inicio = () => {
   return (
@@ -3130,9 +3129,6 @@ const Inicio = () => {
           </div>
         </div>
       </section>
-
-      {/* Componente de Diagnóstico de Conexión */}
-      <DiagnosticoConexion />
     </div>
   );
 };
