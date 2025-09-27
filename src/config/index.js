@@ -1,15 +1,15 @@
 ﻿// ConfiguraciÃ³n del sistema CSDT - Servidor DigitalOcean
 const config = {
   // URL del backend - ConfiguraciÃ³n del servidor
-  apiUrl: import.meta.env.VITE_API_URL || 'http://134.209.221.193/api',
+  apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
   
   // ConfiguraciÃ³n de la aplicaciÃ³n
   appName: 'CONSEJO SOCIAL DE VEEDURÃA Y DESARROLLO TERRITORIAL',
-  environment: 'production',
+  environment: 'development',
   
-  // URLs de la aplicaciÃ³n - Servidor DigitalOcean
-  backendUrl: import.meta.env.VITE_BACKEND_URL || 'http://134.209.221.193',
-  frontendUrl: import.meta.env.VITE_FRONTEND_URL || 'http://134.209.221.193',
+  // URLs de la aplicaciÃ³n - Servidor Local
+  backendUrl: import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000',
+  frontendUrl: import.meta.env.VITE_FRONTEND_URL || 'http://localhost:5173',
   
   // ConfiguraciÃ³n de timeout para requests
   requestTimeout: 30000,
