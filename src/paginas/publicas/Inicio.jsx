@@ -56,6 +56,15 @@ const Inicio = () => {
             }}>
               🤖 Consejo IA
             </Link>
+            <Link to="/planes-etnodesarrollo" className="btn" style={{
+              background: 'rgba(255, 255, 255, 0.2)',
+              color: 'white',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              padding: 'clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px)',
+              fontSize: 'clamp(12px, 2vw, 16px)'
+            }}>
+              🌿 Etnodesarrollo
+            </Link>
             <Link to="/geo-dashboard" className="btn" style={{
               background: 'rgba(255, 255, 255, 0.2)',
               color: 'white',
@@ -294,7 +303,7 @@ const Inicio = () => {
             </div>
           </div>
 
-          {/* Ramas del Poder Judicial */}
+          {/* Estructura del Estado Colombiano */}
           <div style={{
             background: 'linear-gradient(135deg, #1e40af 0%, #7c3aed 100%)',
             color: 'white',
@@ -308,7 +317,7 @@ const Inicio = () => {
               marginBottom: '30px',
               textAlign: 'center'
             }}>
-              🏛️ Ramas del Poder Judicial en Colombia
+              🏛️ Estructura del Estado Colombiano y Poder Judicial
             </h3>
             
             <div style={{
@@ -337,12 +346,13 @@ const Inicio = () => {
                   paddingLeft: '20px',
                   margin: 0
                 }}>
-                  <li style={{ marginBottom: '8px' }}>Corte Suprema de Justicia</li>
-                  <li style={{ marginBottom: '8px' }}>Corte Constitucional</li>
-                  <li style={{ marginBottom: '8px' }}>Consejo Superior de la Judicatura</li>
-                  <li style={{ marginBottom: '8px' }}>Tribunales Superiores</li>
-                  <li style={{ marginBottom: '8px' }}>Juzgados de Circuito</li>
-                  <li>Juzgados Municipales</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Corte Suprema de Justicia:</strong> Máximo tribunal ordinario</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Corte Constitucional:</strong> Guardián de la Constitución</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Consejo Superior de la Judicatura:</strong> Administración judicial</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Fiscalía General:</strong> Investigación penal</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Defensoría del Pueblo:</strong> Derechos humanos</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Tribunales Superiores:</strong> Segunda instancia</li>
+                  <li><strong>Juzgados:</strong> Primera instancia</li>
                 </ul>
               </div>
 
@@ -367,12 +377,13 @@ const Inicio = () => {
                   paddingLeft: '20px',
                   margin: 0
                 }}>
-                  <li style={{ marginBottom: '8px' }}>Presidencia de la República</li>
-                  <li style={{ marginBottom: '8px' }}>Ministerios</li>
-                  <li style={{ marginBottom: '8px' }}>Departamentos Administrativos</li>
-                  <li style={{ marginBottom: '8px' }}>Superintendencias</li>
-                  <li style={{ marginBottom: '8px' }}>Institutos</li>
-                  <li>Entidades Territoriales</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Presidencia:</strong> Jefe de Estado y Gobierno</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Vicepresidencia:</strong> Suplencia presidencial</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Ministerios:</strong> Administración sectorial</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Superintendencias:</strong> Control sectorial</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Entidades Descentralizadas:</strong> Servicios especializados</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Gobernaciones:</strong> Administración departamental</li>
+                  <li><strong>Alcaldías:</strong> Administración municipal</li>
                 </ul>
               </div>
 
@@ -397,12 +408,13 @@ const Inicio = () => {
                   paddingLeft: '20px',
                   margin: 0
                 }}>
-                  <li style={{ marginBottom: '8px' }}>Congreso de la República</li>
-                  <li style={{ marginBottom: '8px' }}>Senado de la República</li>
-                  <li style={{ marginBottom: '8px' }}>Cámara de Representantes</li>
-                  <li style={{ marginBottom: '8px' }}>Asambleas Departamentales</li>
-                  <li style={{ marginBottom: '8px' }}>Concejos Municipales</li>
-                  <li>Juntas Administradoras Locales</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Congreso:</strong> Cámara y Senado</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Comisiones Constitucionales:</strong> Análisis especializado</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Comisiones Legales:</strong> Temas específicos</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Comisiones Accidentales:</strong> Investigación</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Asambleas Departamentales:</strong> Legislación departamental</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Concejos Municipales:</strong> Legislación local</li>
+                  <li><strong>Juntas Administradoras:</strong> Administración local</li>
                 </ul>
               </div>
 
@@ -427,12 +439,75 @@ const Inicio = () => {
                   paddingLeft: '20px',
                   margin: 0
                 }}>
-                  <li style={{ marginBottom: '8px' }}>Contraloría General de la República</li>
-                  <li style={{ marginBottom: '8px' }}>Procuraduría General de la Nación</li>
-                  <li style={{ marginBottom: '8px' }}>Defensoría del Pueblo</li>
-                  <li style={{ marginBottom: '8px' }}>Fiscalía General de la Nación</li>
-                  <li style={{ marginBottom: '8px' }}>JEP (Justicia Especial para la Paz)</li>
-                  <li>Comisión de la Verdad</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Contraloría General:</strong> Control fiscal</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Procuraduría General:</strong> Control disciplinario</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Veedurías Ciudadanas:</strong> Control social</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Personerías:</strong> Control local</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Auditoría General:</strong> Control interno</li>
+                  <li style={{ marginBottom: '8px' }}><strong>JEP:</strong> Justicia Especial para la Paz</li>
+                  <li><strong>Comisión de la Verdad:</strong> Verdad histórica</li>
+                </ul>
+              </div>
+
+              {/* Jurisdicciones Especiales */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  marginBottom: '15px',
+                  color: '#fbbf24'
+                }}>
+                  ⚖️ Jurisdicciones Especiales
+                </h4>
+                <ul style={{
+                  fontSize: '14px',
+                  lineHeight: '1.6',
+                  paddingLeft: '20px',
+                  margin: 0
+                }}>
+                  <li style={{ marginBottom: '8px' }}><strong>Contencioso Administrativo:</strong> Control administrativo</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Familia:</strong> Asuntos familiares</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Laboral:</strong> Conflictos laborales</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Penal:</strong> Delitos y contravenciones</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Civil:</strong> Asuntos civiles</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Constitucional:</strong> Control constitucional</li>
+                  <li><strong>Paz:</strong> Justicia comunitaria</li>
+                </ul>
+              </div>
+
+              {/* Mecanismos de Participación */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                padding: '25px',
+                borderRadius: '15px',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <h4 style={{
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  marginBottom: '15px',
+                  color: '#fbbf24'
+                }}>
+                  🗳️ Mecanismos de Participación
+                </h4>
+                <ul style={{
+                  fontSize: '14px',
+                  lineHeight: '1.6',
+                  paddingLeft: '20px',
+                  margin: 0
+                }}>
+                  <li style={{ marginBottom: '8px' }}><strong>Voto:</strong> Participación electoral</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Plebiscito:</strong> Consulta presidencial</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Referendo:</strong> Aprobación de normas</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Consulta Popular:</strong> Decisión competencial</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Cabildo Abierto:</strong> Reunión pública</li>
+                  <li style={{ marginBottom: '8px' }}><strong>Iniciativa Popular:</strong> Proyectos de ley</li>
+                  <li><strong>Revocatoria:</strong> Destitución de elegidos</li>
                 </ul>
               </div>
             </div>
@@ -919,8 +994,10 @@ const Inicio = () => {
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
                 <Link to="/consejo-ia" style={{ color: '#92400e', textDecoration: 'none', fontSize: '14px' }}>• Consejo IA</Link>
+                <Link to="/consejo-ia-avanzado" style={{ color: '#92400e', textDecoration: 'none', fontSize: '14px' }}>• Consejo IA Avanzado</Link>
                 <Link to="/geo-dashboard" style={{ color: '#92400e', textDecoration: 'none', fontSize: '14px' }}>• GeoDashboard</Link>
                 <Link to="/auditoria-forense" style={{ color: '#92400e', textDecoration: 'none', fontSize: '14px' }}>• Auditoría Forense</Link>
+                <Link to="/ia/especialistas" style={{ color: '#92400e', textDecoration: 'none', fontSize: '14px' }}>• Especialistas IA</Link>
               </div>
             </div>
 
@@ -943,6 +1020,85 @@ const Inicio = () => {
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
                 <Link to="/planes-etnodesarrollo" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Planes de Etnodesarrollo</Link>
+                <Link to="/planes-etnodesarrollo-avanzado" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Etnodesarrollo Avanzado</Link>
+                <Link to="/consulta-previa-etnica" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Consulta Previa Étnica</Link>
+                <Link to="/derechos-etnicos" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Derechos Étnicos</Link>
+                <Link to="/territorios-ancestrales" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Territorios Ancestrales</Link>
+                <Link to="/patrimonio-cultural" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Patrimonio Cultural</Link>
+                <Link to="/mediacion-intercultural" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Mediación Intercultural</Link>
+                <Link to="/educacion-propia" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Educación Propia</Link>
+                <Link to="/historia-territorio" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Historia del Territorio</Link>
+                <Link to="/narraciones-etnicas" style={{ color: '#5b21b6', textDecoration: 'none', fontSize: '14px' }}>• Narraciones Étnicas</Link>
+              </div>
+            </div>
+
+            {/* Justicia Ordinaria */}
+            <div style={{
+              background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+              padding: '30px',
+              borderRadius: '20px',
+              border: '2px solid #fecaca',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '50px', marginBottom: '20px' }}>⚖️</div>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: '#dc2626',
+                marginBottom: '15px'
+              }}>
+                Justicia Ordinaria
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
+                <Link to="/justicia-civil" style={{ color: '#7f1d1d', textDecoration: 'none', fontSize: '14px' }}>• Justicia Civil</Link>
+                <Link to="/justicia-penal" style={{ color: '#7f1d1d', textDecoration: 'none', fontSize: '14px' }}>• Justicia Penal</Link>
+                <Link to="/justicia-constitucional" style={{ color: '#7f1d1d', textDecoration: 'none', fontSize: '14px' }}>• Justicia Constitucional</Link>
+              </div>
+            </div>
+
+            {/* Control Territorial */}
+            <div style={{
+              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+              padding: '30px',
+              borderRadius: '20px',
+              border: '2px solid #bbf7d0',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '50px', marginBottom: '20px' }}>🗺️</div>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: '#16a34a',
+                marginBottom: '15px'
+              }}>
+                Control Territorial
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
+                <Link to="/control-mineria-predios" style={{ color: '#166534', textDecoration: 'none', fontSize: '14px' }}>• Control Minería y Predios</Link>
+                <Link to="/control-instituciones" style={{ color: '#166534', textDecoration: 'none', fontSize: '14px' }}>• Control Instituciones</Link>
+                <Link to="/control-regional" style={{ color: '#166534', textDecoration: 'none', fontSize: '14px' }}>• Control Regional</Link>
+              </div>
+            </div>
+
+            {/* Medicina Natural */}
+            <div style={{
+              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+              padding: '30px',
+              borderRadius: '20px',
+              border: '2px solid #bbf7d0',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '50px', marginBottom: '20px' }}>🌿</div>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: '#16a34a',
+                marginBottom: '15px'
+              }}>
+                Medicina Natural
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
+                <Link to="/medicina-natural" style={{ color: '#166534', textDecoration: 'none', fontSize: '14px' }}>• Medicina Natural</Link>
               </div>
             </div>
 
@@ -968,6 +1124,11 @@ const Inicio = () => {
                 <Link to="/proyectos" style={{ color: '#334155', textDecoration: 'none', fontSize: '14px' }}>• Proyectos</Link>
                 <Link to="/donaciones" style={{ color: '#334155', textDecoration: 'none', fontSize: '14px' }}>• Donaciones</Link>
                 <Link to="/contacto" style={{ color: '#334155', textDecoration: 'none', fontSize: '14px' }}>• Contacto</Link>
+                <Link to="/noticias" style={{ color: '#334155', textDecoration: 'none', fontSize: '14px' }}>• Noticias</Link>
+                <Link to="/documentos" style={{ color: '#334155', textDecoration: 'none', fontSize: '14px' }}>• Documentos</Link>
+                <Link to="/ayuda" style={{ color: '#334155', textDecoration: 'none', fontSize: '14px' }}>• Ayuda</Link>
+                <Link to="/terminos" style={{ color: '#334155', textDecoration: 'none', fontSize: '14px' }}>• Términos</Link>
+                <Link to="/convocatorias" style={{ color: '#334155', textDecoration: 'none', fontSize: '14px' }}>• Convocatorias</Link>
               </div>
             </div>
           </div>
